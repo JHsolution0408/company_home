@@ -24,11 +24,13 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      {children}
+      <main style={{ flex: 1 }}>{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
 

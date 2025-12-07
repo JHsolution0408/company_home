@@ -64,12 +64,17 @@ const Header = ({ siteTitle }) => {
         style={{
           backgroundColor: "#0066cc",
           color: "white",
-          margin: `0 auto`,
+          margin: 0,
+          width: "100%",
           padding: `var(--space-4) var(--size-gutter)`,
           display: `flex`,
           alignItems: `center`,
           justifyContent: `space-between`,
-          position: "relative",
+          position: "sticky",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1250,
         }}
       >
         <div style={{ flex: "1", textAlign: "left", zIndex: 1300 }}>
@@ -101,6 +106,9 @@ const Header = ({ siteTitle }) => {
             transition: isMobile ? "left 0.3s ease" : "none",
             overflowY: isMobile ? "auto" : "visible",
             paddingTop: isMobile ? "16px" : 0,
+            flex: isMobile ? "0" : "2",
+            display: isMobile ? "block" : "flex",
+            justifyContent: isMobile ? "flex-start" : "center",
           }}
         >
           {isMobile && (
