@@ -1,0 +1,402 @@
+/* 반응형 홈페이지 스타일 */
+
+/* ========== HEADER (GNB) ========== */
+.header {
+  background-color: #003d99;
+  color: white;
+  padding: 40px 20px;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.headerTitle {
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.gnbMenu {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gnbMenuItem {
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.gnbMenuItem:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.gnbMenuItemTitle {
+  margin-bottom: 10px;
+}
+
+.gnbMenuItemDesc {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #f0f8ff;
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.heroDesc {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* ========== MAIN SERVICES SECTION ========== */
+.servicesSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.servicesTitle {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 32px;
+}
+
+.servicesGrid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.serviceCard {
+  padding: 30px;
+  border: 2px solid #0066cc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.serviceCard:hover {
+  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
+  transform: translateY(-4px);
+}
+
+.serviceCardTitle {
+  color: #0066cc;
+  margin-bottom: 15px;
+}
+
+.serviceCardDesc {
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.serviceCardLink {
+  color: #0066cc;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.serviceCardLink:hover {
+  color: #0052a3;
+}
+
+/* ========== CTA SECTION ========== */
+.ctaSection {
+  background-color: #f0f8ff;
+  padding: 60px 20px;
+}
+
+.ctaContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ctaTitle {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.ctaDesc {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.ctaButton {
+  color: white;
+  background-color: #0066cc;
+  padding: 15px 40px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #0052a3;
+  transform: translateY(-2px);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background-color: #003d99;
+  color: white;
+  padding: 40px 20px;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+.footerRow {
+  display: contents;
+}
+
+.footerCell {
+  padding: 15px;
+}
+
+.footerHeader {
+  color: white;
+  margin-bottom: 15px;
+  margin: 0;
+}
+
+.footerInfo {
+  padding: 0;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.footerInfoLabel {
+  color: white;
+}
+
+.footerBrochure {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footerLink {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+  color: #ccc;
+}
+
+.footerCopyright {
+  text-align: left;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
+  color: #ccc;
+  font-size: 13px;
+}
+
+/* ========== 모바일 반응형 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .header {
+    padding: 30px 15px;
+  }
+
+  .headerTitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .gnbMenu {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 100%;
+  }
+
+  .gnbMenuItem {
+    padding: 15px;
+  }
+
+  .gnbMenuItemTitle {
+    font-size: 14px;
+  }
+
+  .gnbMenuItemDesc {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 60px 15px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  .heroDesc {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .servicesSection {
+    padding: 40px 15px;
+  }
+
+  .servicesTitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .serviceCard {
+    padding: 20px;
+  }
+
+  .serviceCardTitle {
+    font-size: 18px;
+  }
+
+  .serviceCardDesc {
+    font-size: 14px;
+  }
+
+  .ctaSection {
+    padding: 40px 15px;
+  }
+
+  .ctaTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .ctaDesc {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .ctaButton {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footerTable {
+    margin-bottom: 30px;
+  }
+
+  .footerCell {
+    padding: 10px;
+  }
+}
+
+/* ========== 초소형 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .headerTitle {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .gnbMenu {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .gnbMenuItem {
+    padding: 12px;
+  }
+
+  .gnbMenuItemTitle {
+    font-size: 12px;
+  }
+
+  .gnbMenuItemDesc {
+    font-size: 11px;
+  }
+
+  .heroTitle {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .heroDesc {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .servicesTitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .serviceCard {
+    padding: 15px;
+  }
+
+  .serviceCardTitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .ctaTitle {
+    font-size: 20px;
+  }
+
+  .ctaDesc {
+    font-size: 14px;
+  }
+
+  .footerInfo {
+    font-size: 12px;
+  }
+}
