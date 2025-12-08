@@ -1,6 +1,6 @@
 ---
 title: "JHAION 개발 배경"
-description: "초거대 AI 기반 최적화 엔진 JHAION의 탄생 배경과 기술적 진화를 소개합니다."
+description: "Hyper-Scale AI와 공학의 융합, JHAION 엔진 개발 배경을 설명합니다."
 slug: "jhaion-background"
 ---
 
