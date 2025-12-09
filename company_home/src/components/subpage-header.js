@@ -62,7 +62,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
 
       <header
         style={{
-          backgroundColor: "rgba(2, 8, 22, 0.60)",
+          backgroundColor: "#000",
           color: "white",
           margin: "0 auto",
           width: "100%",
@@ -74,11 +74,8 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
           left: 0,
           right: 0,
           zIndex: 1250,
-          paddingTop: "0px",
-          marginTop: "15px",
-          backgroundImage: bgImage ? `url(${bgImage})` : undefined,
-          backgroundSize: bgImage ? "cover" : undefined,
-          backgroundPosition: bgImage ? "center" : undefined,
+          paddingTop: "15px",
+          marginTop: "0",
         }}
       >
         <div style={{
