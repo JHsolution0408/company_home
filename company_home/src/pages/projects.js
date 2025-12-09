@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
+import SubPageHeader from "../components/subpage-header"
 import Seo from "../components/seo"
 
 const ProjectsPage = () => (
-  <Layout>
+  <>
+    <SubPageHeader />
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 20px" }}>
       <h1>프로젝트</h1>
       
@@ -28,7 +29,7 @@ const ProjectsPage = () => (
         </Link>
       </section>
     </div>
-  </Layout>
+  </>
 )
 
 export const Head = () => <Seo title="프로젝트" />

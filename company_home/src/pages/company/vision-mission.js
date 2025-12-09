@@ -1,9 +1,10 @@
 import * as React from "react"
-import Layout from "../../components/layout"
+import SubPageHeader from "../../components/subpage-header"
 import Seo from "../../components/seo"
 
 const VisionMissionPage = () => (
-  <Layout>
+  <>
+    <SubPageHeader bgImage="/images/about/bg_vision.png" />
     <header style={{ backgroundColor: "#f9f9f9", borderBottom: "1px solid #e0e0e0", padding: "40px 20px" }}>
       <div style={{ maxWidth: "85%", margin: "0 auto", textAlign: "left" }}>
         <h1 style={{ color: "#003d99", marginBottom: "12px", fontSize: "32px" }}>비전 및 미션</h1>
@@ -39,7 +40,7 @@ const VisionMissionPage = () => (
         </section>
       </div>
     </main>
-  </Layout>
+  </>
 )
 
 export const Head = () => <Seo title="비전 및 미션" />

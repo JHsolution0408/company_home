@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
+import SubPageHeader from "../components/subpage-header"
 import Seo from "../components/seo"
 
 const PressPage = () => (
-  <Layout>
+  <>
+    <SubPageHeader />
     <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
       <h1>홍보센터</h1>
       
@@ -86,7 +87,7 @@ const PressPage = () => (
         </p>
       </div>
     </div>
-  </Layout>
+  </>
 )
 
 export const Head = () => <Seo title="홍보센터" />

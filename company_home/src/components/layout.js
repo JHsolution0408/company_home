@@ -25,10 +25,10 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column", maxWidth: "1900px", margin: "0 auto", overflowX: "hidden" }}
     >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main style={{ flex: 1 }}>{children}</main>
+      <main style={{ flex: 1, overflowX: "hidden" }}>{children}</main>
       <Footer />
     </div>
   )
