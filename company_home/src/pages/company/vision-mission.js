@@ -57,6 +57,15 @@ const VisionMissionPage = ({ data }) => {
                 color: #177D3C;
                 font-weight: 700;
               }
+              #vision-mission-markdown table td {
+                padding: 10px 1%;
+              }
+              #vision-mission-markdown table th {
+                padding: 1%;
+              }
+              #vision-mission-markdown table:nth-of-type(2) {
+                background-color: #F6FEF9;
+              }
             `}</style>
             <div
               dangerouslySetInnerHTML={{
