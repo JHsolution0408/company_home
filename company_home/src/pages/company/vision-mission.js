@@ -1,6 +1,7 @@
 import * as React from "react";
 import SubPageHeader from "../../components/subpage-header";
 import Seo from "../../components/seo";
+import Footer from "../../components/footer";
 import { graphql } from "gatsby";
 
 export const query = graphql`
@@ -68,6 +69,7 @@ const VisionMissionPage = ({ data }) => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };
