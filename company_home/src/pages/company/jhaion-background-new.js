@@ -1,8 +1,8 @@
-
 import React from "react";
 import SubPageHeader from "../../components/subpage-header";
 import Footer from "../../components/footer";
 
+// 그라데이션 애니메이션 스타일 추가
 const gradientTextStyle = {
   background: 'linear-gradient(90deg, #177D3C 0%, #4be085 50%, #177D3C 100%)',
   backgroundSize: '200% auto',
@@ -14,6 +14,7 @@ const gradientTextStyle = {
   display: 'block',
 };
 
+// 전역 스타일에 keyframes 추가
 const gradientKeyframes = `
 @keyframes gradient-move {
   0% { background-position: 0% 50%; }
@@ -21,111 +22,71 @@ const gradientKeyframes = `
 }
 `;
 
+// 페이지 SEO 정보 (필요시 SEO 컴포넌트에 전달)
 const PAGE_TITLE = "JHAION 개발배경";
 const PAGE_DESCRIPTION = "JHAION 개발의 배경과 문제의식, 기술적 해답, 궁극적 목표를 소개합니다.";
 
-export default function JhaionBackground() {
+export default function JhaionBackgroundNew() {
+  // TODO: 아래 공간에 SEO 컴포넌트(Helmet, Seo 등) 추가 가능
   return (
     <>
       <SubPageHeader siteTitle={PAGE_TITLE} />
+      {/* SEO용 title/description: {PAGE_TITLE} / {PAGE_DESCRIPTION} */}
       <main style={{ padding: 0 }}>
-        <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <div id="jhaion-background-meta" style={{
-              marginBottom: 0,
-              backgroundImage: 'url(/images/about/bg_vision.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              padding: "clamp(32px,6vw,60px) 5vw clamp(32px,6vw,60px) 0px",
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              width: '100%',
-              maxWidth: '100%',
-              boxSizing: 'border-box',
-            }}>
-              <h1 style={{ color: "#FDFDFD", fontSize: "clamp(2rem,5vw,2.5rem)", fontWeight: 700, marginBottom: "2px", textAlign: 'center', width: '100%', wordBreak: 'keep-all' }}>{PAGE_TITLE}</h1>
-              <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "clamp(1rem,3vw,1.25rem)", fontWeight: 600, marginTop: 0, textAlign: 'center', width: '100%', wordBreak: 'keep-all' }}>{PAGE_DESCRIPTION}</p>
-            </div>
+        <div style={{ width: "100%", margin: 0, padding: 0 }}>
+          <div id="jhaion-background-meta" style={{ marginBottom: 0, backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "60px 20px 60px 50px" }}>
+            <h1 style={{ color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>{PAGE_TITLE}</h1>
+            <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>{PAGE_DESCRIPTION}</p>
           </div>
-          <style>{gradientKeyframes + `
-@media (max-width: 1800px) {
-  #jhaion-background-meta { max-width: 100vw !important; }
-}
-@media (max-width: 900px) {
-  #jhaion-background-meta { padding: 32px 2vw 32px 0px !important; }
-  #intro-text span { font-size: 1.2rem !important; }
-}
-@media (max-width: 600px) {
-  #jhaion-background-meta { padding: 24px 1vw 24px 0px !important; }
-  #intro-text span { font-size: 1rem !important; }
-}
-`}</style>
-          <div id="intro" style={{position:'relative',width:'100vw',height:'auto',margin:0,padding:0,overflow:'hidden',zIndex:1, display:'flex', justifyContent:'center'}}>
+          {/* Intro Section */}
+          <style>{gradientKeyframes}</style>
+          <div id="intro" style={{position:'relative',width:'100vw',height:'auto',margin:0,padding:0,overflow:'hidden',zIndex:1}}>
             <img src="/images/about/jhaionbackgrounds/intro.png" alt="intro" style={{width:'100vw',height:'auto',objectFit:'cover',display:'block',margin:0,padding:0}} />
-            <div id="intro-text" style={{position:'absolute',top:0,left:0,width:'100vw',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',textAlign:'center',pointerEvents:'none',padding:'0 2vw',boxSizing:'border-box',maxWidth:'100%',margin:'0 auto'}}>
+            <div id="intro-text" style={{position:'absolute',top:0,left:0,width:'100vw',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',textAlign:'center',pointerEvents:'none'}}>
               <span id="intro-1" style={{
                 color:'#fff',
-                fontSize:'clamp(2rem,6vw,3.5rem)',
+                fontSize:56,
                 fontWeight:800,
                 textShadow:'0 2px 16px rgba(0,0,0,0.35)',
                 display:'block',
                 marginBottom:24,
                 letterSpacing:'-1px',
                 textAlign:'center',
-                alignSelf:'center',
-                width:'100%',
-                wordBreak:'keep-all',
-                maxWidth:'100%',
               }}>
                 &ldquo; 데이터와 물리학의 간극을 메우다 &rdquo;
               </span>
               <span id="intro-2" style={{
                 ...gradientTextStyle,
-                fontSize:'clamp(1.5rem,5vw,2.75rem)',
+                fontSize:44,
                 fontWeight:800,
                 textShadow:'0 2px 8px rgba(0,0,0,0.18)',
                 marginBottom:24,
                 letterSpacing:'-1px',
                 textAlign:'center',
                 display:'block',
-                alignSelf:'center',
-                width:'100%',
-                wordBreak:'keep-all',
-                maxWidth:'100%',
               }}>
                 JHAION의 시작
               </span>
               <span id="intro-3" style={{
                 color:'#fff',
-                fontSize:'clamp(1rem,3vw,1.5rem)',
+                fontSize:22,
                 fontWeight:400,
                 textShadow:'0 2px 8px rgba(0,0,0,0.18)',
                 display:'block',
                 lineHeight:2.1,
                 marginBottom:36,
                 textAlign:'center',
-                alignSelf:'center',
-                width:'100%',
-                wordBreak:'keep-all',
-                maxWidth:'100%',
               }}>
                 기존의 예측 방식이 가진 불확실성을 해결하고, 탄소 중립이라는 시대적 과제에 가장 정밀한 답을 내놓기 위해 탄생했습니다.
               </span>
               <span id="intro-4" style={{
-                fontSize:'clamp(1.5rem,6vw,3.75rem)',
+                fontSize:60,
                 fontWeight:300,
                 textShadow:'0 2px 8px rgba(0,0,0,0.18)',
                 display:'block',
                 lineHeight:1.2,
                 letterSpacing:'-2px',
                 textAlign:'center',
-                alignSelf:'center',
-                width:'100%',
-                wordBreak:'keep-all',
-                maxWidth:'100%',
               }}>
                 <span style={{color:'#66E695'}}>J</span>
                 <span style={{color:'#4A4F55'}}>ourney of Hyper-Scale </span>
@@ -155,6 +116,7 @@ export default function JhaionBackground() {
                 </div>
               </div>
             </div>
+
             {/* 카드 2개 + 화살표 row (높이 맞춤) */}
             <div style={{display: 'flex', flexDirection: 'row', gap: '32px', justifyContent: 'center', alignItems: 'stretch', margin: '40px 0 56px 0'}}>
               <div style={{
@@ -203,6 +165,7 @@ export default function JhaionBackground() {
                 </div>
               </div>
             </div>
+
             {/* 기술적 해답 영역 */}
               <div style={{marginBottom: 32}}>
               <h2 style={{fontSize: 24, fontWeight: 500, marginBottom: 18, color: '#177D3C'}}>기술적 해답 (The Solution)</h2>
@@ -216,6 +179,7 @@ export default function JhaionBackground() {
                 </div>
               </div>
             </div>
+
           <div style={{display: 'flex', flexDirection: 'row', gap: '32px', justifyContent: 'center', alignItems: 'stretch', margin: '40px 0 56px 0'}}>
               <div style={{
                 background: `#fff  right bottom/cover no-repeat`,
@@ -263,6 +227,9 @@ export default function JhaionBackground() {
                 </div>
               </div>
             </div>
+
+
+
           {/* 궁극적 목표 영역 */}
             <div style={{marginBottom: 32}}>
               <h2 style={{fontSize: 24, fontWeight: 500, marginBottom: 18, color: '#177D3C'}}>궁극적 목표 (The Impact)</h2>

@@ -35,7 +35,7 @@ const Header = ({ siteTitle }) => {
 
   const companyItems = [
     { name: "비전 및 미션", icon: "🎯", slug: "vision-mission" },
-    { name: "JHAION 개발 배경", icon: "📖", slug: "jhaion-background" },
+    { name: "JHAION 개발 배경", icon: "📖", slug: "jhaion-background-new" },
     { name: "협력 네트워크", icon: "🤝", slug: "partners" },
   ]
 

@@ -200,7 +200,7 @@ const IndexPage = ({ data }) => {
             }}>
               <h3 style={{ color: "#177D3C", marginBottom: "15px", fontSize: "24px", fontWeight: "500" }}>Hyper-scale AI for Net-zero</h3>
               <p style={{ color: "#17181B", marginBottom: "10px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                초거대 AI여는 탄소중립의 미래
+                초거대 AI가 여는 탄소중립의 미래
               </p>
               <p style={{ color: "#177D3C", marginBottom: "30px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
                 가장 완벽한 에너지 최적화의 실현
