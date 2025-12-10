@@ -6,7 +6,8 @@ import Seo from "../components/seo"
 
 const ContactPage = () => (
   <Layout>
-    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
+    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+      <div style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px,4vw,60px) 5vw', boxSizing: 'border-box', margin: '0 auto' }}>
       <h1>연락처</h1>
       
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px", marginBottom: "60px" }}>
@@ -98,6 +99,7 @@ const ContactPage = () => (
           지도는 추후 추가될 예정입니다.
         </p>
       </section>
+      </div>
     </div>
   </Layout>
 )

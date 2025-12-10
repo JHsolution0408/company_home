@@ -28,16 +28,16 @@ export default function JhaionBackground() {
   return (
     <>
       <SubPageHeader siteTitle={PAGE_TITLE} />
-      <main style={{ padding: 0 }}>
-        <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+        <div style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div id="jhaion-background-meta" style={{
               marginBottom: 0,
               backgroundImage: 'url(/images/about/bg_vision.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               padding: "clamp(32px,6vw,60px) 5vw clamp(32px,6vw,60px) 0px",
-              display: 'flex',
+              width: '100%',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',

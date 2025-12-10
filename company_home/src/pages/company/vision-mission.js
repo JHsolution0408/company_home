@@ -22,57 +22,41 @@ const VisionMissionPage = ({ data }) => {
   return (
     <>
       <SubPageHeader bgImage="/images/about/bg_vision.png" />
-      <main style={{ padding: 0 }}>
-        <div style={{ width: "100%", margin: 0, padding: 0 }}>
-          <div id="vision-mission-meta" style={{ marginBottom: "32px", backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "60px 20px 60px 50px" }}>
-            <h1 style={{ color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>{frontmatter.title}</h1>
-            <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>{frontmatter.description}</p>
+      <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+        <div style={{ width: '100vw', maxWidth: '100vw', minHeight: '1px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
+          <div id="vision-mission-meta" style={{
+            width: '100%',
+            maxWidth: '100vw',
+            backgroundColor: 'black',
+            backgroundImage: 'linear-gradient(to right, black 0%, transparent 15%, transparent 85%, black 100%), url(/images/bg_vision.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center bottom',
+            marginTop: '50px',
+            marginBottom: '25px',
+            padding: '25px'
+          }}>
+            <div id="vision-mission-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left', paddingTop: '70px' }}>
+              <h1 style={{ color: '#FDFDFD' }}>{frontmatter.title}</h1>
+              <p style={{ color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw' }}>
+                우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
+              </p>
+            </div>
           </div>
-          <div id="vision-mission-markdown" style={{ width: "100%", marginTop: "0 !important", padding: "15px 24px 15px 5%" }}>
-            <style>{`
-              #vision-mission-markdown h2 {
-                font-size: 40px;
-                color: #17181B;
-                font-weight: 550;
-                margin-top: 40px;
-                margin-bottom: 16px;
-              }
-              #vision-mission-markdown h2 + p {
-                max-width: 1100px;
-                width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 20px;
-                line-height: 1.8;
-              }
-              #vision-mission-markdown strong, #vision-mission-markdown b {
-                color: #17181B;
-                font-size: 24px;
-                font-weight: 600;
-                padding-left: 1%;
-                vertical-align: top;
-                padding-top: 1%;
-              }
-              #vision-mission-markdown .ai-engineering {
-                color: #177D3C;
-                font-weight: 700;
-              }
-              #vision-mission-markdown table td {
-                padding: 10px 1%;
-              }
-              #vision-mission-markdown table th {
-                padding: 1%;
-              }
-              #vision-mission-markdown table:nth-of-type(2) {
-                background-color: #F6FEF9;
-              }
-            `}</style>
+          <div id="vision-mission-markdown" style={{
+            width: "100%",
+            maxWidth: "90%",
+            marginLeft: 0,
+            marginRight: 0,
+            fontSize: 20,
+            lineHeight: 1.8,
+            padding: "15px 24px 15px 3%"
+          }}>
             <div
               dangerouslySetInnerHTML={{
                 __html: html
-                  .replace('AI-ENGINEERING', '<span class="ai-engineering">AI-ENGINEERING</span>')
-                  .replace(/(>[^<]*미션[^<]*<)/g, match => match.replace('미션', '<span style=\"color:#177D3C;font-weight:700;\">미션</span>'))
-                  .replace(/(>[^<]*핵심가치[^<]*<)/g, match => match.replace('핵심가치', '<span style=\"color:#177D3C;font-weight:700;\">핵심가치</span>'))
+                  .replace('AI-ENGINEERING', '<span style="color:#177D3C;font-weight:700;">AI-ENGINEERING</span>')
+                  .replace(/(>[^<]*미션[^<]*<)/g, match => match.replace('미션', '<span style="color:#177D3C;font-weight:700;">미션</span>'))
+                  .replace(/(>[^<]*핵심가치[^<]*<)/g, match => match.replace('핵심가치', '<span style="color:#177D3C;font-weight:700;">핵심가치</span>'))
               }}
             />
           </div>

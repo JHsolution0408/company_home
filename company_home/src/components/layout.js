@@ -25,10 +25,20 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column", maxWidth: "1900px", margin: "0 auto", overflowX: "hidden" }}
+      id="__gatsby"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "100vw",
+        width: "100%",
+        margin: "0 auto",
+        overflowX: "hidden",
+        boxSizing: "border-box"
+      }}
     >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main style={{ flex: 1, overflowX: "hidden" }}>{children}</main>
+      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
       <Footer />
     </div>
   )

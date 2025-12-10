@@ -6,18 +6,14 @@ import Footer from "../../components/footer"
 const PartnersPage = () => (
   <>
     <SubPageHeader />
-    <div style={{ width: "100%", margin: 0, padding: 0 }}>
-      <div style={{ marginBottom: "32px", backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "60px 20px 60px 50px" }}>
-        <h1 style={{ color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>협력 네트워크</h1>
-        <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>
-          혁신적인 기술 가치 창출을 위한 협력 네트워크를 구축했습니다.
-        </p>
-      </div>
-    </div>
-
-    <main style={{ padding: "60px 0 60px 50px" }}>
-      <div style={{ maxWidth: "1200px", margin: "0", textAlign: "left" }}>
-        <section style={{ marginBottom: "40px" }}>
+    <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+      <div style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
+        <div style={{ marginBottom: "32px", backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "60px 20px 60px 50px", width: '100%' }}>
+          <h1>협력 네트워크</h1>
+          <p>혁신적인 기술 가치 창출을 위한 협력 네트워크를 구축했습니다.</p>
+        </div>
+        <div style={{ width: '100%', textAlign: 'left' }}>
+          <section style={{ marginBottom: "40px" }}>
           <h2 style={{ color: "#17181B", marginBottom: "16px", fontSize: "40px", fontWeight: 700 }}>
             혁신 시너지를 창출하는 <span style={{color: '#177D3C'}}>협력 철학</span>
           </h2>
@@ -76,6 +72,7 @@ const PartnersPage = () => (
           </div>
         </section>
 
+      </div>
       </div>
     </main>
     <footer>
