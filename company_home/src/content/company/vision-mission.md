@@ -63,7 +63,7 @@ AI 기반의 독보적인 기술역량으로 지속 가능한 미래를 선도�
     <tr><td id="td-6">우리는 IT와 공학의 경계를 허뭅니다. AI엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다.</td></tr>
   </table>
  </td>
- <td rowspan=3 style="vertical-align: middle;"><img src="/images/about/mission_plus.png">
+ <td rowspan=3 style="vertical-align: middle;padding:1px"><img src="/images/about/mission_plus.png">
  <td>
   <table id="tb2"  style="width:100%;background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
     <tr><td><img src="/images/about/mission-6.png"></td></tr>
@@ -71,7 +71,7 @@ AI 기반의 독보적인 기술역량으로 지속 가능한 미래를 선도�
     <tr><td id="td-8">남들이 가지 않은 길을 두려워 하지 않습니다. 기존 시장에 없던 Hyper-scale AI 기반의 자율운영 모델을 제시하며, 글로벌 에너지 기술 패러다임을 주도합니다.</td></tr>
   </table>
  </td>
-  <td rowspan=3 style="vertical-align: middle;"><img src="/images/about/mission_plus.png">
+  <td rowspan=3 style="vertical-align: middle;padding:1px""><img src="/images/about/mission_plus.png">
  <td>
   <table id="tb3"  style="width:100%;background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
     <tr><td><img src="/images/about/mission-7.png"></td></tr>
