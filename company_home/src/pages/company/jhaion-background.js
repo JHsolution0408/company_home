@@ -34,7 +34,7 @@ export default function JhaionBackgroundNew() {
       {/* SEO용 title/description: {PAGE_TITLE} / {PAGE_DESCRIPTION} */}
       <main style={{ padding: 0 }}>
         <div style={{ width: "100%", margin: 0, padding: 0 }}>
-          <div id="jhaion-background-meta" style={{ margin: "0 auto", marginBottom: 0, backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "150px 20px 60px 50px" }}>
+          <div id="jhaion-background-meta" style={{ margin: "0 auto", marginBottom: 0, backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "100px 20px 60px 50px" }}>
             <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>{PAGE_TITLE}</h1>
             <p style={{ margin: "0 auto", maxWidth: "90vw", color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>{PAGE_DESCRIPTION}</p>
           </div>

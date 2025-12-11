@@ -52,45 +52,35 @@ const PartnersPage = () => (
           <p style={{ color: "#2E3236", fontSize: "20px", lineHeight: "1.8", marginBottom: "24px" }}>
             핵심 기술력 확보와 산업 적용 확대를 위해 입체적인 파트너쉽을 구축했습니다.
           </p>
-          <table style={{width:'100%',borderCollapse:'separate',borderSpacing:'32px 0',marginBottom:'40px'}}>
-            <tbody>
-              <tr>
-                <td style={{verticalAlign:'top',width:'32%'}}>
-                  <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                    <img src="/images/partners/network_icon1.png" alt="기술 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
-                    <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>기술 파트너</div>
-                    <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
-                      Hyper-Scale AI 기술 플랫폼을 주요 IT 기업 · 연구소와 공동 연구하며 기술의 깊이와 속도를 높이고 있습니다
-                    </div>
-                  </div>
-                </td>
-                <td style={{verticalAlign:'middle',width:'2%',textAlign:'center'}}>
-                  <img src="/images/partners/network_icon_plus.png" alt="plus" style={{width:'48px',height:'48px',margin:'0 8px'}} />
-                </td>
-                <td style={{verticalAlign:'top',width:'32%'}}>
-                  <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                    <img src="/images/partners/network_icon2.png" alt="산업 적용 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
-                    <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>산업 적용 파트너</div>
-                    <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
-                      AI 플랫폼(에너지,설비, 안전, 자율 운영)적용을 위해 주요 고객사, 엔지니어링 파트너와 협력하고 있습니다.
-                    </div>
-                  </div>
-                </td>
-                <td style={{verticalAlign:'middle',width:'2%',textAlign:'center'}}>
-                  <img src="/images/partners/network_icon_plus.png" alt="plus" style={{width:'48px',height:'48px',margin:'0 8px'}} />
-                </td>
-                <td style={{verticalAlign:'top',width:'32%'}}>
-                  <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                    <img src="/images/partners/network_icon3.png" alt="학술/연구 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
-                    <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>학술/연구 파트너</div>
-                    <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
-                      AI-CFD 최신 이론과 기술 검증을 위해 국내외 대학 및 연구 기관과 협력하고 있습니다.
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div style={{display:'flex',flexWrap:'wrap',gap:'32px',justifyContent:'center',marginBottom:'40px'}}>
+            <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',flex:'1 1 320px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+              <img src="/images/partners/network_icon1.png" alt="기술 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
+              <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>기술 파트너</div>
+              <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
+                Hyper-Scale AI 기술 플랫폼을 주요 IT 기업 · 연구소와 공동 연구하며 기술의 깊이와 속도를 높이고 있습니다
+              </div>
+            </div>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',minWidth:'48px'}}>
+              <img src="/images/partners/network_icon_plus.png" alt="plus" style={{width:'48px',height:'48px',margin:'0 8px'}} />
+            </div>
+            <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',flex:'1 1 320px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+              <img src="/images/partners/network_icon2.png" alt="산업 적용 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
+              <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>산업 적용 파트너</div>
+              <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
+                AI 플랫폼(에너지,설비, 안전, 자율 운영)적용을 위해 주요 고객사, 엔지니어링 파트너와 협력하고 있습니다.
+              </div>
+            </div>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',minWidth:'48px'}}>
+              <img src="/images/partners/network_icon_plus.png" alt="plus" style={{width:'48px',height:'48px',margin:'0 8px'}} />
+            </div>
+            <div style={{background:'#F8F9FA',borderRadius:'24px',border:'1.5px solid #E0E4E8',boxShadow:'0 2px 12px 0 rgba(23,125,60,0.06)',padding:'32px',minWidth:'220px',maxWidth:'500px',flex:'1 1 320px',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+              <img src="/images/partners/network_icon3.png" alt="학술/연구 파트너" style={{width:'40.58px',height:'40.58px',borderRadius:'16px',marginBottom:'18px',objectFit:'cover',display:'block',alignSelf:'flex-start'}} />
+              <div style={{fontSize:24,fontWeight:500,color:'#17181B',marginBottom:12}}>학술/연구 파트너</div>
+              <div style={{fontSize:20,fontWeight:400,color:'#757B82',lineHeight:1.7}}>
+                AI-CFD 최신 이론과 기술 검증을 위해 국내외 대학 및 연구 기관과 협력하고 있습니다.
+              </div>
+            </div>
+          </div>
         </section>
 
       </div>

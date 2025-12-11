@@ -5,8 +5,8 @@ import Footer from "../../components/footer";
 import { graphql } from "gatsby";
 
 export const query = graphql`
-  query VisionMissionQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/vision-mission.md$/" }) {
+  query EnergyPageQuery {
+    markdownRemark(fileAbsolutePath: { regex: "/energy.md$/" }) {
       frontmatter {
         title
         description
@@ -24,7 +24,7 @@ const VisionMissionPage = ({ data }) => {
       <SubPageHeader bgImage="/images/about/bg_vision.png" />
       <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
         <div style={{ width: '100vw', maxWidth: '100vw', minHeight: '1px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
-          <div id="vision-mission-meta" style={{
+          <div id="title-meta" style={{
             width: '100%',
             maxWidth: '100vw',
             backgroundColor: 'black',
@@ -34,14 +34,14 @@ const VisionMissionPage = ({ data }) => {
             marginBottom: '25px',
             padding: '100px 20px 60px 50px'
           }}>
-            <div id="vision-mission-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
+            <div id="title-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
               <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', fontSize: '40px' }}>{frontmatter.title}</h1>
               <p style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw', fontSize: '20px' }}>
                 우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
               </p>
             </div>
           </div>
-          <div id="vision-mission-markdown" style={{
+          <div id="content-md" style={{
             maxWidth: "90vw",
             marginLeft: 0,
             marginRight: 0,
