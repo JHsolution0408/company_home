@@ -99,7 +99,7 @@ export default function JhaionBackgroundNew() {
               </span>
             </div>
           </div>
-          <div style={{maxWidth: 1800, margin: '0', padding: '40px 0 40px 50px', textAlign: 'left'}}>
+          <div id='content' style={{maxWidth: '100vw', margin: '0', padding: '40px 0 40px 50px', textAlign: 'left'}}>
             {/* 문제 인식 영역 */}
             <div style={{marginBottom: 32}}>
               <h2 style={{fontSize: 24, fontWeight: 500, marginBottom: 18, color: '#177D3C'}}>문제 인식 (The Challenge)</h2>

@@ -2,17 +2,39 @@ import React from "react";
 
 export default function JhaionBackground() {
   return (
-    <div>
-      <div id="intro" style={{position:'relative',top:0,left:0,width:'100vw',height:'auto',margin:0,padding:0,overflow:'hidden',zIndex:1}}>
-        <img src="/images/about/jhaionbackgrounds/intro.png" alt="intro" style={{position:'absolute',top:0,left:0,width:'100vw',height:'100%',objectFit:'cover',display:'block',margin:0,padding:0}} />
-        <div id="intro-text" style={{position:'absolute',top:0,left:0,width:'100vw',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',textAlign:'center',pointerEvents:'none'}}>
+    <div style={{width:'100vw'}}>
+      <div id="jhaion-background-meta" style={{position:'relative',width:'100vw',height:'auto',margin:0,padding:'90px 20px 60px 50px',backgroundImage:'linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(/images/about/jhaionbackgrounds/intro.png)',backgroundSize:'cover',backgroundPosition:'center',overflow:'hidden',zIndex:1,display:'flex',justifyContent:'center'}}>
+        <div style={{width:'100vw',position:'absolute',top:0,left:0,height:'100%',backgroundColor:'black',zIndex:0,opacity:0.7}}></div>
+        <div id="intro-text" style={{position:'relative',width:'100vw',maxWidth:'100vw',marginLeft:'0',marginRight:'auto',display:'flex',flexDirection:'column',alignItems:'flex-start',justifyContent:'center',textAlign:'left',pointerEvents:'none',zIndex:1,paddingLeft:'48px',paddingRight:'48px'}}>
           <span id="intro-1" style={{color:'#fff',fontSize:48,fontWeight:700,textShadow:'0 2px 8px rgba(0,0,0,0.25)',display:'block'}}>데이터와 물리학의 간극을 메우다</span>
           <span id="intro-2" style={{color:'#fff',fontSize:48,fontWeight:700,textShadow:'0 2px 8px rgba(0,0,0,0.25)',display:'block'}}>JHAION 의 시작</span>
           <span id="intro-3" style={{color:'#fff',fontSize:24,fontWeight:400,textShadow:'0 2px 8px rgba(0,0,0,0.25)',display:'block'}}>기존의 예측방식이 가진 불확실성을 해소하고 탄소중립이라는 시대적 과제에 가장 정밀한 답을 내놓기 위해 탄생했습니다.</span>
-          <span id="intro-4" style={{color:'#fff',fontSize:56,fontWeight:300,textShadow:'0 2px 8px rgba(0,0,0,0.25)',display:'block'}}>Journey of Hyper-Scale AI Optimization Net-Zero</span>
+          <span
+            id="intro-4"
+            style={{
+              color: '#fff',
+              fontSize: 48,
+              fontWeight: 700,
+              textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+              display: 'block',
+              background: 'linear-gradient(90deg, #fff 0%, #177D3C 50%, #fff 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              animation: 'sparkle 2s linear infinite'
+            }}
+          >
+            Journey of Hyper-Scale AI Optimization Net-Zero
+          </span>
+          <style>{`
+            @keyframes sparkle {
+              0% { filter: brightness(1); }
+              50% { filter: brightness(1.7); }
+              100% { filter: brightness(1); }
+            }
+          `}</style>
         </div>
       </div>
-      <div style={{padding:'64px 0 0 0'}}></div>
+        <div id="jhaion-desc" style={{width:'100vw',maxWidth:'100vw',padding:'64px 0 0 0'}}></div>
       <section style={{maxWidth:1100,margin:'0 auto 64px auto',padding:'0 16px'}}>
         <h2 style={{color:'#177D3C',fontSize:24,fontWeight:600,marginBottom:8}}>문제인식 ( The Challenge )</h2>
         <div style={{fontSize:20,fontWeight:400,marginBottom:24}}>&quot;기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.&quot;</div>
@@ -22,7 +44,7 @@ export default function JhaionBackground() {
           우리는 생각했습니다.<br/>
           <b>&quot;보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?&quot;</b>
         </div>
-        <div style={{display:'flex',gap:32,alignItems:'center',justifyContent:'center',margin:'32px 0',flexWrap:'wrap'}}>
+        <div style={{width:'100vw',display:'flex',gap:32,alignItems:'center',justifyContent:'center',margin:'32px 0',flexWrap:'wrap'}}>
           <table style={{width:320,backgroundColor:'#F8F9FA',border:'1px solid #E0E4E8',borderRadius:16,overflow:'hidden'}}>
             <tbody>
               <tr><td><img src="/images/about/jhaionbackgrounds/jbg-3.png" alt="기존기술"/></td></tr>
