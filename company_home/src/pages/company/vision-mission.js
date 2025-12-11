@@ -36,15 +36,14 @@ const VisionMissionPage = ({ data }) => {
             padding: '25px'
           }}>
             <div id="vision-mission-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left', paddingTop: '70px' }}>
-              <h1 style={{ color: '#FDFDFD' }}>{frontmatter.title}</h1>
-              <p style={{ color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw' }}>
+              <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD' }}>{frontmatter.title}</h1>
+              <p style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw' }}>
                 우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
               </p>
             </div>
           </div>
           <div id="vision-mission-markdown" style={{
-            width: "100%",
-            maxWidth: "90%",
+            maxWidth: "90vw",
             marginLeft: 0,
             marginRight: 0,
             fontSize: 20,

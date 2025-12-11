@@ -9,10 +9,10 @@ const PartnersPage = () => (
     <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
       <div style={{ width: '100vw', maxWidth: '100vw', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
         <div style={{ width: '100vw',marginBottom: "32px", backgroundImage: 'url(/images/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "100px 20px 60px 50px", width: '100%' }}>
-          <h1 style={{ color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>협력 네트워크</h1>
-          <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>혁신적인 기술 가치 창출을 위한 협력 네트워크를 구축했습니다.</p>
+          <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>협력 네트워크</h1>
+          <p style={{margin: "0 auto", maxWidth: "90vw",  color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>혁신적인 기술 가치 창출을 위한 협력 네트워크를 구축했습니다.</p>
         </div>
-       <div id='content' style={{maxWidth: '100vw', margin: '0', padding: '40px 0 40px 50px', textAlign: 'left'}}>
+       <div id='content' style={{maxWidth: '90vw', margin: '0', padding: '40px 0 40px 50px', textAlign: 'left'}}>
           <section style={{ marginBottom: "40px" }}>
           <h2 style={{ color: "#17181B", marginBottom: "16px", fontSize: "40px", fontWeight: 700 }}>
             혁신 시너지를 창출하는 <span style={{color: '#177D3C'}}>협력 철학</span>
