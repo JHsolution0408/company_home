@@ -7,7 +7,8 @@ import Seo from "../components/seo"
 const PressPage = () => (
   <>
     <SubPageHeader />
-    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
+    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+      <div style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px,4vw,60px) 5vw', boxSizing: 'border-box', margin: '0 auto' }}>
       <h1>홍보센터</h1>
       
       <p style={{ fontSize: "18px", color: "#666", marginBottom: "40px" }}>
@@ -85,6 +86,7 @@ const PressPage = () => (
           <strong>이메일:</strong> <a href="mailto:press@company.com" style={{ color: "#0066cc" }}>press@company.com</a><br />
           <strong>전화:</strong> 02-0000-0000
         </p>
+      </div>
       </div>
     </div>
   </>

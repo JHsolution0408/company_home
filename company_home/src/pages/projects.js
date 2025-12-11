@@ -7,7 +7,8 @@ import Seo from "../components/seo"
 const ProjectsPage = () => (
   <>
     <SubPageHeader />
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 20px" }}>
+    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+      <div style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px,4vw,60px) 5vw', boxSizing: 'border-box', margin: '0 auto' }}>
       <h1>프로젝트</h1>
       
       <p style={{ fontSize: "18px", color: "#666", marginBottom: "40px" }}>
@@ -28,6 +29,7 @@ const ProjectsPage = () => (
           연락처 →
         </Link>
       </section>
+      </div>
     </div>
   </>
 )

@@ -35,7 +35,7 @@ const Header = ({ siteTitle }) => {
 
   const companyItems = [
     { name: "비전 및 미션", icon: "🎯", slug: "vision-mission" },
-    { name: "JHAION 개발 배경", icon: "📖", slug: "jhaion-background" },
+    { name: "JHAION 개발 배경", icon: "📖", slug: "jhaion-background-new" },
     { name: "협력 네트워크", icon: "🤝", slug: "partners" },
   ]
 
@@ -65,7 +65,8 @@ const Header = ({ siteTitle }) => {
           backgroundColor: "#FFF",
           color: "black",
           margin: "0 auto",
-          width: "100%",
+          width: "90vw",
+          maxWidth: "90vw",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -75,16 +76,16 @@ const Header = ({ siteTitle }) => {
           right: 0,
           zIndex: 1250,
           paddingTop: "0px",
-          marginTop: "15px",
+          marginTop: "clamp(8px,2vw,15px)",
         }}
       >
         <div style={{
           backgroundColor: "#FDFDFD",
-          width: "1800px",
-          maxWidth: "100%",
+          width: "90vw",
+          maxWidth: "90vw",
           display: "flex",
-          height: "60px",
-          padding: "0 60px",
+          height: "clamp(48px,6vw,60px)",
+          padding: "0 clamp(16px,3vw,60px)",
           justifyContent: "space-between",
           alignItems: "center",
           flexShrink: 0,

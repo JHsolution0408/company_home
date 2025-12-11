@@ -1,8 +1,32 @@
+
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+
+const cards = [
+  {
+    title: "Hyper-scale AI for Net-zero",
+    subtitle1: "초거대 AI가 여는 탄소중립의 미래",
+    subtitle2: "가장 완벽한 에너지 최적화의 실현",
+    link: "/company/vision-mission",
+    image: "/images/main-1.jpg"
+  },
+  {
+    title: "Beyond Data, Integration of Engineering",
+    subtitle1: "데이터의 한계를 넘는 공학적 통찰",
+    subtitle2: "현장의 난제를 꿰뚫는 AI와 시뮬레이션의 혁신적 융합",
+    link: "/company/jhaion-background",
+    image: "/images/main-2.png"
+  },
+  {
+    title: "Proven Success, Trusted Partner",
+    subtitle1: "데이터로 증명하는 압도적 효율",
+    subtitle2: "비즈니스 성공을 위한 검증된 파트너십",
+    link: "/company/partners",
+    image: "/images/main-3..png"
+  }
+];
 
 // CSS for hiding scrollbar
 const hideScrollbarCSS = `
@@ -12,8 +36,15 @@ const hideScrollbarCSS = `
 `
 
 const IndexPage = ({ data }) => {
+    // 자동 롤링 타이머
+    React.useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrent(prev => (prev + 1) % cards.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }, [cards.length]);
   const pressReleases = data.allMarkdownRemark.nodes
-  
+  const [current, setCurrent] = React.useState(0);
   const sliderRef = React.useRef(null)
   const sliderRef3 = React.useRef(null)
   const sliderRef4 = React.useRef(null)
@@ -42,56 +73,24 @@ const IndexPage = ({ data }) => {
 
   // 제품 카드 자동 롤링
   React.useEffect(() => {
-    if (!sliderRef3.current) return
-
     const interval = setInterval(() => {
-      const slider = sliderRef3.current
-      const cardWidth = slider.firstChild.offsetWidth
-      const gap = 30
-      const scrollAmount = cardWidth + gap
-      
-      if (currentSlide3 >= totalSlides3) {
-        slider.scrollTo({ left: 0, behavior: 'smooth' })
-        setCurrentSlide3(1)
-      } else {
-        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' })
-        setCurrentSlide3(prev => prev + 1)
+      if (sliderRef3.current) {
+        const cardWidth = sliderRef3.current.firstChild.offsetWidth;
+        const gap = 30;
+        sliderRef3.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
       }
-    }, 5000)
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-    return () => clearInterval(interval)
-  }, [currentSlide3])
-
-  React.useEffect(() => {
-    if (!isAutoScrolling || !sliderRef.current) return
-
-    const interval = setInterval(() => {
-      const containerWidth = sliderRef.current.offsetWidth
-      const currentScrollLeft = sliderRef.current.scrollLeft
-      const maxScroll = sliderRef.current.scrollWidth - containerWidth
-      
-      if (currentScrollLeft >= maxScroll - 10) {
-        sliderRef.current.scrollTo({
-          left: 0,
-          behavior: "smooth",
-        })
-      } else {
-        const scrollAmount = containerWidth + 30
-        sliderRef.current.scrollBy({
-          left: scrollAmount,
-          behavior: "smooth",
-        })
-      }
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [isAutoScrolling])
+  // 자동 롤링 완전히 제거됨
 
   const handlePrevClick = () => {
     setIsAutoScrolling(false)
     if (sliderRef.current) {
-      const containerWidth = sliderRef.current.offsetWidth
-      const scrollAmount = containerWidth + 30
+      const cardWidth = sliderRef.current.offsetWidth;
+      const gapWidth = 10;
+      const scrollAmount = cardWidth + gapWidth;
       sliderRef.current.scrollBy({
         left: -scrollAmount,
         behavior: "smooth",
@@ -103,8 +102,9 @@ const IndexPage = ({ data }) => {
   const handleNextClick = () => {
     setIsAutoScrolling(false)
     if (sliderRef.current) {
-      const containerWidth = sliderRef.current.offsetWidth
-      const scrollAmount = containerWidth + 30
+      const cardWidth = sliderRef.current.offsetWidth;
+      const gapWidth = 10;
+      const scrollAmount = cardWidth + gapWidth;
       sliderRef.current.scrollBy({
         left: scrollAmount,
         behavior: "smooth",
@@ -115,204 +115,93 @@ const IndexPage = ({ data }) => {
 
   const handleDashClick = (index) => {
     if (sliderRef3.current) {
-      const cardWidth = sliderRef3.current.offsetWidth / 4
-      const gapWidth = 30
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth)
+      const cardWidth = sliderRef3.current.offsetWidth;
+      const gapWidth = 10;
+      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
       sliderRef3.current.scrollTo({
         left: scrollAmount,
         behavior: "smooth",
-      })
-      setCurrentSlide3(index)
+      });
+      setCurrentSlide3(index);
     }
   }
 
   const handleDashClick4 = (index) => {
     if (sliderRef4.current) {
-      const cardWidth = sliderRef4.current.offsetWidth / 4
-      const gapWidth = 30
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth)
+      const cardWidth = sliderRef4.current.offsetWidth;
+      const gapWidth = 10;
+      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
       sliderRef4.current.scrollTo({
         left: scrollAmount,
         behavior: "smooth",
-      })
-      setCurrentSlide4(index)
+      });
+      setCurrentSlide4(index);
     }
   }
 
   return (
   <Layout>
     <style>{hideScrollbarCSS}</style>
+    <style>{`body { max-width: 100% !important; }`}</style>
     {/* ========== HEADER ========== */}
-    <header style={{ width: "100%", boxSizing: "border-box", margin: 0 }}>
+    <header style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {/* GNB */}
-      <div style={{ backgroundColor: "#FDFDFD", color: "white", padding: "10px 20px" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
+      <div style={{ backgroundColor: "#FDFDFD", color: "white", padding: "10px 2vw" }}>
+        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
           {/* GNB 콘텐츠 */}
         </div>
       </div>
 
       {/* Header Content */}
-      <div style={{ backgroundColor: "#ffffff", color: "#333", padding: "1px 20px" }}>
-        <div style={{ maxWidth: "85%", margin: "0 auto" }}>
+      <div style={{ backgroundColor: "#ffffff", color: "#333", padding: "1px 2vw" }}>
+        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
           {/* Header 콘텐츠 */}
         </div>
       </div>
     </header>
 
     {/* ========== BODY (5 SECTIONS) ========== */}
-    <main style={{ width: "100%", boxSizing: "border-box", margin: 0 }}>
+    <main style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {/* Section 1: Hero Slider */}
-      <div style={{ padding: "0 20px", backgroundColor: "#FFF" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
-          <div 
-            ref={sliderRef}
-            className="slider-hide-scrollbar"
-            style={{ 
-              display: "flex", 
-              gap: "30px", 
-              overflowX: "auto", 
-              overflowY: "hidden",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              paddingBottom: "20px", 
-              scrollBehavior: "smooth",
-              userSelect: "none"
-            }}
-          >
-            {/* Card 1 */}
-            <div style={{ 
-              width: "1800px",
-              height: "772px",
-              maxWidth: "100%",
-              padding: "30px", 
-              borderRadius: "12px", 
-              backgroundColor: "#ffffff", 
-              backgroundImage: "url('/images/main-1.jpg')",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)",
-              textAlign: "left", 
-              flex: "0 0 auto", 
-              display: "flex", 
-              flexDirection: "column", 
-              justifyContent: "center" 
-            }}>
-              <h3 style={{ color: "#177D3C", marginBottom: "15px", fontSize: "24px", fontWeight: "500" }}>Hyper-scale AI for Net-zero</h3>
-              <p style={{ color: "#17181B", marginBottom: "10px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                초거대 AI여는 탄소중립의 미래
-              </p>
-              <p style={{ color: "#177D3C", marginBottom: "30px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                가장 완벽한 에너지 최적화의 실현
-              </p>
+      <div style={{ width: '90vw', maxWidth: '90vw', overflow: 'hidden', position: 'relative', margin: '0 auto', background: '#fff' }}>
+        <div style={{ display: 'flex', transition: 'transform 0.5s', transform: `translateX(-${current * 90}vw)`, width: '90vw', maxWidth: '90vw', height: '600px', background: '#fff', paddingBottom: '32px' }}>
+          {cards.map((card, idx) => (
+            <div key={idx} style={{ flex: '0 0 100%', minWidth: '100%', maxWidth: '100%', height: '100%', padding: 'clamp(16px,1vw,24px)', borderRadius: '20px', backgroundColor: '#fff', backgroundImage: `url('${card.image}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0' }}>
+              <h3 style={{ color: '#177D3C', marginBottom: '15px', fontSize: '24px', fontWeight: '500' }}>{card.title}</h3>
+              <p style={{ color: '#17181B', marginBottom: '10px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle1}</p>
+              <p style={{ color: '#177D3C', marginBottom: '30px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle2}</p>
               <div>
-                <Link to="/company/vision-mission" target="_self" style={{ color: "white", backgroundColor: "#177D3C", padding: "10px 25px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "14px", display: "inline-block", transition: "background-color 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#125d2d"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
+                <Link to={card.link} target="_self" style={{ color: 'white', backgroundColor: '#177D3C', padding: '10px 25px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', transition: 'background-color 0.3s ease' }} onMouseEnter={e => e.target.style.backgroundColor = '#125d2d'} onMouseLeave={e => e.target.style.backgroundColor = '#177D3C'}>
                   자세히 보기 &gt;
                 </Link>
               </div>
             </div>
-
-            {/* Card 2 */}
-            <div style={{ 
-              width: "1800px",
-              height: "772px",
-              maxWidth: "100%",
-              padding: "30px", 
-              borderRadius: "12px", 
-              backgroundColor: "#ffffff", 
-              backgroundImage: "url('/images/main-2.png')",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", 
-              textAlign: "left", 
-              flex: "0 0 auto", 
-              display: "flex", 
-              flexDirection: "column", 
-              justifyContent: "center" 
-            }}>
-              <h3 style={{ color: "#177D3C", marginBottom: "15px", fontSize: "24px", fontWeight: "500" }}>Beyond Data, Integration of Engineering</h3>
-              <p style={{ color: "#17181B", marginBottom: "10px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                데이터의 한계를 넘는 공학적 통찰
-              </p>
-              <p style={{ color: "#177D3C", marginBottom: "30px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                현장의 난제를 꿰뚫는 AI와 시뮬레이션의 혁신적 융합
-              </p>
-              <div>
-                <Link to="/company/jhaion-background" target="_self" style={{ color: "white", backgroundColor: "#177D3C", padding: "10px 25px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "14px", display: "inline-block", transition: "background-color 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#125d2d"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
-                  자세히 보기 &gt;
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div style={{ 
-              width: "1800px",
-              height: "772px",
-              maxWidth: "100%",
-              padding: "30px", 
-              borderRadius: "12px", 
-              backgroundColor: "#ffffff", 
-              backgroundImage: "url('/images/main-3..png')",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)",
-              textAlign: "left", 
-              flex: "0 0 auto", 
-              display: "flex", 
-              flexDirection: "column", 
-              justifyContent: "center" 
-            }}>
-              <h3 style={{ color: "#177D3C", marginBottom: "15px", fontSize: "24px", fontWeight: "500" }}>Proven Success, Trusted Partner</h3>
-              <p style={{ color: "#17181B", marginBottom: "10px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                데이터로 증명하는 압도적 효율
-              </p>
-              <p style={{ color: "#177D3C", marginBottom: "30px", fontSize: "56px", fontWeight: "650", lineHeight: "1.1", whiteSpace: "nowrap" }}>
-                비즈니스 성공을 위한 검증된 파트너십
-              </p>
-              <div>
-                <Link to="/company/partners" target="_self" style={{ color: "white", backgroundColor: "#177D3C", padding: "10px 25px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "14px", display: "inline-block", transition: "background-color 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#125d2d"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
-                  자세히 보기 &gt;
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Slider Controls - Below Cards */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "12px", marginTop: "20px", paddingBottom: "20px" }}>
-            {[1, 2, 3].map((slideNum) => (
-              <button
-                key={slideNum}
-                onClick={() => {
-                  if (sliderRef.current) {
-                    const containerWidth = sliderRef.current.offsetWidth
-                    const scrollAmount = (slideNum - 1) * (containerWidth + 30)
-                    sliderRef.current.scrollTo({
-                      left: scrollAmount,
-                      behavior: "smooth",
-                    })
-                  }
-                }}
-                style={{
-                  width: currentSlide === slideNum ? "32px" : "12px",
-                  height: "12px",
-                  borderRadius: "6px",
-                  border: "none",
-                  backgroundColor: currentSlide === slideNum ? "#177D3C" : "#D9D9D9",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "all 0.3s ease"
-                }}
-              />
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
+      {/* 도트 인디케이터: 슬라이더 바깥, 더 아래에 위치 */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginTop: '0', marginBottom: '16px' }}>
+        {cards.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            style={{
+              width: current === idx ? '32px' : '12px',
+              height: '12px',
+              borderRadius: '6px',
+              border: 'none',
+              backgroundColor: current === idx ? '#177D3C' : '#D9D9D9',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'all 0.3s ease'
+            }}
+          />
+        ))}
       </div>
 
       {/* Section 2: About Company */}
-      <div style={{ padding: "20px 20px" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
+      <div style={{ padding: "2vw 2vw" }}>
+        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
         
         <div style={{ padding: "80px 40px 80px 40px", paddingRight: "0", border: "2px solid #1BA74E", borderRadius: "16px", backgroundColor: "#1BA74E", textAlign: "left", backgroundImage: "url(/images/about_jhaion.png)", backgroundSize: "cover", backgroundPosition: "right center", backgroundRepeat: "no-repeat" }}>
           <h3 style={{ color: "#FDFDFD", marginBottom: "10px", fontSize: "24px", fontWeight: "400" }}>JHAION Engine : The Core of Optimization</h3>
@@ -327,16 +216,17 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 3: Solutions Slider */}
-      <div style={{ backgroundColor: "#ffffff", padding: "60px 20px", borderTop: "none" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
+      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
+        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
           <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>데이터 공학으로 완성된</h2>
           <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 통합플랫폼을 경험하세요</h2>
           <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
           
-          <div ref={sliderRef3} style={{ display: "flex", gap: "30px", overflowX: "hidden", paddingBottom: "20px", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none" }} className="slider-hide-scrollbar">
+          <div style={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
+            <div ref={sliderRef3} style={{ display: "flex", gap: "clamp(12px,2vw,30px)", overflowX: "auto", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
             {/* Card 1: JHAION 엔진 */}
-            <Link to="/solutions/jhaion-engine" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
+              <Link to="/solutions/jhaion-engine" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
+              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", overflow: "hidden" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>JHAION 엔진</h3>
                   <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
@@ -345,13 +235,13 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
 
             {/* Card 2: 에너지 관리 */}
-            <Link to="/solutions/energy" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
+              <Link to="/solutions/energy" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
               <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>에너지 관리</h3>
@@ -361,13 +251,13 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
 
             {/* Card 3: 시뮬레이션 */}
-            <Link to="/solutions/simulation" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
+              <Link to="/solutions/simulation" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
               <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>시뮬레이션</h3>
@@ -377,13 +267,13 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
 
             {/* Card 4: 인공지능 */}
-            <Link to="/solutions/ai" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
+              <Link to="/solutions/ai" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
               <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>인공지능</h3>
@@ -393,13 +283,13 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_ai.png" alt="인공지능" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_ai.png" alt="인공지능" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
 
             {/* Card 5: 디지털 트윈 */}
-            <Link to="/solutions/digital-twin" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
+              <Link to="/solutions/digital-twin" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
               <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>디지털 트윈</h3>
@@ -409,13 +299,13 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
 
             {/* Card 6: 미디어 */}
-            <Link to="/solutions/media" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px" }}>
+              <Link to="/solutions/media" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
               <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>미디어</h3>
@@ -425,10 +315,11 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_media.png" alt="미디어" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                  <img src="/images/solutions/card_media.png" alt="미디어" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
                 </div>
               </div>
             </Link>
+            </div>
           </div>
 
           {/* Dot Navigation */}
@@ -461,15 +352,15 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 4: Press & News Slider */}
-      <div style={{ backgroundColor: "#ffffff", padding: "60px 20px", borderTop: "none" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
+      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
+        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
           <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>산업의 변화와 흐름을 주도하는</h2>
           <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 새로운 소식을 만나보세요</h2>
           <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
-          
-          <div ref={sliderRef4} style={{ display: "flex", gap: "30px", overflowX: "hidden", paddingBottom: "20px", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none" }} className="slider-hide-scrollbar">
-            {pressReleases.map((pressRelease, index) => (
-              <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} style={{ textDecoration: "none", border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", flex: "0 0 calc(33.333% - 20px)", minWidth: "280px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", padding: 0, height: "100%", cursor: "pointer", transition: "transform 0.2s ease" }}>
+          <div style={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
+          <div ref={sliderRef4} style={{ display: "flex", justifyContent: "flex-start", alignItems: "stretch", gap: "clamp(12px,2vw,30px)", overflowX: "hidden", overflowY: "hidden", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
+                {pressReleases.map((pressRelease, index) => (
+              <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} style={{ textDecoration: "none", border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", width: "533px", minWidth: "533px", maxWidth: "533px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", padding: 0, height: "auto", cursor: "pointer", transition: "transform 0.2s ease" }}>
                 <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
                   <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>{pressRelease.frontmatter.title}</h3>
                   <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", marginBottom: "10px" }}>
@@ -490,7 +381,7 @@ const IndexPage = ({ data }) => {
               </Link>
             ))}
           </div>
-
+        </div>
           {/* Dot Navigation */}
           <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px", paddingBottom: "20px" }}>
             {[1, 2, 3, 4, 5, 6].map((index) => (
@@ -521,8 +412,8 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 5: CTA */}
-      <div style={{ padding: "20px 20px" }}>
-        <div style={{ maxWidth: "1800px", margin: "0 auto" }}>
+      <div style={{ padding: "2vw 2vw" }}>
+        <div style={{ maxWidth: "90vw", margin: "0 auto", width: "90vw" }}>
           <div style={{ padding: "80px 40px 80px 40px", paddingRight: "40px", border: "none", borderRadius: "16px", backgroundColor: "#FDFDFD", textAlign: "left", backgroundImage: "url(/images/bg_contact.png)", backgroundSize: "120% auto", backgroundPosition: "right center", backgroundRepeat: "no-repeat", minHeight: "400px", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
             <div style={{ maxWidth: "50%" }}>
               <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>지능형 운영의 첫걸음</h2>
@@ -548,7 +439,7 @@ export default IndexPage
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/press/" } }
+      filter: { fileAbsolutePath: { regex: "/src/content/press/" } }
       sort: { frontmatter: { date: DESC } }
       limit: 6
     ) {

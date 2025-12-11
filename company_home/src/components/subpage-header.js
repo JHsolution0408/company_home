@@ -62,34 +62,35 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
 
       <header
         style={{
-          backgroundColor: "#000",
+          backgroundColor: "#000", // #black
           color: "white",
-          margin: "0 auto",
-          width: "100%",
+          margin: "clamp(8px, 2vw) auto 0px",
+          width: "100vw",
+          maxWidth: "100vw",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          position: "sticky",
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
           zIndex: 1250,
           paddingTop: "15px",
-          marginTop: "0",
         }}
       >
         <div style={{
           backgroundColor: "rgba(253, 253, 253, 0.10)",
-          width: "1800px",
-          maxWidth: "100%",
+          width: "90vw",
+          maxWidth: "90vw",
           display: "flex",
-          height: "60px",
-          padding: "0 60px",
+          height: "clamp(48px,6vw,60px)",
+          padding: "0 clamp(16px,3vw,60px)",
           justifyContent: "space-between",
           alignItems: "center",
           flexShrink: 0,
           borderRadius: "12px",
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)",
+          margin: "0 auto"
         }}>
           {/* 로고 (footer와 동일 이미지) */}
           <div style={{ width: "125px", height: "40px" }}>

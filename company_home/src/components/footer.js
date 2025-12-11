@@ -2,9 +2,10 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 const Footer = () => (
-  <footer style={{ backgroundColor: "#4A4F55", color: "white", padding: "40px 20px", width: "100%", boxSizing: "border-box", margin: 0, height: "377px" }}>
-    <div style={{ maxWidth: "85%", margin: "0 auto" }}>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "40px" }}>
+  <div style={{ width: "100vw", backgroundColor: "#4A4F55" }}>
+    <footer style={{ backgroundColor: "#4A4F55", color: "#FDFDFD", width: "90vw", maxWidth: "90vw", margin: "0 auto", boxSizing: "border-box", padding: "clamp(24px,4vw,40px) clamp(16px,3vw,60px)", minHeight: "clamp(120px,20vw,200px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ width: "80vw", maxWidth: "80vw", margin: "0 auto", display: "flex", flexDirection: "row", alignItems: "flex-start" }}>
+      <table style={{ width: "90vw", maxWidth: "90vw", borderCollapse: "collapse", marginBottom: "clamp(16px,3vw,40px)" }}>
         <tbody>
           <tr>
             <td colSpan="3" style={{ paddingBottom: "30px", textAlign: "left" }}>
@@ -14,7 +15,7 @@ const Footer = () => (
             </td>
           </tr>
           <tr>
-            <td style={{ width: "70%", verticalAlign: "top", paddingRight: "40px", paddingBottom: "30px", textAlign: "left" }}>
+            <td style={{ width: "70%", verticalAlign: "top", paddingRight: "clamp(16px,3vw,40px)", paddingBottom: "clamp(12px,2vw,30px)", textAlign: "left" }}>
               <div style={{ fontSize: "16px", fontWeight: "500", color: "#969BA2" }}>
                 <div style={{ marginBottom: "8px" }}>
                   <strong style={{ color: "#CFD3D8", fontSize: "16px", fontWeight: "700" }}>오시는길</strong>
@@ -27,15 +28,17 @@ const Footer = () => (
                 </div>
               </div>
             </td>
-            <td style={{ width: "30%", verticalAlign: "top", paddingLeft: "40px", paddingBottom: "30px", textAlign: "right" }}>
-              <p style={{ padding: 0, fontSize: "16px", fontWeight: "500", color: "#969BA2", lineHeight: "1.8", margin: 0 }}>
-                <a href="#" style={{ color: "#CFD3D8", fontSize: "16px", fontWeight: "700", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                  회사소개서
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 12L8 4M8 12L4 8M8 12L12 8" stroke="#CFD3D8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              </p>
+            <td style={{ width: "30%", verticalAlign: "top", paddingLeft: "clamp(16px,3vw,40px)", paddingBottom: "clamp(12px,2vw,30px)", textAlign: "right" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", height: "100%", justifyContent: "flex-start" }}>
+                <p style={{ padding: 0, fontSize: "16px", fontWeight: "500", color: "#969BA2", lineHeight: "1.8", margin: 0 }}>
+                  <a href="#" style={{ color: "#CFD3D8", fontSize: "16px", fontWeight: "700", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                    회사소개서
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 12L8 4M8 12L4 8M8 12L12 8" stroke="#CFD3D8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </p>
+              </div>
             </td>
           </tr>
           <tr>
@@ -48,7 +51,8 @@ const Footer = () => (
         </tbody>
       </table>
     </div>
-  </footer>
+    </footer>
+  </div>
 )
 
 export default Footer
