@@ -9,7 +9,7 @@ slug: "jhaion-background"
 
 <div id="intro" style="position:relative;width:100vw;height:auto;margin:0;padding:0;overflow:hidden;z-index:1;">
   <img src="/images/about/jhaionbackgrounds/intro.png" alt="intro" style="width:100vw;height:auto;object-fit:cover;display:block;margin:0;padding:0;" />
-  <div id="intro-text" style="position:absolute;top:0;left:0;width:100vw;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;">
+  <div id="intro-text" style="position:absolute;top:0;left:0;width:100vw;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding-top:80px;">
     <span id="intro-1" style="color:#fff;font-size:48px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.25);display:block;">" 데이터와 물리학의 간극을 메우다 "</span>
     <span id="intro-2" style="color:#fff;font-size:48px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.25);display:block;">JHAION 의 시작</span>
     <span id="intro-3" style="color:#fff;font-size:24px;font-weight:400;text-shadow:0 2px 8px rgba(0,0,0,0.25);display:block;">기존의 예측방식이 가진 불확실성을 해소하고 탄소중립이라는 시대적 과제에 가장 정밀한 답을 내놓기 위해 탄생했습니다.</span>

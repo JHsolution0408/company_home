@@ -4,7 +4,7 @@ description: "JH솔루션의 비전과 미션을 통해 혁신을 향한 방향�
 slug: "vision-mission"
 ---
 
-## Global Standard in AI-ENGINEERING
+## Global Standard in <span style="color:#177D3C">AI-ENGINEERING</span>
 
 
 <p style="width:100vw">우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.</p>
@@ -32,7 +32,7 @@ slug: "vision-mission"
 
 
 
-## 고객과 함께하는 동행의 핵심 미션
+## 고객과 함께하는 동행의 <span style="color:#177D3C">핵심 미션</span>
 
 고객과 함께 최적화 여정을 시작하고 성공적으로 완수해 나가겠습니다.
 
@@ -56,12 +56,12 @@ slug: "vision-mission"
 
 
 <br><br>
-## 기술혁신을 이끄는 핵심가치
+## 기술혁신을 이끄는 <span style="color:#177D3C">핵심가치</span>
 
 AI 기반의 독보적인 기술역량으로 지속 가능한 미래를 선도하는 글로벌 파트너가 되겠습니다.
 <br><br>
 
-<table style="width:95vw">
+<table style="width:77vw">
 <tr>
  <td style="width:30%">
   <table id="tb1"  style="width:;background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
