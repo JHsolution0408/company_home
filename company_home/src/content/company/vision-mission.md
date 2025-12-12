@@ -70,20 +70,7 @@ AI 기반의 독보적인 기술역량으로 지속 가능한 미래를 선도�
     <tr><td id="td-6">우리는 IT와 공학의 경계를 허뭅니다. AI엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다.</td></tr>
   </table>
  </td>
-<<<<<<< HEAD
- <td rowspan=3 style="vertical-align: middle;padding:1px"><img src="/images/about/mission_plus.png">
- <td>
-  <table id="tb2"  style="width:100%;background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
-    <tr><td><img src="/images/about/mission-6.png"></td></tr>
-    <tr><td id="td-1"><strong>혁신적 선도성</strong></td></tr>
-    <tr><td id="td-8">남들이 가지 않은 길을 두려워 하지 않습니다. 기존 시장에 없던 Hyper-scale AI 기반의 자율운영 모델을 제시하며, 글로벌 에너지 기술 패러다임을 주도합니다.</td></tr>
-  </table>
- </td>
-  <td rowspan=3 style="vertical-align: middle;padding:1px""><img src="/images/about/mission_plus.png">
- <td>
-  <table id="tb3"  style="width:100%;background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
-=======
- <td style="vertical-align: middle;text-align:center;"><img src="/images/about/mission_plus.png">
+ <td style="vertical-align: middle;text-align:center;"><img src="/images/about/mission_plus.png" ></td>
  <td style="width:30%;">
   <table id="tb2"  style="background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
     <tr><td style="padding: 10px;"><img src="/images/about/mission-6.png"></td></tr>
@@ -91,10 +78,9 @@ AI 기반의 독보적인 기술역량으로 지속 가능한 미래를 선도�
     <tr><td id="td-8" >남들이 가지 않은 길을 두려워 하지 않습니다. 기존 시장에 없던 Hyper-scale AI 기반의 자율운영 모델을 제시하며, 글로벌 에너지 기술 패러다임을 주도합니다.</td></tr>
   </table>
  </td>
-  <td style="vertical-align: middle;text-align:center;"><img src="/images/about/mission_plus.png" >
+  <td style="vertical-align: middle;text-align:center;"><img src="/images/about/mission_plus.png" ></td>
  <td style="width:30%">
   <table id="tb3"  style="background-color:#F8F9FA;border:1px solid #E0E4E8;border-radius:16px;overflow:hidden;">
->>>>>>> 4cb8dce3064f7369dc3c16531da0ca7e35f50baa
     <tr><td><img src="/images/about/mission-7.png"></td></tr>
     <tr><td id="td-1"><strong>검증된 신뢰성</strong></td></tr>
     <tr><td id="td-10">결과는 반드시 증명되어야 합니다. 수많은 시뮬레이션 (Digital Twin)과 실증 사례를 통해 예측의 정확도를 보장하며, 고객에게 약속한 효율을 끝까지 책임집니다.</td></tr>

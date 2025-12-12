@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import SubPageHeader from "../../components/subpage-header";
 import Seo from "../../components/seo";
@@ -5,8 +6,8 @@ import Footer from "../../components/footer";
 import { graphql } from "gatsby";
 
 export const query = graphql`
-  query EnergyPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/energy.md$/" }) {
+  query JhaionEnginePageQuery {
+    markdownRemark(fileAbsolutePath: { regex: "/jhaion-engine.md$/" }) {
       frontmatter {
         title
         description
@@ -17,7 +18,7 @@ export const query = graphql`
   }
 `;
 
-const EnergyPage = ({ data }) => {
+const JhaionEnginePage = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark;
   return (
     <>
@@ -37,7 +38,7 @@ const EnergyPage = ({ data }) => {
             <div id="title-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
               <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', fontSize: '40px' }}>{frontmatter.title}</h1>
               <p style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw', fontSize: '20px' }}>
-                우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
+                {frontmatter.description}
               </p>
             </div>
           </div>
@@ -52,9 +53,6 @@ const EnergyPage = ({ data }) => {
             <div
               dangerouslySetInnerHTML={{
                 __html: html
-                  .replace('AI-ENGINEERING', '<span style="color:#177D3C;font-weight:700;">AI-ENGINEERING</span>')
-                  .replace(/(>[^<]*미션[^<]*<)/g, match => match.replace('미션', '<span style="color:#177D3C;font-weight:700;">미션</span>'))
-                  .replace(/(>[^<]*핵심가치[^<]*<)/g, match => match.replace('핵심가치', '<span style="color:#177D3C;font-weight:700;">핵심가치</span>'))
               }}
             />
           </div>
@@ -65,6 +63,6 @@ const EnergyPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="비전 및 미션" />;
+export const Head = () => <Seo title="JHAION 엔진" />;
 
-export default EnergyPage;
+export default JhaionEnginePage;
