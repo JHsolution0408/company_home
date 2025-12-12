@@ -21,9 +21,13 @@ const DigitalTwinPage = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark;
   return (
     <>
-      <SubPageHeader bgImage="/images/about/bg_vision.png" />
-      <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-        <div style={{ width: '100vw', maxWidth: '100vw', minHeight: '1px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
+      <SubPageHeader bgImage="/images/bg_digitaltwin.png" />
+      <main style={{ width: '100vw', minHeight: '100vh', 
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+        <div style={{ width: '100vw', maxWidth: '100vw', 
+            minHeight: '1px', margin: '0 auto', 
+            display: 'flex', flexDirection: 'column', 
+            alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
           <div id="title-meta" style={{
             width: '100%',
             maxWidth: '100vw',

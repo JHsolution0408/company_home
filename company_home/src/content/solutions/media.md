@@ -4,12 +4,54 @@ description: "멀티미디어 기반의 통합 플랫폼을 제공합니다."
 slug: "media"
 ---
 
-# 제공 가치
-- 실시간 스트리밍/콘텐츠 전달 최적화
-- 멀티채널 퍼블리싱
-- 데이터 기반 콘텐츠 인사이트
+# 다양한 데이터를 시각 경험으로 전환하는 <span style="color: #177D3C"> 미디어의 핵심 구성 </span>
 
-# 기능
-- 스트리밍 관리 및 모니터링
-- 콘텐츠 메타데이터 관리
-- 이용 행태 분석 리포트
+고해상도 렌더링의 사실성과 인터랙티브 UI의 유연성을 결합하여 데이터를 생생한 시각 경험으로 전달합니다.
+
+<!-- 컨텐츠 테이블 -->
+
+<table id=bigbox>
+<tr>
+<td id=box1>
+    <table>
+    <tr>
+        <td width="535px"> <img src="/images/solutions/card_media1.png" style="border-radius:5%"> </td>
+    </tr>
+    <tr>
+        <td> <span style="font-size: var(--font-size-sub-regular, 24px);font-style: normal;font-weight: 600;line-height: 140%; /* 33.6px */letter-spacing: -1.5px;color: #17181B">에너지 효율 최적화</span></td>
+    </tr>
+    <tr>
+        <td>실시간 데이터 학습을 통해 에너지 소비 패턴을 분석하고, 설비 운전 부하를 AI가 능동적으로 조절하여 탄소 배출과 비용을 절감합니다.</td>
+    </tr>
+    </table>
+</td>
+<td id=box2>
+    <table>
+    <tr>
+        <td width="535px"> <img src="/images/solutions/card_media2.png" style="border-radius:5%"></td>
+    </tr>
+    <tr>
+        <td><span style="font-size: var(--font-size-sub-regular, 24px);font-style: normal;font-weight: 600;line-height: 140%; /* 33.6px */letter-spacing: -1.5px;color: #17181B">OCR 데이터 자산화</span></td>
+    </tr>
+    <tr>
+        <td width="535px" >현장에 방치된 아날로그 계기판, 수기 기록, 도면 정보를 AI 시각 지능으로 판독하여 시스템이 분석 가능한 디지털 자산으로 변환합니다.</td>
+    </tr>
+    </table>
+</td>
+<td id=box3>
+    <table>
+    <tr>
+        <td  width="540px"><img src="/images/solutions/card_media3.png" style="border-radius:5%"></td>
+    </tr>
+    <tr>
+        <td><span style="font-size: var(--font-size-sub-regular, 24px);font-style: normal;font-weight: 600;line-height: 140%; /* 33.6px */letter-spacing: -1.5px;color: #17181B"> 설비 예지보전</span></td>
+    </tr>
+    <tr>
+        <td>설비의 진동, 소음, 온도 데이터를 분석하여 고장 징후를 사전에 포착합니다. 돌발 정지를 막고 유지보수 비용을 획기적으로 낮춥니다.</td>
+    </tr>
+    </table>
+</td>
+</tr><tr>
+<td style="height:50px;" colspan=3> </td>
+<tr>
+</table>

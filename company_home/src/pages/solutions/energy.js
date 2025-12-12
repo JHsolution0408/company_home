@@ -21,9 +21,21 @@ const EnergyPage = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark;
   return (
     <>
-      <SubPageHeader bgImage="/images/about/bg_vision.png" />
-      <main style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-        <div style={{ width: '100vw', maxWidth: '100vw', minHeight: '1px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
+      <SubPageHeader />
+      <main style={{ 
+            width: '100vw', 
+            minHeight: '100vh', 
+            display: 'flex', flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'flex-start', margin: 0, padding: 0 }}>
+        <div style={{ 
+            width: '100vw', 
+            maxWidth: '100vw', 
+            minHeight: '1px', 
+            margin: '0 auto', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
           <div id="title-meta" style={{
             width: '100%',
             maxWidth: '100vw',
@@ -32,7 +44,7 @@ const EnergyPage = ({ data }) => {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center bottom',
             marginBottom: '25px',
-            padding: '100px 20px 60px 50px'
+            padding: '40px 20px 60px 50px'
           }}>
             <div id="title-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
               <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', fontSize: '40px' }}>{frontmatter.title}</h1>
