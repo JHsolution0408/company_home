@@ -14,7 +14,7 @@ const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
     query ProjectListQuery {
       allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/project/.*.md$/" } }
+        filter: { fileAbsolutePath: { regex: "/content/projects/.*.md$/" } }
         sort: { frontmatter: { date: DESC } }
       ) {
         nodes {

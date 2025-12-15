@@ -3,6 +3,7 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import * as styles from "./index.module.css"
 
 const cards = [
   {
@@ -28,12 +29,6 @@ const cards = [
   }
 ];
 
-// CSS for hiding scrollbar
-const hideScrollbarCSS = `
-  .slider-hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-`
 
 const IndexPage = ({ data }) => {
     // 자동 롤링 타이머
@@ -141,165 +136,166 @@ const IndexPage = ({ data }) => {
 
   return (
   <Layout>
-    <style>{hideScrollbarCSS}</style>
     <style>{`body { max-width: 100% !important; }`}</style>
     {/* ========== HEADER ========== */}
-    <header style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      {/* GNB */}
-      <div style={{ backgroundColor: "#FDFDFD", color: "white", padding: "10px 2vw" }}>
-        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          {/* GNB 콘텐츠 */}
-        </div>
-      </div>
-
+    <header className={styles.header}>
       {/* Header Content */}
-      <div style={{ backgroundColor: "#ffffff", color: "#333", padding: "1px 2vw" }}>
-        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
+      <div className={styles.headerContent}>
+        <div className={styles.headerInner}>
           {/* Header 콘텐츠 */}
         </div>
       </div>
     </header>
 
     {/* ========== BODY (5 SECTIONS) ========== */}
-    <main style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <main className={styles.main}>
       {/* Section 1: Hero Slider */}
-      <div style={{ width: '90vw', maxWidth: '90vw', overflow: 'hidden', position: 'relative', margin: '0 auto', background: '#fff' }}>
-        <div style={{ display: 'flex', transition: 'transform 0.5s', transform: `translateX(-${current * 90}vw)`, width: '90vw', maxWidth: '90vw', height: '600px', background: '#fff', paddingBottom: '32px' }}>
-          {cards.map((card, idx) => (
-            <div key={idx} style={{ flex: '0 0 100%', minWidth: '100%', maxWidth: '100%', height: '100%', padding: 'clamp(16px,1vw,24px)', borderRadius: '20px', backgroundColor: '#fff', backgroundImage: `url('${card.image}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0' }}>
-              <h3 style={{ color: '#177D3C', marginBottom: '15px', fontSize: '24px', fontWeight: '500' }}>{card.title}</h3>
-              <p style={{ color: '#17181B', marginBottom: '10px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle1}</p>
-              <p style={{ color: '#177D3C', marginBottom: '30px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle2}</p>
-              <div>
-                <Link to={card.link} target="_self" style={{ color: 'white', backgroundColor: '#177D3C', padding: '10px 25px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', transition: 'background-color 0.3s ease' }} onMouseEnter={e => e.target.style.backgroundColor = '#125d2d'} onMouseLeave={e => e.target.style.backgroundColor = '#177D3C'}>
-                  자세히 보기 &gt;
-                </Link>
+      <div className={styles.heroWrapper}>
+        <div
+          className={styles.heroTrack}
+          style={{
+            transform: `translateX(-${current * 100}%)`
+          }}
+        >
+          {cards.map((card, idx) => {
+            const isCurrent = current === idx;
+            return (
+              <div
+                key={idx}
+                className={`${styles.heroSlide} ${!isCurrent ? styles.heroSlideHidden : ''}`}
+                aria-hidden={!isCurrent}
+              >
+                <div className={styles.heroCard} style={{ backgroundImage: `url('${card.image}')` }}>
+                  <h3 className={styles.heroKicker}>{card.title}</h3>
+                  <p className={styles.heroTitle1}>{card.subtitle1}</p>
+                  <p className={styles.heroTitle2}>{card.subtitle2}</p>
+                  <div>
+                    <Link
+                      to={card.link}
+                      target="_self"
+                      className={styles.heroCta}
+                    >
+                      더 알아보기&nbsp;&nbsp;>
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
       {/* 도트 인디케이터: 슬라이더 바깥, 더 아래에 위치 */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginTop: '0', marginBottom: '16px' }}>
+      <div className={styles.dots}>
         {cards.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            style={{
-              width: current === idx ? '32px' : '12px',
-              height: '12px',
-              borderRadius: '6px',
-              border: 'none',
-              backgroundColor: current === idx ? '#177D3C' : '#D9D9D9',
-              cursor: 'pointer',
-              padding: 0,
-              transition: 'all 0.3s ease'
-            }}
+            className={`${styles.dot} ${current === idx ? styles.dotActive : ''}`}
           />
         ))}
       </div>
 
       {/* Section 2: About Company */}
-      <div style={{ padding: "2vw 2vw" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
-        
-        <div style={{ padding: "80px 40px 80px 40px", paddingRight: "0", border: "2px solid #1BA74E", borderRadius: "16px", backgroundColor: "#1BA74E", textAlign: "left", backgroundImage: "url(/images/about_jhaion.png)", backgroundSize: "cover", backgroundPosition: "right center", backgroundRepeat: "no-repeat" }}>
-          <h3 style={{ color: "#FDFDFD", marginBottom: "10px", fontSize: "24px", fontWeight: "400" }}>JHAION Engine : The Core of Optimization</h3>
-          <p style={{ color: "#FDFDFD", marginBottom: "5px", fontSize: "40px", fontWeight: "600", lineHeight: "0.9", whiteSpace: "nowrap" }}>
-            Net-Zero와 최적화를 향한 초거대 AI의 여정
-          </p>
-          <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "40px", lineHeight: "0.9", whiteSpace: "nowrap" }}>
-            <span style={{ color: "#FDFDFD" }}>J</span>ourney of <span style={{ color: "#FDFDFD" }}>H</span>yper-scale + <span style={{ color: "#FDFDFD" }}>AI</span> + <span style={{ color: "#FDFDFD" }}>O</span>ptimizatio<span style={{ color: "#FDFDFD" }}>n</span> + <span style={{ color: "#FDFDFD" }}>N</span>et-zero
-          </p>
-        </div>
+      <div className={styles.sectionPad}>
+        <div className={styles.container90}>
+          <div className={styles.aboutBanner}>
+            <h3 className={styles.aboutH3}>JHAION Engine : The Core of Optimization</h3>
+            <p className={styles.aboutP1}>
+              Net-Zero와 최적화를 향한 초거대 AI의 여정
+            </p>
+            <p className={styles.aboutP2}>
+              <span className={styles.textWhite}>J</span>ourney of <span className={styles.textWhite}>H</span>yper-scale + <span className={styles.textWhite}>AI</span> + <span className={styles.textWhite}>O</span>ptimizatio<span className={styles.textWhite}>n</span> + <span className={styles.textWhite}>N</span>et-zero
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Section 3: Solutions Slider */}
-      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
-          <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>데이터 공학으로 완성된</h2>
-          <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 통합플랫폼을 경험하세요</h2>
-          <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
+      <div className={styles.solutionsSec}>
+        <div className={styles.container90}>
+          <h2 className={styles.solutionsTitle1}>데이터 공학으로 완성된</h2>
+          <h2 className={styles.solutionsTitle2}>JH솔루션의 통합플랫폼을 경험하세요</h2>
+          <p className={styles.solutionsLead}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
           
-          <div style={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
-            <div ref={sliderRef3} style={{ display: "flex", gap: "clamp(12px,2vw,30px)", overflowX: "auto", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
+          <div className={styles.sliderWrap}>
+            <div ref={sliderRef3} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
             {/* Card 1: JHAION 엔진 */}
-              <Link to="/solutions/jhaion-engine" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", overflow: "hidden" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>JHAION 엔진</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+              <Link to="/solutions/jhaion-engine" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>JHAION 엔진</h3>
+                  <p className={styles.solutionCardP}>
                     Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
 
             {/* Card 2: 에너지 관리 */}
-              <Link to="/solutions/energy" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>에너지 관리</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+              <Link to="/solutions/energy" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>에너지 관리</h3>
+                  <p className={styles.solutionCardP}>
                     BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
 
             {/* Card 3: 시뮬레이션 */}
-              <Link to="/solutions/simulation" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>시뮬레이션</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+              <Link to="/solutions/simulation" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>시뮬레이션</h3>
+                  <p className={styles.solutionCardP}>
                     CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
 
             {/* Card 4: 인공지능 */}
-              <Link to="/solutions/ai" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>인공지능</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+              <Link to="/solutions/ai" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>인공지능</h3>
+                  <p className={styles.solutionCardP}>
                     머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_ai.png" alt="인공지능" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_ai.png" alt="인공지능" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
 
             {/* Card 5: 디지털 트윈 */}
-              <Link to="/solutions/digital-twin" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>디지털 트윈</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+              <Link to="/solutions/digital-twin" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>디지털 트윈</h3>
+                  <p className={styles.solutionCardP}>
                     현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
@@ -353,7 +349,7 @@ const IndexPage = ({ data }) => {
 
       {/* Section 4: Press & News Slider */}
       <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
+        <div style={{ margin: "0 auto", width: '100%' }}>
           <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>산업의 변화와 흐름을 주도하는</h2>
           <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 새로운 소식을 만나보세요</h2>
           <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
@@ -412,17 +408,15 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 5: CTA */}
-      <div style={{ padding: "2vw 2vw" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: "90vw" }}>
-          <div style={{ padding: "80px 40px 80px 40px", paddingRight: "40px", border: "none", borderRadius: "16px", backgroundColor: "#FDFDFD", textAlign: "left", backgroundImage: "url(/images/bg_contact.png)", backgroundSize: "120% auto", backgroundPosition: "right center", backgroundRepeat: "no-repeat", minHeight: "400px", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
-            <div style={{ maxWidth: "50%" }}>
-              <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>지능형 운영의 첫걸음</h2>
-              <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH 솔루션이 함께 합니다</h2>
-              <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다</p>
-              <Link to="/contact" style={{ color: "white", backgroundColor: "#177D3C", padding: "12px 30px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "16px", display: "inline-block", transition: "all 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#135f30"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
-                문의하기
-              </Link>
-            </div>
+      <div style={{ padding: "60px", width: "100%" }}>
+        <div style={{ margin: "0 auto", padding: "80px 40px 80px 40px", paddingRight: "40px", border: "none", borderRadius: "16px", backgroundColor: "#FDFDFD", textAlign: "left", backgroundImage: "url(/images/bg_contact.png)", backgroundSize: "120% auto", backgroundPosition: "right center", backgroundRepeat: "no-repeat", minHeight: "400px", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
+          <div style={{ maxWidth: "50%" }}>
+            <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>지능형 운영의 첫걸음</h2>
+            <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH 솔루션이 함께 합니다</h2>
+            <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다</p>
+            <Link to="/contact" style={{ color: "white", backgroundColor: "#177D3C", padding: "12px 30px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "16px", display: "inline-block", transition: "all 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#135f30"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
+              문의하기
+            </Link>
           </div>
         </div>
       </div>
