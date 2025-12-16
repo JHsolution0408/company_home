@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="044d11d2-f0dd-49c8-a2fe-882b545ccc3d" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/company_home/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/.prettierignore" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/README_REMOVE_MDX.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README_REMOVE_MDX.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/gatsby-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/gatsby-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/gatsby-node.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-node.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/gatsby-ssr.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-ssr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/gatsby-announcer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gatsby-announcer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/seo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/seo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/components/subpage-header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/subpage-header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/company/partners.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/company/partners.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/company/vision-mission.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/company/vision-mission.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-5.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-5.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/press/news-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/press/news-6.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project1.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project3.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project5.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project5.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/project/project6.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/project/project6.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/ai.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/ai.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/digital-twin.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/digital-twin.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/energy.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/energy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/jhaion-engine.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/jhaion-engine.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/media.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/media.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/content/solutions/simulation.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/content/solutions/simulation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/images/example.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/example.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/images/gatsby-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/gatsby-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/images/logo/top_logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/logo/top_logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/about.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/about.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/company.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/company.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/company/jhaion-background.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/company/jhaion-background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/company/partners.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/company/partners.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/company/vision-mission.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/company/vision-mission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/jhaion-background.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/jhaion-background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/press.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/press.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/press/news-1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/press/news-1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/projects/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/projects/project.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/ai.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/ai.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/digitaltwin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/digitaltwin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/energy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/energy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/jhaion-engine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/jhaion-engine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/media.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/media.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/solutions/simulation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/solutions/simulation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/using-ssr.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/using-ssr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/pages/using-typescript.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/using-typescript.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/templates/markdown-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/markdown-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/templates/mdx-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/mdx-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/templates/press-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/press-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/src/templates/using-dsg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/using-dsg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/bg_vision.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/bg_vision.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/challenge_bg1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/challenge_bg1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/challenge_bg2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/challenge_bg2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/intro.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/intro.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/jbg-3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/jbg-3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/jbg-4.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/jbg-4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/jbg-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/jbg-5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/jbg_arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/jbg_arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/jhaionbackgrounds/jbg_plus.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/jhaionbackgrounds/jbg_plus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-4.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-6.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission-7.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission-7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about/mission_plus.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about/mission_plus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/about_jhaion.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/about_jhaion.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/bg_contact.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg_contact.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/bg_digitaltwin.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg_digitaltwin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/bg_press.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg_press.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/bg_project.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg_project.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/bg_vision.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg_vision.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/btm_logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/btm_logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/main-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/main-1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/main-1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/main-1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/main-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/main-2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/main-3..png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/main-3..png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/main-4.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/main-4.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/none_feature.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/none_feature.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/network_icon1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/network_icon1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/network_icon2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/network_icon2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/network_icon3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/network_icon3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/network_icon_plus.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/network_icon_plus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/partner1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/partner1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/partners/partner2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/partners/partner2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/PC - 가상 모델 서브비주얼 BG.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/PC - 가상 모델 서브비주얼 BG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/PC - 에너지 관리 서브비주얼 BG.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/PC - 에너지 관리 서브비주얼 BG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/PC - 인공지능 서브비주얼 BG.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/PC - 인공지능 서브비주얼 BG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_ai.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_ai.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_ai1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_ai1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_ai2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_ai2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_ai3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_ai3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_digitaltwin.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_digitaltwin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_dt1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_dt1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_dt2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_dt2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_dt3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_dt3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energy1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energy1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energy2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energy2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energy3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energy3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energy4.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energy4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energyBEMS.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energyBEMS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energyCEMS.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energyCEMS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energyFEMS.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energyFEMS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_energyHEMS.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_energyHEMS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_jhaion1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_jhaion1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_jhaion2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_jhaion2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_jhaion3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_jhaion3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_media.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_media.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_media1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_media1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_media2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_media2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_media3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_media3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim4.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim5.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_sim6.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_sim6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/solutions/card_simulation.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/solutions/card_simulation.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company_home/static/images/top_logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/top_logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="36jnppsaDbaGwsPMDLsfzpEWAgV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ChatTagsLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ClientConfigCleanupMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountHistoryMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountsIdsRefresh&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyConvertUrlToCodebaseName&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyHistoryLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyMigrateChatHistory-v2&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.DeprecatedChatLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ToggleCodyToolWindowAfterMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;chore/deploy&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/eunhee/Documents/Projects/company_home/static/images/banners&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/eunhee/Documents/Projects/company_home/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/images/banners" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/src/images/logo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/static/logos" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="044d11d2-f0dd-49c8-a2fe-882b545ccc3d" name="변경" comment="" />
+      <created>1765529033777</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765529033777</updated>
+      <workItem from="1765529034928" duration="942000" />
+      <workItem from="1765757150644" duration="27713000" />
+      <workItem from="1765843130286" duration="2912000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
