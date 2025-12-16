@@ -24,6 +24,9 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     }
   }, [])
 
+  // SSR-safe: window가 없는 서버 렌더링에서도 안전하게 처리
+  const isCompanyPath = typeof window !== "undefined" && window.location.pathname.startsWith('/company/')
+
   const solutionItems = [
     { name: "JHAION 엔진", slug: "jhaion-engine" },
     { name: "에너지 관리", slug: "energy" },
@@ -177,7 +180,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             >
               <button
                 style={{
-                  color: window.location.pathname.startsWith('/company/') ? "#66E695" : "white",
+                  color: isCompanyPath ? "#66E695" : "white",
                   backgroundColor: "transparent",
                   border: "none",
                   cursor: "pointer",
