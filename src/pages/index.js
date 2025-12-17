@@ -4,8 +4,11 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "./index.module.css"
-import IllustrationImage from '../../static/images/banners/contact-illustration-image.png';
+import { useSlide } from "../hooks/useSlide";
 import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
+import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
+import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
+import ReadMoreIcon from '../../static/icons/common/angle-bracket-right-icon.svg';
 
 const cards = [
   {
@@ -31,6 +34,15 @@ const cards = [
   }
 ];
 
+// Solutions data (original set)
+const solutions = [
+  { link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
+  { link: "/solutions/energy", title: "에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
+  { link: "/solutions/simulation", title: "시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
+  { link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
+  { link: "/solutions/digital-twin", title: "디지털 트윈", desc: "현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
+  { link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
+];
 
 const IndexPage = ({ data }) => {
   // 자동 롤링 타이머
@@ -42,99 +54,110 @@ const IndexPage = ({ data }) => {
   }, [cards.length]);
   const pressReleases = data.allMarkdownRemark.nodes
   const [current, setCurrent] = React.useState(0);
-  const sliderRef = React.useRef(null)
-  const sliderRef3 = React.useRef(null)
+  const solutionsSliderRef = React.useRef(null)
   const sliderRef4 = React.useRef(null)
-  const [isAutoScrolling, setIsAutoScrolling] = React.useState(true)
-  const [currentSlide, setCurrentSlide] = React.useState(1)
-  const totalSlides = 3
-  const [currentSlide3, setCurrentSlide3] = React.useState(1)
-  const totalSlides3 = 6
+  const [solutionsItemStride, setSolutionsItemStride] = React.useState(0)
+  const isNormalizingSolutions = React.useRef(false)
+  const { currentSlide: solutionsCurrent, nextSlide: solutionsNext, prevSlide: solutionsPrev, goToSlide: solutionsGoTo } = useSlide({
+    totalSlides: solutions.length,
+    autoPlay: true,
+    autoPlayInterval: 5000,
+  })
   const [currentSlide4, setCurrentSlide4] = React.useState(1)
-  const totalSlides4 = 6
 
-  React.useEffect(() => {
-    const slider = sliderRef.current
-    if (!slider) return
 
-    const handleScroll = () => {
-      const scrollLeft = slider.scrollLeft
-      const containerWidth = slider.offsetWidth
-      const slideIndex = Math.round(scrollLeft / (containerWidth + 30)) + 1
-      setCurrentSlide(slideIndex > totalSlides ? totalSlides : slideIndex < 1 ? 1 : slideIndex)
-    }
-
-    slider.addEventListener('scroll', handleScroll)
-    return () => slider.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // 제품 카드 자동 롤링
+  // 제품 카드 자동 롤링 (solutions)
   React.useEffect(() => {
     const interval = setInterval(() => {
-      if (sliderRef3.current) {
-        const cardWidth = sliderRef3.current.firstChild.offsetWidth;
-        const gap = 30;
-        sliderRef3.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+      const slider = solutionsSliderRef.current
+      if (slider && solutionsItemStride) {
+        // 자동 이동은 부드럽게, 경계 보정은 onScroll에서 무애니메이션 처리
+        slider.scrollBy({ left: solutionsItemStride, behavior: 'smooth' })
       }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [solutionsItemStride])
 
-  // 자동 롤링 완전히 제거됨
+  // Solutions slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
+  React.useEffect(() => {
+    const slider = solutionsSliderRef.current
+    if (!slider) return
+    const first = slider.firstChild
+    if (!first) return
 
-  const handlePrevClick = () => {
-    setIsAutoScrolling(false)
-    if (sliderRef.current) {
-      const cardWidth = sliderRef.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = cardWidth + gapWidth;
-      sliderRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth",
-      })
+    const computed = window.getComputedStyle(slider)
+    const gapStr = computed.gap || computed.columnGap || '30px'
+    const gap = parseFloat(gapStr) || 30
+
+    const stride = first.offsetWidth + gap
+    const setWidth = stride * solutions.length
+
+    setSolutionsItemStride(stride)
+
+    // Place the scroll at the start of the second set for seamless left/right looping
+    // Preserve any existing scrollLeft if already set (CSR navigation), but if near 0, jump to middle
+    requestAnimationFrame(() => {
+      if (slider.scrollLeft < setWidth * 0.5) {
+        slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
+      }
+    })
+
+    const onScroll = () => {
+      const maxScroll = slider.scrollWidth // includes both sets
+      const left = slider.scrollLeft
+      const epsilon = 1
+
+      if (isNormalizingSolutions.current) return
+
+      // Left boundary: jump forward by one set width (silent)
+      if (left <= epsilon) {
+        isNormalizingSolutions.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left + setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingSolutions.current = false
+        return
+      }
+      // Right boundary: jump back by one set width (silent)
+      if (left + slider.clientWidth >= maxScroll - epsilon) {
+        isNormalizingSolutions.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left - setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingSolutions.current = false
+        return
+      }
+
+      // Update effective index within original set [0..N-1]
+      const rel = slider.scrollLeft % setWidth
+      let idx = Math.round(rel / stride)
+      if (idx >= solutions.length) idx = 0
+      if (idx < 0) idx = 0
+      solutionsGoTo(idx)
     }
-    setTimeout(() => setIsAutoScrolling(true), 2000)
+
+    slider.addEventListener('scroll', onScroll)
+    return () => slider.removeEventListener('scroll', onScroll)
+  }, [solutions.length])
+
+  const handleMovePrevSolution = () => {
+    const slider = solutionsSliderRef.current
+    if (slider && solutionsItemStride) {
+      slider.scrollBy({ left: -solutionsItemStride, behavior: 'smooth' })
+    }
+    solutionsPrev()
   }
 
-  const handleNextClick = () => {
-    setIsAutoScrolling(false)
-    if (sliderRef.current) {
-      const cardWidth = sliderRef.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = cardWidth + gapWidth;
-      sliderRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth",
-      })
+  const handleMoveNextSolution = () => {
+    const slider = solutionsSliderRef.current
+    if (slider && solutionsItemStride) {
+      slider.scrollBy({ left: solutionsItemStride, behavior: 'smooth' })
     }
-    setTimeout(() => setIsAutoScrolling(true), 2000)
+    solutionsNext()
   }
 
-  const handleDashClick = (index) => {
-    if (sliderRef3.current) {
-      const cardWidth = sliderRef3.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
-      sliderRef3.current.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-      setCurrentSlide3(index);
-    }
-  }
-
-  const handleDashClick4 = (index) => {
-    if (sliderRef4.current) {
-      const cardWidth = sliderRef4.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
-      sliderRef4.current.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-      setCurrentSlide4(index);
-    }
-  }
 
   return (
     <Layout>
@@ -158,15 +181,23 @@ const IndexPage = ({ data }) => {
                   <h3 className={styles.heroKicker}>{card.title}</h3>
                   <p className={styles.heroTitle1}>{card.subtitle1}</p>
                   <p className={styles.heroTitle2}>{card.subtitle2}</p>
-                  <div>
-                    <Link
-                      to={card.link}
-                      target="_self"
-                      className={styles.heroCta}
-                    >
-                      더 알아보기&nbsp;&nbsp;>
-                    </Link>
-                  </div>
+
+                  <Link
+                    to={card.link}
+                    target="_self"
+                  >
+                    <div className={styles.heroCta}>
+                      <span>자세히 보기</span>
+                      <div className={styles.heroCtaIcon}>
+                        <img
+                          src={ReadMoreIcon}
+                          alt={'Read More'}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               </div>
             );
@@ -209,123 +240,56 @@ const IndexPage = ({ data }) => {
         </div>
 
         <div className={styles.sliderWrap}>
-          <div ref={sliderRef3} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
-            {/* Card 1: JHAION 엔진 */}
-            <Link to="/solutions/jhaion-engine" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>JHAION 엔진</h3>
-                  <p className={styles.solutionCardP}>
-                    Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_jhaion1.png" alt="JHAION 엔진" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 2: 에너지 관리 */}
-            <Link to="/solutions/energy" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>에너지 관리</h3>
-                  <p className={styles.solutionCardP}>
-                    BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_energy1.png" alt="에너지 관리" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 3: 시뮬레이션 */}
-            <Link to="/solutions/simulation" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>시뮬레이션</h3>
-                  <p className={styles.solutionCardP}>
-                    CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 4: 인공지능 */}
-            <Link to="/solutions/ai" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>인공지능</h3>
-                  <p className={styles.solutionCardP}>
-                    머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_ai.png" alt="인공지능" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 5: 디지털 트윈 */}
-            <Link to="/solutions/digital-twin" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>디지털 트윈</h3>
-                  <p className={styles.solutionCardP}>
-                    현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 6: 미디어 */}
-            <Link to="/solutions/media" className={styles.solutionLink}>
-              <div className={styles.solutionCard}>
-                <div className={styles.solutionCardHeader}>
-                  <h3 className={styles.solutionCardTitle}>미디어</h3>
-                  <p className={styles.solutionCardP}>
-                    복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원
-                  </p>
-                </div>
-                <div className={styles.solutionImgWrap}>
-                  <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_media.png" alt="미디어" className={styles.cardImg} />
-                </div>
-              </div>
-            </Link>
+          <div ref={solutionsSliderRef} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
+            {solutions
+              .concat(solutions)
+              .map((item, idx) => (
+                <Link key={`${item.link}-${idx}`} to={item.link} className={styles.solutionLink}>
+                  <div className={styles.solutionCard}>
+                    <div className={styles.solutionCardHeader}>
+                      <h3 className={styles.solutionCardTitle}>{item.title}</h3>
+                      <p className={styles.solutionCardP}>{item.desc}</p>
+                    </div>
+                    <div className={styles.solutionImgWrap}>
+                      <div className={styles.gradientTop}></div>
+                      <img src={item.img} alt={item.alt} className={styles.cardImg} />
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
 
-        {/* Dot Navigation */}
-        <div className={styles.dotsWrap}>
-          {[1, 2, 3, 4, 5, 6].map((index) => (
-            <div
-              key={index}
-              className={`${styles.dot} ${currentSlide3 === index ? styles.dotActive : ''}`}
-              onClick={() => {
-                const slider = sliderRef3.current
-                if (slider) {
-                  const cardWidth = slider.firstChild.offsetWidth
-                  const gap = 30
-                  const scrollAmount = (cardWidth + gap) * (index - 1)
-                  slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
-                  setCurrentSlide3(index)
-                }
-              }}
-            ></div>
-          ))}
+        {/* Navigation Controls */}
+        <div className={styles.navControls}>
+          {/* 이전 화살표 버튼 */}
+          <button
+            onClick={handleMovePrevSolution}
+            className={styles.navBtn}
+            aria-label="이전 슬라이드"
+          >
+            <img src={arrowLeft} alt={'Previous Slide'} className={styles.navIcon} />
+          </button>
+
+          {/* ex. 1/5 */}
+          <div className={styles.navCounter}>
+            <span className={styles.navCounterCurrent}>
+              {String((solutionsCurrent ?? 0) + 1).padStart(2, "0")}
+            </span>
+            <span className={styles.navCounterSep}>|</span>
+            <span className={styles.navCounterTotal}>
+              {String(solutions.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* 다음 화살표 버튼 */}
+          <button
+            onClick={handleMoveNextSolution}
+            className={styles.navBtn}
+            aria-label="다음 슬라이드"
+          >
+            <img src={arrowRight} alt={'Next Slide'} className={styles.navIcon} />
+          </button>
         </div>
       </div>
 

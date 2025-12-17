@@ -85,18 +85,36 @@
   word-break: keep-all;
   white-space: wrap;
 }
+
 .heroCta {
-  color: white;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
   background-color: #177D3C;
-  padding: 10px 25px;
+  height: 48px;
+  padding: 12px 20px;
   border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-  display: inline-block;
   transition: background-color 0.3s ease;
 }
-.heroCta:hover { background-color: #125d2d; }
+
+.heroCta span {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.heroCtaIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.heroCta:hover {
+  background-color: #125d2d;
+}
 
 .dots {
   margin-top: 40px;
@@ -178,17 +196,15 @@
 }
 
 /* Solutions Section */
-.solutionsSec {
-  width: 100vw;
-  overflow: hidden;
-  background-color: #ffffff;
-  padding: clamp(32px,6vw,60px) 2vw;
-  border-top: none;
-}
+
 .solutionsTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
 .solutionsTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
 .solutionsLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
-.sliderWrap { width: 100%; overflow: hidden; position: relative; }
+.sliderWrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
 .solutionsSlider {
   display: flex;
   gap: clamp(12px,2vw,30px);
@@ -372,18 +388,6 @@
   word-break: keep-all;
   white-space: wrap;
 }
-.heroCta {
-  color: white;
-  background-color: #177D3C;
-  padding: 10px 25px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-.heroCta:hover { background-color: #125d2d; }
 
 .dots {
   margin-top: 40px;
@@ -436,16 +440,15 @@
 
 /* Solutions Section */
 .solutionsSec {
-  width: 100vw;
+  margin-top: 80px;
+  width: 100dvw;
   overflow: hidden;
   background-color: #ffffff;
-  padding: clamp(32px,6vw,60px) 2vw;
   border-top: none;
 }
 .solutionsTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
 .solutionsTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
 .solutionsLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
-.sliderWrap { width: 100%; overflow: hidden; position: relative; }
 .solutionsSlider {
   display: flex;
   gap: clamp(12px,2vw,30px);
@@ -618,4 +621,66 @@
   .aboutP2 {
     font-size: 24px;
   }
+}
+
+
+/* Override: align solutions slider with header gutter */
+.sliderWrap {
+  padding-left: 60px;
+}
+
+
+/* Solutions Navigation Controls */
+.navControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem; /* matches gap-[0.8rem] */
+  margin-top: 4rem; /* matches mt-[4rem] */
+}
+
+.navBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-radius: 9999px; /* rounded-full */
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* transition-colors */
+}
+
+.navBtn:hover {
+  background-color: #f3f4f6; /* approx Tailwind gray-100 */
+}
+
+.navIcon {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+}
+
+.navCounter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Tailwind gap-2 ~= 8px */
+}
+
+.navCounterCurrent {
+  font-size: 3.6rem;
+  color: #177D3C;
+  font-weight: 500; /* font-medium */
+}
+
+.navCounterSep {
+  font-size: 1.8rem;
+  color: #969BA2;
+}
+
+.navCounterTotal {
+  font-size: 1.8rem;
+  color: #969BA2;
 }
