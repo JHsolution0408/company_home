@@ -221,7 +221,7 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div className={styles.solutionImgWrap}>
                   <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" className={styles.cardImg} />
+                  <img src="/images/solutions/card_jhaion1.png" alt="JHAION 엔진" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
@@ -237,7 +237,7 @@ const IndexPage = ({ data }) => {
                 </div>
                 <div className={styles.solutionImgWrap}>
                   <div className={styles.gradientTop}></div>
-                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" className={styles.cardImg} />
+                  <img src="/images/solutions/card_energy1.png" alt="에너지 관리" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
