@@ -205,15 +205,36 @@ const IndexPage = ({ data }) => {
         </div>
       </div>
 
-      {/* 도트 인디케이터: 슬라이더 바깥, 더 아래에 위치 */}
-      <div className={styles.dots}>
-        {cards.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`${styles.dot} ${current === idx ? styles.dotActive : ''}`}
-          />
-        ))}
+      {/* AI: 첫번째 컨트롤 컴포넌트 : Navigation Controls (스왑됨) */}
+      <div className={styles.navControls}>
+        {/* 이전 화살표 버튼 */}
+        <button
+          onClick={() => setCurrent((prev) => (prev - 1 + cards.length) % cards.length)}
+          className={styles.navBtn}
+          aria-label="이전 슬라이드"
+        >
+          <img src={arrowLeft} alt={'Previous Slide'} className={styles.navIcon} />
+        </button>
+
+        {/* ex. 1/3 */}
+        <div className={styles.navCounter}>
+          <span className={styles.navCounterCurrent}>
+            {String((current ?? 0) + 1).padStart(2, "0")}
+          </span>
+          <span className={styles.navCounterSep}>|</span>
+          <span className={styles.navCounterTotal}>
+            {String(cards.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* 다음 화살표 버튼 */}
+        <button
+          onClick={() => setCurrent((prev) => (prev + 1) % cards.length)}
+          className={styles.navBtn}
+          aria-label="다음 슬라이드"
+        >
+          <img src={arrowRight} alt={'Next Slide'} className={styles.navIcon} />
+        </button>
       </div>
 
       {/* Section 2: About Company */}
@@ -260,36 +281,24 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
 
-        {/* Navigation Controls */}
-        <div className={styles.navControls}>
-          {/* 이전 화살표 버튼 */}
-          <button
-            onClick={handleMovePrevSolution}
-            className={styles.navBtn}
-            aria-label="이전 슬라이드"
-          >
-            <img src={arrowLeft} alt={'Previous Slide'} className={styles.navIcon} />
-          </button>
-
-          {/* ex. 1/5 */}
-          <div className={styles.navCounter}>
-            <span className={styles.navCounterCurrent}>
-              {String((solutionsCurrent ?? 0) + 1).padStart(2, "0")}
-            </span>
-            <span className={styles.navCounterSep}>|</span>
-            <span className={styles.navCounterTotal}>
-              {String(solutions.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          {/* 다음 화살표 버튼 */}
-          <button
-            onClick={handleMoveNextSolution}
-            className={styles.navBtn}
-            aria-label="다음 슬라이드"
-          >
-            <img src={arrowRight} alt={'Next Slide'} className={styles.navIcon} />
-          </button>
+        {/* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */}
+        <div className={styles.dots}>
+          {solutions.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const slider = solutionsSliderRef.current
+                if (!slider || !solutionsItemStride) return
+                const stride = solutionsItemStride
+                const setWidth = stride * solutions.length
+                const targetLeft = setWidth + stride * idx
+                slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                solutionsGoTo(idx)
+              }}
+              className={`${styles.dot} ${solutionsCurrent === idx ? styles.dotActive : ''}`}
+              aria-label={`${idx + 1}번 슬라이드로 이동`}
+            />
+          ))}
         </div>
       </div>
 

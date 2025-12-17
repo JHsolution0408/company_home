@@ -1,7 +1,7 @@
 /* Header CSS Module */
 
 .header {
-  background-color: #FFF;
+  position: fixed;
   color: #000;
   margin: 0 auto;
   width: 100%;
@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
   top: 0;
   left: 0;
   right: 0;
