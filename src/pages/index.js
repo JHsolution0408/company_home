@@ -4,6 +4,8 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "./index.module.css"
+import IllustrationImage from '../../static/images/banners/contact-illustration-image.png';
+import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
 
 const cards = [
   {
@@ -31,13 +33,13 @@ const cards = [
 
 
 const IndexPage = ({ data }) => {
-    // 자동 롤링 타이머
-    React.useEffect(() => {
-      const timer = setInterval(() => {
-        setCurrent(prev => (prev + 1) % cards.length);
-      }, 5000);
-      return () => clearInterval(timer);
-    }, [cards.length]);
+  // 자동 롤링 타이머
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % cards.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [cards.length]);
   const pressReleases = data.allMarkdownRemark.nodes
   const [current, setCurrent] = React.useState(0);
   const sliderRef = React.useRef(null)
@@ -135,20 +137,7 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-  <Layout>
-    <style>{`body { max-width: 100% !important; }`}</style>
-    {/* ========== HEADER ========== */}
-    <header className={styles.header}>
-      {/* Header Content */}
-      <div className={styles.headerContent}>
-        <div className={styles.headerInner}>
-          {/* Header 콘텐츠 */}
-        </div>
-      </div>
-    </header>
-
-    {/* ========== BODY (5 SECTIONS) ========== */}
-    <main className={styles.main}>
+    <Layout>
       {/* Section 1: Hero Slider */}
       <div className={styles.heroWrapper}>
         <div
@@ -198,30 +187,31 @@ const IndexPage = ({ data }) => {
 
       {/* Section 2: About Company */}
       <div className={styles.sectionPad}>
-        <div className={styles.container90}>
-          <div className={styles.aboutBanner}>
-            <h3 className={styles.aboutH3}>JHAION Engine : The Core of Optimization</h3>
-            <p className={styles.aboutP1}>
-              Net-Zero와 최적화를 향한 초거대 AI의 여정
-            </p>
-            <p className={styles.aboutP2}>
-              <span className={styles.textWhite}>J</span>ourney of <span className={styles.textWhite}>H</span>yper-scale + <span className={styles.textWhite}>AI</span> + <span className={styles.textWhite}>O</span>ptimizatio<span className={styles.textWhite}>n</span> + <span className={styles.textWhite}>N</span>et-zero
-            </p>
-          </div>
+        <div className={styles.aboutBanner}>
+          <h3 className={styles.aboutH3}>
+            JHAION Engine : The Core of Optimization
+          </h3>
+          <p className={styles.aboutP1}>
+            Net-Zero와 최적화를 향한 초거대 AI의 여정
+          </p>
+          <p className={styles.aboutP2}>
+            <span className={styles.textWhite}>J</span>ourney of <span className={styles.textWhite}>H</span>yper-scale + <span className={styles.textWhite}>AI</span> + <span className={styles.textWhite}>O</span>ptimizatio<span className={styles.textWhite}>n</span> + <span className={styles.textWhite}>N</span>et-zero
+          </p>
         </div>
       </div>
 
       {/* Section 3: Solutions Slider */}
       <div className={styles.solutionsSec}>
-        <div className={styles.container90}>
+        <div className={styles.solutionsHeader}>
           <h2 className={styles.solutionsTitle1}>데이터 공학으로 완성된</h2>
           <h2 className={styles.solutionsTitle2}>JH솔루션의 통합플랫폼을 경험하세요</h2>
           <p className={styles.solutionsLead}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
-          
-          <div className={styles.sliderWrap}>
-            <div ref={sliderRef3} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
+        </div>
+
+        <div className={styles.sliderWrap}>
+          <div ref={sliderRef3} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
             {/* Card 1: JHAION 엔진 */}
-              <Link to="/solutions/jhaion-engine" className={styles.solutionLink}>
+            <Link to="/solutions/jhaion-engine" className={styles.solutionLink}>
               <div className={styles.solutionCard}>
                 <div className={styles.solutionCardHeader}>
                   <h3 className={styles.solutionCardTitle}>JHAION 엔진</h3>
@@ -237,7 +227,7 @@ const IndexPage = ({ data }) => {
             </Link>
 
             {/* Card 2: 에너지 관리 */}
-              <Link to="/solutions/energy" className={styles.solutionLink}>
+            <Link to="/solutions/energy" className={styles.solutionLink}>
               <div className={styles.solutionCard}>
                 <div className={styles.solutionCardHeader}>
                   <h3 className={styles.solutionCardTitle}>에너지 관리</h3>
@@ -253,7 +243,7 @@ const IndexPage = ({ data }) => {
             </Link>
 
             {/* Card 3: 시뮬레이션 */}
-              <Link to="/solutions/simulation" className={styles.solutionLink}>
+            <Link to="/solutions/simulation" className={styles.solutionLink}>
               <div className={styles.solutionCard}>
                 <div className={styles.solutionCardHeader}>
                   <h3 className={styles.solutionCardTitle}>시뮬레이션</h3>
@@ -269,7 +259,7 @@ const IndexPage = ({ data }) => {
             </Link>
 
             {/* Card 4: 인공지능 */}
-              <Link to="/solutions/ai" className={styles.solutionLink}>
+            <Link to="/solutions/ai" className={styles.solutionLink}>
               <div className={styles.solutionCard}>
                 <div className={styles.solutionCardHeader}>
                   <h3 className={styles.solutionCardTitle}>인공지능</h3>
@@ -285,7 +275,7 @@ const IndexPage = ({ data }) => {
             </Link>
 
             {/* Card 5: 디지털 트윈 */}
-              <Link to="/solutions/digital-twin" className={styles.solutionLink}>
+            <Link to="/solutions/digital-twin" className={styles.solutionLink}>
               <div className={styles.solutionCard}>
                 <div className={styles.solutionCardHeader}>
                   <h3 className={styles.solutionCardTitle}>디지털 트윈</h3>
@@ -301,103 +291,90 @@ const IndexPage = ({ data }) => {
             </Link>
 
             {/* Card 6: 미디어 */}
-              <Link to="/solutions/media" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>미디어</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
+            <Link to="/solutions/media" className={styles.solutionLink}>
+              <div className={styles.solutionCard}>
+                <div className={styles.solutionCardHeader}>
+                  <h3 className={styles.solutionCardTitle}>미디어</h3>
+                  <p className={styles.solutionCardP}>
                     복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원
                   </p>
                 </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_media.png" alt="미디어" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
+                <div className={styles.solutionImgWrap}>
+                  <div className={styles.gradientTop}></div>
+                  <img src="/images/solutions/card_media.png" alt="미디어" className={styles.cardImg} />
                 </div>
               </div>
             </Link>
-            </div>
           </div>
+        </div>
 
-          {/* Dot Navigation */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px", paddingBottom: "20px" }}>
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div
-                key={index}
-                style={{
-                  width: currentSlide3 === index ? "32px" : "12px",
-                  height: "12px",
-                  backgroundColor: currentSlide3 === index ? "#177D3C" : "#D9D9D9",
-                  borderRadius: "6px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer"
-                }}
-                onClick={() => {
-                  const slider = sliderRef3.current
-                  if (slider) {
-                    const cardWidth = slider.firstChild.offsetWidth
-                    const gap = 30
-                    const scrollAmount = (cardWidth + gap) * (index - 1)
-                    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
-                    setCurrentSlide3(index)
-                  }
-                }}
-              ></div>
-            ))}
-          </div>
+        {/* Dot Navigation */}
+        <div className={styles.dotsWrap}>
+          {[1, 2, 3, 4, 5, 6].map((index) => (
+            <div
+              key={index}
+              className={`${styles.dot} ${currentSlide3 === index ? styles.dotActive : ''}`}
+              onClick={() => {
+                const slider = sliderRef3.current
+                if (slider) {
+                  const cardWidth = slider.firstChild.offsetWidth
+                  const gap = 30
+                  const scrollAmount = (cardWidth + gap) * (index - 1)
+                  slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
+                  setCurrentSlide3(index)
+                }
+              }}
+            ></div>
+          ))}
         </div>
       </div>
 
       {/* Section 4: Press & News Slider */}
-      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
-        <div style={{ margin: "0 auto", width: '100%' }}>
-          <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>산업의 변화와 흐름을 주도하는</h2>
-          <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 새로운 소식을 만나보세요</h2>
-          <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
-          <div style={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
-          <div ref={sliderRef4} style={{ display: "flex", justifyContent: "flex-start", alignItems: "stretch", gap: "clamp(12px,2vw,30px)", overflowX: "hidden", overflowY: "hidden", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
-                {pressReleases.map((pressRelease, index) => (
-              <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} style={{ textDecoration: "none", border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", width: "533px", minWidth: "533px", maxWidth: "533px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", padding: 0, height: "auto", cursor: "pointer", transition: "transform 0.2s ease" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>{pressRelease.frontmatter.title}</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", marginBottom: "10px" }}>
-                    {pressRelease.frontmatter.summary}
-                  </p>
-                  <p style={{ color: "#999", fontSize: "12px", margin: 0 }}>
-                    {new Date(pressRelease.frontmatter.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, '')}
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto", padding: 0 }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img 
-                    src={pressRelease.frontmatter.featureImage || "/images/none_feature.png"} 
-                    alt={pressRelease.frontmatter.title}
-                    style={{ width: "533px", height: "300px", display: "block", objectFit: "cover" }}
-                  />
-                </div>
-              </Link>
-            ))}
+      <div className={styles.pressSec}>
+        <div>
+          <div className={styles.sectionPad}>
+            <h2 className={styles.pressTitle1}>산업의 변화와 흐름을 주도하는</h2>
+            <h2 className={styles.pressTitle2}>JH솔루션의 새로운 소식을 만나보세요</h2>
+            <p className={styles.pressLead}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
           </div>
-        </div>
+          <div className={styles.pressSliderWrap}>
+            <div ref={sliderRef4} className={`${styles.pressSlider} slider-hide-scrollbar`}>
+              {pressReleases.map((pressRelease, index) => (
+                <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} className={styles.pressLink}>
+                  <div className={styles.pressHeader}>
+                    <h3 className={styles.pressTitle}>{pressRelease.frontmatter.title}</h3>
+                    <p className={styles.pressSummary}>
+                      {pressRelease.frontmatter.summary}
+                    </p>
+                    <p className={styles.pressDate}>
+                      {new Date(pressRelease.frontmatter.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, '')}
+                    </p>
+                  </div>
+                  <div className={styles.pressImgWrap}>
+                    <div className={styles.gradientTop}></div>
+                    <img
+                      src={pressRelease.frontmatter.featureImage || "/images/none_feature.png"}
+                      alt={pressRelease.frontmatter.title}
+                      className={styles.pressImg}
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
           {/* Dot Navigation */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px", paddingBottom: "20px" }}>
+          <div className={styles.dotsWrap}>
             {[1, 2, 3, 4, 5, 6].map((index) => (
               <div
                 key={index}
-                style={{
-                  width: currentSlide4 === index ? "32px" : "12px",
-                  height: "12px",
-                  backgroundColor: currentSlide4 === index ? "#177D3C" : "#D9D9D9",
-                  borderRadius: "6px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer"
-                }}
+                className={`${styles.dot} ${currentSlide4 === index ? styles.dotActive : ''}`}
                 onClick={() => {
                   const slider = sliderRef4.current
                   if (slider) {
                     const cardWidth = slider.firstChild.offsetWidth
                     const gap = 30
                     const scrollAmount = (cardWidth + gap) * (index - 1)
-                    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
+                    slider.scrollTo({ left: scrollAmount, behavior: "smooth" })
                     setCurrentSlide4(index)
                   }
                 }}
@@ -408,21 +385,47 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 5: CTA */}
-      <div style={{ padding: "60px", width: "100%" }}>
-        <div style={{ margin: "0 auto", padding: "80px 40px 80px 40px", paddingRight: "40px", border: "none", borderRadius: "16px", backgroundColor: "#FDFDFD", textAlign: "left", backgroundImage: "url(/images/bg_contact.png)", backgroundSize: "120% auto", backgroundPosition: "right center", backgroundRepeat: "no-repeat", minHeight: "400px", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
-          <div style={{ maxWidth: "50%" }}>
-            <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>지능형 운영의 첫걸음</h2>
-            <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH 솔루션이 함께 합니다</h2>
-            <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다</p>
-            <Link to="/contact" style={{ color: "white", backgroundColor: "#177D3C", padding: "12px 30px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "16px", display: "inline-block", transition: "all 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#135f30"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
-              문의하기
-            </Link>
-          </div>
-        </div>
-      </div>
-    </main>
+      <section
+        className={styles.ctaSection}
+        style={{
+          backgroundImage: "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-image.png)",
+          backgroundRepeat: "no-repeat, no-repeat",
+          backgroundPosition: "left top, right bottom",
+          backgroundSize: "cover, auto 90%",
+          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)"
+        }}
+      >
+        <div className={styles.ctaInner}>
+          <div className={styles.ctaContent}>
+            <h1 className={styles.ctaTitle}>
+              지능형 운영의 첫걸음
+              <br />
+              <span className={styles.ctaEmphasis}>
+              제이에이치솔루션이 함께합니다.
+            </span>
+            </h1>
 
-  </Layout>
+            <p className={styles.ctaDescription}>
+              검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다.
+            </p>
+          </div>
+
+          <button className={styles.ctaButton}>
+            <span>문의하기</span>
+
+            <span className={styles.ctaButtonIcon}>
+              <img
+                width={20}
+                height={20}
+                src={OpenIconWhite}
+                alt={'Read More'}
+              />
+            </span>
+          </button>
+        </div>
+      </section>
+
+    </Layout>
   )
 }
 

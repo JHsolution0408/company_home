@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
       }}
     >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
+        <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
       <Footer />
     </div>
   )
