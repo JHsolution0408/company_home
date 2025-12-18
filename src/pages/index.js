@@ -255,25 +255,47 @@ const IndexPage = ({ data }) => {
       {/* Section 3: Solutions Slider */}
       <div className={styles.solutionsSec}>
         <div className={styles.solutionsHeader}>
-          <h2 className={styles.solutionsTitle1}>데이터 공학으로 완성된</h2>
-          <h2 className={styles.solutionsTitle2}>JH솔루션의 통합플랫폼을 경험하세요</h2>
-          <p className={styles.solutionsLead}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
+          <h2 className={styles.solutionsTitle1}>
+            데이터 공학으로 완성된
+          </h2>
+          <h2 className={styles.solutionsTitle2}>
+            JH솔루션의 통합플랫폼을 경험하세요
+          </h2>
+          <p className={styles.solutionsLead}>
+            에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.
+          </p>
         </div>
 
         <div className={styles.sliderWrap}>
-          <div ref={solutionsSliderRef} className={`${styles.solutionsSlider} slider-hide-scrollbar`}>
+          <div
+            ref={solutionsSliderRef}
+            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+          >
             {solutions
               .concat(solutions)
               .map((item, idx) => (
-                <Link key={`${item.link}-${idx}`} to={item.link} className={styles.solutionLink}>
+                <Link
+                  key={`${item.link}-${idx}`}
+                  to={item.link}
+                  className={styles.solutionLink}
+                >
                   <div className={styles.solutionCard}>
                     <div className={styles.solutionCardHeader}>
-                      <h3 className={styles.solutionCardTitle}>{item.title}</h3>
-                      <p className={styles.solutionCardP}>{item.desc}</p>
+                      <h3 className={styles.solutionCardTitle}>
+                        {item.title}
+                      </h3>
+                      <p className={styles.solutionCardDescription}>
+                        {item.desc}
+                      </p>
                     </div>
+
                     <div className={styles.solutionImgWrap}>
-                      <div className={styles.gradientTop}></div>
-                      <img src={item.img} alt={item.alt} className={styles.cardImg} />
+                      <div className={styles.gradientTop} />
+                      <img
+                        src={item.img}
+                        alt={item.alt}
+                        className={styles.cardImg}
+                      />
                     </div>
                   </div>
                 </Link>
