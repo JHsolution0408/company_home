@@ -2,6 +2,9 @@ import * as React from "react"
 import { Link } from "gatsby"
 import * as styles from "./header.module.css"
 import PCLogo from '../images/logo/jhsolution-logo-pc.svg';
+import CloseIcon from '/static/icons/common/close-icon.svg';
+import ChevronDownIcon from '/static/icons/common/chevron-down-icon.svg';
+import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
 
 const Header = ({ siteTitle }) => {
   const [showSolutionMenu, setShowSolutionMenu] = React.useState(false)
@@ -72,137 +75,207 @@ const Header = ({ siteTitle }) => {
   return (
     <>
       {isMenuOpen && (
-        <div
-          className={`${styles.overlay} ${isMenuOpen ? styles.show : ""}`}
-          onClick={() => setIsMenuOpen(false)}
+        <Sidebar
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          showSolutionMenu={showSolutionMenu}
+          setShowSolutionMenu={setShowSolutionMenu}
+          showCompanyMenu={showCompanyMenu}
+          setShowCompanyMenu={setShowCompanyMenu}
+          showPressMenu={showPressMenu}
+          setShowPressMenu={setShowPressMenu}
+          companyItems={companyItems}
+          solutionItems={solutionItems}
+          pressItems={pressItems}
         />
       )}
 
       <header className={styles.header}>
-        <div className={styles.inner}>
+        <div className={`${styles.inner} ${isMenuOpen && styles.sidemenuInnerOpen}`}>
           {/* 첫 번째 구역: 로고 */}
           <div className={styles.logo}>
-            <Link
-              to="/"
-              className={styles.logoLink}
-            >
+            <Link to="/" className={styles.logoLink}>
               <img
                 src={PCLogo}
-                width={'125px'}
-                height={'36px'}
-                alt={'JH Solution Logo'}
+                width={"125px"}
+                height={"36px"}
+                alt={"JH Solution Logo"}
               />
-          </Link>
-        </div>
-
-        {/* 두 번째 구역: 메뉴 네비게이션 */}
-        <nav id="mobileSidebar" className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`} role="navigation" aria-label="모바일 사이드바 내비게이션" aria-hidden={!isMenuOpen}>
-          <div className={styles.panelTopBar}>
-            <span className={styles.panelTitle}>메뉴</span>
-            <button className={styles.panelCloseBtn} onClick={() => setIsMenuOpen(false)} aria-label="메뉴 닫기">✕</button>
+            </Link>
           </div>
-            {/* 회사소개 Dropdown Menu */}
-            <div className={styles.menuGroup}
-              onMouseEnter={() => setShowCompanyMenu(true)}
-              onMouseLeave={() => setShowCompanyMenu(false)}
-              onClick={() => setShowCompanyMenu((prev) => !prev)}
-            >
-              <button className={styles.menuButton}>회사소개</button>
 
-              {/* 서브 메뉴 펼쳤을 때 */}
-              {showCompanyMenu && (
-                <div className={styles.dropdown}>
-                  {companyItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/company/${item.slug}`}
-                      className={styles.dropdownLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+          {/* 두 번째 구역: 메뉴 네비게이션 */}
 
-            {/* 솔루션 Dropdown Menu */}
-            <div className={styles.menuGroup}
-              onMouseEnter={() => setShowSolutionMenu(true)}
-              onMouseLeave={() => setShowSolutionMenu(false)}
-              onClick={() => setShowSolutionMenu((prev) => !prev)}
-            >
-              <button className={styles.menuButton}>솔루션</button>
+          {/* 세 번째 구역: 모바일 메뉴 버튼 및 문의하기 버튼 */}
+          <div className={styles.rightControls}>
+            {isMenuOpen ? (
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="메뉴 열기"
+                aria-controls="mobileSidebar"
+                aria-expanded={isMenuOpen}
+                className={styles.hamburger}
+              >
+                <img
+                  src={CloseIcon}
+                  alt={"close icon"}
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsMenuOpen(prev => !prev)}
+                aria-label="메뉴 열기"
+                aria-controls="mobileSidebar"
+                aria-expanded={isMenuOpen}
+                className={styles.hamburger}
+              >
+                <img
+                  src={HamburgerIcon}
+                  alt={"hamburger menu icon"}
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </button>
+            )}
 
-              {showSolutionMenu && (
-                <div className={styles.dropdown}>
-                  {solutionItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/solutions/${item.slug}`}
-                      className={styles.dropdownLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <button className={styles.menuButton}>
-              <Link to="/projects" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-                프로젝트
-              </Link>
-            </button>
-
-            {/* 홍보센터 Dropdown Menu */}
-            <div className={styles.menuGroup}
-              onMouseEnter={() => setShowPressMenu(true)}
-              onMouseLeave={() => setShowPressMenu(false)}
-              onClick={() => setShowPressMenu((prev) => !prev)}
-            >
-              <button className={styles.menuButton}>홍보센터</button>
-
-              {showPressMenu && (
-                <div className={styles.dropdown}>
-                  {pressItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/press/${item.slug}`}
-                      className={styles.dropdownLink}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className={styles.contactMobileWrap}>
-                <Link to="/contact" className={styles.contactMobile}>
-                  문의하기
-                </Link>
-              </div>
-          </nav>
-
-        {/* 세 번째 구역: 모바일 메뉴 버튼 및 문의하기 버튼 */}
-        <div className={styles.rightControls}>
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            aria-label="메뉴 열기"
-            aria-controls="mobileSidebar"
-            aria-expanded={isMenuOpen}
-            className={styles.hamburger}
-          >
-            ☰
-          </button>
-          <Link to="/contact" className={styles.contact}>
-            문의하기
-          </Link>
-        </div>
+            <Link to="/contact" className={styles.contact}>
+              문의하기
+            </Link>
+          </div>
         </div>
       </header>
+    </>
+  )
+}
+
+function Sidebar({
+  isMenuOpen,
+  setIsMenuOpen,
+  showSolutionMenu,
+  setShowSolutionMenu,
+  showCompanyMenu,
+  setShowCompanyMenu,
+  showPressMenu,
+  setShowPressMenu,
+  companyItems,
+  solutionItems,
+  pressItems,
+}) {
+  return (
+    <>
+      <div
+        className={`${styles.overlay} ${isMenuOpen ? styles.show : ""}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      <nav
+        id="mobileSidebar"
+        className={`${styles.nav}
+          ${isMenuOpen ? styles.navOpen : ""}`}
+        role="navigation"
+        aria-label="모바일 사이드바 내비게이션" aria-hidden={!isMenuOpen}
+      >
+        {/* 회사소개 Dropdown Menu */}
+        <div className={styles.menuGroup}>
+          <button
+            className={styles.menuButton}
+            onMouseEnter={() => setShowCompanyMenu(true)}
+            onMouseLeave={() => setShowCompanyMenu(false)}
+            onClick={() => setShowCompanyMenu((prev) => !prev)}
+          >
+          <span>
+            회사소개
+          </span>
+            <div className={styles.navIconContainer}>
+              <img
+                src={ChevronDownIcon}
+                alt={'chevron down'}
+                style={{
+                  transform: showCompanyMenu ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease',
+                  transformOrigin: '50% 50%',
+                  willChange: 'transform',
+                }}
+              />
+            </div>
+          </button>
+
+          {/* 서브 메뉴 펼쳤을 때 */}
+          {showCompanyMenu && (
+            <div className={styles.dropdown}>
+              {companyItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={`/company/${item.slug}`}
+                  className={styles.dropdownLink}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 솔루션 Dropdown Menu */}
+        <div className={styles.menuGroup}
+             onMouseEnter={() => setShowSolutionMenu(true)}
+             onMouseLeave={() => setShowSolutionMenu(false)}
+             onClick={() => setShowSolutionMenu((prev) => !prev)}
+        >
+          <button className={styles.menuButton}>솔루션</button>
+
+          {showSolutionMenu && (
+            <div className={styles.dropdown}>
+              {solutionItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={`/solutions/${item.slug}`}
+                  className={styles.dropdownLink}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <Link to="/projects" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+          <button className={styles.menuButton}>
+            프로젝트
+          </button>
+        </Link>
+
+        {/* 홍보센터 Dropdown Menu */}
+        <div className={styles.menuGroup}
+             onMouseEnter={() => setShowPressMenu(true)}
+             onMouseLeave={() => setShowPressMenu(false)}
+             onClick={() => setShowPressMenu((prev) => !prev)}
+        >
+          <button className={styles.menuButton}>홍보센터</button>
+
+          {showPressMenu && (
+            <div className={styles.dropdown}>
+              {pressItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={`/press/${item.slug}`}
+                  className={styles.dropdownLink}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
     </>
   )
 }

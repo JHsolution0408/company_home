@@ -33,6 +33,12 @@
   box-shadow: 2px 4px 12px rgba(73, 94, 148, 0.20);
 }
 
+.sidemenuInnerOpen {
+  box-shadow: none;
+  border-radius: 0;
+  transition: box-shadow 0.2s ease;
+}
+
 .logo {
   width: 125px;
   height: 36px;
@@ -72,7 +78,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1100;
+  z-index: 100;
   display: none;
 }
 
@@ -97,15 +103,6 @@
   font-family: inherit;
 }
 
-.navLink {
-  color: #000;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0;
-  font-size: 22px;
-  font-weight: 600;
-}
-
 /* Dropdown container */
 .dropdown {
   position: absolute;
@@ -114,9 +111,9 @@
   transform: translateX(-50%);
   background-color: #FDFDFD;
   min-width: 200px;
-  width: auto;
+  width: 100dvh;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1000;
+  z-index: 100;
   border-radius: 4px;
   padding-top: 15px;
 }
@@ -179,18 +176,31 @@
   display: inline-block;
 }
 
+.navIconContainer {
+  display: none;
+}
+
+
 /* Responsive: mobile <= 900px */
 @media (max-width: 1000px) {
   /* isMobile */
+  .navIconContainer {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
   .header {
     padding: 14px 16px 0 16px;
     height: 78px;
+    z-index: 1000;
   }
 
   .inner {
     height: 64px;
     border-radius: 16px;
     padding: 0 24px;
+    z-index: 2000;
   }
 
   /* Off-canvas sidebar nav (hidden by default) */
@@ -198,14 +208,13 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
-    width: 75vw;
-    max-width: 420px;
+    height: 100dvh;
+    width: 100dvw;
     display: block;
     background: #fff; /* slate-900 */
     color: #17181B;
-    padding: 16px var(--size-gutter);
-    z-index: 1200;
+    padding: 98px var(--size-gutter) 0;
+    z-index: 100;
     box-shadow: -4px 0 16px rgba(0,0,0,0.25);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -249,26 +258,22 @@
   }
 
   .menuGroup {
-    display: block;
-    width: 100%;
-    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .menuButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: #17181B;
-    font-size: 16px;
-    padding: 10px 0;
-    width: 100%;
-    text-align: left;
+    font-size: 22px;
+    padding: 16px 24px;
   }
 
   .navLink {
-    color: #17181B;
-    display: block;
-    padding: 10px 0;
-    width: 100%;
-    text-align: left;
-    font-size: 16px;
+    text-decoration: none;
   }
 
   .dropdown {
@@ -279,10 +284,14 @@
     width: 100%;
     margin-top: 10px;
     padding-top: 0;
+    z-index: 100;
   }
 
   .hamburger {
     display: inline-flex;
+    padding: 0;
+    width: 20px;
+    height: 20px;
   }
 
   .contact {

@@ -55,28 +55,31 @@ const IndexPage = ({ data }) => {
   const pressReleases = data.allMarkdownRemark.nodes
   const [current, setCurrent] = React.useState(0);
   const solutionsSliderRef = React.useRef(null)
-  const sliderRef4 = React.useRef(null)
+  const pressSliderRef = React.useRef(null)
   const [solutionsItemStride, setSolutionsItemStride] = React.useState(0)
+  const [pressItemStride, setPressItemStride] = React.useState(0)
+  const [solutionsGap, setSolutionsGap] = React.useState(0)
+  const [pressGap, setPressGap] = React.useState(0)
+  const [solutionsPadOn, setSolutionsPadOn] = React.useState(true)
+  const [pressPadOn, setPressPadOn] = React.useState(true)
+  const hasInteractedSolutions = React.useRef(false)
+  const hasInteractedPress = React.useRef(false)
   const isNormalizingSolutions = React.useRef(false)
+  const isNormalizingPress = React.useRef(false)
   const { currentSlide: solutionsCurrent, nextSlide: solutionsNext, prevSlide: solutionsPrev, goToSlide: solutionsGoTo } = useSlide({
     totalSlides: solutions.length,
-    autoPlay: true,
-    autoPlayInterval: 5000,
+    autoPlay: false,
   })
-  const [currentSlide4, setCurrentSlide4] = React.useState(1)
+  const { currentSlide: pressCurrent, nextSlide: pressNext, prevSlide: pressPrev, goToSlide: pressGoTo } = useSlide({
+    totalSlides: pressReleases.length,
+    autoPlay: false,
+  })
 
-
-  // 제품 카드 자동 롤링 (solutions)
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const slider = solutionsSliderRef.current
-      if (slider && solutionsItemStride) {
-        // 자동 이동은 부드럽게, 경계 보정은 onScroll에서 무애니메이션 처리
-        slider.scrollBy({ left: solutionsItemStride, behavior: 'smooth' })
-      }
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [solutionsItemStride])
+  // Drag state refs
+  const solDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
+  const pressDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
+  const didDragSolutions = React.useRef(false)
+  const didDragPress = React.useRef(false)
 
   // Solutions slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
   React.useEffect(() => {
@@ -88,6 +91,7 @@ const IndexPage = ({ data }) => {
     const computed = window.getComputedStyle(slider)
     const gapStr = computed.gap || computed.columnGap || '30px'
     const gap = parseFloat(gapStr) || 30
+    setSolutionsGap(gap)
 
     const stride = first.offsetWidth + gap
     const setWidth = stride * solutions.length
@@ -107,6 +111,7 @@ const IndexPage = ({ data }) => {
       const left = slider.scrollLeft
       const epsilon = 1
 
+      if (solutionsPadOn && left > 0) setSolutionsPadOn(false)
       if (isNormalizingSolutions.current) return
 
       // Left boundary: jump forward by one set width (silent)
@@ -141,6 +146,67 @@ const IndexPage = ({ data }) => {
     slider.addEventListener('scroll', onScroll)
     return () => slider.removeEventListener('scroll', onScroll)
   }, [solutions.length])
+
+  // Press slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
+  React.useEffect(() => {
+    const slider = pressSliderRef.current
+    if (!slider) return
+    const first = slider.firstChild
+    if (!first) return
+
+    const computed = window.getComputedStyle(slider)
+    const gapStr = computed.gap || computed.columnGap || '30px'
+    const gap = parseFloat(gapStr) || 30
+    setPressGap(gap)
+
+    const stride = first.offsetWidth + gap
+    const setWidth = stride * pressReleases.length
+
+    setPressItemStride(stride)
+
+    requestAnimationFrame(() => {
+      if (slider.scrollLeft < setWidth * 0.5) {
+        slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
+      }
+    })
+
+    const onScroll = () => {
+      const maxScroll = slider.scrollWidth
+      const left = slider.scrollLeft
+      const epsilon = 1
+
+      if (pressPadOn && left > 0) setPressPadOn(false)
+      if (isNormalizingPress.current) return
+
+      if (left <= epsilon) {
+        isNormalizingPress.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left + setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingPress.current = false
+        return
+      }
+      if (left + slider.clientWidth >= maxScroll - epsilon) {
+        isNormalizingPress.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left - setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingPress.current = false
+        return
+      }
+
+      const rel = slider.scrollLeft % setWidth
+      let idx = Math.round(rel / stride)
+      if (idx >= pressReleases.length) idx = 0
+      if (idx < 0) idx = 0
+      pressGoTo(idx)
+    }
+
+    slider.addEventListener('scroll', onScroll)
+    return () => slider.removeEventListener('scroll', onScroll)
+  }, [pressReleases.length])
 
   const handleMovePrevSolution = () => {
     const slider = solutionsSliderRef.current
@@ -270,6 +336,45 @@ const IndexPage = ({ data }) => {
           <div
             ref={solutionsSliderRef}
             className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+            style={{ paddingLeft: solutionsPadOn ? `${solutionsGap}px` : 0 }}
+            onPointerDown={(e) => {
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              hasInteractedSolutions.current = true
+              if (solutionsPadOn) setSolutionsPadOn(false)
+              solDrag.current.isDown = true
+              solDrag.current.startX = e.clientX
+              solDrag.current.startLeft = slider.scrollLeft
+              try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+              const prev = slider.style.scrollBehavior
+              slider.dataset.prevScrollBehavior = prev
+              slider.style.scrollBehavior = 'auto'
+            }}
+            onPointerMove={(e) => {
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              if (!solDrag.current.isDown) return
+              const dx = e.clientX - solDrag.current.startX
+              if (Math.abs(dx) > 3) didDragSolutions.current = true
+              slider.scrollLeft = solDrag.current.startLeft - dx
+            }}
+            onPointerUp={(e) => {
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              solDrag.current.isDown = false
+              try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+              const prev = slider.dataset.prevScrollBehavior
+              if (prev !== undefined) slider.style.scrollBehavior = prev
+            }}
+            onPointerLeave={() => { solDrag.current.isDown = false }}
+            onPointerCancel={() => { solDrag.current.isDown = false }}
+            onClickCapture={(e) => {
+              if (didDragSolutions.current) {
+                e.preventDefault()
+                e.stopPropagation()
+                didDragSolutions.current = false
+              }
+            }}
           >
             {solutions
               .concat(solutions)
@@ -308,48 +413,71 @@ const IndexPage = ({ data }) => {
             <h2 className={styles.pressTitle2}>JH솔루션의 새로운 소식을 만나보세요</h2>
             <p className={styles.pressLead}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
           </div>
-          <div className={styles.pressSliderWrap}>
-            <div ref={sliderRef4} className={`${styles.pressSlider} slider-hide-scrollbar`}>
-              {pressReleases.map((pressRelease, index) => (
-                <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} className={styles.pressLink}>
-                  <div className={styles.pressHeader}>
-                    <h3 className={styles.pressTitle}>{pressRelease.frontmatter.title}</h3>
-                    <p className={styles.pressSummary}>
-                      {pressRelease.frontmatter.summary}
-                    </p>
-                    <p className={styles.pressDate}>
-                      {new Date(pressRelease.frontmatter.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, '')}
-                    </p>
-                  </div>
-                  <div className={styles.pressImgWrap}>
-                    <div className={styles.gradientTop}></div>
-                    <img
-                      src={pressRelease.frontmatter.featureImage || "/images/none_feature.png"}
-                      alt={pressRelease.frontmatter.title}
-                      className={styles.pressImg}
-                    />
-                  </div>
-                </Link>
+          <div className={styles.sliderWrap}>
+            <div
+              ref={pressSliderRef}
+              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+              style={{ paddingLeft: pressPadOn ? `${pressGap}px` : 0 }}
+              onPointerDown={(e) => {
+                const slider = pressSliderRef.current
+                if (!slider) return
+                hasInteractedPress.current = true
+                if (pressPadOn) setPressPadOn(false)
+                pressDrag.current.isDown = true
+                pressDrag.current.startX = e.clientX
+                pressDrag.current.startLeft = slider.scrollLeft
+                try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+                const prev = slider.style.scrollBehavior
+                slider.dataset.prevScrollBehavior = prev
+                slider.style.scrollBehavior = 'auto'
+              }}
+              onPointerMove={(e) => {
+                const slider = pressSliderRef.current
+                if (!slider) return
+                if (!pressDrag.current.isDown) return
+                const dx = e.clientX - pressDrag.current.startX
+                if (Math.abs(dx) > 3) didDragPress.current = true
+                slider.scrollLeft = pressDrag.current.startLeft - dx
+              }}
+              onPointerUp={(e) => {
+                const slider = pressSliderRef.current
+                if (!slider) return
+                pressDrag.current.isDown = false
+                try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+                const prev = slider.dataset.prevScrollBehavior
+                if (prev !== undefined) slider.style.scrollBehavior = prev
+              }}
+              onPointerLeave={() => { pressDrag.current.isDown = false }}
+              onPointerCancel={() => { pressDrag.current.isDown = false }}
+              onClickCapture={(e) => {
+                if (didDragPress.current) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  didDragPress.current = false
+                }
+              }}
+            >
+              {pressReleases.concat(pressReleases).map((item, idx) => (
+                <LinkCard item={item} type="press" key={`press-${idx}-${item.frontmatter?.slug || idx}`} />
               ))}
             </div>
           </div>
-          {/* Dot Navigation */}
-          <div className={styles.dotsWrap}>
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div
-                key={index}
-                className={`${styles.dot} ${currentSlide4 === index ? styles.dotActive : ''}`}
+          <div className={styles.dots}>
+            {pressReleases.map((_, idx) => (
+              <button
+                key={idx}
                 onClick={() => {
-                  const slider = sliderRef4.current
-                  if (slider) {
-                    const cardWidth = slider.firstChild.offsetWidth
-                    const gap = 30
-                    const scrollAmount = (cardWidth + gap) * (index - 1)
-                    slider.scrollTo({ left: scrollAmount, behavior: "smooth" })
-                    setCurrentSlide4(index)
-                  }
+                  const slider = pressSliderRef.current
+                  if (!slider || !pressItemStride) return
+                  const stride = pressItemStride
+                  const setWidth = stride * pressReleases.length
+                  const targetLeft = setWidth + stride * idx
+                  slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                  pressGoTo(idx)
                 }}
-              ></div>
+                className={`${styles.dot} ${pressCurrent === idx ? styles.dotActive : ''}`}
+                aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+              />
             ))}
           </div>
         </div>
@@ -400,28 +528,45 @@ const IndexPage = ({ data }) => {
   )
 }
 
-function LinkCard({ item }) {
+function LinkCard({ item, type = 'solutions' }) {
+  const isPress = type === 'press'
+  // Map props based on card type
+  const linkHref = isPress ? `/press/${item.frontmatter.slug}` : item.link
+  const imgSrc = isPress ? (item.frontmatter.featureImage || '/images/none_feature.png') : item.img
+  const imgAlt = isPress ? item.frontmatter.title : item.alt
+  const title = isPress ? item.frontmatter.title : item.title
+  const dateText = isPress
+    ? new Date(item.frontmatter.date)
+        .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+        .replace(/\. /g, '.')
+        .replace(/\.$/, '')
+    : null
+
   return (
     <Link
-      key={`${item.link}-${item.id}`}
-      to={item.link}
+      to={linkHref}
       className={styles.solutionLink}
     >
       <div className={styles.linkCardContainer}>
         <div className={styles.linkCardHeader}>
-          <h3 className={styles.linkCardTitle}>
-            {item.title}
-          </h3>
-          <p className={styles.linkCardDescription}>
-            {item.desc}
-          </p>
+          {isPress ? (
+            <>
+              <p className={styles.linkCardDescription}>{dateText}</p>
+              <h3 className={styles.linkCardTitle}>{title}</h3>
+            </>
+          ) : (
+            <>
+              <h3 className={styles.linkCardTitle}>{title}</h3>
+              <p className={styles.linkCardDescription}>{item.desc}</p>
+            </>
+          )}
         </div>
 
         <div className={styles.linkCardImgWrap}>
           <div className={styles.topGradient} />
           <img
-            src={item.img}
-            alt={item.alt}
+            src={imgSrc}
+            alt={imgAlt}
             className={styles.cardImg}
           />
         </div>
