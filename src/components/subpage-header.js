@@ -47,7 +47,6 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     <>
       {isMobile && isMenuOpen && (
         <div
-          onClick={() => setIsMenuOpen(false)}
           style={{
             position: "fixed",
             top: 0,
@@ -57,6 +56,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             backgroundColor: "rgba(0,0,0,0.5)",
             zIndex: 1100,
           }}
+          onClick={() => setIsMenuOpen(false)}
         />
       )}
 
@@ -191,6 +191,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
                 회사소개
               </button>
 
+              {/* 비전 및 미션 Header */}
               {showCompanyMenu && (
                 <div
                   style={{
@@ -198,15 +199,16 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
                     top: isMobile ? "0" : "calc(100% + 15px)",
                     left: isMobile ? "0" : "50%",
                     transform: isMobile ? "none" : "translateX(-50%)",
-                    backgroundColor: "#FDFDFD",
+                    // backgroundColor: "#FDFDFD",
+                    backgroundColor: "yellow",
                     minWidth: "200px",
                     width: isMobile ? "100%" : "auto",
+                    height: "278px",
                     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
                     zIndex: "1000",
                     borderRadius: "4px",
                     marginTop: isMobile ? "10px" : "0",
                     paddingTop: isMobile ? "0" : "15px",
-                    marginTop: isMobile ? "10px" : "-15px",
                   }}
                 >
                   {companyItems.map((item, index) => (
@@ -274,7 +276,6 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
                     borderRadius: "4px",
                     marginTop: isMobile ? "10px" : "0",
                     paddingTop: isMobile ? "0" : "15px",
-                    marginTop: isMobile ? "10px" : "-15px",
                   }}
                 >
                   {solutionItems.map((item, index) => (

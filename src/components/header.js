@@ -6,7 +6,9 @@ import CloseIcon from '/static/icons/common/close-icon.svg';
 import ChevronDownIcon from '/static/icons/common/chevron-down-icon.svg';
 import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
 
-const Header = ({ siteTitle }) => {
+const ContactFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSd8r-HC_kxlfuRDtX1LJvZaldc6I79aeUgdUQrS8TvHIAuo8Q/viewform';
+
+const Header = ({ type = 'light' }) => {
   const [showSolutionMenu, setShowSolutionMenu] = React.useState(false)
   const [showCompanyMenu, setShowCompanyMenu] = React.useState(false)
   const [showPressMenu, setShowPressMenu] = React.useState(false)
@@ -91,7 +93,13 @@ const Header = ({ siteTitle }) => {
       )}
 
       <header className={styles.header}>
-        <div className={`${styles.inner} ${isMenuOpen && styles.sidemenuInnerOpen}`}>
+        <div
+          className={`
+            ${styles.inner} 
+            ${isMenuOpen && styles.sidemenuInnerOpen} 
+            ${type === 'dark' && 'dark'}
+          `}
+        >
           {/* 첫 번째 구역: 로고 */}
           <div className={styles.logo}>
             <Link to="/" className={styles.logoLink}>
@@ -105,6 +113,88 @@ const Header = ({ siteTitle }) => {
           </div>
 
           {/* 두 번째 구역: 메뉴 네비게이션 */}
+          <nav
+            id="menu"
+            className={styles.navDesktop}
+            role="navigation"
+            aria-label="데스크탑 내비게이션"
+            aria-hidden={false}
+          >
+            {/* 회사소개 Dropdown Menu */}
+            <div
+              className={styles.menuGroup}
+              tabIndex={0}
+            >
+              <button className={styles.menuButton}>회사소개</button>
+
+              {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
+              <div
+                className={styles.dropdownDesktop}
+              >
+                {companyItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    to={`/company/${item.slug}`}
+                    className={styles.dropdownLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* 솔루션 Dropdown Menu */}
+            <div
+              className={styles.menuGroup}
+              tabIndex={0}
+            >
+              <button className={styles.menuButton}>솔루션</button>
+
+              <div className={styles.dropdownDesktop}>
+                {solutionItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    to={`/solutions/${item.slug}`}
+                    className={styles.dropdownLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <button className={styles.menuButton}>
+              <Link
+                to="/projects"
+                className={styles.navLink}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                프로젝트
+              </Link>
+            </button>
+
+            {/* 홍보센터 Dropdown Menu */}
+            <div
+              className={styles.menuGroup}
+              tabIndex={0}
+            >
+              <button className={styles.menuButton}>홍보센터</button>
+
+              <div className={styles.dropdownDesktop}>
+                {pressItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    to={`/press/${item.slug}`}
+                    className={styles.dropdownLink}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </nav>
 
           {/* 세 번째 구역: 모바일 메뉴 버튼 및 문의하기 버튼 */}
           <div className={styles.rightControls}>
@@ -144,9 +234,9 @@ const Header = ({ siteTitle }) => {
               </button>
             )}
 
-            <Link to="/contact" className={styles.contact}>
+            <a href={ContactFormLink} className={styles.contact}>
               문의하기
-            </Link>
+            </a>
           </div>
         </div>
       </header>
@@ -176,104 +266,100 @@ function Sidebar({
 
       <nav
         id="mobileSidebar"
-        className={`${styles.nav}
-          ${isMenuOpen ? styles.navOpen : ""}`}
+        className={`${styles.navMobile} ${isMenuOpen ? styles.navMobileOpen : ""}`}
         role="navigation"
-        aria-label="모바일 사이드바 내비게이션" aria-hidden={!isMenuOpen}
+        aria-label="모바일 사이드바 내비게이션"
+        aria-hidden={!isMenuOpen}
       >
         {/* 회사소개 Dropdown Menu */}
         <div className={styles.menuGroup}>
           <button
             className={styles.menuButton}
-            onMouseEnter={() => setShowCompanyMenu(true)}
-            onMouseLeave={() => setShowCompanyMenu(false)}
-            onClick={() => setShowCompanyMenu((prev) => !prev)}
+            onClick={() => setShowCompanyMenu(prev => !prev)}
           >
-          <span>
-            회사소개
-          </span>
+            <span>회사소개</span>
             <div className={styles.navIconContainer}>
               <img
                 src={ChevronDownIcon}
-                alt={'chevron down'}
+                alt={"chevron down"}
                 style={{
-                  transform: showCompanyMenu ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.2s ease',
-                  transformOrigin: '50% 50%',
-                  willChange: 'transform',
+                  transform: showCompanyMenu
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
+                  transition: "transform 0.2s ease",
+                  transformOrigin: "50% 50%",
+                  willChange: "transform",
                 }}
               />
             </div>
           </button>
 
-          {/* 서브 메뉴 펼쳤을 때 */}
-          {showCompanyMenu && (
-            <div className={styles.dropdown}>
-              {companyItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={`/company/${item.slug}`}
-                  className={styles.dropdownLink}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          )}
+          {/* 항상 렌더링, 모바일은 상태로 열기 */}
+          <div className={`${styles.dropdownMobileContainer} ${showCompanyMenu ? styles.dropdownOpenMobile : ''}`}>
+            {companyItems.map((item, index) => (
+              <Link
+                key={index}
+                to={`/company/${item.slug}`}
+                className={styles.dropdownLink}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* 솔루션 Dropdown Menu */}
-        <div className={styles.menuGroup}
-             onMouseEnter={() => setShowSolutionMenu(true)}
-             onMouseLeave={() => setShowSolutionMenu(false)}
-             onClick={() => setShowSolutionMenu((prev) => !prev)}
+        <div
+          className={styles.menuGroup}
+          onClick={() => setShowSolutionMenu(prev => !prev)}
         >
           <button className={styles.menuButton}>솔루션</button>
 
-          {showSolutionMenu && (
-            <div className={styles.dropdown}>
-              {solutionItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={`/solutions/${item.slug}`}
-                  className={styles.dropdownLink}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          )}
+          <div className={`${styles.dropdownMobileContainer} ${showSolutionMenu ? styles.dropdownOpenMobile : ''}`}>
+            {solutionItems.map((item, index) => (
+              <Link
+                key={index}
+                to={`/solutions/${item.slug}`}
+                className={styles.dropdownLink}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <Link to="/projects" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
-          <button className={styles.menuButton}>
-            프로젝트
-          </button>
+        <Link
+          to="/projects"
+          className={styles.navLink}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <button className={styles.menuButton}>프로젝트</button>
         </Link>
 
         {/* 홍보센터 Dropdown Menu */}
-        <div className={styles.menuGroup}
-             onMouseEnter={() => setShowPressMenu(true)}
-             onMouseLeave={() => setShowPressMenu(false)}
-             onClick={() => setShowPressMenu((prev) => !prev)}
+        <div
+          className={styles.menuGroup}
+          onClick={() => setShowPressMenu(prev => !prev)}
         >
-          <button className={styles.menuButton}>홍보센터</button>
+          <button className={styles.menuButton}>
+            홍보센터
+          </button>
 
-          {showPressMenu && (
-            <div className={styles.dropdown}>
-              {pressItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={`/press/${item.slug}`}
-                  className={styles.dropdownLink}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          )}
+          <div
+            className={`${styles.dropdownMobileContainer} ${styles.dropdownMobile} ${showPressMenu ? styles.dropdownOpenMobile : ''}`}
+          >
+            {pressItems.map((item, index) => (
+              <Link
+                key={index}
+                to={`/press/${item.slug}`}
+                className={styles.dropdownLink}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </nav>
     </>

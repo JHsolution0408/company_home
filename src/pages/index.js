@@ -75,11 +75,14 @@ const IndexPage = ({ data }) => {
     autoPlay: false,
   })
 
-  // Drag state refs
+  // Drag state refs (mouse/pen manual drag; touch uses native scrolling)
   const solDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
   const pressDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
   const didDragSolutions = React.useRef(false)
   const didDragPress = React.useRef(false)
+  // rAF-throttled scroll + inertia state
+  const solAnim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
+  const pressAnim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
 
   // Solutions slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
   React.useEffect(() => {
@@ -112,6 +115,8 @@ const IndexPage = ({ data }) => {
       const epsilon = 1
 
       if (solutionsPadOn && left > 0) setSolutionsPadOn(false)
+      // Suppress normalization while user dragging or inertia animation running
+      if (solAnim.current.dragging || solAnim.current.inertId) return
       if (isNormalizingSolutions.current) return
 
       // Left boundary: jump forward by one set width (silent)
@@ -176,6 +181,8 @@ const IndexPage = ({ data }) => {
       const epsilon = 1
 
       if (pressPadOn && left > 0) setPressPadOn(false)
+      // Suppress normalization while user dragging or inertia animation running
+      if (pressAnim.current.dragging || pressAnim.current.inertId) return
       if (isNormalizingPress.current) return
 
       if (left <= epsilon) {
@@ -253,7 +260,9 @@ const IndexPage = ({ data }) => {
                     target="_self"
                   >
                     <div className={styles.heroCta}>
-                      <span>자세히 보기</span>
+                      <span>
+                        자세히 보기
+                      </span>
                       <div className={styles.heroCtaIcon}>
                         <img
                           src={ReadMoreIcon}
@@ -338,36 +347,82 @@ const IndexPage = ({ data }) => {
             className={`${styles.solutionsSlider} slider-hide-scrollbar`}
             style={{ paddingLeft: solutionsPadOn ? `${solutionsGap}px` : 0 }}
             onPointerDown={(e) => {
+              // Let touch use native smooth scrolling with momentum
+              if (e.pointerType === 'touch') return
               const slider = solutionsSliderRef.current
               if (!slider) return
               hasInteractedSolutions.current = true
               if (solutionsPadOn) setSolutionsPadOn(false)
+              // cancel inertia if running
+              if (solAnim.current.inertId) cancelAnimationFrame(solAnim.current.inertId)
+              solAnim.current.inertId = 0
               solDrag.current.isDown = true
+              solAnim.current.dragging = true
               solDrag.current.startX = e.clientX
               solDrag.current.startLeft = slider.scrollLeft
+              solAnim.current.lastX = e.clientX
+              solAnim.current.lastT = performance.now()
+              solAnim.current.vx = 0
               try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
               const prev = slider.style.scrollBehavior
               slider.dataset.prevScrollBehavior = prev
               slider.style.scrollBehavior = 'auto'
             }}
             onPointerMove={(e) => {
+              if (e.pointerType === 'touch') return
               const slider = solutionsSliderRef.current
               if (!slider) return
               if (!solDrag.current.isDown) return
-              const dx = e.clientX - solDrag.current.startX
+              const x = e.clientX
+              const t = performance.now()
+              const dx = x - solDrag.current.startX
+              const instDx = x - solAnim.current.lastX
+              const dt = Math.max(1, t - solAnim.current.lastT)
+              const vx = instDx / dt
+              // exponential moving average for velocity
+              solAnim.current.vx = solAnim.current.vx * 0.85 + vx * 0.15
               if (Math.abs(dx) > 3) didDragSolutions.current = true
-              slider.scrollLeft = solDrag.current.startLeft - dx
+              solAnim.current.nextLeft = solDrag.current.startLeft - dx
+              if (!solAnim.current.pending) {
+                solAnim.current.pending = true
+                solAnim.current.rafId = requestAnimationFrame(() => {
+                  slider.scrollLeft = solAnim.current.nextLeft
+                  solAnim.current.pending = false
+                })
+              }
+              solAnim.current.lastX = x
+              solAnim.current.lastT = t
             }}
             onPointerUp={(e) => {
+              if (e.pointerType === 'touch') return
               const slider = solutionsSliderRef.current
               if (!slider) return
               solDrag.current.isDown = false
+              solAnim.current.dragging = false
               try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
               const prev = slider.dataset.prevScrollBehavior
               if (prev !== undefined) slider.style.scrollBehavior = prev
+              // inertia on release for mouse/pen
+              let vx = solAnim.current.vx
+              const decay = 0.95
+              const minV = 0.02
+              if (Math.abs(vx) > minV) {
+                const step = () => {
+                  // convert velocity to px per frame (approx using 16ms)
+                  solAnim.current.nextLeft = slider.scrollLeft - vx * 16
+                  slider.scrollLeft = solAnim.current.nextLeft
+                  vx *= decay
+                  if (Math.abs(vx) > minV && !solAnim.current.dragging) {
+                    solAnim.current.inertId = requestAnimationFrame(step)
+                  } else {
+                    solAnim.current.inertId = 0
+                  }
+                }
+                solAnim.current.inertId = requestAnimationFrame(step)
+              }
             }}
-            onPointerLeave={() => { solDrag.current.isDown = false }}
-            onPointerCancel={() => { solDrag.current.isDown = false }}
+            onPointerLeave={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
+            onPointerCancel={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
             onClickCapture={(e) => {
               if (didDragSolutions.current) {
                 e.preventDefault()
@@ -409,9 +464,15 @@ const IndexPage = ({ data }) => {
       <div className={styles.pressSec}>
         <div>
           <div className={styles.sectionPad}>
-            <h2 className={styles.pressTitle1}>산업의 변화와 흐름을 주도하는</h2>
-            <h2 className={styles.pressTitle2}>JH솔루션의 새로운 소식을 만나보세요</h2>
-            <p className={styles.pressLead}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
+            <h2 className={styles.pressTitle1}>
+              산업의 변화와 흐름을 주도하는
+            </h2>
+            <h2 className={styles.pressTitle2}>
+              JH솔루션의 새로운 소식을 만나보세요
+            </h2>
+            <p className={styles.pressLead}>
+              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다
+            </p>
           </div>
           <div className={styles.sliderWrap}>
             <div
@@ -419,36 +480,80 @@ const IndexPage = ({ data }) => {
               className={`${styles.solutionsSlider} slider-hide-scrollbar`}
               style={{ paddingLeft: pressPadOn ? `${pressGap}px` : 0 }}
               onPointerDown={(e) => {
+                // Let touch use native smooth scrolling with momentum
+                if (e.pointerType === 'touch') return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 hasInteractedPress.current = true
                 if (pressPadOn) setPressPadOn(false)
+                // cancel inertia if running
+                if (pressAnim.current.inertId) cancelAnimationFrame(pressAnim.current.inertId)
+                pressAnim.current.inertId = 0
                 pressDrag.current.isDown = true
+                pressAnim.current.dragging = true
                 pressDrag.current.startX = e.clientX
                 pressDrag.current.startLeft = slider.scrollLeft
+                pressAnim.current.lastX = e.clientX
+                pressAnim.current.lastT = performance.now()
+                pressAnim.current.vx = 0
                 try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
                 const prev = slider.style.scrollBehavior
                 slider.dataset.prevScrollBehavior = prev
                 slider.style.scrollBehavior = 'auto'
               }}
               onPointerMove={(e) => {
+                if (e.pointerType === 'touch') return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 if (!pressDrag.current.isDown) return
-                const dx = e.clientX - pressDrag.current.startX
+                const x = e.clientX
+                const t = performance.now()
+                const dx = x - pressDrag.current.startX
+                const instDx = x - pressAnim.current.lastX
+                const dt = Math.max(1, t - pressAnim.current.lastT)
+                const vx = instDx / dt
+                pressAnim.current.vx = pressAnim.current.vx * 0.85 + vx * 0.15
                 if (Math.abs(dx) > 3) didDragPress.current = true
-                slider.scrollLeft = pressDrag.current.startLeft - dx
+                pressAnim.current.nextLeft = pressDrag.current.startLeft - dx
+                if (!pressAnim.current.pending) {
+                  pressAnim.current.pending = true
+                  pressAnim.current.rafId = requestAnimationFrame(() => {
+                    slider.scrollLeft = pressAnim.current.nextLeft
+                    pressAnim.current.pending = false
+                  })
+                }
+                pressAnim.current.lastX = x
+                pressAnim.current.lastT = t
               }}
               onPointerUp={(e) => {
+                if (e.pointerType === 'touch') return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 pressDrag.current.isDown = false
+                pressAnim.current.dragging = false
                 try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
                 const prev = slider.dataset.prevScrollBehavior
                 if (prev !== undefined) slider.style.scrollBehavior = prev
+                // inertia on release for mouse/pen
+                let vx = pressAnim.current.vx
+                const decay = 0.95
+                const minV = 0.02
+                if (Math.abs(vx) > minV) {
+                  const step = () => {
+                    pressAnim.current.nextLeft = slider.scrollLeft - vx * 16
+                    slider.scrollLeft = pressAnim.current.nextLeft
+                    vx *= decay
+                    if (Math.abs(vx) > minV && !pressAnim.current.dragging) {
+                      pressAnim.current.inertId = requestAnimationFrame(step)
+                    } else {
+                      pressAnim.current.inertId = 0
+                    }
+                  }
+                  pressAnim.current.inertId = requestAnimationFrame(step)
+                }
               }}
-              onPointerLeave={() => { pressDrag.current.isDown = false }}
-              onPointerCancel={() => { pressDrag.current.isDown = false }}
+              onPointerLeave={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
+              onPointerCancel={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
               onClickCapture={(e) => {
                 if (didDragPress.current) {
                   e.preventDefault()
@@ -551,8 +656,8 @@ function LinkCard({ item, type = 'solutions' }) {
         <div className={styles.linkCardHeader}>
           {isPress ? (
             <>
-              <p className={styles.linkCardDescription}>{dateText}</p>
               <h3 className={styles.linkCardTitle}>{title}</h3>
+              <p className={styles.linkCardDescription}>{dateText}</p>
             </>
           ) : (
             <>

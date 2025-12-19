@@ -12,7 +12,7 @@ import Header from "./header"
 import Footer from "./footer"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ type = 'light', children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -37,8 +37,10 @@ const Layout = ({ children }) => {
         boxSizing: "border-box"
       }}
     >
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
+      <Header type={type} siteTitle={data.site.siteMetadata?.title || `Title`} />
+
+      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
+
       <Footer />
     </div>
   )

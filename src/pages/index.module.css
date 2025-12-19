@@ -714,3 +714,14 @@
   padding-left: 60px;
 }
 
+
+
+/* Smooth momentum + better dragging for sliders */
+.solutionsSlider {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  will-change: scroll-position;
+  cursor: grab;
+  user-select: none;
+}
+.solutionsSlider:active { cursor: grabbing; }

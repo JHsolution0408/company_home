@@ -3,6 +3,7 @@ import SubPageHeader from "../../components/subpage-header";
 import Seo from "../../components/seo";
 import Footer from "../../components/footer";
 import { graphql } from "gatsby";
+import * as styles from "./digitaltwin.module.css";
 
 export const query = graphql`
   query DigitalTwinPageQuery {
@@ -22,37 +23,17 @@ const DigitalTwinPage = ({ data }) => {
   return (
     <>
       <SubPageHeader bgImage="/images/bg_digitaltwin.png" />
-      <main style={{ width: '100vw', minHeight: '100vh', 
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-        <div style={{ width: '100vw', maxWidth: '100vw', 
-            minHeight: '1px', margin: '0 auto', 
-            display: 'flex', flexDirection: 'column', 
-            alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
-          <div id="title-meta" style={{
-            width: '100%',
-            maxWidth: '100vw',
-            backgroundColor: 'black',
-            backgroundImage: 'linear-gradient(to right, black 0%, transparent 15%, transparent 85%, black 100%), url(/images/bg_vision.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center bottom',
-            marginBottom: '25px',
-            padding: '100px 20px 60px 50px'
-          }}>
-            <div id="title-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
-              <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', fontSize: '40px' }}>{frontmatter.title}</h1>
-              <p style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw', fontSize: '20px' }}>
+      <main className={styles.main}>
+        <div className={styles.wrapper}>
+          <div id="title-meta" className={styles.titleMeta}>
+            <div id="title-text" className={styles.titleText}>
+              <h1 className={styles.title}>{frontmatter.title}</h1>
+              <p className={styles.subtitle}>
                 {frontmatter.description}
               </p>
             </div>
           </div>
-          <div id="content-md" style={{
-            maxWidth: "90vw",
-            marginLeft: 0,
-            marginRight: 0,
-            fontSize: 20,
-            lineHeight: 1.8,
-            padding: "15px 24px 15px 3%"
-          }}>
+          <div id="content-md" className={styles.contentMd}>
             <div
               dangerouslySetInnerHTML={{
                 __html: html
