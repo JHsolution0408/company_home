@@ -1,0 +1,43 @@
+:root {
+  --dc-text: #2E3236;
+  --dc-sub-text: #757B82;
+  --dc-gray: #F8F9FA;
+  --dc-gray-border: #E0E4E8;
+  --dc-bg: #F8F9FA;
+}
+
+.descriptionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px;
+  background-color: var(--dc-bg);
+  border: 1px solid var(--dc-gray-border);
+  border-radius: 20px;
+  color: var(--dc-text);
+}
+
+img.descriptionCardImage {
+  margin: 0;
+  width: 52px;
+  height: 52px;
+}
+
+.descriptionCardTitle {
+  margin-bottom: 12px;
+  color: var(--dc-text);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.descriptionCardDescription {
+  margin: 0;
+  color: var(--dc-sub-text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
