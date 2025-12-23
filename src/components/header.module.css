@@ -123,7 +123,7 @@
 }
 
 .menuButtonDarkTheme:hover {
-  color: #FDFDFD;
+  color: #66E695;
 }
 
 /* Selected (active) top menu item color */
@@ -140,6 +140,15 @@
   font-size: 22px;
   font-weight: 600;
   text-decoration: none;
+}
+
+.navLinkDarkTheme {
+  color: #FDFDFD;
+}
+
+
+.navLinkDarkTheme:hover {
+  color: #66E695;
 }
 
 /* Dropdown container (desktop only) */

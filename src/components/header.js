@@ -104,7 +104,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
         style={{
           width: "100vw",
           height: "278px",
-          backgroundImage: bgImage ? `url(${bgImage})` : '',
+          backgroundImage: bgImage ? `url(${bgImage})` : "",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -116,7 +116,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
             className={`
             ${styles.inner} 
             ${isMenuOpen && styles.sidemenuInnerOpen} 
-            ${type === 'dark' && styles.darkGnbBackground}
+            ${type === "dark" && styles.darkGnbBackground}
           `}
           >
             {/* 첫 번째 구역: 로고 */}
@@ -140,10 +140,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
               aria-hidden={false}
             >
               {/* 회사소개 Dropdown Menu */}
-              <div
-                className={styles.menuGroup}
-                tabIndex={0}
-              >
+              <div className={styles.menuGroup} tabIndex={0}>
                 <button
                   className={`
                   ${styles.menuButton} 
@@ -155,9 +152,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 </button>
 
                 {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
-                <div
-                  className={styles.dropdownDesktop}
-                >
+                <div className={styles.dropdownDesktop}>
                   {companyItems.map((item, index) => (
                     <Link
                       key={index}
@@ -172,16 +167,14 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
               </div>
 
               {/* 솔루션 Dropdown Menu */}
-              <div
-                className={styles.menuGroup}
-                tabIndex={0}
-              >
+              <div className={styles.menuGroup} tabIndex={0}>
                 <button
                   className={`
-                  ${styles.menuButton} ${isSolutionsRoute && styles.menuButtonSelected}
+                  ${styles.menuButton} ${
+                    isSolutionsRoute && styles.menuButtonSelected
+                  }
                   ${!isHome && styles.menuButtonDarkTheme}
                 `}
-
                 >
                   솔루션
                 </button>
@@ -200,10 +193,18 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 </div>
               </div>
 
-              <button className={`${styles.menuButton} ${isProjectsRoute && styles.menuButtonSelected} ${!isHome && styles.menuButtonDarkTheme}`}>
+              <button
+                className={`
+                  ${styles.menuButton} 
+                  ${isProjectsRoute && styles.menuButtonSelected} 
+                `}
+              >
                 <Link
                   to="/projects"
-                  className={styles.navLink}
+                  className={`
+                    ${styles.navLink}
+                    ${!isHome && styles.navLinkDarkTheme}
+                  `}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   프로젝트
@@ -211,11 +212,14 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
               </button>
 
               {/* 홍보센터 Dropdown Menu */}
-              <div
-                className={styles.menuGroup}
-                tabIndex={0}
-              >
-                <button className={`${styles.menuButton} ${isPressRoute && styles.menuButtonSelected} ${!isHome && styles.menuButtonDarkTheme}`}>홍보센터</button>
+              <div className={styles.menuGroup} tabIndex={0}>
+                <button
+                  className={`${styles.menuButton} ${
+                    isPressRoute && styles.menuButtonSelected
+                  } ${!isHome && styles.menuButtonDarkTheme}`}
+                >
+                  홍보센터
+                </button>
 
                 <div className={styles.dropdownDesktop}>
                   {pressItems.map((item, index) => (
@@ -278,7 +282,6 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
 
         {!!subHeader && subHeader}
       </div>
-
     </>
   )
 }
