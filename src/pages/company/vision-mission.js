@@ -1,8 +1,8 @@
 import * as React from "react";
-import Seo from "../../components/seo";
 import { graphql } from "gatsby";
-import * as styles from "./vision-mission.module.css";
 import Layout from "../../components/layout"
+import Seo from "../../components/seo";
+import * as styles from "./vision-mission.module.css";
 
 export const query = graphql`
   query VisionMissionQuery {
@@ -27,17 +27,13 @@ const VisionMissionPage = ({ data }) => {
       subHeaderDescription={'초거대 AI와 공학의 만남, 지속 가능한 내일을 가장 정밀하게 설계합니다.'}
       subHeaderBgImage="/images/bg_vision.png"
     >
-      <main className={styles.vm}>
-        <div className={styles.vm__content}>
-          <section className={styles.vm__body}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: html,
-              }}
-            />
-          </section>
-        </div>
-      </main>
+      <section className={styles.container}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: html,
+          }}
+        />
+      </section>
     </Layout>
   );
 };

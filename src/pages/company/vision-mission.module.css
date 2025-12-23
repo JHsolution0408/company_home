@@ -12,80 +12,13 @@
 
 /* Block: main semantic container */
 /* Vision-Mission */
-.vm {
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 0;
-}
-
-/* Element: overall content wrapper inside main */
-.vm__content {
-  width: 100vw;
-  max-width: 100vw;
-  min-height: 1px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0;
-}
-
-/* Element: meta area (hero band with bg) */
-.vm__meta {
+.container {
   width: 100%;
-  max-width: 100vw;
-  background-color: var(--vm-bg);
-  background-image: linear-gradient(to right, var(--vm-bg) 0%, transparent 15%, transparent 85%, var(--vm-bg) 100%), url('/images/bg_vision.png');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  margin-bottom: 25px;
-  padding: 135px 100px 45px;
-}
-
-/* Element: text container in meta */
-.vm__text {
-  width: 90vw;
-  max-width: 90vw;
+  max-width: 1920px;
   margin: 0 auto;
-  text-align: left;
+  padding: 0 60px;
 }
 
-/* Element: page title */
-.vm__title {
-  margin: 0 auto;
-  max-width: 90vw;
-  color: var(--vm-text);
-  font-size: 40px;
-  line-height: 1.2;
-}
+.wrapper {
 
-/* Element: subtitle/strapline */
-.vm__subtitle {
-  margin: 0 auto;
-  max-width: 90vw;
-  color: var(--vm-text);
-  white-space: nowrap;
-  font-size: 20px;
-}
-
-/* Element: body/markdown content */
-.vm__body {
-  max-width: 90vw;
-  margin-left: 0;
-  margin-right: 0;
-  font-size: 20px;
-  line-height: 1.8;
-  padding: 15px 24px 15px 3%;
-}
-
-/* Element: highlighted inline terms inside body */
-.vm__highlight {
-  color: var(--vm-green);
-  font-weight: 700;
 }
