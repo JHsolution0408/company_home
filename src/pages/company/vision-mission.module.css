@@ -105,8 +105,13 @@ section {
     padding: 40px 20px;
   }
 
-  .flexBox {
+  .flexBox,
+  .flexBoxWithPlus {
     flex-direction: column;
+  }
+
+  .flexBoxWithPlus {
+    align-items: center;
   }
 
   .valueHeader {

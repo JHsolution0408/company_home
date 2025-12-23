@@ -116,7 +116,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
 
   const companyItems = [
     { name: "비전 및 미션", slug: "vision-mission" },
-    { name: "JHAION 개발 배경", slug: "jhaion-background-new" },
+    { name: "JHAION 개발 배경", slug: "jhaion-background" },
     { name: "협력 네트워크", slug: "partners" },
   ]
 
