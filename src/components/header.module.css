@@ -37,6 +37,10 @@
   background-color: rgba(253, 253, 253, 0.10);
 }
 
+.darkGnbBackground {
+  background-color: rgba(253, 253, 253, 0.10);
+}
+
 .sidemenuInnerOpen {
   box-shadow: none;
   border-radius: 0;
@@ -113,6 +117,24 @@
   font-family: inherit;
 }
 
+/* When route is not home, make the menu button text white */
+.menuButtonDarkTheme {
+  color: #FDFDFD;
+}
+
+.menuButtonDarkTheme:hover {
+  color: #FDFDFD;
+}
+
+/* Selected (active) top menu item color */
+.menuButtonSelected {
+  color: #66E695;
+}
+/* Ensure nested link text inherits the selected color */
+.menuButtonSelected .navLink {
+  color: #66E695;
+}
+
 .navLink {
   color: #17181B;
   font-size: 22px;
@@ -144,7 +166,10 @@
 /* 데스크탑에서 hover 또는 focus-within 시 표시 (1000px 이상) */
 @media (min-width: 1000px) {
   .menuGroup:hover .dropdownDesktop,
-  .menuGroup:focus-within .dropdownDesktop {
+  .menuGroup:focus-within .dropdownDesktop,
+  .navDesktop .menuButton:hover + .dropdownDesktop,
+  .navDesktop .menuButton:focus + .dropdownDesktop,
+  .navDesktop .menuButton:focus-visible + .dropdownDesktop {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);

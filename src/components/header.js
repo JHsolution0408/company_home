@@ -5,16 +5,24 @@ import PCLogo from '../images/logo/jhsolution-logo-pc.svg';
 import CloseIcon from '/static/icons/common/close-icon.svg';
 import ChevronDownIcon from '/static/icons/common/chevron-down-icon.svg';
 import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
+import subheader from "./subheader"
 
 const ContactFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSd8r-HC_kxlfuRDtX1LJvZaldc6I79aeUgdUQrS8TvHIAuo8Q/viewform';
 
-const Header = ({ type = 'light' }) => {
+const Header = ({ type = 'light', bgImage, subHeader }) => {
   const [showSolutionMenu, setShowSolutionMenu] = React.useState(false)
   const [showCompanyMenu, setShowCompanyMenu] = React.useState(false)
   const [showPressMenu, setShowPressMenu] = React.useState(false)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const MOBILE_BREAKPOINT = 1000;
+
+  const isHome = typeof window !== 'undefined' && window.location && window.location.pathname === '/';
+  const currentPath = typeof window !== 'undefined' && window.location ? window.location.pathname : '';
+  const isCompanyRoute = currentPath.startsWith('/company');
+  const isSolutionsRoute = currentPath.startsWith('/solutions');
+  const isProjectsRoute = currentPath.startsWith('/projects');
+  const isPressRoute = currentPath.startsWith('/press');
 
   React.useEffect(() => {
     // Close on ESC
@@ -56,22 +64,22 @@ const Header = ({ type = 'light' }) => {
   }, [isMenuOpen]);
 
   const solutionItems = [
-    { name: "JHAION 엔진", icon: "⚙️", slug: "jhaion-engine" },
-    { name: "에너지 관리", icon: "⚡", slug: "energy" },
-    { name: "시뮬레이션", icon: "📊", slug: "simulation" },
-    { name: "인공지능", icon: "🤖", slug: "ai" },
-    { name: "디지털 트윈", icon: "👥", slug: "digital-twin" },
-    { name: "미디어", icon: "📱", slug: "media" },
+    { name: "JHAION 엔진", slug: "jhaion-engine" },
+    { name: "에너지 관리", slug: "energy" },
+    { name: "시뮬레이션", slug: "simulation" },
+    { name: "인공지능", slug: "ai" },
+    { name: "디지털 트윈", slug: "digital-twin" },
+    { name: "미디어", slug: "media" },
   ]
 
   const companyItems = [
-    { name: "비전 및 미션", icon: "🎯", slug: "vision-mission" },
-    { name: "JHAION 개발 배경", icon: "📖", slug: "jhaion-background-new" },
-    { name: "협력 네트워크", icon: "🤝", slug: "partners" },
+    { name: "비전 및 미션", slug: "vision-mission" },
+    { name: "JHAION 개발 배경", slug: "jhaion-background-new" },
+    { name: "협력 네트워크", slug: "partners" },
   ]
 
   const pressItems = [
-    { name: "보도자료", icon: "📰", slug: "" },
+    { name: "보도자료", slug: "" },
   ]
 
   return (
@@ -92,154 +100,185 @@ const Header = ({ type = 'light' }) => {
         />
       )}
 
-      <header className={styles.header}>
-        <div
-          className={`
+      <div
+        style={{
+          width: "100vw",
+          height: "278px",
+          backgroundImage: bgImage ? `url(${bgImage})` : '',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          zIndex: 0,
+        }}
+      >
+        <header className={styles.header}>
+          <div
+            className={`
             ${styles.inner} 
             ${isMenuOpen && styles.sidemenuInnerOpen} 
-            ${type === 'dark' && 'dark'}
+            ${type === 'dark' && styles.darkGnbBackground}
           `}
-        >
-          {/* 첫 번째 구역: 로고 */}
-          <div className={styles.logo}>
-            <Link to="/" className={styles.logoLink}>
-              <img
-                src={PCLogo}
-                width={"125px"}
-                height={"36px"}
-                alt={"JH Solution Logo"}
-              />
-            </Link>
-          </div>
-
-          {/* 두 번째 구역: 메뉴 네비게이션 */}
-          <nav
-            id="menu"
-            className={styles.navDesktop}
-            role="navigation"
-            aria-label="데스크탑 내비게이션"
-            aria-hidden={false}
           >
-            {/* 회사소개 Dropdown Menu */}
-            <div
-              className={styles.menuGroup}
-              tabIndex={0}
-            >
-              <button className={styles.menuButton}>회사소개</button>
-
-              {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
-              <div
-                className={styles.dropdownDesktop}
-              >
-                {companyItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={`/company/${item.slug}`}
-                    className={styles.dropdownLink}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* 솔루션 Dropdown Menu */}
-            <div
-              className={styles.menuGroup}
-              tabIndex={0}
-            >
-              <button className={styles.menuButton}>솔루션</button>
-
-              <div className={styles.dropdownDesktop}>
-                {solutionItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={`/solutions/${item.slug}`}
-                    className={styles.dropdownLink}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <button className={styles.menuButton}>
-              <Link
-                to="/projects"
-                className={styles.navLink}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                프로젝트
+            {/* 첫 번째 구역: 로고 */}
+            <div className={styles.logo}>
+              <Link to="/" className={styles.logoLink}>
+                <img
+                  src={PCLogo}
+                  width={"125px"}
+                  height={"36px"}
+                  alt={"JH Solution Logo"}
+                />
               </Link>
-            </button>
-
-            {/* 홍보센터 Dropdown Menu */}
-            <div
-              className={styles.menuGroup}
-              tabIndex={0}
-            >
-              <button className={styles.menuButton}>홍보센터</button>
-
-              <div className={styles.dropdownDesktop}>
-                {pressItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={`/press/${item.slug}`}
-                    className={styles.dropdownLink}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
             </div>
-          </nav>
 
-          {/* 세 번째 구역: 모바일 메뉴 버튼 및 문의하기 버튼 */}
-          <div className={styles.rightControls}>
-            {isMenuOpen ? (
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                aria-label="메뉴 열기"
-                aria-controls="mobileSidebar"
-                aria-expanded={isMenuOpen}
-                className={styles.hamburger}
+            {/* 두 번째 구역: 메뉴 네비게이션 */}
+            <nav
+              id="menu"
+              className={styles.navDesktop}
+              role="navigation"
+              aria-label="데스크탑 내비게이션"
+              aria-hidden={false}
+            >
+              {/* 회사소개 Dropdown Menu */}
+              <div
+                className={styles.menuGroup}
+                tabIndex={0}
               >
-                <img
-                  src={CloseIcon}
-                  alt={"close icon"}
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                  }}
-                />
-              </button>
-            ) : (
-              <button
-                onClick={() => setIsMenuOpen(prev => !prev)}
-                aria-label="메뉴 열기"
-                aria-controls="mobileSidebar"
-                aria-expanded={isMenuOpen}
-                className={styles.hamburger}
-              >
-                <img
-                  src={HamburgerIcon}
-                  alt={"hamburger menu icon"}
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                  }}
-                />
-              </button>
-            )}
+                <button
+                  className={`
+                  ${styles.menuButton} 
+                  ${!isHome && styles.menuButtonDarkTheme}
+                  ${isCompanyRoute && styles.menuButtonSelected}
+                `}
+                >
+                  회사소개
+                </button>
 
-            <a href={ContactFormLink} className={styles.contact}>
-              문의하기
-            </a>
+                {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
+                <div
+                  className={styles.dropdownDesktop}
+                >
+                  {companyItems.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={`/company/${item.slug}`}
+                      className={styles.dropdownLink}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* 솔루션 Dropdown Menu */}
+              <div
+                className={styles.menuGroup}
+                tabIndex={0}
+              >
+                <button
+                  className={`
+                  ${styles.menuButton} ${isSolutionsRoute && styles.menuButtonSelected}
+                  ${!isHome && styles.menuButtonDarkTheme}
+                `}
+
+                >
+                  솔루션
+                </button>
+
+                <div className={styles.dropdownDesktop}>
+                  {solutionItems.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={`/solutions/${item.slug}`}
+                      className={styles.dropdownLink}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <button className={`${styles.menuButton} ${isProjectsRoute && styles.menuButtonSelected} ${!isHome && styles.menuButtonDarkTheme}`}>
+                <Link
+                  to="/projects"
+                  className={styles.navLink}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  프로젝트
+                </Link>
+              </button>
+
+              {/* 홍보센터 Dropdown Menu */}
+              <div
+                className={styles.menuGroup}
+                tabIndex={0}
+              >
+                <button className={`${styles.menuButton} ${isPressRoute && styles.menuButtonSelected} ${!isHome && styles.menuButtonDarkTheme}`}>홍보센터</button>
+
+                <div className={styles.dropdownDesktop}>
+                  {pressItems.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={`/press/${item.slug}`}
+                      className={styles.dropdownLink}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </nav>
+
+            {/* 세 번째 구역: 모바일 메뉴 버튼 및 문의하기 버튼 */}
+            <div className={styles.rightControls}>
+              {isMenuOpen ? (
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="메뉴 열기"
+                  aria-controls="mobileSidebar"
+                  aria-expanded={isMenuOpen}
+                  className={styles.hamburger}
+                >
+                  <img
+                    src={CloseIcon}
+                    alt={"close icon"}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsMenuOpen(prev => !prev)}
+                  aria-label="메뉴 열기"
+                  aria-controls="mobileSidebar"
+                  aria-expanded={isMenuOpen}
+                  className={styles.hamburger}
+                >
+                  <img
+                    src={HamburgerIcon}
+                    alt={"hamburger menu icon"}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                </button>
+              )}
+
+              <a href={ContactFormLink} className={styles.contact}>
+                문의하기
+              </a>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+
+        {!!subHeader && subHeader}
+      </div>
+
     </>
   )
 }
