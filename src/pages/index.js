@@ -329,14 +329,13 @@ const IndexPage = ({ data }) => {
 
       {/* Section 3: Solutions Slider */}
       <div className={styles.solutionsSec}>
-        <div className={styles.solutionsHeader}>
-          <h2 className={styles.solutionsTitle1}>
+        <div className={styles.linkCardSectionHeader}>
+          <h2 className={styles.title}>
             데이터 공학으로 완성된
+            <br />
+            <span>JH솔루션의 통합플랫폼을 경험하세요</span>
           </h2>
-          <h2 className={styles.solutionsTitle2}>
-            JH솔루션의 통합플랫폼을 경험하세요
-          </h2>
-          <p className={styles.solutionsLead}>
+          <p className={styles.description}>
             에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.
           </p>
         </div>
@@ -463,14 +462,13 @@ const IndexPage = ({ data }) => {
       {/* Section 4: Press & News Slider */}
       <div className={styles.pressSec}>
         <div>
-          <div className={styles.sectionPad}>
-            <h2 className={styles.pressTitle1}>
+          <div className={styles.linkCardSectionHeader}>
+            <h2 className={styles.title}>
               산업의 변화와 흐름을 주도하는
+              <br />
+              <span>JH솔루션의 새로운 소식을 만나보세요</span>
             </h2>
-            <h2 className={styles.pressTitle2}>
-              JH솔루션의 새로운 소식을 만나보세요
-            </h2>
-            <p className={styles.pressLead}>
+            <p className={styles.description}>
               언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다
             </p>
           </div>

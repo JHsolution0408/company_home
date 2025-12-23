@@ -14,6 +14,8 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
   const [showCompanyMenu, setShowCompanyMenu] = React.useState(false)
   const [showPressMenu, setShowPressMenu] = React.useState(false)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  // Scroll state (desktop only as requested)
+  const [isScrolled, setIsScrolled] = React.useState(false)
 
   const MOBILE_BREAKPOINT = 1000;
 
@@ -24,16 +26,38 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
   const isProjectsRoute = currentPath.startsWith('/projects');
   const isPressRoute = currentPath.startsWith('/press');
 
+
+  // track desktop breakpoint and global listeners
+  const [isDesktop, setIsDesktop] = React.useState(
+    typeof window !== 'undefined' ? window.innerWidth >= MOBILE_BREAKPOINT : false
+  )
+  // Derived theme flag: on non-home desktop pages, dark at top, light after scroll
+  const useDarkDesktop = React.useMemo(
+    () => !isHome && isDesktop && !isScrolled,
+    [isHome, isDesktop, isScrolled]
+  );
+
+  console.log('상태입니다.', `
+    !isHome: ${!isHome}, 
+    isDesktop: ${isDesktop}, 
+    !isScrolled: ${!isScrolled}, 
+    useDarkDesktop: ${useDarkDesktop}
+  `)
+
+
   React.useEffect(() => {
     // Close on ESC
     const onKeyDown = (e) => {
       if (e.key === 'Escape') setIsMenuOpen(false);
     };
-    // Auto-close when resizing to desktop
+    // Handle resize: update desktop flag and close mobile menu when switching to desktop
     const onResize = () => {
-      if (typeof window !== 'undefined' && window.innerWidth >= MOBILE_BREAKPOINT) {
-        setIsMenuOpen(false);
-      }
+      if (typeof window === 'undefined') return;
+      const desktopNow = window.innerWidth >= MOBILE_BREAKPOINT;
+      setIsDesktop(desktopNow);
+      if (desktopNow) setIsMenuOpen(false);
+      // Re-evaluate scroll state for desktop-only behavior
+      setIsScrolled(!isHome && desktopNow && window.scrollY > 0);
     };
     if (typeof window !== 'undefined') {
       window.addEventListener('keydown', onKeyDown);
@@ -45,7 +69,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
         window.removeEventListener('resize', onResize);
       }
     };
-  }, []);
+  }, [isHome]);
 
   // Prevent background scroll when sidebar is open
   React.useEffect(() => {
@@ -62,6 +86,24 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
       body.style.overflow = '';
     };
   }, [isMenuOpen]);
+
+  // Desktop-only scroll observer to toggle dark(top)/light(scrolled) on non-home
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onScroll = () => {
+      if (!isHome && isDesktop) {
+        setIsScrolled(window.scrollY > 0);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    // initialize state on mount and when deps change
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [isHome, isDesktop]);
 
   const solutionItems = [
     { name: "JHAION 엔진", slug: "jhaion-engine" },
@@ -103,12 +145,12 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
       <div
         style={{
           width: "100vw",
-          height: "278px",
+          height: !!subHeader ? "278px" : "112px",
           backgroundImage: bgImage ? `url(${bgImage})` : "",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          zIndex: 0,
+          zIndex: 2000,
         }}
       >
         <header className={styles.header}>
@@ -116,7 +158,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
             className={`
             ${styles.inner} 
             ${isMenuOpen && styles.sidemenuInnerOpen} 
-            ${type === "dark" && styles.darkGnbBackground}
+            ${useDarkDesktop && styles.darkGnbBackground}
           `}
           >
             {/* 첫 번째 구역: 로고 */}
@@ -144,7 +186,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 <button
                   className={`
                   ${styles.menuButton} 
-                  ${!isHome && styles.menuButtonDarkTheme}
+                  ${useDarkDesktop && styles.menuButtonDarkTheme}
                   ${isCompanyRoute && styles.menuButtonSelected}
                 `}
                 >
@@ -173,7 +215,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                   ${styles.menuButton} ${
                     isSolutionsRoute && styles.menuButtonSelected
                   }
-                  ${!isHome && styles.menuButtonDarkTheme}
+                  ${useDarkDesktop && styles.menuButtonDarkTheme}
                 `}
                 >
                   솔루션
@@ -203,7 +245,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                   to="/projects"
                   className={`
                     ${styles.navLink}
-                    ${!isHome && styles.navLinkDarkTheme}
+                    ${useDarkDesktop && styles.navLinkDarkTheme}
                   `}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -216,7 +258,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 <button
                   className={`${styles.menuButton} ${
                     isPressRoute && styles.menuButtonSelected
-                  } ${!isHome && styles.menuButtonDarkTheme}`}
+                  } ${useDarkDesktop && styles.menuButtonDarkTheme}`}
                 >
                   홍보센터
                 </button>

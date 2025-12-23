@@ -54,6 +54,7 @@ const PressPage = () => {
               <Link
                 to={`/press/${press.frontmatter.slug}`}
                 className={styles.pressLink}
+                key={press.id}
               >
                 <div
                   key={press.id}

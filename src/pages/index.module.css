@@ -15,7 +15,6 @@
   height: 600px;
   position: relative;
   margin: 0 60px;
-  padding-top: 112px;
   background: #fff;
   overflow: visible; /* allow current slide's shadow to render outside */
 }
@@ -196,10 +195,36 @@
 }
 
 /* Solutions Section */
+.linkCardSectionHeader {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
 
-.solutionsTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
-.solutionsTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
-.solutionsLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
+.linkCardSectionHeader .title {
+  color: #17181B;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+  white-space: nowrap;
+}
+.linkCardSectionHeader .title span {
+  color: #177D3C;
+}
+.linkCardSectionHeader .description {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #757B82;
+  line-height: 1;
+  white-space: nowrap;
+}
 .sliderWrap {
   width: 100%;
   overflow: hidden;
@@ -456,12 +481,7 @@
   margin: 0 auto;
   padding: 0 60px;
 }
-.solutionsHeader {
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 60px;
-}
+
 .aboutBanner {
   padding: 80px 40px 80px 40px;
   padding-right: 0;
