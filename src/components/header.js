@@ -28,6 +28,10 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
 
   const isShowSubHeader = subHeader && !isMenuOpen;
 
+  const filteredBgImage = bgImage
+    ? `linear-gradient(rgba(2, 8, 22, 0.6), rgba(2, 8, 22, 0.6)), url(${bgImage})`
+    : ""
+
 
   // track desktop breakpoint and global listeners
   const [isDesktop, setIsDesktop] = React.useState(
@@ -143,19 +147,23 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
       )}
 
       <div
-        style={isShowSubHeader ? {
-          width: "100vw",
-          height: !!subHeader ? "278px" : "112px",
-          backgroundImage: bgImage ? `url(${bgImage})` : "",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          zIndex: "var(--z-index-level-1000)",
-        } : {
-          width: "100vw",
-          height: "112px",
-          zIndex: "var(--z-index-level-1000)",
-        }}
+        style={
+          isShowSubHeader
+            ? {
+                width: "100vw",
+                height: !!subHeader ? "278px" : "112px",
+                backgroundImage: filteredBgImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                zIndex: "var(--z-index-level-1000)",
+              }
+            : {
+                width: "100vw",
+                height: "112px",
+                zIndex: "var(--z-index-level-1000)",
+              }
+        }
       >
         <header className={styles.header}>
           <div
@@ -195,7 +203,6 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 `}
                 >
                   회사소개
-
                   {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
                   <div className={styles.dropdownDesktop}>
                     {companyItems.map((item, index) => (
