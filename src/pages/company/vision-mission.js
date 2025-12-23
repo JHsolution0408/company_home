@@ -2,37 +2,39 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
+import VisionMissionContent from "../../components/template/VisionMissionContent.jsx";
 import * as styles from "./vision-mission.module.css";
 
 export const query = graphql`
   query VisionMissionQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/vision-mission.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
+    allMdx(filter: { frontmatter: { slug: { eq: "vision-mission" } } }) {
+      nodes {
+        frontmatter {
+          title
+          description
+          slug
+        }
+        body
       }
-      html
     }
   }
 `;
 
 const VisionMissionPage = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark;
+  const node = data?.allMdx?.nodes?.[0];
+  const frontmatter = node?.frontmatter ?? {};
+  const body = node?.body ?? "";
+  console.log('vision mission data는..: ', body);
 
   return (
     <Layout
       type={'dark'}
-      subHeaderTitle={frontmatter.title}
+      subHeaderTitle={frontmatter.title || ""}
       subHeaderDescription={'초거대 AI와 공학의 만남, 지속 가능한 내일을 가장 정밀하게 설계합니다.'}
       subHeaderBgImage="/images/bg_vision.png"
     >
       <section className={styles.container}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
+        <VisionMissionContent />
       </section>
     </Layout>
   );

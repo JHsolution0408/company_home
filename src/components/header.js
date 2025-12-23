@@ -195,21 +195,21 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                 `}
                 >
                   회사소개
-                </button>
 
-                {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
-                <div className={styles.dropdownDesktop}>
-                  {companyItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/company/${item.slug}`}
-                      className={styles.dropdownLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
+                  {/* 항상 렌더링, CSS/상태로 보이기 제어 */}
+                  <div className={styles.dropdownDesktop}>
+                    {companyItems.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={`/company/${item.slug}`}
+                        className={styles.dropdownLink}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </button>
               </div>
 
               {/* 솔루션 Dropdown Menu */}
