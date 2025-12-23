@@ -1,24 +1,64 @@
-/* Vision & Mission (BEM) CSS Module
-   Block: .vm (applied to <main>)
-   Elements: __content, __meta, __text, __title, __subtitle, __body, __highlight
+/* Vision & Mission CSS Module
    Path: src/pages/company/vision-mission.module.css
 */
 
 :root {
-  --vm-text: #fdfdfd;
+  --vm-text: #2E3236;
+  --vm-sub-text: #757B82;
   --vm-green: #177D3C;
-  --vm-bg: #000000;
+  --vm-green-border: #E0E4E8;
+  --vm-bg: #F6FEF9;
 }
 
-/* Block: main semantic container */
-/* Vision-Mission */
+/* Page container */
 .container {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 80px 60px;
 }
 
-.wrapper {
+section {
+  margin-bottom: 80px;
+}
 
+.flexBox {
+  display: flex;
+  gap: 40px;
+}
+
+.valueCard {
+  padding: 40px;
+  background-color: var(--vm-bg);
+  border: 1px solid var(--vm-green-border);
+  border-radius: 20px;
+  color: var(--vm-text);
+}
+
+.valueLabel {
+  color: var(--vm-green);
+  opacity: 0.4;
+}
+
+.valueTitle {
+  margin-bottom: 12px;
+  color: var(--vm-text);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.valueDescription {
+  color: var(--vm-sub-text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+  .flexBox {
+    flex-direction: column;
+  }
 }
