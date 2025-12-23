@@ -199,8 +199,30 @@
   transition: background-color 0.2s ease;
 }
 
+.dropdownMobileContainer .dropdownLink {
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .dropdownLink:hover {
   background-color: #f5f5f5;
+}
+
+/* Active state for current route in mobile sidebar */
+.activeLink {
+  color: #1BA74E !important;
+}
+
+/* Ensure active color applies within dropdown containers */
+.dropdownMobileContainer .dropdownLink.activeLink {
+  color: #1BA74E !important;
+}
+
+/* Active state for top-level items (e.g., Projects) inside sidebar */
+.activeNav .menuButton {
+  color: #1BA74E !important;
 }
 
 /* Right-side controls */
@@ -335,6 +357,10 @@
     gap: 20px;
   }
 
+  .navMobile .menuGroup {
+    gap: 0;
+  }
+
   .menuButton {
     display: flex;
     justify-content: space-between;
@@ -352,6 +378,7 @@
     transform: none;
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 20px;
     padding-top: 0;
     z-index: 100;
     /* 기본적으로 숨김: 모바일은 상태로만 열림 */
@@ -360,6 +387,8 @@
     visibility: hidden;
     pointer-events: none;
     transition: opacity .18s ease, transform .18s ease;
+    background-color: #F2F2F2;
+    border-radius: 20px;
   }
 
   /* 모바일(사이드바)에서 상태(showXMenu)로 열리는 가시화 클래스 */

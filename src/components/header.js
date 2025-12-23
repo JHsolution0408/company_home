@@ -320,20 +320,7 @@ function Sidebar({
             onClick={() => setShowCompanyMenu(prev => !prev)}
           >
             <span>회사소개</span>
-            <div className={styles.navIconContainer}>
-              <img
-                src={ChevronDownIcon}
-                alt={"chevron down"}
-                style={{
-                  transform: showCompanyMenu
-                    ? "rotate(180deg)"
-                    : "rotate(0deg)",
-                  transition: "transform 0.2s ease",
-                  transformOrigin: "50% 50%",
-                  willChange: "transform",
-                }}
-              />
-            </div>
+            <ChevronIconComponent isShow={showCompanyMenu} />
           </button>
 
           {/* 항상 렌더링, 모바일은 상태로 열기 */}
@@ -343,6 +330,8 @@ function Sidebar({
                 key={index}
                 to={`/company/${item.slug}`}
                 className={styles.dropdownLink}
+                activeClassName={styles.activeLink}
+                partiallyActive={true}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -356,7 +345,10 @@ function Sidebar({
           className={styles.menuGroup}
           onClick={() => setShowSolutionMenu(prev => !prev)}
         >
-          <button className={styles.menuButton}>솔루션</button>
+          <button className={styles.menuButton}>
+            <span>솔루션</span>
+            <ChevronIconComponent isShow={showSolutionMenu} />
+          </button>
 
           <div className={`${styles.dropdownMobileContainer} ${showSolutionMenu ? styles.dropdownOpenMobile : ''}`}>
             {solutionItems.map((item, index) => (
@@ -364,6 +356,8 @@ function Sidebar({
                 key={index}
                 to={`/solutions/${item.slug}`}
                 className={styles.dropdownLink}
+                activeClassName={styles.activeLink}
+                partiallyActive={true}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -372,12 +366,17 @@ function Sidebar({
           </div>
         </div>
 
+        {/* 프로젝트 Menu */}
         <Link
           to="/projects"
           className={styles.navLink}
+          activeClassName={styles.activeNav}
+          partiallyActive={true}
           onClick={() => setIsMenuOpen(false)}
         >
-          <button className={styles.menuButton}>프로젝트</button>
+          <button className={styles.menuButton}>
+            <span>프로젝트</span>
+          </button>
         </Link>
 
         {/* 홍보센터 Dropdown Menu */}
@@ -386,7 +385,8 @@ function Sidebar({
           onClick={() => setShowPressMenu(prev => !prev)}
         >
           <button className={styles.menuButton}>
-            홍보센터
+            <span>홍보센터</span>
+            <ChevronIconComponent isShow={showPressMenu} />
           </button>
 
           <div
@@ -397,6 +397,8 @@ function Sidebar({
                 key={index}
                 to={`/press/${item.slug}`}
                 className={styles.dropdownLink}
+                activeClassName={styles.activeLink}
+                partiallyActive={true}
               >
                 {item.name}
               </Link>
@@ -405,6 +407,25 @@ function Sidebar({
         </div>
       </nav>
     </>
+  )
+}
+
+function ChevronIconComponent({ isShow }) {
+  return (
+    <div className={styles.navIconContainer}>
+      <img
+        src={ChevronDownIcon}
+        alt={"chevron down"}
+        style={{
+          transform: isShow
+            ? "rotate(180deg)"
+            : "rotate(0deg)",
+          transition: "transform 0.2s ease",
+          transformOrigin: "50% 50%",
+          willChange: "transform",
+        }}
+      />
+    </div>
   )
 }
 
