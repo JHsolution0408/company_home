@@ -24,6 +24,20 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     }
   }, [])
 
+  // Prevent background scroll/drag when mobile sidebar is open
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const body = document.body;
+    if (isMobile && isMenuOpen) {
+      body.classList.add('body--no-scroll');
+    } else {
+      body.classList.remove('body--no-scroll');
+    }
+    return () => {
+      body.classList.remove('body--no-scroll');
+    };
+  }, [isMobile, isMenuOpen])
+
   const solutionItems = [
     { name: "JHAION 엔진", slug: "jhaion-engine" },
     { name: "에너지 관리", slug: "energy" },
@@ -54,7 +68,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             width: "100vw",
             height: "100vh",
             backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 1100,
+            zIndex: "var(--z-index-level-1100)",
           }}
           onClick={() => setIsMenuOpen(false)}
         />
@@ -74,7 +88,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 1250,
+          zIndex: "var(--z-index-level-1250)",
           paddingTop: "15px",
         }}
       >
@@ -110,7 +124,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             width: isMobile ? "75vw" : "auto",
             height: isMobile ? "100vh" : "auto",
             backgroundColor: isMobile ? "#0066cc" : "transparent",
-            zIndex: 1200,
+            zIndex: "var(--z-index-level-1200)",
             transition: isMobile ? "left 0.3s ease" : "none",
             overflowY: isMobile ? "auto" : "visible",
             padding: isMobile ? "16px 0 0 0" : "0",

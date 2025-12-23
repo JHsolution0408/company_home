@@ -20,43 +20,19 @@ export const query = graphql`
 const VisionMissionPage = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark;
 
-  const highlightedHtml = html
-    .replace(
-      'AI-ENGINEERING',
-      `<span class="${styles.vm__highlight}">AI-ENGINEERING</span>`
-    )
-    .replace(/(>[^<]*미션[^<]*<)/g, (match) =>
-      match.replace(
-        '미션',
-        `<span class="${styles.vm__highlight}">미션</span>`
-      )
-    )
-    .replace(/(>[^<]*핵심가치[^<]*<)/g, (match) =>
-      match.replace(
-        '핵심가치',
-        `<span class="${styles.vm__highlight}">핵심가치</span>`
-      )
-    );
-
   return (
-    <Layout type={'dark'}>
+    <Layout
+      type={'dark'}
+      subHeaderTitle={frontmatter.title}
+      subHeaderDescription={'초거대 AI와 공학의 만남, 지속 가능한 내일을 가장 정밀하게 설계합니다.'}
+      subHeaderBgImage="/images/bg_vision.png"
+    >
       <main className={styles.vm}>
         <div className={styles.vm__content}>
-          <section className={styles.vm__meta}>
-            <div className={styles.vm__text}>
-              <h1 className={styles.vm__title}>
-                {frontmatter.title}
-              </h1>
-              <p className={styles.vm__subtitle}>
-                우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다.
-                에너지 최적화를 넘어, 인류와 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
-              </p>
-            </div>
-          </section>
           <section className={styles.vm__body}>
             <div
               dangerouslySetInnerHTML={{
-                __html: highlightedHtml,
+                __html: html,
               }}
             />
           </section>

@@ -90,7 +90,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: var(--z-index-level-100);
   display: none;
 }
 
@@ -160,7 +160,7 @@
   min-width: 200px;
   width: 260px;
   box-shadow: 2px 4px 12px rgba(73, 94, 148, 0.20);
-  z-index: 100;
+  z-index: var(--z-index-level-100);
   border-radius: 20px;
   padding-top: 15px;
   /* 기본적으로 드롭다운 숨김 */
@@ -286,14 +286,14 @@
   .header {
     padding: 14px 16px 0 16px;
     height: 78px;
-    z-index: 1000;
+    z-index: var(--z-index-level-100);
   }
 
   .inner {
     height: 64px;
     border-radius: 16px;
     padding: 0 24px;
-    z-index: 2000;
+    z-index: var(--z-index-level-2000);
   }
 
   /* Off-canvas sidebar nav (hidden by default) */
@@ -307,7 +307,7 @@
     background: #fff; /* slate-900 */
     color: #17181B;
     padding: 98px var(--size-gutter) 0;
-    z-index: 100;
+    z-index: var(--z-index-level-1000);
     box-shadow: -4px 0 16px rgba(0,0,0,0.25);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -379,7 +379,7 @@
     margin-top: 10px;
     margin-bottom: 20px;
     padding-top: 0;
-    z-index: 100;
+    z-index: var(--z-index-level-100);
     /* 기본적으로 숨김: 모바일은 상태로만 열림 */
     display: none;
     opacity: 0;

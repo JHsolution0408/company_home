@@ -290,7 +290,7 @@
   right: 0;
   height: 40px;
   background: linear-gradient(to bottom, #FDFDFD, rgba(253, 253, 253, 0.00));
-  z-index: 100;
+  z-index: var(--z-index-level-100);
 }
 .cardImg {
   width: 100%;

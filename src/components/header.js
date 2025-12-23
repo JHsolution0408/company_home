@@ -26,6 +26,8 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
   const isProjectsRoute = currentPath.startsWith('/projects');
   const isPressRoute = currentPath.startsWith('/press');
 
+  const isShowSubHeader = subHeader && !isMenuOpen;
+
 
   // track desktop breakpoint and global listeners
   const [isDesktop, setIsDesktop] = React.useState(
@@ -71,19 +73,17 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
     };
   }, [isHome]);
 
-  // Prevent background scroll when sidebar is open
+  // Prevent background scroll/drag when sidebar is open by toggling a body class
   React.useEffect(() => {
     if (typeof document === 'undefined') return;
     const body = document.body;
-    const prev = body.style.overflow;
     if (isMenuOpen) {
-      body.style.overflow = 'hidden';
+      body.classList.add('body--no-scroll');
     } else {
-      body.style.overflow = prev || '';
-      body.style.overflow = '';
+      body.classList.remove('body--no-scroll');
     }
     return () => {
-      body.style.overflow = '';
+      body.classList.remove('body--no-scroll');
     };
   }, [isMenuOpen]);
 
@@ -143,14 +143,18 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
       )}
 
       <div
-        style={{
+        style={isShowSubHeader ? {
           width: "100vw",
           height: !!subHeader ? "278px" : "112px",
           backgroundImage: bgImage ? `url(${bgImage})` : "",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          zIndex: 2000,
+          zIndex: "var(--z-index-level-1000)",
+        } : {
+          width: "100vw",
+          height: "112px",
+          zIndex: "var(--z-index-level-1000)",
         }}
       >
         <header className={styles.header}>
@@ -322,7 +326,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
           </div>
         </header>
 
-        {!!subHeader && subHeader}
+        {isShowSubHeader && subHeader}
       </div>
     </>
   )
