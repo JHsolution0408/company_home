@@ -9,7 +9,7 @@ const PartnersPage = () => (
     type={'dark'}
     subHeaderTitle={'협력 네트워크'}
     subHeaderDescription={'혁신적인 기술 가치 창출을 위한 협력 네트워크를 구축했습니다.'}
-    subHeaderBgImage="/images/bg_vision.png"
+    subHeaderBgImage="/images/banners/bg_vision.png"
   >
     <section className={styles.container}>
       <PartnersContent />

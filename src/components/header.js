@@ -43,14 +43,6 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
     [isHome, isDesktop, isScrolled]
   );
 
-  console.log('상태입니다.', `
-    !isHome: ${!isHome}, 
-    isDesktop: ${isDesktop}, 
-    !isScrolled: ${!isScrolled}, 
-    useDarkDesktop: ${useDarkDesktop}
-  `)
-
-
   React.useEffect(() => {
     // Close on ESC
     const onKeyDown = (e) => {
@@ -114,7 +106,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
     { name: "에너지 관리", slug: "energy" },
     { name: "시뮬레이션", slug: "simulation" },
     { name: "인공지능", slug: "ai" },
-    { name: "디지털 트윈", slug: "digital-twin" },
+    { name: "디지털 트윈", slug: "digitaltwin" },
     { name: "미디어", slug: "media" },
   ]
 

@@ -43,7 +43,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     { name: "에너지 관리", slug: "energy" },
     { name: "시뮬레이션", slug: "simulation" },
     { name: "인공지능", slug: "ai" },
-    { name: "디지털 트윈", slug: "digital-twin" },
+    { name: "디지털 트윈", slug: "digitaltwin" },
     { name: "미디어", slug: "media" },
   ]
 
@@ -189,21 +189,27 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
               onMouseLeave={!isMobile ? () => setShowCompanyMenu(false) : undefined}
               onClick={isMobile ? () => setShowCompanyMenu((prev) => !prev) : undefined}
             >
-              <button
-                style={{
-                  color: window.location.pathname.startsWith('/company/') ? "#66E695" : "white",
-                  backgroundColor: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: isMobile ? "16px" : "18px",
-                  padding: isMobile ? "10px 0" : "0",
-                  fontFamily: "inherit",
-                  width: isMobile ? "100%" : "auto",
-                  textAlign: isMobile ? "left" : "center",
-                }}
-              >
-                회사소개
-              </button>
+              {(() => {
+                const pathname = typeof window !== 'undefined' && window.location ? window.location.pathname : '';
+                const isCompany = pathname.startsWith('/company/');
+                return (
+                  <button
+                    style={{
+                      color: isCompany ? "#66E695" : "white",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: isMobile ? "16px" : "18px",
+                      padding: isMobile ? "10px 0" : "0",
+                      fontFamily: "inherit",
+                      width: isMobile ? "100%" : "auto",
+                      textAlign: isMobile ? "left" : "center",
+                    }}
+                  >
+                    회사소개
+                  </button>
+                );
+              })()}
 
               {/* 비전 및 미션 Header */}
               {showCompanyMenu && (

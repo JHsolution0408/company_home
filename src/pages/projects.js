@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-
 import Seo from "../components/seo"
 import Layout from "../components/layout"
 import * as styles from "./projects.module.css"
@@ -43,7 +42,7 @@ const ProjectsPage = () => {
       type={'dark'}
       subHeaderTitle="프로젝트"
       subHeaderDescription="JH솔루션의 기술이 실현된 혁신의 현장, 데이터로 검증된 다양한 사업 분야의 수행 실적을 소개합니다."
-      subHeaderBgImage="/images/bg_project.png"
+      subHeaderBgImage="/images/banners/bg_project.png"
     >
       <div id="content" className={styles.projectContainer}>
         <h1 className={styles.projectTitle}>
