@@ -23,7 +23,7 @@ const ProjectsPage = () => {
             featureImage
             slug
             tags
-            date(formatString: "YYYY.MM.DD")
+            date
           }
         }
       }
