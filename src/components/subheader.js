@@ -22,8 +22,8 @@ const SubHeader = ({ title, description, bgImage = "", paddingClass, children })
       aria-label="페이지 상단 소개 영역"
     >
       <div id="title-text" className={styles.inner}>
-        {title && (<h1>{title}</h1>)}
-        {description && (<p>{description}</p>)}
+        {title && (<h1 className={styles.title}>{title}</h1>)}
+        {description && (<p className={styles.description}>{description}</p>)}
         {children}
       </div>
     </div>
