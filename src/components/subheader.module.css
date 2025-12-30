@@ -38,6 +38,7 @@
   line-height: 1.4;
   letter-spacing: -1px;
   white-space: nowrap;
+  word-break: keep-all;
 }
 
 
@@ -46,11 +47,18 @@
     padding: 110px 20px 40px 24px;
   }
 
-  .title {
-    font-size: 32px;
+  .inner {
+    padding: 35px 0 15px;
+    align-items: center;
   }
+
+  .title {
+    font-size: 40px;
+  }
+
   .description {
-    font-size: 16px;
+    font-size: 20px;
     white-space: normal;
   }
 }
+
