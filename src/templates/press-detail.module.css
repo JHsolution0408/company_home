@@ -1,0 +1,53 @@
+
+/* Page container */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+
+.pressHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 40px;
+}
+
+.title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.date {
+  margin: 0;
+  color: #757B82;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+hr {
+  margin: 0;
+}
+
+.pressContainer {
+  padding: 40px 0;
+}
+
+.pressContainer img {
+  margin: 0 auto 40px;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px;
+  }
+}

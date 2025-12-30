@@ -18,22 +18,22 @@ const JourneyTextAnimation = () => {
       <div className={styles.copylightContainer} aria-label="Journey of Hyper-Scale AI Optimization Net-Zero">
         <div className={styles.copylightWrapper} aria-label="Journey of">
           <p className={`${styles.copylightText} ${styles.highlightedCopylight}`}>J</p>
-          <p className={`${styles.copylightText} ${styles.copylightTextFade} ${styles.JTAFadein}`}>ourney of</p>
+          <p className={`${styles.copylightText} ${styles.copylightTextFade}`}>ourney of</p>
         </div>
         <div className={styles.copylightWrapper} aria-label="Hyper-Scale">
           <p className={`${styles.copylightText} ${styles.highlightedCopylight}`}>H</p>
-          <p className={`${styles.copylightText} ${styles.copylightTextFade} ${styles.JTAFadein}`}>yper-Scale</p>
+          <p className={`${styles.copylightText} ${styles.copylightTextFade}`}>yper-Scale</p>
         </div>
         <div className={styles.copylightWrapper} aria-label="AI">
           <p className={`${styles.copylightText} ${styles.highlightedCopylight}`}>AI</p>
         </div>
         <div className={styles.copylightWrapper} aria-label="Optimization">
           <p className={`${styles.copylightText} ${styles.highlightedCopylight}`}>O</p>
-          <p className={`${styles.copylightText} ${styles.copylightTextFade} ${styles.JTAFadein}`}>ptimization</p>
+          <p className={`${styles.copylightText} ${styles.copylightTextFade}`}>ptimization</p>
         </div>
         <div className={styles.copylightWrapper} aria-label="Net-Zero">
           <p className={`${styles.copylightText} ${styles.highlightedCopylight}`}>N</p>
-          <p className={`${styles.copylightText} ${styles.copylightTextFade} ${styles.JTAFadein}`}>et-Zero</p>
+          <p className={`${styles.copylightText} ${styles.copylightTextFade}`}>et-Zero</p>
         </div>
       </div>
     </div>

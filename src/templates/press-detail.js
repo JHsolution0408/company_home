@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 
 import Seo from "../components/seo"
 import Layout from "../components/layout"
-import * as styles from "../pages/company/vision-mission.module.css"
+import * as styles from "./press-detail.module.css"
 
 // 보도자료 상세 템플릿
 const PressDetailBody = ({ html }) => {
@@ -25,28 +25,31 @@ const PressDetailPage = ({ data }) => {
       subHeaderBgImage="/images/banners/bg_press_detail.png"
     >
       <section className={styles.container}>
-        <h1>{title}</h1>
-        {date && <p style={{ color: "#9AA0A6", marginTop: -8 }}>{date}</p>}
+        <div className={styles.pressHeader}>
+          <h1 className={styles.title}>
+            {title}
+          </h1>
+          {date && (
+            <p className={styles.date}>
+              {date}
+            </p>
+          )}
+        </div>
+
         <hr />
 
-        {featureImage && (
-          <img
-            src={featureImage}
-            alt={title}
-            style={{
-              margin: "0 auto 24px",
-              width: "100%",
-              maxWidth: "720px",
-              height: "auto",
-              objectFit: "contain",
-              borderRadius: "16px",
-            }}
-          />
-        )}
+        <div className={styles.pressContainer}>
+          {featureImage && (
+            <img
+              src={featureImage}
+              alt={title}
+            />
+          )}
 
-        <PressDetailBody
-          html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
-        />
+          <PressDetailBody
+            html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
+          />
+        </div>
       </section>
     </Layout>
   )

@@ -7,7 +7,7 @@ import PlusIconWithFlex from "./PlusIconWithFlex"
 
 export default function PartnersContent() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
       {/* 혁신 시너지를 창출하는 협력 철학 */}
       <section>
         <SectionTitle
