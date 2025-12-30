@@ -31,6 +31,7 @@
 
 /* Content area: image + detail side-by-side on PC, stacked on mobile */
 .contentRow {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
   gap: 40px;
