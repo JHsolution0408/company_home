@@ -15,6 +15,7 @@ module.exports = {
     siteUrl: `https://company.com/`,
   },
   plugins: [
+    `gatsby-plugin-svgr`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

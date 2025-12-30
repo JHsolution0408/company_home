@@ -24,15 +24,26 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     }
   }, [])
 
-  // SSR-safe: window가 없는 서버 렌더링에서도 안전하게 처리
-  const isCompanyPath = typeof window !== "undefined" && window.location.pathname.startsWith('/company/')
+  // Prevent background scroll/drag when mobile sidebar is open
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const body = document.body;
+    if (isMobile && isMenuOpen) {
+      body.classList.add('body--no-scroll');
+    } else {
+      body.classList.remove('body--no-scroll');
+    }
+    return () => {
+      body.classList.remove('body--no-scroll');
+    };
+  }, [isMobile, isMenuOpen])
 
   const solutionItems = [
     { name: "JHAION 엔진", slug: "jhaion-engine" },
     { name: "에너지 관리", slug: "energy" },
     { name: "시뮬레이션", slug: "simulation" },
     { name: "인공지능", slug: "ai" },
-    { name: "디지털 트윈", slug: "digital-twin" },
+    { name: "디지털 트윈", slug: "digitaltwin" },
     { name: "미디어", slug: "media" },
   ]
 
@@ -50,7 +61,6 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
     <>
       {isMobile && isMenuOpen && (
         <div
-          onClick={() => setIsMenuOpen(false)}
           style={{
             position: "fixed",
             top: 0,
@@ -58,8 +68,9 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             width: "100vw",
             height: "100vh",
             backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 1100,
+            zIndex: "var(--z-index-level-1100)",
           }}
+          onClick={() => setIsMenuOpen(false)}
         />
       )}
 
@@ -77,7 +88,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 1250,
+          zIndex: "var(--z-index-level-1250)",
           paddingTop: "15px",
         }}
       >
@@ -113,7 +124,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
             width: isMobile ? "75vw" : "auto",
             height: isMobile ? "100vh" : "auto",
             backgroundColor: isMobile ? "#0066cc" : "transparent",
-            zIndex: 1200,
+            zIndex: "var(--z-index-level-1200)",
             transition: isMobile ? "left 0.3s ease" : "none",
             overflowY: isMobile ? "auto" : "visible",
             padding: isMobile ? "16px 0 0 0" : "0",
@@ -178,22 +189,29 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
               onMouseLeave={!isMobile ? () => setShowCompanyMenu(false) : undefined}
               onClick={isMobile ? () => setShowCompanyMenu((prev) => !prev) : undefined}
             >
-              <button
-                style={{
-                  color: isCompanyPath ? "#66E695" : "white",
-                  backgroundColor: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: isMobile ? "16px" : "18px",
-                  padding: isMobile ? "10px 0" : "0",
-                  fontFamily: "inherit",
-                  width: isMobile ? "100%" : "auto",
-                  textAlign: isMobile ? "left" : "center",
-                }}
-              >
-                회사소개
-              </button>
+              {(() => {
+                const pathname = typeof window !== 'undefined' && window.location ? window.location.pathname : '';
+                const isCompany = pathname.startsWith('/company/');
+                return (
+                  <button
+                    style={{
+                      color: isCompany ? "#66E695" : "white",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: isMobile ? "16px" : "18px",
+                      padding: isMobile ? "10px 0" : "0",
+                      fontFamily: "inherit",
+                      width: isMobile ? "100%" : "auto",
+                      textAlign: isMobile ? "left" : "center",
+                    }}
+                  >
+                    회사소개
+                  </button>
+                );
+              })()}
 
+              {/* 비전 및 미션 Header */}
               {showCompanyMenu && (
                 <div
                   style={{
@@ -201,15 +219,16 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
                     top: isMobile ? "0" : "calc(100% + 15px)",
                     left: isMobile ? "0" : "50%",
                     transform: isMobile ? "none" : "translateX(-50%)",
-                    backgroundColor: "#FDFDFD",
+                    // backgroundColor: "#FDFDFD",
+                    backgroundColor: "yellow",
                     minWidth: "200px",
                     width: isMobile ? "100%" : "auto",
+                    height: "278px",
                     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
                     zIndex: "1000",
                     borderRadius: "4px",
                     marginTop: isMobile ? "10px" : "0",
                     paddingTop: isMobile ? "0" : "15px",
-                    marginTop: isMobile ? "10px" : "-15px",
                   }}
                 >
                   {companyItems.map((item, index) => (
@@ -277,7 +296,6 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
                     borderRadius: "4px",
                     marginTop: isMobile ? "10px" : "0",
                     paddingTop: isMobile ? "0" : "15px",
-                    marginTop: isMobile ? "10px" : "-15px",
                   }}
                 >
                   {solutionItems.map((item, index) => (

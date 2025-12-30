@@ -1,0 +1,169 @@
+/* Footer CSS Module */
+
+.container {
+  width: 100vw;
+  background-color: #4A4F55;
+  padding: 60px 120px;
+}
+
+.footer {
+  color: #FDFDFD;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: clamp(120px, 20vw, 200px);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.section {
+  width: 100%;
+  margin-bottom: clamp(16px, 3vw, 40px);
+}
+
+.logoWrap {
+  padding-bottom: 30px;
+}
+
+.logoLink {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logoImg {
+  height: 40px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: clamp(12px, 2vw, 30px);
+}
+
+.leftCol {
+  width: 70%;
+  padding-right: clamp(16px, 3vw, 40px);
+}
+
+.infoText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #969BA2;
+}
+
+.infoTitle {
+  color: #CFD3D8;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mb8 {
+  margin-bottom: 8px;
+}
+
+
+.address {
+    margin-bottom: 8px;
+    text-decoration: underline;
+}
+
+.tel {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.telLabel {
+  margin-right: 8px;
+  color: #CFD3D8;
+}
+
+
+.ml40 {
+  margin-left: 40px;
+}
+
+.rightCol {
+  width: 30%;
+  padding-left: clamp(16px, 3vw, 40px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rightInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.linkP {
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #969BA2;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.brochureLink {
+  color: #CFD3D8;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Ensure the arrow inherits proper color */
+.brochureLink svg path {
+  stroke: #CFD3D8;
+}
+
+.bottomBar {
+  text-align: left;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.copy {
+  margin: 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.br {
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+    .container {
+        padding: 40px;
+    }
+
+    .topBar {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .leftCol {
+        width: 100%;
+    }
+
+    .rightCol {
+        width: 100%;
+        justify-content: flex-start;
+        padding-left: 0;
+    }
+
+    .br {
+        display: block;
+    }
+}

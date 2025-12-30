@@ -1,0 +1,17 @@
+# 최상위에 있는 파일로 명시
+root = true
+
+# 모든 파일에 적용
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+# '.ts'과 '.js'로 끝나는 파일에 적용
+[*.{ts,tsx,js}]
+charset = utf-8
+
+# 'Makefile'과 일치하는 파일 혹은 폴더에 적용
+[Makefile]
+indent_style = tab

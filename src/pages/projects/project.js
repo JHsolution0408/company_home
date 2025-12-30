@@ -45,8 +45,15 @@ const ProjectDetailPage = ({ params }) => (
         </ul>
       </section>
 
-      <section style={{ backgroundColor: "#f0f8ff", padding: "30px", borderRadius: "8px" }}>
+      <section
+        style={{
+          backgroundColor: "#f0f8ff",
+          padding: "30px",
+          borderRadius: "8px"
+        }}
+      >
         <h2>문의하기</h2>
+
         <p>이 프로젝트와 유사한 개발을 원하시면 문의하세요.</p>
         <Link to="/contact" style={{ color: "#0066cc", fontWeight: "bold" }}>
           연락처 →

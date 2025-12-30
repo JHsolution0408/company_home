@@ -1,10 +1,32 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 
-import SubPageHeader from "../components/subpage-header"
 import Seo from "../components/seo"
-import Footer from "../components/footer"
+import Layout from "../components/layout"
+import * as styles from "../pages/company/vision-mission.module.css"
 
+// 페이지 타입별 헤더 설정을 객체로 관리
+const PAGE_HEADERS = {
+  press: {
+    title: '보도자료',
+    description: 'JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다'
+  },
+  project: {
+    title: '프로젝트',
+    description: '혁신적인 기술로 만들어가는 JH솔루션의 프로젝트'
+  },
+  default: {
+    title: '', // 기본값으로 전달받은 title 사용
+    description: '' // 기본값으로 전달받은 description 사용
+  }
+};
+
+// 페이지 타입 판별 함수
+const getPageType = (slug) => {
+  if (String(slug).startsWith('news')) return 'press';
+  if (String(slug).startsWith('project')) return 'project';
+  return 'default';
+};
 
 const MarkdownBody = ({ html }) => {
   if (!html) {
@@ -16,76 +38,48 @@ const MarkdownBody = ({ html }) => {
 
 const MarkdownPage = ({ data }) => {
   const node = data.markdownRemark;
-  const { title, description, slug } = node.frontmatter;
-  // 비전/미션 스타일 참고: 헤더, 배경, 마크다운 영역 스타일, h2/p/bold 등
+  const { title, description, date, slug, featureImage } = node.frontmatter;
+  console.log(slug, '값입니다.')
+
   return (
-    <>
-      <SubPageHeader bgImage={slug === "vision-mission" ? "/images/about/bg_vision.png" : undefined} />
-      <main style={{ padding: 0 }}>
-        <div style={{ width: "100%", margin: 0, padding: 0 }}>
-          <div id="vision-mission-meta" style={{ marginBottom: "32px", backgroundImage: 'url(/images/about/bg_vision.png)', backgroundSize: 'cover', backgroundPosition: 'center', padding: "60px 20px 60px 50px" }}>
-            <h1 style={{ color: "#FDFDFD", fontSize: "40px", fontWeight: 700, marginBottom: "2px" }}>{title}</h1>
-            {description && (
-              <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "20px", fontWeight: 600, marginTop: 0 }}>{description}</p>
-            )}
-          </div>
-          <div id="vision-mission-markdown" style={{ width: "100%", marginTop: "0 !important", padding: "15px 24px 15px 5%" }}>
-            <style>{`
-              #vision-mission-markdown h2 {
-                font-size: 40px;
-                color: #17181B;
-                font-weight: 550;
-                margin-top: 40px;
-                margin-bottom: 16px;
-              }
-              #vision-mission-markdown p + h2 {
-                margin-top: 4px !important;
-              }
-              #vision-mission-markdown span[style*="color:#177D3C"] + h2 {
-                margin-top: 0px !important;
-              }
-              #vision-mission-markdown h2 + p {
-                max-width: 1100px;
-                width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 20px;
-                line-height: 1.8;
-              }
-              #vision-mission-markdown strong, #vision-mission-markdown b {
-                color: #17181B;
-                font-size: 24px;
-                font-weight: 600;
-                padding-left: 1%;
-                vertical-align: top;
-                padding-top: 1%;
-              }
-              #vision-mission-markdown .ai-engineering {
-                color: #177D3C;
-                font-weight: 700;
-              }
-              #vision-mission-markdown table td {
-                padding: 10px 1%;
-              }
-              #vision-mission-markdown table th {
-                padding: 1%;
-              }
-              #vision-mission-markdown table:nth-of-type(2) {
-                background-color: #F6FEF9;
-              }
-            `}</style>
-            <MarkdownBody html={
-              node.html
-                .replace(/(문제인식\s*\(\s*The Challenge\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
-                .replace(/(기술적 해답\s*\(\s*The Solution\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
-                .replace(/(궁극적 목표\s*\(\s*The Impact\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
-                .replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')
-            } />
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <Layout
+      // Layout 컴포넌트의 props 설정 부분
+      type={'dark'}
+      subHeaderTitle={PAGE_HEADERS[getPageType(slug)].title || title}
+      subHeaderDescription={PAGE_HEADERS[getPageType(slug)].description || description}
+      subHeaderBgImage="/images/bg_vision.png"
+    >
+      <section className={styles.container}>
+        <h1>{title}</h1>
+        <h1>{date}</h1>
+
+        <hr />
+
+        {featureImage && (
+          <img
+            src={featureImage}
+            alt={title}
+            style={{
+              margin: '0 auto',
+              width: '100%',
+              maxWidth: '720px',
+              height: '541px',
+              objectFit: 'contain',
+              borderRadius: '16px',
+            }}
+          />
+        )}
+        <MarkdownBody
+          html={
+            node.html
+              .replace(/(문제인식\s*\(\s*The Challenge\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
+              .replace(/(기술적 해답\s*\(\s*The Solution\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
+              .replace(/(궁극적 목표\s*\(\s*The Impact\s*\))/g, '<span style="color:#177D3C;font-size:24px;font-weight:600;margin-bottom:-1px;display:inline-block;">$1</span>')
+              .replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')
+          }
+        />
+      </section>
+    </Layout>
   );
 };
 
@@ -96,7 +90,10 @@ export const query = graphql`
       html
       frontmatter {
         title
+        date
         description
+        slug
+        featureImage
       }
     }
   }

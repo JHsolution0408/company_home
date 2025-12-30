@@ -1,0 +1,136 @@
+/* Vision & Mission CSS Module
+   Path: src/pages/company/vision-mission.module.css
+*/
+
+:root {
+  --vm-text: #2E3236;
+  --vm-sub-text: #757B82;
+  --vm-green: #177D3C;
+  --vm-green-border: #E0E4E8;
+  --vm-bg: #F6FEF9;
+}
+
+/* Page container */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+.flexBox {
+  display: flex;
+  gap: 40px;
+}
+
+.flexBoxWithPlus {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.flexBoxWithPlus .plusImageContainer {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  margin: auto 0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.valueCard {
+  position: relative; /* allow top-right image */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  min-height: 300px;
+  background-color: var(--vm-bg);
+  border: 1px solid var(--vm-green-border);
+  border-radius: 20px;
+  color: var(--vm-text);
+}
+
+/* header row: label only; image is positioned absolutely */
+.valueHeader {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+  min-height: 100px;
+}
+
+/* top-right decorative image */
+.valueImage {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 96px;
+  height: auto;
+}
+
+.valueLabel {
+  color: var(--vm-green);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+  opacity: 0.4;
+}
+
+.valueTitle {
+  margin-bottom: 12px;
+  color: var(--vm-text);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.valueDescription {
+  margin: 0;
+  color: var(--vm-sub-text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px;
+  }
+
+  .flexBox,
+  .flexBoxWithPlus {
+    flex-direction: column;
+  }
+
+  .flexBoxWithPlus {
+    align-items: center;
+  }
+
+  .valueHeader {
+    min-height: 80px;
+  }
+
+  .valueTitle {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .valueDescription {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .valueImage {
+    width: 72px;
+    top: 40px;
+    right: 40px;
+  }
+}

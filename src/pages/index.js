@@ -3,6 +3,12 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import * as styles from "./index.module.css"
+import { useSlide } from "../hooks/useSlide";
+import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
+import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
+import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
+import ReadMoreIcon from '../../static/icons/common/angle-bracket-right-icon.svg';
 
 const cards = [
   {
@@ -28,407 +34,647 @@ const cards = [
   }
 ];
 
-// CSS for hiding scrollbar
-const hideScrollbarCSS = `
-  .slider-hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-`
+// Solutions data (original set)
+const solutions = [
+  { id: 'jhaion-engine', link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
+  { id: 'energy', link: "/solutions/energy", title: "에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
+  { id: 'simulation', link: "/solutions/simulation", title: "시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
+  { id: 'ai', link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
+  { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털 트윈", desc: "현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
+  { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
+];
 
 const IndexPage = ({ data }) => {
-    // 자동 롤링 타이머
-    React.useEffect(() => {
-      const timer = setInterval(() => {
-        setCurrent(prev => (prev + 1) % cards.length);
-      }, 5000);
-      return () => clearInterval(timer);
-    }, [cards.length]);
+  // 자동 롤링 타이머
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % cards.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [cards.length]);
   const pressReleases = data.allMarkdownRemark.nodes
   const [current, setCurrent] = React.useState(0);
-  const sliderRef = React.useRef(null)
-  const sliderRef3 = React.useRef(null)
-  const sliderRef4 = React.useRef(null)
-  const [isAutoScrolling, setIsAutoScrolling] = React.useState(true)
-  const [currentSlide, setCurrentSlide] = React.useState(1)
-  const totalSlides = 3
-  const [currentSlide3, setCurrentSlide3] = React.useState(1)
-  const totalSlides3 = 6
-  const [currentSlide4, setCurrentSlide4] = React.useState(1)
-  const totalSlides4 = 6
+  const solutionsSliderRef = React.useRef(null)
+  const pressSliderRef = React.useRef(null)
+  const [solutionsItemStride, setSolutionsItemStride] = React.useState(0)
+  const [pressItemStride, setPressItemStride] = React.useState(0)
+  const [solutionsGap, setSolutionsGap] = React.useState(0)
+  const [pressGap, setPressGap] = React.useState(0)
+  const [solutionsPadOn, setSolutionsPadOn] = React.useState(true)
+  const [pressPadOn, setPressPadOn] = React.useState(true)
+  const hasInteractedSolutions = React.useRef(false)
+  const hasInteractedPress = React.useRef(false)
+  const isNormalizingSolutions = React.useRef(false)
+  const isNormalizingPress = React.useRef(false)
+  const { currentSlide: solutionsCurrent, nextSlide: solutionsNext, prevSlide: solutionsPrev, goToSlide: solutionsGoTo } = useSlide({
+    totalSlides: solutions.length,
+    autoPlay: false,
+  })
+  const { currentSlide: pressCurrent, nextSlide: pressNext, prevSlide: pressPrev, goToSlide: pressGoTo } = useSlide({
+    totalSlides: pressReleases.length,
+    autoPlay: false,
+  })
 
+  // Drag state refs (mouse/pen manual drag; touch uses native scrolling)
+  const solDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
+  const pressDrag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
+  const didDragSolutions = React.useRef(false)
+  const didDragPress = React.useRef(false)
+  // rAF-throttled scroll + inertia state
+  const solAnim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
+  const pressAnim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
+
+  // Solutions slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
   React.useEffect(() => {
-    const slider = sliderRef.current
+    const slider = solutionsSliderRef.current
     if (!slider) return
+    const first = slider.firstChild
+    if (!first) return
 
-    const handleScroll = () => {
-      const scrollLeft = slider.scrollLeft
-      const containerWidth = slider.offsetWidth
-      const slideIndex = Math.round(scrollLeft / (containerWidth + 30)) + 1
-      setCurrentSlide(slideIndex > totalSlides ? totalSlides : slideIndex < 1 ? 1 : slideIndex)
-    }
+    const computed = window.getComputedStyle(slider)
+    const gapStr = computed.gap || computed.columnGap || '30px'
+    const gap = parseFloat(gapStr) || 30
+    setSolutionsGap(gap)
 
-    slider.addEventListener('scroll', handleScroll)
-    return () => slider.removeEventListener('scroll', handleScroll)
-  }, [])
+    const stride = first.offsetWidth + gap
+    const setWidth = stride * solutions.length
 
-  // 제품 카드 자동 롤링
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (sliderRef3.current) {
-        const cardWidth = sliderRef3.current.firstChild.offsetWidth;
-        const gap = 30;
-        sliderRef3.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+    setSolutionsItemStride(stride)
+
+    // Place the scroll at the start of the second set for seamless left/right looping
+    // Preserve any existing scrollLeft if already set (CSR navigation), but if near 0, jump to middle
+    requestAnimationFrame(() => {
+      if (slider.scrollLeft < setWidth * 0.5) {
+        slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
       }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    })
 
-  // 자동 롤링 완전히 제거됨
+    const onScroll = () => {
+      const maxScroll = slider.scrollWidth // includes both sets
+      const left = slider.scrollLeft
+      const epsilon = 1
 
-  const handlePrevClick = () => {
-    setIsAutoScrolling(false)
-    if (sliderRef.current) {
-      const cardWidth = sliderRef.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = cardWidth + gapWidth;
-      sliderRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth",
-      })
+      if (solutionsPadOn && left > 0) setSolutionsPadOn(false)
+      // Suppress normalization while user dragging or inertia animation running
+      if (solAnim.current.dragging || solAnim.current.inertId) return
+      if (isNormalizingSolutions.current) return
+
+      // Left boundary: jump forward by one set width (silent)
+      if (left <= epsilon) {
+        isNormalizingSolutions.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left + setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingSolutions.current = false
+        return
+      }
+      // Right boundary: jump back by one set width (silent)
+      if (left + slider.clientWidth >= maxScroll - epsilon) {
+        isNormalizingSolutions.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left - setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingSolutions.current = false
+        return
+      }
+
+      // Update effective index within original set [0..N-1]
+      const rel = slider.scrollLeft % setWidth
+      let idx = Math.round(rel / stride)
+      if (idx >= solutions.length) idx = 0
+      if (idx < 0) idx = 0
+      solutionsGoTo(idx)
     }
-    setTimeout(() => setIsAutoScrolling(true), 2000)
+
+    slider.addEventListener('scroll', onScroll)
+    return () => slider.removeEventListener('scroll', onScroll)
+  }, [solutions.length])
+
+  // Press slider: setup pseudo-infinite scroll using duplicated set [A..N][A..N]
+  React.useEffect(() => {
+    const slider = pressSliderRef.current
+    if (!slider) return
+    const first = slider.firstChild
+    if (!first) return
+
+    const computed = window.getComputedStyle(slider)
+    const gapStr = computed.gap || computed.columnGap || '30px'
+    const gap = parseFloat(gapStr) || 30
+    setPressGap(gap)
+
+    const stride = first.offsetWidth + gap
+    const setWidth = stride * pressReleases.length
+
+    setPressItemStride(stride)
+
+    requestAnimationFrame(() => {
+      if (slider.scrollLeft < setWidth * 0.5) {
+        slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
+      }
+    })
+
+    const onScroll = () => {
+      const maxScroll = slider.scrollWidth
+      const left = slider.scrollLeft
+      const epsilon = 1
+
+      if (pressPadOn && left > 0) setPressPadOn(false)
+      // Suppress normalization while user dragging or inertia animation running
+      if (pressAnim.current.dragging || pressAnim.current.inertId) return
+      if (isNormalizingPress.current) return
+
+      if (left <= epsilon) {
+        isNormalizingPress.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left + setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingPress.current = false
+        return
+      }
+      if (left + slider.clientWidth >= maxScroll - epsilon) {
+        isNormalizingPress.current = true
+        const prevBehavior = slider.style.scrollBehavior
+        slider.style.scrollBehavior = 'auto'
+        slider.scrollLeft = left - setWidth
+        slider.style.scrollBehavior = prevBehavior
+        isNormalizingPress.current = false
+        return
+      }
+
+      const rel = slider.scrollLeft % setWidth
+      let idx = Math.round(rel / stride)
+      if (idx >= pressReleases.length) idx = 0
+      if (idx < 0) idx = 0
+      pressGoTo(idx)
+    }
+
+    slider.addEventListener('scroll', onScroll)
+    return () => slider.removeEventListener('scroll', onScroll)
+  }, [pressReleases.length])
+
+  const handleMovePrevSolution = () => {
+    const slider = solutionsSliderRef.current
+    if (slider && solutionsItemStride) {
+      slider.scrollBy({ left: -solutionsItemStride, behavior: 'smooth' })
+    }
+    solutionsPrev()
   }
 
-  const handleNextClick = () => {
-    setIsAutoScrolling(false)
-    if (sliderRef.current) {
-      const cardWidth = sliderRef.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = cardWidth + gapWidth;
-      sliderRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth",
-      })
+  const handleMoveNextSolution = () => {
+    const slider = solutionsSliderRef.current
+    if (slider && solutionsItemStride) {
+      slider.scrollBy({ left: solutionsItemStride, behavior: 'smooth' })
     }
-    setTimeout(() => setIsAutoScrolling(true), 2000)
+    solutionsNext()
   }
 
-  const handleDashClick = (index) => {
-    if (sliderRef3.current) {
-      const cardWidth = sliderRef3.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
-      sliderRef3.current.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-      setCurrentSlide3(index);
-    }
-  }
-
-  const handleDashClick4 = (index) => {
-    if (sliderRef4.current) {
-      const cardWidth = sliderRef4.current.offsetWidth;
-      const gapWidth = 10;
-      const scrollAmount = (index - 1) * (cardWidth + gapWidth);
-      sliderRef4.current.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-      setCurrentSlide4(index);
-    }
-  }
 
   return (
-  <Layout>
-    <style>{hideScrollbarCSS}</style>
-    <style>{`body { max-width: 100% !important; }`}</style>
-    {/* ========== HEADER ========== */}
-    <header style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      {/* GNB */}
-      <div style={{ backgroundColor: "#FDFDFD", color: "white", padding: "10px 2vw" }}>
-        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          {/* GNB 콘텐츠 */}
-        </div>
-      </div>
-
-      {/* Header Content */}
-      <div style={{ backgroundColor: "#ffffff", color: "#333", padding: "1px 2vw" }}>
-        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          {/* Header 콘텐츠 */}
-        </div>
-      </div>
-    </header>
-
-    {/* ========== BODY (5 SECTIONS) ========== */}
-    <main style={{ width: "100vw", boxSizing: "border-box", margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <Layout>
       {/* Section 1: Hero Slider */}
-      <div style={{ width: '90vw', maxWidth: '90vw', overflow: 'hidden', position: 'relative', margin: '0 auto', background: '#fff' }}>
-        <div style={{ display: 'flex', transition: 'transform 0.5s', transform: `translateX(-${current * 90}vw)`, width: '90vw', maxWidth: '90vw', height: '600px', background: '#fff', paddingBottom: '32px' }}>
-          {cards.map((card, idx) => (
-            <div key={idx} style={{ flex: '0 0 100%', minWidth: '100%', maxWidth: '100%', height: '100%', padding: 'clamp(16px,1vw,24px)', borderRadius: '20px', backgroundColor: '#fff', backgroundImage: `url('${card.image}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0' }}>
-              <h3 style={{ color: '#177D3C', marginBottom: '15px', fontSize: '24px', fontWeight: '500' }}>{card.title}</h3>
-              <p style={{ color: '#17181B', marginBottom: '10px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle1}</p>
-              <p style={{ color: '#177D3C', marginBottom: '30px', fontSize: '56px', fontWeight: '650', lineHeight: '1.1', whiteSpace: 'nowrap' }}>{card.subtitle2}</p>
-              <div>
-                <Link to={card.link} target="_self" style={{ color: 'white', backgroundColor: '#177D3C', padding: '10px 25px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', transition: 'background-color 0.3s ease' }} onMouseEnter={e => e.target.style.backgroundColor = '#125d2d'} onMouseLeave={e => e.target.style.backgroundColor = '#177D3C'}>
-                  자세히 보기 &gt;
-                </Link>
+      <div className={styles.heroWrapper}>
+        <div
+          className={styles.heroTrack}
+          style={{
+            transform: `translateX(-${current * 100}%)`
+          }}
+        >
+          {cards.map((card, idx) => {
+            const isCurrent = current === idx;
+            return (
+              <div
+                key={idx}
+                className={`${styles.heroSlide} ${!isCurrent ? styles.heroSlideHidden : ''}`}
+                aria-hidden={!isCurrent}
+              >
+                <div className={styles.heroCard} style={{ backgroundImage: `url('${card.image}')` }}>
+                  <h3 className={styles.heroKicker}>{card.title}</h3>
+                  <p className={styles.heroTitle1}>{card.subtitle1}</p>
+                  <p className={styles.heroTitle2}>{card.subtitle2}</p>
+
+                  <Link
+                    to={card.link}
+                    target="_self"
+                  >
+                    <div className={styles.heroCta}>
+                      <span>
+                        자세히 보기
+                      </span>
+                      <div className={styles.heroCtaIcon}>
+                        <img
+                          src={ReadMoreIcon}
+                          alt={'Read More'}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-      {/* 도트 인디케이터: 슬라이더 바깥, 더 아래에 위치 */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginTop: '0', marginBottom: '16px' }}>
-        {cards.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            style={{
-              width: current === idx ? '32px' : '12px',
-              height: '12px',
-              borderRadius: '6px',
-              border: 'none',
-              backgroundColor: current === idx ? '#177D3C' : '#D9D9D9',
-              cursor: 'pointer',
-              padding: 0,
-              transition: 'all 0.3s ease'
-            }}
-          />
-        ))}
+
+      {/* AI: 첫번째 컨트롤 컴포넌트 : Navigation Controls (스왑됨) */}
+      <div className={styles.navControls}>
+        {/* 이전 화살표 버튼 */}
+        <button
+          onClick={() => setCurrent((prev) => (prev - 1 + cards.length) % cards.length)}
+          className={styles.navBtn}
+          aria-label="이전 슬라이드"
+        >
+          <img src={arrowLeft} alt={'Previous Slide'} className={styles.navIcon} />
+        </button>
+
+        {/* ex. 1/3 */}
+        <div className={styles.navCounter}>
+          <span className={styles.navCounterCurrent}>
+            {String((current ?? 0) + 1).padStart(2, "0")}
+          </span>
+          <span className={styles.navCounterSep}>|</span>
+          <span className={styles.navCounterTotal}>
+            {String(cards.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* 다음 화살표 버튼 */}
+        <button
+          onClick={() => setCurrent((prev) => (prev + 1) % cards.length)}
+          className={styles.navBtn}
+          aria-label="다음 슬라이드"
+        >
+          <img src={arrowRight} alt={'Next Slide'} className={styles.navIcon} />
+        </button>
       </div>
 
       {/* Section 2: About Company */}
-      <div style={{ padding: "2vw 2vw" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
-        
-        <div style={{ padding: "80px 40px 80px 40px", paddingRight: "0", border: "2px solid #1BA74E", borderRadius: "16px", backgroundColor: "#1BA74E", textAlign: "left", backgroundImage: "url(/images/about_jhaion.png)", backgroundSize: "cover", backgroundPosition: "right center", backgroundRepeat: "no-repeat" }}>
-          <h3 style={{ color: "#FDFDFD", marginBottom: "10px", fontSize: "24px", fontWeight: "400" }}>JHAION Engine : The Core of Optimization</h3>
-          <p style={{ color: "#FDFDFD", marginBottom: "5px", fontSize: "40px", fontWeight: "600", lineHeight: "0.9", whiteSpace: "nowrap" }}>
+      <div className={styles.sectionPad}>
+        <div className={styles.aboutBanner}>
+          <h3 className={styles.aboutH3}>
+            JHAION Engine : The Core of Optimization
+          </h3>
+          <p className={styles.aboutP1}>
             Net-Zero와 최적화를 향한 초거대 AI의 여정
           </p>
-          <p style={{ color: "rgba(253, 253, 253, 0.60)", fontSize: "40px", lineHeight: "0.9", whiteSpace: "nowrap" }}>
-            <span style={{ color: "#FDFDFD" }}>J</span>ourney of <span style={{ color: "#FDFDFD" }}>H</span>yper-scale + <span style={{ color: "#FDFDFD" }}>AI</span> + <span style={{ color: "#FDFDFD" }}>O</span>ptimizatio<span style={{ color: "#FDFDFD" }}>n</span> + <span style={{ color: "#FDFDFD" }}>N</span>et-zero
+          <p className={styles.aboutP2}>
+            <span className={styles.textWhite}>J</span>ourney of <span className={styles.textWhite}>H</span>yper-scale + <span className={styles.textWhite}>AI</span> + <span className={styles.textWhite}>O</span>ptimizatio<span className={styles.textWhite}>n</span> + <span className={styles.textWhite}>N</span>et-zero
           </p>
-        </div>
         </div>
       </div>
 
       {/* Section 3: Solutions Slider */}
-      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
-          <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>데이터 공학으로 완성된</h2>
-          <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 통합플랫폼을 경험하세요</h2>
-          <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.</p>
-          
-          <div style={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
-            <div ref={sliderRef3} style={{ display: "flex", gap: "clamp(12px,2vw,30px)", overflowX: "auto", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
-            {/* Card 1: JHAION 엔진 */}
-              <Link to="/solutions/jhaion-engine" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", overflow: "hidden" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>JHAION 엔진</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_jhaion.png" alt="JHAION 엔진" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
+      <div className={styles.solutionsSec}>
+        <div className={styles.linkCardSectionHeader}>
+          <h2 className={styles.title}>
+            데이터 공학으로 완성된
+            <br />
+            <span>JH솔루션의 통합플랫폼을 경험하세요</span>
+          </h2>
+          <p className={styles.description}>
+            에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.
+          </p>
+        </div>
 
-            {/* Card 2: 에너지 관리 */}
-              <Link to="/solutions/energy" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>에너지 관리</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_energymgmt.png" alt="에너지 관리" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 3: 시뮬레이션 */}
-              <Link to="/solutions/simulation" style={{ textDecoration: "none", flex: "0 0 clamp(320px,30vw,480px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>시뮬레이션</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_simulation.png" alt="시뮬레이션" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 4: 인공지능 */}
-              <Link to="/solutions/ai" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>인공지능</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_ai.png" alt="인공지능" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 5: 디지털 트윈 */}
-              <Link to="/solutions/digital-twin" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>디지털 트윈</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_digitaltwin.png" alt="디지털 트윈" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
-
-            {/* Card 6: 미디어 */}
-              <Link to="/solutions/media" style={{ textDecoration: "none", flex: "0 0 calc(33.333% - 30px)", minWidth: "280px", maxWidth: "600px" }}>
-              <div style={{ border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", height: "100%", cursor: "pointer", transition: "transform 0.2s ease", padding: 0, boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>미디어</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", margin: 0 }}>
-                    복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img src="/images/solutions/card_media.png" alt="미디어" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", borderRadius: "8px" }} />
-                </div>
-              </div>
-            </Link>
-            </div>
-          </div>
-
-          {/* Dot Navigation */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px", paddingBottom: "20px" }}>
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div
-                key={index}
-                style={{
-                  width: currentSlide3 === index ? "32px" : "12px",
-                  height: "12px",
-                  backgroundColor: currentSlide3 === index ? "#177D3C" : "#D9D9D9",
-                  borderRadius: "6px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer"
-                }}
-                onClick={() => {
-                  const slider = sliderRef3.current
-                  if (slider) {
-                    const cardWidth = slider.firstChild.offsetWidth
-                    const gap = 30
-                    const scrollAmount = (cardWidth + gap) * (index - 1)
-                    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
-                    setCurrentSlide3(index)
+        <div className={styles.sliderWrap}>
+          <div
+            ref={solutionsSliderRef}
+            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+            style={{ paddingLeft: solutionsPadOn ? `${solutionsGap}px` : 0 }}
+            onPointerDown={(e) => {
+              // Let touch use native smooth scrolling with momentum
+              if (e.pointerType === 'touch') return
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              hasInteractedSolutions.current = true
+              if (solutionsPadOn) setSolutionsPadOn(false)
+              // cancel inertia if running
+              if (solAnim.current.inertId) cancelAnimationFrame(solAnim.current.inertId)
+              solAnim.current.inertId = 0
+              solDrag.current.isDown = true
+              solAnim.current.dragging = true
+              solDrag.current.startX = e.clientX
+              solDrag.current.startLeft = slider.scrollLeft
+              solAnim.current.lastX = e.clientX
+              solAnim.current.lastT = performance.now()
+              solAnim.current.vx = 0
+              try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+              const prev = slider.style.scrollBehavior
+              slider.dataset.prevScrollBehavior = prev
+              slider.style.scrollBehavior = 'auto'
+            }}
+            onPointerMove={(e) => {
+              if (e.pointerType === 'touch') return
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              if (!solDrag.current.isDown) return
+              const x = e.clientX
+              const t = performance.now()
+              const dx = x - solDrag.current.startX
+              const instDx = x - solAnim.current.lastX
+              const dt = Math.max(1, t - solAnim.current.lastT)
+              const vx = instDx / dt
+              // exponential moving average for velocity
+              solAnim.current.vx = solAnim.current.vx * 0.85 + vx * 0.15
+              if (Math.abs(dx) > 3) didDragSolutions.current = true
+              solAnim.current.nextLeft = solDrag.current.startLeft - dx
+              if (!solAnim.current.pending) {
+                solAnim.current.pending = true
+                solAnim.current.rafId = requestAnimationFrame(() => {
+                  slider.scrollLeft = solAnim.current.nextLeft
+                  solAnim.current.pending = false
+                })
+              }
+              solAnim.current.lastX = x
+              solAnim.current.lastT = t
+            }}
+            onPointerUp={(e) => {
+              if (e.pointerType === 'touch') return
+              const slider = solutionsSliderRef.current
+              if (!slider) return
+              solDrag.current.isDown = false
+              solAnim.current.dragging = false
+              try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+              const prev = slider.dataset.prevScrollBehavior
+              if (prev !== undefined) slider.style.scrollBehavior = prev
+              // inertia on release for mouse/pen
+              let vx = solAnim.current.vx
+              const decay = 0.95
+              const minV = 0.02
+              if (Math.abs(vx) > minV) {
+                const step = () => {
+                  // convert velocity to px per frame (approx using 16ms)
+                  solAnim.current.nextLeft = slider.scrollLeft - vx * 16
+                  slider.scrollLeft = solAnim.current.nextLeft
+                  vx *= decay
+                  if (Math.abs(vx) > minV && !solAnim.current.dragging) {
+                    solAnim.current.inertId = requestAnimationFrame(step)
+                  } else {
+                    solAnim.current.inertId = 0
                   }
-                }}
-              ></div>
-            ))}
+                }
+                solAnim.current.inertId = requestAnimationFrame(step)
+              }
+            }}
+            onPointerLeave={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
+            onPointerCancel={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
+            onClickCapture={(e) => {
+              if (didDragSolutions.current) {
+                e.preventDefault()
+                e.stopPropagation()
+                didDragSolutions.current = false
+              }
+            }}
+          >
+            {solutions
+              .concat(solutions)
+              .map((item) => (
+                <LinkCard item={item} key={item.id} />
+              ))}
           </div>
+        </div>
+
+        {/* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */}
+        <div className={styles.dots}>
+          {solutions.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const slider = solutionsSliderRef.current
+                if (!slider || !solutionsItemStride) return
+                const stride = solutionsItemStride
+                const setWidth = stride * solutions.length
+                const targetLeft = setWidth + stride * idx
+                slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                solutionsGoTo(idx)
+              }}
+              className={`${styles.dot} ${solutionsCurrent === idx ? styles.dotActive : ''}`}
+              aria-label={`${idx + 1}번 슬라이드로 이동`}
+            />
+          ))}
         </div>
       </div>
 
       {/* Section 4: Press & News Slider */}
-      <div style={{ width: '100vw', overflow: 'hidden', backgroundColor: "#ffffff", padding: "clamp(32px,6vw,60px) 2vw", borderTop: "none" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: '90vw' }}>
-          <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>산업의 변화와 흐름을 주도하는</h2>
-          <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH솔루션의 새로운 소식을 만나보세요</h2>
-          <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다</p>
-          <div style={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
-          <div ref={sliderRef4} style={{ display: "flex", justifyContent: "flex-start", alignItems: "stretch", gap: "clamp(12px,2vw,30px)", overflowX: "hidden", overflowY: "hidden", paddingBottom: "clamp(8px,2vw,20px)", scrollBehavior: "smooth", scrollbarWidth: "none", msOverflowStyle: "none", width: '100vw', maxWidth: '100vw' }} className="slider-hide-scrollbar">
-                {pressReleases.map((pressRelease, index) => (
-              <Link key={index} to={`/press/${pressRelease.frontmatter.slug}`} style={{ textDecoration: "none", border: "2px solid #FDFDFD", borderRadius: "12px", overflow: "hidden", backgroundColor: "#FDFDFD", display: "flex", flexDirection: "column", width: "533px", minWidth: "533px", maxWidth: "533px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)", padding: 0, height: "auto", cursor: "pointer", transition: "transform 0.2s ease" }}>
-                <div style={{ padding: "30px 30px 20px 30px", textAlign: "left" }}>
-                  <h3 style={{ color: "#17181B", marginBottom: "8px", fontSize: "24px", fontWeight: "500", lineHeight: "1.4" }}>{pressRelease.frontmatter.title}</h3>
-                  <p style={{ color: "#757B82", fontSize: "20px", fontWeight: "500", lineHeight: "1.4", marginBottom: "10px" }}>
-                    {pressRelease.frontmatter.summary}
-                  </p>
-                  <p style={{ color: "#999", fontSize: "12px", margin: 0 }}>
-                    {new Date(pressRelease.frontmatter.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, '')}
-                  </p>
-                </div>
-                <div style={{ position: "relative", width: "100%", marginTop: "auto", padding: 0 }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "60px", background: "linear-gradient(to bottom, #FDFDFD, transparent)", zIndex: 1 }}></div>
-                  <img 
-                    src={pressRelease.frontmatter.featureImage || "/images/none_feature.png"} 
-                    alt={pressRelease.frontmatter.title}
-                    style={{ width: "533px", height: "300px", display: "block", objectFit: "cover" }}
-                  />
-                </div>
-              </Link>
-            ))}
+      <div className={styles.pressSec}>
+        <div>
+          <div className={styles.linkCardSectionHeader}>
+            <h2 className={styles.title}>
+              산업의 변화와 흐름을 주도하는
+              <br />
+              <span>JH솔루션의 새로운 소식을 만나보세요</span>
+            </h2>
+            <p className={styles.description}>
+              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다
+            </p>
           </div>
-        </div>
-          {/* Dot Navigation */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px", paddingBottom: "20px" }}>
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div
-                key={index}
-                style={{
-                  width: currentSlide4 === index ? "32px" : "12px",
-                  height: "12px",
-                  backgroundColor: currentSlide4 === index ? "#177D3C" : "#D9D9D9",
-                  borderRadius: "6px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer"
-                }}
-                onClick={() => {
-                  const slider = sliderRef4.current
-                  if (slider) {
-                    const cardWidth = slider.firstChild.offsetWidth
-                    const gap = 30
-                    const scrollAmount = (cardWidth + gap) * (index - 1)
-                    slider.scrollTo({ left: scrollAmount, behavior: 'smooth' })
-                    setCurrentSlide4(index)
+          <div className={styles.sliderWrap}>
+            <div
+              ref={pressSliderRef}
+              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+              style={{ paddingLeft: pressPadOn ? `${pressGap}px` : 0 }}
+              onPointerDown={(e) => {
+                // Let touch use native smooth scrolling with momentum
+                if (e.pointerType === 'touch') return
+                const slider = pressSliderRef.current
+                if (!slider) return
+                hasInteractedPress.current = true
+                if (pressPadOn) setPressPadOn(false)
+                // cancel inertia if running
+                if (pressAnim.current.inertId) cancelAnimationFrame(pressAnim.current.inertId)
+                pressAnim.current.inertId = 0
+                pressDrag.current.isDown = true
+                pressAnim.current.dragging = true
+                pressDrag.current.startX = e.clientX
+                pressDrag.current.startLeft = slider.scrollLeft
+                pressAnim.current.lastX = e.clientX
+                pressAnim.current.lastT = performance.now()
+                pressAnim.current.vx = 0
+                try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+                const prev = slider.style.scrollBehavior
+                slider.dataset.prevScrollBehavior = prev
+                slider.style.scrollBehavior = 'auto'
+              }}
+              onPointerMove={(e) => {
+                if (e.pointerType === 'touch') return
+                const slider = pressSliderRef.current
+                if (!slider) return
+                if (!pressDrag.current.isDown) return
+                const x = e.clientX
+                const t = performance.now()
+                const dx = x - pressDrag.current.startX
+                const instDx = x - pressAnim.current.lastX
+                const dt = Math.max(1, t - pressAnim.current.lastT)
+                const vx = instDx / dt
+                pressAnim.current.vx = pressAnim.current.vx * 0.85 + vx * 0.15
+                if (Math.abs(dx) > 3) didDragPress.current = true
+                pressAnim.current.nextLeft = pressDrag.current.startLeft - dx
+                if (!pressAnim.current.pending) {
+                  pressAnim.current.pending = true
+                  pressAnim.current.rafId = requestAnimationFrame(() => {
+                    slider.scrollLeft = pressAnim.current.nextLeft
+                    pressAnim.current.pending = false
+                  })
+                }
+                pressAnim.current.lastX = x
+                pressAnim.current.lastT = t
+              }}
+              onPointerUp={(e) => {
+                if (e.pointerType === 'touch') return
+                const slider = pressSliderRef.current
+                if (!slider) return
+                pressDrag.current.isDown = false
+                pressAnim.current.dragging = false
+                try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+                const prev = slider.dataset.prevScrollBehavior
+                if (prev !== undefined) slider.style.scrollBehavior = prev
+                // inertia on release for mouse/pen
+                let vx = pressAnim.current.vx
+                const decay = 0.95
+                const minV = 0.02
+                if (Math.abs(vx) > minV) {
+                  const step = () => {
+                    pressAnim.current.nextLeft = slider.scrollLeft - vx * 16
+                    slider.scrollLeft = pressAnim.current.nextLeft
+                    vx *= decay
+                    if (Math.abs(vx) > minV && !pressAnim.current.dragging) {
+                      pressAnim.current.inertId = requestAnimationFrame(step)
+                    } else {
+                      pressAnim.current.inertId = 0
+                    }
                   }
+                  pressAnim.current.inertId = requestAnimationFrame(step)
+                }
+              }}
+              onPointerLeave={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
+              onPointerCancel={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
+              onClickCapture={(e) => {
+                if (didDragPress.current) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  didDragPress.current = false
+                }
+              }}
+            >
+              {pressReleases.concat(pressReleases).map((item, idx) => (
+                <LinkCard item={item} type="press" key={`press-${idx}-${item.frontmatter?.slug || idx}`} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.dots}>
+            {pressReleases.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  const slider = pressSliderRef.current
+                  if (!slider || !pressItemStride) return
+                  const stride = pressItemStride
+                  const setWidth = stride * pressReleases.length
+                  const targetLeft = setWidth + stride * idx
+                  slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                  pressGoTo(idx)
                 }}
-              ></div>
+                className={`${styles.dot} ${pressCurrent === idx ? styles.dotActive : ''}`}
+                aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+              />
             ))}
           </div>
         </div>
       </div>
 
       {/* Section 5: CTA */}
-      <div style={{ padding: "2vw 2vw" }}>
-        <div style={{ maxWidth: "90vw", margin: "0 auto", width: "90vw" }}>
-          <div style={{ padding: "80px 40px 80px 40px", paddingRight: "40px", border: "none", borderRadius: "16px", backgroundColor: "#FDFDFD", textAlign: "left", backgroundImage: "url(/images/bg_contact.png)", backgroundSize: "120% auto", backgroundPosition: "right center", backgroundRepeat: "no-repeat", minHeight: "400px", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
-            <div style={{ maxWidth: "50%" }}>
-              <h2 style={{ textAlign: "left", marginBottom: "0px", fontSize: "48px", fontWeight: "600", color: "#17181B", lineHeight: "0.2", whiteSpace: "nowrap" }}>지능형 운영의 첫걸음</h2>
-              <h2 style={{ textAlign: "left", marginBottom: "10px", fontSize: "48px", fontWeight: "600", color: "#177D3C", lineHeight: "0.9", whiteSpace: "nowrap" }}>JH 솔루션이 함께 합니다</h2>
-              <p style={{ textAlign: "left", marginTop: "20px", marginBottom: "40px", fontSize: "24px", fontWeight: "500", color: "#757B82", lineHeight: "1.5", whiteSpace: "nowrap" }}>검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다</p>
-              <Link to="/contact" style={{ color: "white", backgroundColor: "#177D3C", padding: "12px 30px", borderRadius: "4px", textDecoration: "none", fontWeight: "bold", fontSize: "16px", display: "inline-block", transition: "all 0.3s ease" }} onMouseEnter={(e) => e.target.style.backgroundColor = "#135f30"} onMouseLeave={(e) => e.target.style.backgroundColor = "#177D3C"}>
-                문의하기
-              </Link>
-            </div>
+      <section
+        className={styles.ctaSection}
+        style={{
+          backgroundImage: "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-image.png)",
+          backgroundRepeat: "no-repeat, no-repeat",
+          backgroundPosition: "left top, right bottom",
+          backgroundSize: "cover, auto 90%",
+          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)"
+        }}
+      >
+        <div className={styles.ctaInner}>
+          <div className={styles.ctaContent}>
+            <h1 className={styles.ctaTitle}>
+              지능형 운영의 첫걸음
+              <br />
+              <span className={styles.ctaEmphasis}>
+              제이에이치솔루션이 함께합니다.
+            </span>
+            </h1>
+
+            <p className={styles.ctaDescription}>
+              검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다.
+            </p>
           </div>
+
+          <button className={styles.ctaButton}>
+            <span>문의하기</span>
+
+            <span className={styles.ctaButtonIcon}>
+              <img
+                width={20}
+                height={20}
+                src={OpenIconWhite}
+                alt={'Read More'}
+              />
+            </span>
+          </button>
+        </div>
+      </section>
+
+    </Layout>
+  )
+}
+
+function LinkCard({ item, type = 'solutions' }) {
+  const isPress = type === 'press'
+  // Map props based on card type
+  const linkHref = isPress ? `/press/${item.frontmatter.slug}` : item.link
+  const imgSrc = isPress ? (item.frontmatter.featureImage || '/images/none_feature.png') : item.img
+  const imgAlt = isPress ? item.frontmatter.title : item.alt
+  const title = isPress ? item.frontmatter.title : item.title
+  const dateText = isPress
+    ? new Date(item.frontmatter.date)
+        .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+        .replace(/\. /g, '.')
+        .replace(/\.$/, '')
+    : null
+
+  return (
+    <Link
+      to={linkHref}
+      className={styles.solutionLink}
+    >
+      <div className={styles.linkCardContainer}>
+        <div className={styles.linkCardHeader}>
+          {isPress ? (
+            <>
+              <h3 className={styles.linkCardTitle}>{title}</h3>
+              <p className={styles.linkCardDescription}>{dateText}</p>
+            </>
+          ) : (
+            <>
+              <h3 className={styles.linkCardTitle}>{title}</h3>
+              <p className={styles.linkCardDescription}>{item.desc}</p>
+            </>
+          )}
+        </div>
+
+        <div className={styles.linkCardImgWrap}>
+          <div className={styles.topGradient} />
+          <img
+            src={imgSrc}
+            alt={imgAlt}
+            className={styles.cardImg}
+          />
         </div>
       </div>
-    </main>
-
-  </Layout>
+    </Link>
   )
 }
 
