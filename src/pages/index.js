@@ -239,34 +239,34 @@ const IndexPage = ({ data }) => {
         <div
           className={styles.heroTrack}
           style={{
-            transform: `translateX(-${current * 100}%)`
+            transform: `translateX(-${current * 100}%)`,
           }}
         >
           {cards.map((card, idx) => {
-            const isCurrent = current === idx;
+            const isCurrent = current === idx
             return (
               <div
                 key={idx}
-                className={`${styles.heroSlide} ${!isCurrent ? styles.heroSlideHidden : ''}`}
+                className={`${styles.heroSlide} ${
+                  !isCurrent ? styles.heroSlideHidden : ""
+                }`}
                 aria-hidden={!isCurrent}
               >
-                <div className={styles.heroCard} style={{ backgroundImage: `url('${card.image}')` }}>
+                <div
+                  className={styles.heroCard}
+                  style={{ backgroundImage: `url('${card.image}')` }}
+                >
                   <h3 className={styles.heroKicker}>{card.title}</h3>
                   <p className={styles.heroTitle1}>{card.subtitle1}</p>
                   <p className={styles.heroTitle2}>{card.subtitle2}</p>
 
-                  <Link
-                    to={card.link}
-                    target="_self"
-                  >
+                  <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
-                      <span>
-                        자세히 보기
-                      </span>
+                      <span>자세히 보기</span>
                       <div className={styles.heroCtaIcon}>
                         <img
                           src={ReadMoreIcon}
-                          alt={'Read More'}
+                          alt={"Read More"}
                           width={20}
                           height={20}
                         />
@@ -275,7 +275,7 @@ const IndexPage = ({ data }) => {
                   </Link>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </div>
@@ -284,11 +284,17 @@ const IndexPage = ({ data }) => {
       <div className={styles.navControls}>
         {/* 이전 화살표 버튼 */}
         <button
-          onClick={() => setCurrent((prev) => (prev - 1 + cards.length) % cards.length)}
+          onClick={() =>
+            setCurrent(prev => (prev - 1 + cards.length) % cards.length)
+          }
           className={styles.navBtn}
           aria-label="이전 슬라이드"
         >
-          <img src={arrowLeft} alt={'Previous Slide'} className={styles.navIcon} />
+          <img
+            src={arrowLeft}
+            alt={"Previous Slide"}
+            className={styles.navIcon}
+          />
         </button>
 
         {/* ex. 1/3 */}
@@ -304,11 +310,11 @@ const IndexPage = ({ data }) => {
 
         {/* 다음 화살표 버튼 */}
         <button
-          onClick={() => setCurrent((prev) => (prev + 1) % cards.length)}
+          onClick={() => setCurrent(prev => (prev + 1) % cards.length)}
           className={styles.navBtn}
           aria-label="다음 슬라이드"
         >
-          <img src={arrowRight} alt={'Next Slide'} className={styles.navIcon} />
+          <img src={arrowRight} alt={"Next Slide"} className={styles.navIcon} />
         </button>
       </div>
 
@@ -322,7 +328,12 @@ const IndexPage = ({ data }) => {
             Net-Zero와 최적화를 향한 초거대 AI의 여정
           </p>
           <p className={styles.aboutP2}>
-            <span className={styles.textWhite}>J</span>ourney of <span className={styles.textWhite}>H</span>yper-scale + <span className={styles.textWhite}>AI</span> + <span className={styles.textWhite}>O</span>ptimizatio<span className={styles.textWhite}>n</span> + <span className={styles.textWhite}>N</span>et-zero
+            <span className={styles.textWhite}>J</span>ourney of{" "}
+            <span className={styles.textWhite}>H</span>yper-scale +{" "}
+            <span className={styles.textWhite}>AI</span> +{" "}
+            <span className={styles.textWhite}>O</span>ptimizatio
+            <span className={styles.textWhite}>n</span> +{" "}
+            <span className={styles.textWhite}>N</span>et-zero
           </p>
         </div>
       </div>
@@ -336,7 +347,8 @@ const IndexPage = ({ data }) => {
             <span>JH솔루션의 통합플랫폼을 경험하세요</span>
           </h2>
           <p className={styles.description}>
-            에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의 운영환경을 자동 설계합니다.
+            에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의
+            운영환경을 자동 설계합니다.
           </p>
         </div>
 
@@ -345,15 +357,16 @@ const IndexPage = ({ data }) => {
             ref={solutionsSliderRef}
             className={`${styles.solutionsSlider} slider-hide-scrollbar`}
             style={{ paddingLeft: solutionsPadOn ? `${solutionsGap}px` : 0 }}
-            onPointerDown={(e) => {
+            onPointerDown={e => {
               // Let touch use native smooth scrolling with momentum
-              if (e.pointerType === 'touch') return
+              if (e.pointerType === "touch") return
               const slider = solutionsSliderRef.current
               if (!slider) return
               hasInteractedSolutions.current = true
               if (solutionsPadOn) setSolutionsPadOn(false)
               // cancel inertia if running
-              if (solAnim.current.inertId) cancelAnimationFrame(solAnim.current.inertId)
+              if (solAnim.current.inertId)
+                cancelAnimationFrame(solAnim.current.inertId)
               solAnim.current.inertId = 0
               solDrag.current.isDown = true
               solAnim.current.dragging = true
@@ -362,13 +375,16 @@ const IndexPage = ({ data }) => {
               solAnim.current.lastX = e.clientX
               solAnim.current.lastT = performance.now()
               solAnim.current.vx = 0
-              try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+              try {
+                slider.setPointerCapture &&
+                  slider.setPointerCapture(e.pointerId)
+              } catch {}
               const prev = slider.style.scrollBehavior
               slider.dataset.prevScrollBehavior = prev
-              slider.style.scrollBehavior = 'auto'
+              slider.style.scrollBehavior = "auto"
             }}
-            onPointerMove={(e) => {
-              if (e.pointerType === 'touch') return
+            onPointerMove={e => {
+              if (e.pointerType === "touch") return
               const slider = solutionsSliderRef.current
               if (!slider) return
               if (!solDrag.current.isDown) return
@@ -392,13 +408,16 @@ const IndexPage = ({ data }) => {
               solAnim.current.lastX = x
               solAnim.current.lastT = t
             }}
-            onPointerUp={(e) => {
-              if (e.pointerType === 'touch') return
+            onPointerUp={e => {
+              if (e.pointerType === "touch") return
               const slider = solutionsSliderRef.current
               if (!slider) return
               solDrag.current.isDown = false
               solAnim.current.dragging = false
-              try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+              try {
+                slider.releasePointerCapture &&
+                  slider.releasePointerCapture(e.pointerId)
+              } catch {}
               const prev = slider.dataset.prevScrollBehavior
               if (prev !== undefined) slider.style.scrollBehavior = prev
               // inertia on release for mouse/pen
@@ -420,9 +439,15 @@ const IndexPage = ({ data }) => {
                 solAnim.current.inertId = requestAnimationFrame(step)
               }
             }}
-            onPointerLeave={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
-            onPointerCancel={() => { solDrag.current.isDown = false; solAnim.current.dragging = false }}
-            onClickCapture={(e) => {
+            onPointerLeave={() => {
+              solDrag.current.isDown = false
+              solAnim.current.dragging = false
+            }}
+            onPointerCancel={() => {
+              solDrag.current.isDown = false
+              solAnim.current.dragging = false
+            }}
+            onClickCapture={e => {
               if (didDragSolutions.current) {
                 e.preventDefault()
                 e.stopPropagation()
@@ -430,11 +455,9 @@ const IndexPage = ({ data }) => {
               }
             }}
           >
-            {solutions
-              .concat(solutions)
-              .map((item) => (
-                <LinkCard item={item} key={item.id} />
-              ))}
+            {solutions.concat(solutions).map((item, idx) => (
+              <LinkCard item={item} key={`solutions-${idx}-${item.id}`} />
+            ))}
           </div>
         </div>
 
@@ -449,10 +472,12 @@ const IndexPage = ({ data }) => {
                 const stride = solutionsItemStride
                 const setWidth = stride * solutions.length
                 const targetLeft = setWidth + stride * idx
-                slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                slider.scrollTo({ left: targetLeft, behavior: "smooth" })
                 solutionsGoTo(idx)
               }}
-              className={`${styles.dot} ${solutionsCurrent === idx ? styles.dotActive : ''}`}
+              className={`${styles.dot} ${
+                solutionsCurrent === idx ? styles.dotActive : ""
+              }`}
               aria-label={`${idx + 1}번 슬라이드로 이동`}
             />
           ))}
@@ -469,7 +494,8 @@ const IndexPage = ({ data }) => {
               <span>JH솔루션의 새로운 소식을 만나보세요</span>
             </h2>
             <p className={styles.description}>
-              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이 창출하는 가치를 생생하게 전달합니다
+              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이
+              창출하는 가치를 생생하게 전달합니다
             </p>
           </div>
           <div className={styles.sliderWrap}>
@@ -477,15 +503,16 @@ const IndexPage = ({ data }) => {
               ref={pressSliderRef}
               className={`${styles.solutionsSlider} slider-hide-scrollbar`}
               style={{ paddingLeft: pressPadOn ? `${pressGap}px` : 0 }}
-              onPointerDown={(e) => {
+              onPointerDown={e => {
                 // Let touch use native smooth scrolling with momentum
-                if (e.pointerType === 'touch') return
+                if (e.pointerType === "touch") return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 hasInteractedPress.current = true
                 if (pressPadOn) setPressPadOn(false)
                 // cancel inertia if running
-                if (pressAnim.current.inertId) cancelAnimationFrame(pressAnim.current.inertId)
+                if (pressAnim.current.inertId)
+                  cancelAnimationFrame(pressAnim.current.inertId)
                 pressAnim.current.inertId = 0
                 pressDrag.current.isDown = true
                 pressAnim.current.dragging = true
@@ -494,13 +521,16 @@ const IndexPage = ({ data }) => {
                 pressAnim.current.lastX = e.clientX
                 pressAnim.current.lastT = performance.now()
                 pressAnim.current.vx = 0
-                try { slider.setPointerCapture && slider.setPointerCapture(e.pointerId) } catch {}
+                try {
+                  slider.setPointerCapture &&
+                    slider.setPointerCapture(e.pointerId)
+                } catch {}
                 const prev = slider.style.scrollBehavior
                 slider.dataset.prevScrollBehavior = prev
-                slider.style.scrollBehavior = 'auto'
+                slider.style.scrollBehavior = "auto"
               }}
-              onPointerMove={(e) => {
-                if (e.pointerType === 'touch') return
+              onPointerMove={e => {
+                if (e.pointerType === "touch") return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 if (!pressDrag.current.isDown) return
@@ -523,13 +553,16 @@ const IndexPage = ({ data }) => {
                 pressAnim.current.lastX = x
                 pressAnim.current.lastT = t
               }}
-              onPointerUp={(e) => {
-                if (e.pointerType === 'touch') return
+              onPointerUp={e => {
+                if (e.pointerType === "touch") return
                 const slider = pressSliderRef.current
                 if (!slider) return
                 pressDrag.current.isDown = false
                 pressAnim.current.dragging = false
-                try { slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId) } catch {}
+                try {
+                  slider.releasePointerCapture &&
+                    slider.releasePointerCapture(e.pointerId)
+                } catch {}
                 const prev = slider.dataset.prevScrollBehavior
                 if (prev !== undefined) slider.style.scrollBehavior = prev
                 // inertia on release for mouse/pen
@@ -550,9 +583,15 @@ const IndexPage = ({ data }) => {
                   pressAnim.current.inertId = requestAnimationFrame(step)
                 }
               }}
-              onPointerLeave={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
-              onPointerCancel={() => { pressDrag.current.isDown = false; pressAnim.current.dragging = false }}
-              onClickCapture={(e) => {
+              onPointerLeave={() => {
+                pressDrag.current.isDown = false
+                pressAnim.current.dragging = false
+              }}
+              onPointerCancel={() => {
+                pressDrag.current.isDown = false
+                pressAnim.current.dragging = false
+              }}
+              onClickCapture={e => {
                 if (didDragPress.current) {
                   e.preventDefault()
                   e.stopPropagation()
@@ -561,7 +600,11 @@ const IndexPage = ({ data }) => {
               }}
             >
               {pressReleases.concat(pressReleases).map((item, idx) => (
-                <LinkCard item={item} type="press" key={`press-${idx}-${item.frontmatter?.slug || idx}`} />
+                <LinkCard
+                  item={item}
+                  type="press"
+                  key={`press-${idx}-${item.frontmatter?.slug || idx}`}
+                />
               ))}
             </div>
           </div>
@@ -575,10 +618,12 @@ const IndexPage = ({ data }) => {
                   const stride = pressItemStride
                   const setWidth = stride * pressReleases.length
                   const targetLeft = setWidth + stride * idx
-                  slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
+                  slider.scrollTo({ left: targetLeft, behavior: "smooth" })
                   pressGoTo(idx)
                 }}
-                className={`${styles.dot} ${pressCurrent === idx ? styles.dotActive : ''}`}
+                className={`${styles.dot} ${
+                  pressCurrent === idx ? styles.dotActive : ""
+                }`}
                 aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
               />
             ))}
@@ -590,11 +635,12 @@ const IndexPage = ({ data }) => {
       <section
         className={styles.ctaSection}
         style={{
-          backgroundImage: "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-image.png)",
+          backgroundImage:
+            "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-image.png)",
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",
-          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)"
+          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)",
         }}
       >
         <div className={styles.ctaInner}>
@@ -603,12 +649,13 @@ const IndexPage = ({ data }) => {
               지능형 운영의 첫걸음
               <br />
               <span className={styles.ctaEmphasis}>
-              제이에이치솔루션이 함께합니다.
-            </span>
+                제이에이치솔루션이 함께합니다.
+              </span>
             </h1>
 
             <p className={styles.ctaDescription}>
-              검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의 솔루션을 제안합니다.
+              검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의
+              솔루션을 제안합니다.
             </p>
           </div>
 
@@ -620,13 +667,12 @@ const IndexPage = ({ data }) => {
                 width={20}
                 height={20}
                 src={OpenIconWhite}
-                alt={'Read More'}
+                alt={"Read More"}
               />
             </span>
           </button>
         </div>
       </section>
-
     </Layout>
   )
 }

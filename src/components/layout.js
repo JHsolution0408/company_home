@@ -14,7 +14,7 @@ import SubHeader from "./subheader"
 import "../styles/globals.css"
 import "./layout.css"
 
-const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage }) => {
+const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage, subHeaderChildren }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -49,7 +49,9 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
             title={subHeaderTitle}
             description={subHeaderDescription}
             bgImage={subHeaderBgImage}
-          />
+          >
+            {subHeaderChildren}
+          </SubHeader>
         )}
       />
 

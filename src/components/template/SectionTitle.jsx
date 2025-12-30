@@ -1,12 +1,19 @@
 import React from 'react';
 import * as styles from './SectionTitle.module.css';
 
-export default function SectionTitle({ title, highlightedTitle, description }) {
+export default function SectionTitle({ title, highlightedTitle, description, sectionLabel }) {
   return (
     <div className={styles.titleContainer}>
-      <h2 className={styles.title}>
-        {title}
-      </h2>
+      <div className={styles.headingWrap}>
+        {sectionLabel && (
+          <p className={styles.sectionLabel} aria-label="section label">
+            {sectionLabel}
+          </p>
+        )}
+        <h2 className={styles.title}>
+          {title}
+        </h2>
+      </div>
       {description && (
         <p className={styles.description}>
           {description}

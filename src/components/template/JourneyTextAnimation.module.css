@@ -1,0 +1,91 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 16px 40px;
+}
+
+
+.journeyCopylightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.journeyCopylightContainer h1 {
+  color: #FDFDFD;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.journeyCopylightContainer h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  background: linear-gradient(90deg, #66E695 40.47%, #177D3C 59.58%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.journeyCopylightContainer h3 {
+  margin-bottom: 80px;
+  color: #FDFDFD;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.copylightContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ----- JourneyTextAnimation scoped styles (migrated from inline <style>) ----- */
+.JTAWrapper { display: grid; grid-template-columns: auto 0fr; }
+.JTAText { white-space: nowrap; font-size: 56px; font-weight: 400; line-height: 1; letter-spacing: -0.5px; }
+.JTATextHighlight { color: #66E695; font-weight: 500; padding-right: 2px; z-index: 1; animation: JTATextGlow 2s ease forwards; }
+.JTATextFade { min-width: 0; opacity: 0; color: #ADB2B8; }
+
+.JTAAnimated { animation: JTATextReveal 1.5s .5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.JTAFadein   { animation: JTAOpacityFade 1s 2s ease forwards; }
+
+@keyframes JTATextReveal {
+  0% { grid-template-columns: auto 0fr; }
+  100% { grid-template-columns: auto 1fr; }
+}
+@keyframes JTAOpacityFade { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes JTATextGlow {
+  0% {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #0ff,
+      0 0 80px #0ff,
+      0 0 90px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff;
+  }
+  100% { text-shadow: none; }
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .JTAText { font-size: 36px; }
+}
+@media (max-width: 640px) {
+  .JTAText { font-size: 28px; }
+}

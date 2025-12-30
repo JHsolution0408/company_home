@@ -1,8 +1,9 @@
-import React from 'react';
-import * as styles from '../../pages/company/vision-mission.module.css';
+import React from "react"
+import * as styles from "../../pages/company/vision-mission.module.css"
 import SectionTitle from "./SectionTitle"
 import ImageCard from "./ImageCard"
 import DescriptionCard from "./DescriptionCard"
+import PlusIconWithFlex from "./PlusIconWithFlex"
 
 export default function PartnersContent() {
   return (
@@ -80,24 +81,13 @@ export default function PartnersContent() {
             imageSrc={"/images/partners/network_icon3.png"}
             imageAlt={"학술/연구 파트너"}
             title={"학술/연구 파트너"}
-            description={'AI-CFD 최신 이론과 기술 검증을 위해 국내외 대학 및 연구 기관과 협력하고 있습니다.'}
+            description={
+              "AI-CFD 최신 이론과 기술 검증을 위해 국내외 대학 및 연구 기관과 협력하고 있습니다."
+            }
           />
         </div>
       </section>
-
     </div>
   )
 }
 
-function PlusIconWithFlex () {
-  return (
-    <div className={styles.plusImageContainer}>
-      <img
-        src="/images/about/mission_plus.png"
-        width={'40px'}
-        height={'40px'}
-        alt="플러스"
-      />
-    </div>
-  )
-}
