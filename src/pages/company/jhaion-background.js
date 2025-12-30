@@ -1,11 +1,12 @@
 import React from "react";
 import Layout from "../../components/layout";
 import JourneyTextAnimation from "../../components/template/JourneyTextAnimation";
-import SectionTitle from "../../components/template/SectionTitle"
-import DescriptionCard from "../../components/template/DescriptionCard"
-import PlusIconWithFlex from "../../components/template/PlusIconWithFlex"
-import * as styles from "./vision-mission.module.css"
-import * as bgStyles from "./jhaion-background.module.css"
+import SectionTitle from "../../components/template/SectionTitle";
+import DescriptionCard from "../../components/template/DescriptionCard";
+import PlusIconWithFlex from "../../components/template/PlusIconWithFlex";
+import CircleArrowRightIconWithFlex from "../../components/template/CircleRightIconWithFlex";
+import * as styles from "./vision-mission.module.css";
+import * as bgStyles from "./jhaion-background.module.css";
 
 
 // 그라데이션 애니메이션 스타일 추가
@@ -44,6 +45,52 @@ export default function JhaionBackgroundNew() {
     >
       {/* Intro Section 아래 본문 */}
       <style>{gradientKeyframes}</style>
+
+      {/* AI: “기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.” 섹션 디자인 변경사항 반영 */}
+      <section className={styles.container}>
+        <SectionTitle
+          sectionLabel={'문제 인식 (The Challenge)'}
+          title={'“기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.”'}
+          description={`
+            과거의 에너지 관리는 경험에 의존하거나, 단순한 통계 데이터만을 신뢰했습니다.
+            하지만 시시각각 변하는 산업 현장의 변수와 유체 흐름(CFD)을 배제한 데이터 분석은 잦은 오차와 비효율을 낳았습니다. 우리는 생각했습니다. "보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?"
+          `}
+        />
+
+        <div className={styles.flexBox}>
+          {/* Left card: Technical Problem */}
+          <div className={`${styles.valueCard} ${styles.challengeCard} ${styles.challengeBg1}`}>
+            <div className={styles.valueHeader}>
+              <span className={styles.valueLabel}>Technical Problem</span>
+            </div>
+            <div>
+              <h3 className={styles.valueTitle}>
+                기존 기술의 명확한 한계 직면
+              </h3>
+              <p className={styles.valueDescription}>
+                기존 CFD 시뮬레이션은 정확했지만, 복잡한 시스템의 최적화와 대규모 자동화에는 시간 및 비용적 제약이 커서 실무적인 활용이 어려움이 있었습니다.
+              </p>
+            </div>
+          </div>
+
+          <CircleArrowRightIconWithFlex />
+
+          {/* Right card: New Solution */}
+          <div className={`${styles.valueCard} ${styles.challengeCard} ${styles.challengeBg2}`}>
+            <div className={styles.valueHeader}>
+              <span className={styles.valueLabel}>New Solution</span>
+            </div>
+            <div>
+              <h3 className={styles.valueTitle}>
+                초거대 AI 기반의 새로운 해법 확인
+              </h3>
+              <p className={styles.valueDescription}>
+                복잡하고 방대한 비선형 데이터를 처리하고 예측하기 위해, 일반 AI를 뛰어넘는 HYPER-SCALE AI 도입이 필수적인 해결책이었습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hyper-scale AI와 공학(Engineering)의 필연적 만남 */}
       <section className={styles.container}>
