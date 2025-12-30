@@ -37,12 +37,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const templateMap = {
     press: require.resolve("./src/templates/press-detail.js"),
     project: require.resolve("./src/templates/project-detail.js"),
+    projects: require.resolve("./src/templates/project-detail.js"),
     default: require.resolve("./src/templates/markdown-page.js"),
   }
 
   result.data.allMarkdownRemark.nodes.forEach((node) => {
     const dir = node.parent?.relativeDirectory || ""
-    const top = dir.split("/")[0] || ""
+    const top = (dir.split("/")[0] || "").toLowerCase()
     const basePath = top ? `/${top}` : ""
     const slug = node.frontmatter.slug || node.parent?.name
     const path = `${basePath}/${slug}`

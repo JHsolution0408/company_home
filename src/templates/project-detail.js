@@ -10,20 +10,46 @@ const ProjectDetailBody = ({ html }) => {
   if (!html) {
     return <p style={{ color: "#c00" }}>콘텐츠를 불러오는 중 문제가 발생했습니다.</p>
   }
-  // 프로젝트 문서에서 자주 쓰는 섹션 제목을 강조
-  const transformed = String(html)
-    .replace(/(개요\s*\(\s*Challenge\s*\))/g, '<span style="color:#177D3C;font-size:20px;font-weight:700;display:inline-block;">$1</span>')
-    .replace(/(과제\s*&\s*범위\s*\(\s*Project\s*\))/g, '<span style="color:#177D3C;font-size:20px;font-weight:700;display:inline-block;">$1</span>')
-    .replace(/(성과\s*\(\s*Result\s*\))/g, '<span style="color:#177D3C;font-size:20px;font-weight:700;display:inline-block;">$1</span>')
-    // 이미지에 둥근 모서리 적용
-    .replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')
-
+  // 이미지에 둥근 모서리 적용만 공통 처리
+  const transformed = String(html).replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')
   return <div dangerouslySetInnerHTML={{ __html: transformed }} />
+}
+
+const Badge = ({ children }) => (
+  <span
+    style={{
+      display: "inline-block",
+      padding: "4px 10px",
+      borderRadius: 999,
+      background: "#EEF7F0",
+      color: "#177D3C",
+      fontSize: 12,
+      fontWeight: 600,
+      marginRight: 8,
+      marginBottom: 8,
+    }}
+  >
+    {children}
+  </span>
+)
+
+const Section = ({ title, items }) => {
+  if (!Array.isArray(items) || items.length === 0) return null
+  return (
+    <div style={{ marginTop: 24 }}>
+      <h3 style={{ color: "#177D3C", fontSize: 20, fontWeight: 700 }}>{title}</h3>
+      <ul style={{ marginTop: 8, paddingLeft: 18 }}>
+        {items.map((it, idx) => (
+          <li key={idx} style={{ lineHeight: 1.7 }}>{it}</li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 const ProjectDetailPage = ({ data }) => {
   const node = data.markdownRemark
-  const { title, description, date, featureImage } = node.frontmatter
+  const { title, description, date, featureImage, serviceName, tags, overview, scope, results } = node.frontmatter
 
   return (
     <Layout
@@ -33,19 +59,36 @@ const ProjectDetailPage = ({ data }) => {
       subHeaderBgImage="/images/bg_vision.png"
     >
       <section className={styles.container}>
-        {/* TODO: 테스트중, 추후 제거 필요*/}
-        <h1>프로젝트 상세 페이지입니다.</h1>
-
-        <h1>{title}</h1>
-        {date && <p style={{ color: "#9AA0A6", marginTop: -8 }}>{date}</p>}
+        {/* 헤더 영역 */}
+        <h1 style={{ marginBottom: 4 }}>{title}</h1>
+        {date && <p style={{ color: "#9AA0A6", marginTop: -2 }}>{date}</p>}
         <hr />
+
+        {/* 메타 정보: 서비스명, 태그 */}
+        {(serviceName || (tags && tags.length)) && (
+          <div style={{ margin: "12px 0 8px" }}>
+            {serviceName && (
+              <div style={{ marginBottom: 8 }}>
+                <span style={{ color: "#757B82", fontWeight: 600, marginRight: 8 }}>서비스명</span>
+                <span style={{ fontWeight: 600 }}>{serviceName}</span>
+              </div>
+            )}
+            {Array.isArray(tags) && tags.length > 0 && (
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
+                {tags.map((t) => (
+                  <Badge key={t}>{t}</Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {featureImage && (
           <img
             src={featureImage}
             alt={title}
             style={{
-              margin: "0 auto 24px",
+              margin: "12px auto 24px",
               width: "100%",
               maxWidth: "720px",
               height: "auto",
@@ -55,6 +98,12 @@ const ProjectDetailPage = ({ data }) => {
           />
         )}
 
+        {/* 구조화된 섹션: 개요 / 과제 & 범위 / 성과 */}
+        <Section title="개요 (Challenge)" items={overview} />
+        <Section title="과제 & 범위 (Project)" items={scope} />
+        <Section title="성과 (Result)" items={results} />
+
+        {/* 추가 본문(Markdown) */}
         <ProjectDetailBody html={node.html} />
       </section>
     </Layout>
@@ -71,6 +120,11 @@ export const query = graphql`
         date
         description
         featureImage
+        serviceName
+        tags
+        overview
+        scope
+        results
       }
     }
   }
