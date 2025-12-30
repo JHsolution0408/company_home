@@ -22,13 +22,9 @@ const PressDetailPage = ({ data }) => {
       type="dark"
       subHeaderTitle="보도자료"
       subHeaderDescription={description || "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다"}
-      // static/ 밑의 파일은 /images/... 로 접근
       subHeaderBgImage="/images/banners/bg_press_detail.png"
     >
       <section className={styles.container}>
-        {/* TODO: 테스트중, 추후 제거 필요*/}
-        <h1>보도자료 상세 페이지입니다.</h1>
-
         <h1>{title}</h1>
         {date && <p style={{ color: "#9AA0A6", marginTop: -8 }}>{date}</p>}
         <hr />
