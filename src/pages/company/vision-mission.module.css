@@ -25,19 +25,6 @@ section {
 .flexBox {
   display: flex;
   gap: 40px;
-  align-items: stretch; /* ensure equal height across the row */
-}
-
-/* Equal width cards inside the challenge row */
-.flexBox .valueCard {
-  flex: 1 1 0; /* grow evenly, allow shrinking, base 0 for equal distribution */
-  min-width: 0; /* allow flexbox to shrink content without overflow */
-}
-
-/* Keep the arrow icon from taking width; center it vertically */
-.flexBox > *:not(.valueCard) {
-  flex: 0 0 auto;
-  align-self: center;
 }
 
 .flexBoxWithPlus {
@@ -67,16 +54,6 @@ section {
   border-radius: 20px;
   color: var(--vm-text);
 }
-
-/* Challenge section overrides */
-.challengeCard {
-  background-color: #ffffff; /* cleaner look for image overlay */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.challengeBg1 { background-image: url('/images/about/jhaionbackgrounds/challenge_bg1.png'); }
-.challengeBg2 { background-image: url('/images/about/jhaionbackgrounds/challenge_bg2.png'); }
 
 /* header row: label only; image is positioned absolutely */
 .valueHeader {
