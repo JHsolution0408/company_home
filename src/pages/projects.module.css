@@ -1,0 +1,173 @@
+.menuHeader {
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.menuHeader h1 {
+  margin: 0;
+  color: #FDFDFD;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.menuHeader p {
+  color: rgba(253, 253, 253, 0.60);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.projectContainer {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 60px 80px 60px;
+}
+
+.projectTitle {
+  margin-bottom: 20px;
+  color: #17181B;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.projectContainer h2 {
+  margin-bottom: 50px;
+  color: #2E3236;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+.projectTitle span {
+  color: #177D3C;
+}
+
+.brForMobile {
+  display: none;
+}
+
+.projectThumbnail {
+  width: 320px;
+  height: 180px;
+  border-radius: 20px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  border-top: 1px solid #ccc;
+  padding: 20px;
+}
+
+.projectLink {
+  text-decoration: none;
+}
+.projectLink:visited {
+  color: inherit;
+}
+
+.projectDetail {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.projectDetail h3 {
+  color: #17181B;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.projectDetail h4 {
+  margin-bottom: 12px;
+}
+
+.projectDate {
+  color: #757B82;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+/* Tags */
+.tags {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.tagIndustry {
+  background: #C4F0D4;
+  color: #177D3C;
+}
+
+.tagInfra {
+  background: #C2CEEA;
+  color: #3755A1;
+}
+
+.tagGov {
+  background: #F8F0E0;
+  color: #6B5119;
+}
+
+@media (max-width: 1024px) {
+  .projectContainer {
+    padding: 40px;
+  }
+
+  .brForMobile {
+    display: block;
+  }
+
+  .projectThumbnail {
+    width: 240px;
+    height: 135px;
+  }
+
+  .projectDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

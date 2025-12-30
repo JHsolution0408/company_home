@@ -1,402 +1,747 @@
-/* 반응형 홈페이지 스타일 */
+/* Home page styles (CSS Modules) */
 
-/* ========== HEADER (GNB) ========== */
-.header {
-  background-color: #003d99;
-  color: white;
-  padding: 40px 20px;
-}
-
-.headerContainer {
-  max-width: 1200px;
+.headerInner {
+  max-width: 1800px;
   margin: 0 auto;
 }
-
-.headerTitle {
-  font-size: 28px;
-  margin-bottom: 30px;
-  text-align: center;
+.headerContent {
+  background-color: #ffffff;
+  color: #333;
+  padding: 1px 2vw;
 }
 
-.gnbMenu {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+.heroWrapper {
+  /* Viewport gutters 60px on both sides; slide width = wrapper width */
+  height: 600px;
+  position: relative;
+  margin: 0 60px;
+  background: #fff;
+  overflow: visible; /* allow current slide's shadow to render outside */
 }
 
-.gnbMenuItem {
-  padding: 20px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.gnbMenuItem:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.gnbMenuItemTitle {
-  margin-bottom: 10px;
-}
-
-.gnbMenuItemDesc {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* ========== HERO SECTION ========== */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background-color: #f0f8ff;
-}
-
-.heroContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.heroTitle {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
-
-.heroDesc {
-  font-size: 20px;
-  color: #666;
-  margin-bottom: 40px;
-}
-
-/* ========== MAIN SERVICES SECTION ========== */
-.servicesSection {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-
-.servicesTitle {
-  text-align: center;
-  margin-bottom: 50px;
-  font-size: 32px;
-}
-
-.servicesGrid {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-bottom: 40px;
-}
-
-.serviceCard {
-  padding: 30px;
-  border: 2px solid #0066cc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.serviceCard:hover {
-  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
-  transform: translateY(-4px);
-}
-
-.serviceCardTitle {
-  color: #0066cc;
-  margin-bottom: 15px;
-}
-
-.serviceCardDesc {
-  color: #666;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.serviceCardLink {
-  color: #0066cc;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.serviceCardLink:hover {
-  color: #0052a3;
-}
-
-/* ========== CTA SECTION ========== */
-.ctaSection {
-  background-color: #f0f8ff;
-  padding: 60px 20px;
-}
-
-.ctaContainer {
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.ctaTitle {
-  margin-bottom: 30px;
-  font-size: 32px;
-}
-
-.ctaDesc {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.ctaButton {
-  color: white;
-  background-color: #0066cc;
-  padding: 15px 40px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.ctaButton:hover {
-  background-color: #0052a3;
-  transform: translateY(-2px);
-}
-
-/* ========== FOOTER ========== */
-.footer {
-  background-color: #003d99;
-  color: white;
-  padding: 40px 20px;
-}
-
-.footerContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footerTable {
+.heroTrack {
+  display: flex;
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 40px;
+  max-width: 1800px;
+  margin: 0 auto; /* center like headerInner */
+  height: 100%;
+  transition: transform 0.5s;
+  overflow: visible; /* allow box-shadows from current slide to show */
 }
 
-.footerRow {
-  display: contents;
-}
-
-.footerCell {
-  padding: 15px;
-}
-
-.footerHeader {
-  color: white;
-  margin-bottom: 15px;
+.heroSlide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
   margin: 0;
 }
 
-.footerInfo {
-  padding: 0;
-  font-size: 13px;
-  color: #ccc;
-  line-height: 1.8;
-  margin: 0;
-}
-
-.footerInfoLabel {
-  color: white;
-}
-
-.footerBrochure {
-  color: white;
-  margin-bottom: 15px;
-}
-
-.footerLink {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footerLink:hover {
-  color: #ccc;
-}
-
-.footerCopyright {
+/* Inner card that actually has the rounded corners, bg image, and shadow */
+.heroCard {
+  position: relative;
+  border-radius: 20px;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   text-align: left;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 0;
-  color: #ccc;
-  font-size: 13px;
+  box-shadow: 2px 4px 20px 0 rgba(49, 78, 152, 0.12);
 }
 
-/* ========== 모바일 반응형 (768px 이하) ========== */
-@media (max-width: 768px) {
-  .header {
-    padding: 30px 15px;
+.heroSlideInner {
+  padding-left: 60px;
+}
+.heroKicker {
+  color: #177D3C;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 500;
+}
+.heroTitle1 {
+  color: #17181B;
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 650;
+  line-height: 1.1;
+  word-break: keep-all;
+  white-space: wrap;
+}
+.heroTitle2 {
+  color: #177D3C;
+  margin-bottom: 30px;
+  font-size: 48px;
+  font-weight: 650;
+  line-height: 1.1;
+  word-break: keep-all;
+  white-space: wrap;
+}
+
+.heroCta {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background-color: #177D3C;
+  height: 48px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.heroCta span {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.heroCtaIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.heroCta:hover {
+  background-color: #125d2d;
+}
+
+.dots {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #D9D9D9;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+.dotActive {
+  width: 32px;
+  background-color: #177D3C;
+}
+
+/* About Company */
+.sectionPad {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto 80px;
+  padding: 0 60px;
+}
+.solutionsHeader {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.aboutBanner {
+  margin-top: 80px;
+  padding: 80px 40px 80px 40px;
+  padding-right: 0;
+  border: 2px solid #1BA74E;
+  border-radius: 16px;
+  background-color: #1BA74E;
+  text-align: left;
+  background-image: linear-gradient(to right, #F6FEF9 75%, transparent), url(/images/about_jhaion.png);
+  background-size: cover, auto 30%;
+  background-position: right center;
+  background-repeat: no-repeat;
+  word-break: keep-all;
+}
+.aboutH3 {
+  margin: 0 0 20px;
+  color: #FDFDFD;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+.aboutP1 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  color: #FDFDFD;
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+.aboutP2 {
+  margin: 0;
+  color: rgba(253, 253, 253, 0.60);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.textWhite {
+  color: #FDFDFD;
+}
+
+/* Solutions Section */
+.linkCardSectionHeader {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.linkCardSectionHeader .title {
+  color: #17181B;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+  white-space: nowrap;
+}
+.linkCardSectionHeader .title span {
+  color: #177D3C;
+}
+.linkCardSectionHeader .description {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #757B82;
+  line-height: 1;
+  white-space: nowrap;
+}
+.sliderWrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.solutionsSlider {
+  display: flex;
+  gap: clamp(12px,2vw,30px);
+  overflow-x: auto;
+  padding-bottom: clamp(8px,2vw,20px);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100vw;
+  max-width: 100vw;
+}
+.solutionLink { text-decoration: none; flex: 0 0 clamp(320px,30vw,480px); min-width: 280px; max-width: 600px; }
+.linkCardContainer {
+  border: 1px solid #E0E4E8;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #FDFDFD;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+  box-shadow: 2px 4px 12px rgba(49, 78, 152, 0.08);
+}
+.linkCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 40px 20px;
+  text-align: left;
+}
+.linkCardTitle {
+  margin: 0;
+  color: #17181B;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+.linkCardDescription {
+  margin-bottom: 0;
+  color: #757B82;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+.linkCardImgWrap {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+}
+.topGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #FDFDFD, rgba(253, 253, 253, 0.00));
+  z-index: var(--z-index-level-100);
+}
+.cardImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Dot Navigation common */
+.dotsWrap { display: flex; justify-content: center; gap: 8px; margin-top: 20px; padding-bottom: 20px; }
+
+/* Press Section */
+.pressSec { width: 100vw; overflow: hidden; background-color: #ffffff; border-top: none; }
+.pressTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
+.pressTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
+.pressLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
+.pressSliderWrap { overflow: hidden; width: 100%; position: relative; }
+.pressSlider { display: flex; justify-content: flex-start; align-items: stretch; gap: clamp(12px,2vw,30px); overflow-x: hidden; overflow-y: hidden; padding-bottom: clamp(8px,2vw,20px); scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; width: 100vw; max-width: 100vw; }
+.pressLink { text-decoration: none; border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
+.pressHeader { padding: 30px 30px 20px 30px; text-align: left; }
+.pressTitle { color: #17181B; margin-bottom: 8px; font-size: 24px; font-weight: 500; line-height: 1.4; }
+.pressSummary { color: #757B82; font-size: 20px; font-weight: 500; line-height: 1.4; margin-bottom: 10px; }
+.pressDate { color: #999; font-size: 12px; margin: 0; }
+.pressImgWrap { position: relative; width: 100%; margin-top: auto; padding: 0; }
+.pressImg { width: 533px; height: 300px; display: block; object-fit: cover; }
+
+
+
+
+
+
+/* Global scrollbar hide for existing class hooks */
+:global(.slider-hide-scrollbar) { -ms-overflow-style: none; scrollbar-width: none; }
+:global(.slider-hide-scrollbar::-webkit-scrollbar) { display: none; }
+
+
+@media (max-width: 1000px) {
+  .heroWrapper {
+    padding: 20px 16px;
+    width: calc(100vw - 32px - 80px);
   }
 
-  .headerTitle {
-    font-size: 22px;
-    margin-bottom: 20px;
+  .heroTrack {
+    margin: 40px;
+    width: calc(100%);
   }
 
-  .gnbMenu {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    max-width: 100%;
+  .heroSlide {
+    margin-left: 0;
   }
 
-  .gnbMenuItem {
-    padding: 15px;
-  }
-
-  .gnbMenuItemTitle {
-    font-size: 14px;
-  }
-
-  .gnbMenuItemDesc {
-    font-size: 12px;
-  }
-
-  .hero {
-    padding: 60px 15px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-    margin-bottom: 15px;
-  }
-
-  .heroDesc {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-
-  .servicesSection {
-    padding: 40px 15px;
-  }
-
-  .servicesTitle {
+  .heroKicker {
     font-size: 24px;
-    margin-bottom: 30px;
   }
 
-  .servicesGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .heroTitle1,
+  .heroTitle2 {
+    font-size: 32px;
+  }
+}
+
+.heroSlideHidden {
+  visibility: hidden; /* keep layout width but hide visually */
+  opacity: 0; /* in case of transitions or cross-browser painting */
+  pointer-events: none; /* prevent clicks on hidden slides */
+}
+
+@media (max-width: 360px) {
+  .heroCard {
+    padding-left: 24px;
+  }
+}
+
+/* Home page styles (CSS Modules) */
+
+.headerInner {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+.headerContent {
+  background-color: #ffffff;
+  color: #333;
+  padding: 1px 2vw;
+}
+
+.heroWrapper {
+  /* Viewport gutters 60px on both sides; slide width = wrapper width */
+  height: 600px;
+  position: relative;
+  margin: 0 60px;
+  background: #fff;
+  overflow: visible; /* allow current slide's shadow to render outside */
+}
+
+.heroTrack {
+  display: flex;
+  width: calc(100vw - 120px);
+  max-width: 1800px;
+  margin: 0 auto; /* center like headerInner */
+  height: 100%;
+  transition: transform 0.5s;
+  overflow: visible; /* allow box-shadows from current slide to show */
+}
+
+.heroSlide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+}
+
+/* Inner card that actually has the rounded corners, bg image, and shadow */
+.heroCard {
+  position: relative;
+  border-radius: 20px;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  box-shadow: 2px 4px 20px 0 rgba(49, 78, 152, 0.12);
+}
+
+.heroSlideInner {
+  padding-left: 60px;
+}
+.heroKicker {
+  color: #177D3C;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 500;
+}
+.heroTitle1 {
+  color: #17181B;
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 650;
+  line-height: 1.1;
+  word-break: keep-all;
+  white-space: wrap;
+}
+.heroTitle2 {
+  color: #177D3C;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 650;
+  line-height: 1.1;
+  word-break: keep-all;
+  white-space: wrap;
+}
+
+.dots {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #D9D9D9;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+.dotActive {
+  width: 32px;
+  background-color: #177D3C;
+}
+
+/* About Company */
+.sectionPad {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.aboutBanner {
+  padding: 80px 40px 80px 40px;
+  padding-right: 0;
+  border: 2px solid #1BA74E;
+  border-radius: 16px;
+  background-color: #1BA74E;
+  text-align: left;
+  background-image: url(/images/about_jhaion.png);
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+/* Solutions Section */
+.solutionsSec {
+  margin-top: 80px;
+  width: 100dvw;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-top: none;
+}
+.solutionsTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
+.solutionsTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
+.solutionsLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
+.solutionsSlider {
+  display: flex;
+  gap: clamp(12px,2vw,30px);
+  overflow-x: auto;
+  padding-bottom: clamp(8px,2vw,20px);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100vw;
+  max-width: 100vw;
+}
+.solutionLink { text-decoration: none; flex: 0 0 clamp(320px,30vw,480px); min-width: 280px; max-width: 600px; }
+.cardImg { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 8px; }
+
+/* Dot Navigation common */
+.dotsWrap { display: flex; justify-content: center; gap: 8px; margin-top: 20px; padding-bottom: 20px; }
+
+/* Press Section */
+.pressSec { width: 100vw; overflow: hidden; background-color: #ffffff; border-top: none; }
+.pressTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
+.pressTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
+.pressLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
+.pressSliderWrap { overflow: hidden; width: 100%; position: relative; }
+.pressSlider { display: flex; justify-content: flex-start; align-items: stretch; gap: clamp(12px,2vw,30px); overflow-x: hidden; overflow-y: hidden; padding-bottom: clamp(8px,2vw,20px); scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; width: 100vw; max-width: 100vw; }
+.pressLink { text-decoration: none; border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
+.pressHeader { padding: 30px 30px 20px 30px; text-align: left; }
+.pressTitle { color: #17181B; margin-bottom: 8px; font-size: 24px; font-weight: 500; line-height: 1.4; }
+.pressSummary { color: #757B82; font-size: 20px; font-weight: 500; line-height: 1.4; margin-bottom: 10px; }
+.pressDate { color: #999; font-size: 12px; margin: 0; }
+
+/* Press slider cards */
+.pressSliderInner { display: flex; gap: clamp(12px,2vw,30px); overflow: visible; }
+.pressCard { border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
+.pressImgWrap { position: relative; width: 100%; margin-top: auto; }
+.pressImg { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 0; }
+
+/* CTA Section extracted from inline styles */
+.ctaSection {
+  border-radius: 40px;
+  max-width: 1920px;
+  margin: 40px auto;
+}
+.ctaInner {
+  margin: 0 auto;
+  padding: 60px;
+}
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.ctaTitle {
+  margin: 0;
+  color: #17181B;
+  font-family: 'NanumGothic', sans-serif;
+  font-size: 40px;
+  font-weight: 700; /* font-medium */
+  letter-spacing: -2px;
+  line-height: 1.4; /* leading-tight */
+}
+.ctaEmphasis {
+  color: #16a34a; /* text-green-600 */
+}
+.ctaDescription {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+  color: #757B82;
+}
+.ctaButton {
+  font-family: 'Pretendard', sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* gap-3 */
+  height: 46px;
+  padding: 8px 15px; /* py-3 px-6 */
+  background-color: #16a34a; /* bg-green-600 */
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  line-height: 140%;
+  letter-spacing: 0;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.ctaButton:hover { background-color: #15803d; /* hover:bg-green-700 */ }
+
+.ctaButtonIcon { width: 20px; height: 20px; }
+
+
+/* Override: ensure aboutBanner background reaches right edge and is clipped by border radius */
+.aboutBanner {
+  overflow: hidden; /* clip inner painting to rounded corners */
+  background-origin: border-box; /* start background from outer border edge */
+  background-clip: border-box; /* paint under border to avoid right-side gap */
+  -webkit-background-clip: border-box;
+  background-image: url(/images/about-jhaion.png); /* fix path + ensure correct asset */
+  background-position: right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.navBtn:hover {
+  background-color: #f3f4f6; /* approx Tailwind gray-100 */
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+/* Solutions Navigation Controls */
+.navControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* matches gap-[0.8rem] */
+  margin-top: 40px; /* matches mt-[4rem] */
+}
+
+.navBtn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-radius: 9999px; /* rounded-full */
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* transition-colors */
+}
+
+.navCounter {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Tailwind gap-2 ~= 8px */
+}
+
+.navCounterCurrent {
+  font-size: 36px;
+  color: #177D3C;
+  font-weight: 500; /* font-medium */
+}
+
+.navCounterSep {
+  font-size: 20px;
+  color: #969BA2;
+}
+
+.navCounterTotal {
+  font-size: 20px;
+  color: #969BA2;
+}
+
+
+/**
+  ~1800
+ */
+@media (max-width: 1800px) {
+  .ctaSection {
+    margin: 60px;
+  }
+}
+
+/**
+  ~1024
+ */
+/* Responsive tweaks for CTA background image scaling */
+@media (max-width: 1024px) {
+  .heroWrapper {
+    padding-top: 112px;
+    width: 100%;
+    height: 500px;
+    margin: 0;
   }
 
-  .serviceCard {
-    padding: 20px;
-  }
-
-  .serviceCardTitle {
-    font-size: 18px;
-  }
-
-  .serviceCardDesc {
-    font-size: 14px;
+  .heroTrack {
+    margin: 40px auto;
+    padding: 0;
+    width: calc(100% - 40px);
   }
 
   .ctaSection {
-    padding: 40px 15px;
+    background-size: cover, auto 70%;
+    background-position: left top, right 10% bottom;
+    margin: 40px;
   }
+  .ctaInner { padding: 30px; }
+  .ctaTitle { margin-bottom: 20px; font-size: 24px; line-height: 1.5; }
+  .ctaDescription { display: none; }
+  .ctaButton { font-size: 16px; }
+  .ctaButtonIcon { width: 16px; height: 16px; }
+}
 
-  .ctaTitle {
+@media (max-width: 768px) {
+  .aboutBanner {
+    padding: 40px;
+  }
+  .aboutH3,
+  .aboutP1,
+  .aboutP2 {
     font-size: 24px;
-    margin-bottom: 20px;
   }
 
-  .ctaDesc {
-    font-size: 16px;
-    margin-bottom: 20px;
+  .navCounterCurrent {
+    font-size: 32px;
   }
-
-  .ctaButton {
-    padding: 12px 30px;
-    font-size: 16px;
-  }
-
-  .footer {
-    padding: 30px 15px;
-  }
-
-  .footerTable {
-    margin-bottom: 30px;
-  }
-
-  .footerCell {
-    padding: 10px;
+  .navCounter {
+    font-size: 24px;
   }
 }
 
-/* ========== 초소형 모바일 (480px 이하) ========== */
-@media (max-width: 480px) {
-  .headerTitle {
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
 
-  .gnbMenu {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .gnbMenuItem {
-    padding: 12px;
-  }
-
-  .gnbMenuItemTitle {
-    font-size: 12px;
-  }
-
-  .gnbMenuItemDesc {
-    font-size: 11px;
-  }
-
-  .heroTitle {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-
-  .heroDesc {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .servicesTitle {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-  .serviceCard {
-    padding: 15px;
-  }
-
-  .serviceCardTitle {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  .ctaTitle {
-    font-size: 20px;
-  }
-
-  .ctaDesc {
-    font-size: 14px;
-  }
-
-  .footerInfo {
-    font-size: 12px;
-  }
+/* Override: align solutions slider with header gutter */
+.sliderWrap {
+  padding-left: 60px;
 }
+
+
+
+/* Smooth momentum + better dragging for sliders */
+.solutionsSlider {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  will-change: scroll-position;
+  cursor: grab;
+  user-select: none;
+}
+.solutionsSlider:active { cursor: grabbing; }

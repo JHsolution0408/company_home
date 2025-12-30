@@ -1,8 +1,11 @@
 import * as React from "react";
-import SubPageHeader from "../../components/subpage-header";
-import Seo from "../../components/seo";
-import Footer from "../../components/footer";
 import { graphql } from "gatsby";
+import Layout from "../../components/layout"
+import Seo from "../../components/seo";
+import * as styles from "../company/vision-mission.module.css";
+import SectionTitle from "../../components/template/SectionTitle"
+import ImageCard from "../../components/template/ImageCard"
+
 
 export const query = graphql`
   query DigitalTwinPageQuery {
@@ -18,51 +21,59 @@ export const query = graphql`
 `;
 
 const DigitalTwinPage = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark;
+  const { frontmatter } = data.markdownRemark;
+
   return (
-    <>
-      <SubPageHeader bgImage="/images/bg_digitaltwin.png" />
-      <main style={{ width: '100vw', minHeight: '100vh', 
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', margin: 0, padding: 0 }}>
-        <div style={{ width: '100vw', maxWidth: '100vw', 
-            minHeight: '1px', margin: '0 auto', 
-            display: 'flex', flexDirection: 'column', 
-            alignItems: 'center', justifyContent: 'flex-start', padding: 0 }}>
-          <div id="title-meta" style={{
-            width: '100%',
-            maxWidth: '100vw',
-            backgroundColor: 'black',
-            backgroundImage: 'linear-gradient(to right, black 0%, transparent 15%, transparent 85%, black 100%), url(/images/bg_vision.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center bottom',
-            marginBottom: '25px',
-            padding: '100px 20px 60px 50px'
-          }}>
-            <div id="title-text" style={{ width: '90vw', maxWidth: '90vw', margin: '0 auto', textAlign: 'left' }}>
-              <h1 style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', fontSize: '40px' }}>{frontmatter.title}</h1>
-              <p style={{ margin: "0 auto", maxWidth: "90vw", color: '#FDFDFD', whiteSpace: 'nowrap', maxWidth: '90vw', fontSize: '20px' }}>
-                {frontmatter.description}
-              </p>
-            </div>
-          </div>
-          <div id="content-md" style={{
-            maxWidth: "90vw",
-            marginLeft: 0,
-            marginRight: 0,
-            fontSize: 20,
-            lineHeight: 1.8,
-            padding: "15px 24px 15px 3%"
-          }}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: html
-              }}
+    <Layout
+      type={'dark'}
+      subHeaderTitle={frontmatter.title}
+      subHeaderDescription={frontmatter.description}
+      subHeaderBgImage="/images/banners/bg_digitaltwin.png"
+    >
+      <div className={styles.container}>
+          {/* 현실을 가상으로 완벽하게 동기화하는 디지털 트윈의 핵심 구성 */}
+          <section>
+            <SectionTitle
+              title={
+                <>
+                  현실을 가상으로 완벽하게 동기화하는&nbsp;
+                  <span>디지털 트윈의 핵심 구성</span>
+                </>
+              }
+              description={`언리얼 엔진의 압도적 몰입감과 WebGL의 웹 접근성을 결합하여 공장과 빌딩을 통합 관제합니다.`}
             />
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+
+            <div className={styles.flexBox}>
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card_dt1.png",
+                  alt: "하이브리드 시각화 환경",
+                }}
+                title={"하이브리드 시각화 환경"}
+                description={`초실감 렌더링을 위한 '언리얼 엔진'과 웹 접근성을 높인 'WebGL' 환경을 모두 지원하여, 사용 목적에 맞는 최적의 3D 관제 시스템을 제공합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card_dt3.png",
+                  alt: "대상별 맞춤형 트윈 구축",
+                }}
+                title={"대상별 맞춤형 트윈 구축"}
+                description={`생산 라인의 물류와 공정을 관제하는 '스마트 팩토리', 실내 공기질과 공간 효율을 관리하는 '스마트 오피스' 등 목적에 맞게 구축합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card_energy3.png",
+                  alt: "통합 제어 및 시뮬레이션",
+                }}
+                title={"통합 제어 및 시뮬레이션"}
+                description={`가상 공간에서의 제어가 실제 설비에 즉시 반영되는 양방향 제어를 구현하고, 에너지 흐름을 시뮬레이션하여 최적 효율을 사전 검증합니다.`}
+              />
+            </div>
+          </section>
+      </div>
+    </Layout>
   );
 };
 

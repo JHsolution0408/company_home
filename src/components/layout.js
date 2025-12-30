@@ -10,9 +10,11 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Footer from "./footer"
+import SubHeader from "./subheader"
+import "../styles/globals.css"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -22,6 +24,8 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  const isHome = typeof window !== 'undefined' && window.location && window.location.pathname === '/';
 
   return (
     <div
@@ -37,8 +41,20 @@ const Layout = ({ children }) => {
         boxSizing: "border-box"
       }}
     >
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header
+        type={type} siteTitle={data.site.siteMetadata?.title || `Title`}
+        bgImage={subHeaderBgImage}
+        subHeader={!isHome && subHeaderTitle && (
+          <SubHeader
+            title={subHeaderTitle}
+            description={subHeaderDescription}
+            bgImage={subHeaderBgImage}
+          />
+        )}
+      />
+
       <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
+
       <Footer />
     </div>
   )
