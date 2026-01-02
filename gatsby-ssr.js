@@ -15,7 +15,7 @@ exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
 
   const baseUrl = (siteMetadata && siteMetadata.siteUrl) || ''
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
-  const ogImageUrl = `${normalizedBase}/images/og-image.png`
+  const ogImageUrl = `${normalizedBase}images/og-image.png`
 
   setHeadComponents([
     // Open Graph
