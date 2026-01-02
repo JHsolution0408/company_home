@@ -35,14 +35,15 @@ function Seo({ description, title, children, image }) {
 
   // Absolute image URL (prefer explicit image, fallback to default)
   const ogImage = image
-    ? (image.startsWith("http") ? image : `${siteUrl}${image}`)
+    ? image.startsWith("http")
+      ? image
+      : `${siteUrl}${image}`
     : `${siteUrl}/images/og-image.png`
 
   return (
     <>
       <title>{fullTitle}</title>
       <link rel="canonical" href={ogUrl} />
-`
       {/* Open Graph */}
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={fullTitle} />
@@ -52,7 +53,6 @@ function Seo({ description, title, children, image }) {
       <meta property="og:url" content={ogUrl} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="ko_KR" />
-
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={ogImage} />
