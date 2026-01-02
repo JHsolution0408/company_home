@@ -61,7 +61,7 @@
 /* Detail sections (left label, right list) */
 .sectionRow {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 130px 1fr;
   gap: 80px;
   align-items: start;
   padding: 0 40px;
@@ -70,7 +70,7 @@
 .sectionLeft {
   display: flex;
   flex-direction: column;
-  max-width: 100px;
+  max-width: 130px;
 }
 
 .sectionTitle {
@@ -91,6 +91,17 @@
 
 .sectionRight {
   min-width: 0;
+}
+
+.sectionContent {
+  margin-bottom: 4px;
+  position: relative;
+  color: #17181B;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -1px;
+  padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
 }
 
 .sectionList {

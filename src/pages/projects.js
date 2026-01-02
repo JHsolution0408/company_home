@@ -13,17 +13,19 @@ const ProjectsPage = () => {
     query ProjectListQuery {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/projects/.*.md$/" } }
-        sort: { frontmatter: { date: DESC } }
+        sort: { frontmatter: { order: DESC } }
       ) {
         nodes {
           id
           frontmatter {
+            order
             title
-            summary
             featureImage
             slug
             tags
             date
+            period
+            client
           }
         }
       }
@@ -56,7 +58,7 @@ const ProjectsPage = () => {
             flexDirection: 'column',
           }}
         >
-          {projects.slice(0, 5).map(project => (
+          {projects.map(project => (
             <Link
               to={`/projects/${project.frontmatter.slug}`}
               className={styles.projectLink}

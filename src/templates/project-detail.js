@@ -7,22 +7,37 @@ import * as styles from "./project-detail.module.css"
 import ProjectTag from "../components/template/ProjectTag"
 
 const Section = ({ title, items }) => {
-  if (!Array.isArray(items) || items.length === 0) return null
+  if (!items) {
+    return null
+  }
+
+  if (!Array.isArray(items)) {
+    return (
+      <div className={styles.sectionRow}>
+        <div className={styles.sectionLeft}>
+          <h3 className={styles.sectionTitle}>{title}</h3>
+        </div>
+        <div className={styles.sectionRight}>
+          <div className={styles.sectionContent}>
+            {items}
+          </div>
+        </div>
+      </div>
+    )
+
+  }
 
   // Parse bilingual title pattern: "KO (EN)"; fall back to the whole string
   let koTitle = title
-  let enSubtitle = ""
   const m = /^\s*(.*?)\s*\((.*?)\)\s*$/.exec(title || "")
   if (m) {
     koTitle = m[1]
-    enSubtitle = m[2]
   }
 
   return (
     <div className={styles.sectionRow}>
       <div className={styles.sectionLeft}>
         <h3 className={styles.sectionTitle}>{koTitle}</h3>
-        {enSubtitle && <div className={styles.sectionSubtitle}>{enSubtitle}</div>}
       </div>
       <div className={styles.sectionRight}>
         <ul className={styles.sectionList}>
@@ -37,7 +52,7 @@ const Section = ({ title, items }) => {
 
 const ProjectDetailPage = ({ data }) => {
   const node = data.markdownRemark
-  const { title, description, date, featureImage, tags, overview, scope, results } = node.frontmatter
+  const { title, description, date, period, featureImage, tags, client, contents } = node.frontmatter
 
   return (
     <Layout
@@ -83,10 +98,10 @@ const ProjectDetailPage = ({ data }) => {
           )}
 
           <div className={styles.detailBox}>
-            {/* 구조화된 섹션: 개요 / 과제 & 범위 / 성과 */}
-            <Section title="개요 (Challenge)" items={overview} />
-            <Section title="과제 & 범위 (Project)" items={scope} />
-            <Section title="성과 (Result)" items={results} />
+            <Section title="사업명" items={title}  />
+            <Section title="사업기간" items={period} />
+            <Section title="발주처/지원기관" items={client} />
+            <Section title="사업내용" items={contents} />
           </div>
         </div>
       </section>
@@ -101,12 +116,12 @@ export const query = graphql`
       frontmatter {
         title
         date
+        period
         description
         featureImage
         tags
-        overview
-        scope
-        results
+        client
+        contents
       }
     }
   }
