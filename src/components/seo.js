@@ -42,7 +42,7 @@ function Seo({ description, title, children, image }) {
     <>
       <title>{fullTitle}</title>
       <link rel="canonical" href={ogUrl} />
-
+`
       {/* Open Graph */}
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={fullTitle} />

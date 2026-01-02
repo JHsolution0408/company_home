@@ -724,7 +724,7 @@ function LinkCard({ item, type = 'solutions' }) {
   )
 }
 
-export const Head = () => <Seo title="홈" />
+export const Head = () => <Seo />
 
 export default IndexPage
 
