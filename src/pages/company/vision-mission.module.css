@@ -55,6 +55,16 @@ section {
   color: var(--vm-text);
 }
 
+/* Challenge section overrides */
+.challengeCard {
+  background-color: #ffffff; /* cleaner look for image overlay */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.challengeBg1 { background-image: url('/images/about/jhaionbackgrounds/challenge_bg1.png'); }
+.challengeBg2 { background-image: url('/images/about/jhaionbackgrounds/challenge_bg2.png'); }
+
 /* header row: label only; image is positioned absolutely */
 .valueHeader {
   display: flex;

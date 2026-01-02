@@ -1,0 +1,27 @@
+/* Project Tag */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.tagIndustry {
+  background: #C4F0D4;
+  color: #177D3C;
+}
+
+.tagInfra {
+  background: #C2CEEA;
+  color: #3755A1;
+}
+
+.tagGov {
+  background: #F8F0E0;
+  color: #6B5119;
+}

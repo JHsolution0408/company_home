@@ -20,7 +20,7 @@ const PressPage = () => {
             summary
             featureImage
             slug
-            date(formatString: "YYYY.MM.DD")
+            date
           }
         }
       }

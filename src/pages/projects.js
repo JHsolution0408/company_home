@@ -6,29 +6,26 @@ import Layout from "../components/layout"
 import * as styles from "./projects.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
-
-const TAGS = {
-  INDUSTRY: '산업 적용 사례',
-  INFRA: '도시·건물 프로젝트',
-  GOV: '정부 과제 및 연구 성과'
-}
+import ProjectTag from "../components/template/ProjectTag"
 
 const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
     query ProjectListQuery {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/projects/.*.md$/" } }
-        sort: { frontmatter: { date: DESC } }
+        sort: { frontmatter: { order: DESC } }
       ) {
         nodes {
           id
           frontmatter {
+            order
             title
-            summary
             featureImage
             slug
             tags
-            date(formatString: "YYYY.MM.DD")
+            date
+            period
+            client
           }
         }
       }
@@ -61,7 +58,7 @@ const ProjectsPage = () => {
             flexDirection: 'column',
           }}
         >
-          {projects.slice(0, 5).map(project => (
+          {projects.map(project => (
             <Link
               to={`/projects/${project.frontmatter.slug}`}
               className={styles.projectLink}
@@ -84,20 +81,12 @@ const ProjectsPage = () => {
 
                     {Array.isArray(project.frontmatter.tags) && project.frontmatter.tags.length > 0 && (
                       <div className={styles.tags}>
-                        {project.frontmatter.tags.map((tag, idx) => {
-                          const TAG_CLASSES = {
-                            INDUSTRY: styles.tagIndustry,
-                            INFRA: styles.tagInfra,
-                            GOV: styles.tagGov,
-                          }
-                          const label = TAGS[tag] || tag
-                          const tagClass = TAG_CLASSES[tag] || styles.tag
-                          return (
-                            <span key={idx} className={`${styles.tag} ${tagClass}`}>
-                              {label}
-                            </span>
-                          )
-                        })}
+                        {project.frontmatter.tags.map((tag, idx) => (
+                          <ProjectTag
+                            tag={tag}
+                            key={tag}
+                          />
+                        ))}
                       </div>
                     )}
                   </div>

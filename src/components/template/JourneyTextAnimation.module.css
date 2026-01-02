@@ -1,0 +1,174 @@
+.interaction {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 16px 40px;
+}
+
+
+.slogan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slogan .title {
+  color: #FDFDFD;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.slogan h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  background: linear-gradient(90deg, #66E695 40.47%, #177D3C 59.58%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.slogan h3 {
+  margin-bottom: 80px;
+  color: #FDFDFD;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+}
+
+.copylightContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.copylightWrapper {
+  display: grid;
+  grid-template-columns: auto 0fr;
+  grid-template-rows: 1em;
+  align-items: center;
+  animation: text-fade 1.5s .5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.copylightText {
+  color: #4A4F55;
+  font-size: 56px;
+  font-style: normal;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.highlightedCopylight {
+  padding-right: 2px;
+  color: #66E695;
+  font-weight: 500;
+  z-index: 1;
+  animation: glow-text-animation 2s ease forwards;
+}
+
+.copylightTextFade {
+  min-width: 0;
+  opacity: 0;
+  color: #4A4F55;
+  line-height: 0;
+  animation: fade-in-animation 1s 2s ease forwards;
+}
+
+@keyframes text-fade {
+  0% { grid-template-columns: auto 0fr; }
+  100% { grid-template-columns: auto 1fr; }
+}
+
+@keyframes fade-in-animation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-text-animation {
+  0% {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #66E695,
+      0 0 80px #66E695,
+      0 0 90px #66E695,
+      0 0 100px #66E695,
+      0 0 150px #66E695;
+  }
+  100% { text-shadow: none; }
+}
+
+.brForMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .slogan {
+    text-align: center;
+  }
+
+  .slogan h1 {
+    margin-bottom: 6px;
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .slogan h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .slogan h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -1px;
+  }
+
+  .copylightContainer {
+    gap: 10px;
+  }
+
+  .copylightText {
+    font-size: 32px;
+  }
+
+  .copylightWrapper {
+    grid-template-columns: auto 1fr;
+    animation: none;
+    margin-bottom: 24px;
+  }
+
+  .highlightedCopylight {
+    animation: none;
+  }
+
+  .copylightTextFade {
+    opacity: 1;
+    line-height: 1;
+    animation: none;
+  }
+
+  .brForMobile {
+    display: block;
+  }
+}

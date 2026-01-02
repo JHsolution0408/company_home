@@ -23,3 +23,18 @@
   line-height: 1.4;
   letter-spacing: -1px;
 }
+
+.headingWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionLabel {
+  margin: 0;
+  color: #177D3C; /* subtle grey */
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+  line-height: 1.4;
+}

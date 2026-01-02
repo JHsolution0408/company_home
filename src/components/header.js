@@ -143,7 +143,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
           isShowSubHeader
             ? {
                 width: "100vw",
-                height: !!subHeader ? "278px" : "112px",
+                minHeight: !!subHeader ? "278px" : "112px",
                 backgroundImage: filteredBgImage,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -152,7 +152,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
               }
             : {
                 width: "100vw",
-                height: "112px",
+                minHeight: "112px",
                 zIndex: "var(--z-index-level-1000)",
               }
         }

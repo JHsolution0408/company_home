@@ -1,0 +1,171 @@
+/* Page container */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+
+.projectHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  color: #17181B;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.date {
+  color: #757B82;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* Content area: image + detail side-by-side on PC, stacked on mobile */
+.contentRow {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
+  gap: 40px;
+  align-items: start;
+}
+
+.imageBox {
+  width: 100%;
+}
+
+.image {
+  margin: 0;
+  width: 100%;
+  height: auto;            /* let aspect-ratio drive height */
+  aspect-ratio: 16 / 9;    /* 544x306 at 1920 container */
+  object-fit: cover;       /* fill nicely without distortion */
+  border-radius: 16px;
+}
+
+.detailBox {
+  min-width: 0; /* prevent overflow in grid */
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Detail sections (left label, right list) */
+.sectionRow {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 0 40px;
+}
+
+.sectionLeft {
+  display: flex;
+  flex-direction: column;
+  max-width: 130px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #17181B;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+.sectionSubtitle {
+  color: #757B82; /* light grey as in screenshot */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.sectionRight {
+  min-width: 0;
+}
+
+.sectionContent {
+  margin-bottom: 4px;
+  position: relative;
+  color: #17181B;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -1px;
+  padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
+}
+
+.sectionList {
+  /* Reset default bullets so we can draw custom dots */
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  --dot-size: 5px;         /* slightly smaller */
+  --dot-color: #17181B;    /* black dot to match design */
+  --dot-ring: transparent; /* no outer ring */
+}
+
+.sectionList li {
+  margin-bottom: 4px;
+  position: relative;
+  color: #17181B;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -1px;
+  padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
+}
+
+.sectionList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em; /* vertically centers with line-height ~1.8 */
+  transform: translateY(-50%);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--dot-color);
+  box-shadow: 0 0 0 3px var(--dot-ring); /* soft ring around dot */
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+/* fallback for environments preferring high contrast */
+@media (prefers-contrast: more) {
+  .sectionList {
+    --dot-ring: transparent;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contentRow {
+    grid-template-columns: 1fr; /* stack: image on top, details below */
+  }
+  .sectionRow {
+    gap: 20px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px;
+  }
+
+  .detailBox {
+    gap: 40px;
+  }
+}
