@@ -16,6 +16,7 @@ module.exports = {
     siteUrl: `https://dev.jh-solution.net/`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-svgr`,
     `gatsby-plugin-image`,
     {

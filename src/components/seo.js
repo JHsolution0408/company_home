@@ -35,6 +35,7 @@ function Seo({ description, title, children, image }) {
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:site_name" content={title} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
