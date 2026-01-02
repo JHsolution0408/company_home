@@ -9,10 +9,11 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `JH SOLUTION`,
+    title: `JHSOLUTION`,
     description: `우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
     author: `JH`,
-    siteUrl: `https://dev.jh-solution.net//`,
+    siteUrl: `https://dev.jh-solution.net/`,
+    thumbnail: `/images/og-image.png`,
   },
   plugins: [
     `gatsby-plugin-svgr`,
