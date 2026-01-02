@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import * as styles from "./footer.module.css"
+import DownloadIcon from "/static/icons/common/download-icon.svg";
 
 const Footer = () => (
   <div className={styles.container}>
@@ -50,23 +51,19 @@ const Footer = () => (
             <div className={styles.rightCol}>
               <div className={styles.rightInner}>
                 <p className={styles.linkP}>
-                  <a href="#" className={styles.brochureLink}>
+                  <a
+                    href="/document/jhsolution-introduction.pdf"
+                    className={styles.brochureLink}
+                    download="제이에이치솔루션 회사소개서.pdf"
+                  >
                     회사소개서
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 12L8 4M8 12L4 8M8 12L12 8"
-                        stroke="#CFD3D8"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+
+                    <img
+                      src={DownloadIcon}
+                      alt="Download Icon"
+                      width={20}
+                      height={20}
+                    />
                   </a>
                 </p>
               </div>
