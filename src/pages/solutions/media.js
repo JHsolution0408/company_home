@@ -47,28 +47,28 @@ const MediaPage = ({ data }) => {
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai1.png",
-                  alt: "에너지 효율 최적화",
+                  alt: "AI Co-Pilot 및 XR 학습지원 시스템",
                 }}
-                title={"에너지 효율 최적화"}
-                description={`실시간 데이터 학습을 통해 에너지 소비 패턴을 분석하고, 설비 운전 부하를 AI가 능동적으로 조절하여 탄소 배출과 비용을 절감합니다.`}
+                title={"AI Co-Pilot 및 XR 학습지원 시스템"}
+                description={`실시간 위험 감지로 산업 사고 예방 및 XR 훈련 플랫폼 통한 충분한 숙련도 향상 경험 제공`}
               />
 
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai2.png",
-                  alt: "OCR 데이터 자산화",
+                  alt: "XR 디코딩과 가시화 기술",
                 }}
-                title={"OCR 데이터 자산화"}
-                description={`현장에 방치된 아날로그 계기판, 수기 기록, 도면 정보를 AI 시각 지능으로 판독하여 시스템이 분석 가능한 디지털 자산으로 변환합니다.`}
+                title={"XR 디코딩과 가시화 기술"}
+                description={`XR 데이터의 high-level 암호화/복호화 모듈 프레임워크 검증 및 최적화`}
               />
 
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai3.png",
-                  alt: "설비 예지보전",
+                  alt: "On-Device 비전 알고리즘 고도화",
                 }}
-                title={"설비 예지보전"}
-                description={`설비의 진동, 소음, 온도 데이터를 분석하여 고장 징후를 사전에 포착합니다. 돌발 정지를 막고 유지보수 비용을 획기적으로 낮춥니다.`}
+                title={"On-Device 비전 알고리즘 고도화"}
+                description={`On-Device Vision 알고리즘 고도화 및 연동용 메타데이터 포맷 개발`}
               />
             </div>
           </section>
