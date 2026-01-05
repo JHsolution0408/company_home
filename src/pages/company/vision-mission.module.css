@@ -118,6 +118,7 @@ section {
   .flexBox,
   .flexBoxWithPlus {
     flex-direction: column;
+    align-items: center;
   }
 
   .flexBoxWithPlus {
