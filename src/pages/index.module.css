@@ -1,7 +1,7 @@
 /* Home page styles (CSS Modules) */
 
 .headerInner {
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 .headerContent {
@@ -22,7 +22,7 @@
 .heroTrack {
   display: flex;
   width: 100%;
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto; /* center like headerInner */
   height: 100%;
   transition: transform 0.5s;
@@ -66,6 +66,7 @@
   font-size: 24px;
   font-weight: 500;
 }
+
 .heroTitle1 {
   color: #17181B;
   margin-bottom: 10px;
@@ -142,29 +143,44 @@
 .sectionPad {
   width: 100%;
   max-width: 1920px;
-  margin: 0 auto 80px;
-  padding: 0 60px;
+  margin: 0 auto;
 }
 .solutionsHeader {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 60px;
 }
+
+/*.aboutBanner {*/
+/*  margin-top: 80px;*/
+/*  padding: 60px;*/
+/*  border-radius: 40px;*/
+/*  background-color: #1BA74E;*/
+/*  text-align: left;*/
+/*  background-image: linear-gradient(to right, #F6FEF9 75%, transparent), url(/images/about_jhaion.png);*/
+/*  background-size: cover, auto 30%;*/
+/*  background-position: right center;*/
+/*  background-repeat: no-repeat;*/
+/*  word-break: keep-all;*/
+/*}*/
+
 .aboutBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 450px;
   margin-top: 80px;
-  padding: 80px 40px 80px 40px;
-  padding-right: 0;
-  border: 2px solid #1BA74E;
-  border-radius: 16px;
+  padding: 60px;
+  border-radius: 40px;
   background-color: #1BA74E;
   text-align: left;
-  background-image: linear-gradient(to right, #F6FEF9 75%, transparent), url(/images/about_jhaion.png);
-  background-size: cover, auto 30%;
+  background-image: url(/images/about_jhaion.png);
+  background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
-  word-break: keep-all;
 }
+
 .aboutBannerLabel {
   margin: 0 0 20px;
   color: #FDFDFD;
@@ -383,7 +399,7 @@
 /* Home page styles (CSS Modules) */
 
 .headerInner {
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 .headerContent {
@@ -404,7 +420,7 @@
 .heroTrack {
   display: flex;
   width: calc(100vw - 120px);
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto; /* center like headerInner */
   height: 100%;
   transition: transform 0.5s;
@@ -448,32 +464,13 @@
   font-size: 24px;
   font-weight: 500;
 }
-.heroTitle1 {
-  color: #17181B;
-  margin-bottom: 10px;
-  font-size: 32px;
-  font-weight: 650;
-  line-height: 1.1;
-  word-break: keep-all;
-  white-space: wrap;
-}
-.heroTitle2 {
-  color: #177D3C;
-  margin-bottom: 30px;
-  font-size: 32px;
-  font-weight: 650;
-  line-height: 1.1;
-  word-break: keep-all;
-  white-space: wrap;
-}
 
 .dots {
-  margin-top: 40px;
+  margin: 40px auto 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
 }
 .dot {
   width: 12px;
@@ -490,34 +487,19 @@
   background-color: #177D3C;
 }
 
-/* About Company */
-.sectionPad {
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 60px;
-}
-
-.aboutBanner {
-  padding: 80px 40px 80px 40px;
-  padding-right: 0;
-  border: 2px solid #1BA74E;
-  border-radius: 16px;
-  background-color: #1BA74E;
-  text-align: left;
-  background-image: url(/images/about_jhaion.png);
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-}
 
 /* Solutions Section */
 .solutionsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  height: 960px;
   overflow: hidden;
   border-top: none;
   max-width: 1920px;
-  margin: 80px auto 0;
+  margin: 0 auto;
 }
 .solutionsTitle1 {
   text-align: left;
@@ -579,6 +561,7 @@
 /* Press Section */
 .pressSection {
   width: 100%;
+  height: 960px;
   overflow: hidden;
   border-top: none;
   max-width: 1920px;
@@ -826,10 +809,10 @@
   ~1920
  */
 @media (max-width: 2000px) {
-  .solutionsSection {
-    padding-left: 120px;
+  .sectionPad {
+    padding: 0 60px;
   }
-
+  .solutionsSection,
   .pressSection {
     padding-left: 120px;
   }
@@ -907,9 +890,12 @@
   .heroCta span { font-size: 16px; }
 
   /* About (JHAION Engine) block */
-  .aboutBanner { padding: 40px; }
+  .aboutBanner {
+    padding: 40px;
+    height: auto;
+  }
   .aboutBannerLabel {
-    font-size: var(--font-size-sub-regular, 24px);
+    font-size: 24px;
     font-style: normal;
     font-weight: 600;
     line-height: 140%;
@@ -937,7 +923,17 @@
 
   .solutionsSection,
   .pressSection {
+    height: 768px;
     padding-left: 40px;
+  }
+
+  .linkCardSectionHeader .title {
+    font-size: 32px;
+    letter-spacing: -2px;
+  }
+  .linkCardSectionHeader .description {
+    font-size: 24px;
+    letter-spacing: -1.5px;
   }
 
   .navCounterCurrent { font-size: 32px; }
@@ -955,7 +951,7 @@
 .solutionsSlider:active { cursor: grabbing; }
 
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .heroWrapper {
     margin: 0; /* remove side margins that created right-side gap */
     padding: 0 12px; /* minimal internal gutter to match design */
@@ -999,7 +995,6 @@
 
   .aboutBanner {
     padding: 40px 20px;
-    
   }
 
   .aboutBannerLabel {

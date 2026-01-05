@@ -333,11 +333,10 @@ const IndexPage = ({ data }) => {
             Net-Zero와 최적화를 향한 초거대 AI의 여정
           </p>
           <p className={styles.aboutDescription}>
-            <span className={styles.textWhite}>J</span>ourney of{" "}
-            <span className={styles.textWhite}>H</span>yper-scale +{" "}
-            <span className={styles.textWhite}>AI</span> +{" "}
-            <span className={styles.textWhite}>O</span>ptimizatio
-            <span className={styles.textWhite}>n</span> +{" "}
+            <span className={styles.textWhite}>J</span>ourney of&nbsp;
+            <span className={styles.textWhite}>H</span>yper-scale +&nbsp;
+            <span className={styles.textWhite}>AI</span> +&nbsp;
+            <span className={styles.textWhite}>O</span>ptimization +&nbsp;
             <span className={styles.textWhite}>N</span>et-zero
           </p>
         </div>

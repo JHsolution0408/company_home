@@ -37,7 +37,7 @@ const Footer = () => (
                   <div className={styles.address}>
                     JH솔루션 (우) 08504&nbsp;
                     <br className={styles.br} />
-                    서울특별시 금천구 가산디지털2로 135, 1공
+                    서울특별시 금천구 가산디지털2로 135,
                     1701-1703호(가산동, 가산어반워크)
                   </div>
 
