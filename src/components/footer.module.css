@@ -14,6 +14,10 @@
   min-height: clamp(120px, 20vw, 200px);
 }
 
+.addressLink {
+  text-decoration: none;
+}
+
 .row {
   display: flex;
   flex-direction: row;

@@ -1,7 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import * as styles from "./header.module.css"
-import PCLogo from '../images/logo/jhsolution-logo-pc.svg';
+import LogoDefault from '../images/logo/jhsolution-logo.svg';
+import LogoWhite from '../images/logo/jhsolution-logo-white.svg';
 import CloseIcon from '/static/icons/common/close-icon.svg';
 import ChevronDownIcon from '/static/icons/common/chevron-down-icon.svg';
 import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
@@ -42,6 +43,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
     () => !isHome && isDesktop && !isScrolled,
     [isHome, isDesktop, isScrolled]
   );
+  const logoSrc = useDarkDesktop ? LogoWhite : LogoDefault;
 
   React.useEffect(() => {
     // Close on ESC
@@ -169,7 +171,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
             <div className={styles.logo}>
               <Link to="/" className={styles.logoLink}>
                 <img
-                  src={PCLogo}
+                  src={logoSrc}
                   width={"125px"}
                   height={"36px"}
                   alt={"JH Solution Logo"}
