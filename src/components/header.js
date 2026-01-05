@@ -172,8 +172,8 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
               <Link to="/" className={styles.logoLink}>
                 <img
                   src={logoSrc}
-                  width={"125px"}
-                  height={"36px"}
+                  width={53}
+                  height={40}
                   alt={"JH Solution Logo"}
                 />
               </Link>
