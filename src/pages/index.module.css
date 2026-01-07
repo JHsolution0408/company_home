@@ -230,7 +230,7 @@
   font-size: 24px;
   font-weight: 600;
   color: #757B82;
-  line-height: 1;
+  line-height: 140%;
   white-space: nowrap;
 }
 .sliderWrap {
@@ -251,7 +251,7 @@
 }
 .solutionLink {
   text-decoration: none;
-  flex: 0 0 clamp(320px, 30vw, 480px);
+  flex: 0 0 clamp(320px, 30vw, 540px);
   min-width: 280px;
   max-width: 600px;
 }
@@ -381,6 +381,10 @@
   .heroTitle1,
   .heroTitle2 {
     font-size: 32px;
+  }
+
+  .solutionLink {
+    flex: 0 0 clamp(320px, 30vw, 480px);
   }
 }
 
@@ -540,12 +544,6 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-}
-.solutionLink {
-  text-decoration: none;
-  flex: 0 0 clamp(320px, 30vw, 480px);
-  min-width: 280px;
-  max-width: 600px;
 }
 .cardImg {
   width: 100%;
@@ -729,6 +727,7 @@
   letter-spacing: 0;
   transition: background-color 0.2s ease;
   cursor: pointer;
+  text-decoration: none;
 }
 .ctaButton:hover { background-color: #15803d; /* hover:bg-green-700 */ }
 

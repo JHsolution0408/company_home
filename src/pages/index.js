@@ -9,9 +9,11 @@ import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
 
+const ContactFormLink = 'https://forms.gle/7b4LuMCWArfwgv2p6';
+
 const cards = [
   {
-    title: "Hyper-scale AI for Net-zero",
+    title: "Hyper-scale AI for Net-Zero",
     subtitle1: "초거대 AI가 여는 탄소중립의 미래",
     subtitle2: "가장 완벽한 에너지 최적화의 실현",
     link: "/company/vision-mission",
@@ -38,7 +40,7 @@ const solutions = [
   { id: 'jhaion-engine', link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
   { id: 'energy', link: "/solutions/energy", title: "에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
   { id: 'simulation', link: "/solutions/simulation", title: "시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
-  { id: 'ai', link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
+  { id: 'ai', link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영 효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
   { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털 트윈", desc: "현실의 물리적 자산을 가상 공간에 실시간으로 동기화 해 3D 관제를 구현하고, 시나리오 테스트로 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
   { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터랙션으로 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
 ];
@@ -267,7 +269,7 @@ const IndexPage = ({ data }) => {
 
                   <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
-                      <span>더 알아보기</span>
+                      <span>자세히 알아보기</span>
                       <div className={styles.heroCtaIcon}>
                         <img
                           src={OpenIconWhite}
@@ -337,7 +339,7 @@ const IndexPage = ({ data }) => {
             <span className={styles.textWhite}>H</span>yper-scale +&nbsp;
             <span className={styles.textWhite}>AI</span> +&nbsp;
             <span className={styles.textWhite}>O</span>ptimization +&nbsp;
-            <span className={styles.textWhite}>N</span>et-zero
+            <span className={styles.textWhite}>N</span>et-Zero
           </p>
         </div>
       </div>
@@ -379,10 +381,10 @@ const IndexPage = ({ data }) => {
               solAnim.current.lastX = e.clientX
               solAnim.current.lastT = performance.now()
               solAnim.current.vx = 0
-              try {
-                slider.setPointerCapture &&
-                  slider.setPointerCapture(e.pointerId)
-              } catch {}
+              // try {
+              //   slider.setPointerCapture &&
+              //     slider.setPointerCapture(e.pointerId)
+              // } catch {}
               const prev = slider.style.scrollBehavior
               slider.dataset.prevScrollBehavior = prev
               slider.style.scrollBehavior = "auto"
@@ -499,7 +501,7 @@ const IndexPage = ({ data }) => {
             </h2>
             <p className={styles.description}>
               언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH 솔루션이
-              창출하는 가치를 생생하게 전달합니다
+              창출하는 가치를 생생하게 전달합니다.
             </p>
           </div>
           <div className={styles.sliderWrap}>
@@ -525,10 +527,10 @@ const IndexPage = ({ data }) => {
                 pressAnim.current.lastX = e.clientX
                 pressAnim.current.lastT = performance.now()
                 pressAnim.current.vx = 0
-                try {
-                  slider.setPointerCapture &&
-                    slider.setPointerCapture(e.pointerId)
-                } catch {}
+                // try {
+                //   slider.setPointerCapture &&
+                //     slider.setPointerCapture(e.pointerId)
+                // } catch {} 
                 const prev = slider.style.scrollBehavior
                 slider.dataset.prevScrollBehavior = prev
                 slider.style.scrollBehavior = "auto"
@@ -640,7 +642,7 @@ const IndexPage = ({ data }) => {
         className={styles.ctaSection}
         style={{
           backgroundImage:
-            "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-image.png)",
+             "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-img.png)",
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",
@@ -663,9 +665,8 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
 
-          <button className={styles.ctaButton}>
+          <a href={ContactFormLink} className={styles.ctaButton}>
             <span>문의하기</span>
-
             <span className={styles.ctaButtonIcon}>
               <img
                 width={20}
@@ -674,7 +675,7 @@ const IndexPage = ({ data }) => {
                 alt={"Read More"}
               />
             </span>
-          </button>
+          </a>
         </div>
       </section>
     </Layout>
