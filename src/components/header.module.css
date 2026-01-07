@@ -242,15 +242,32 @@
   font-size: 20px;
 }
 
-.contact {
-  color: #333;
-  background-color: #E8E8E8;
-  padding: 12px 20px;
-  height: 46px;
-  border-radius: 10px;
+.contactForm {
   text-decoration: none;
-  font-weight: bold;
+}
+
+.contact {
+  display: flex;
+  min-width: 120px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background-color: #E9EDF0;
+}
+
+.contact span {
+  color: #17181B;
   font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Contact button inside mobile panel */
