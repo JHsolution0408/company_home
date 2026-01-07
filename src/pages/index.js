@@ -8,7 +8,6 @@ import { useSlide } from "../hooks/useSlide";
 import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
-import ReadMoreIcon from '../../static/icons/common/angle-bracket-right-icon.svg';
 
 const cards = [
   {
@@ -256,16 +255,22 @@ const IndexPage = ({ data }) => {
                   className={styles.heroCard}
                   style={{ backgroundImage: `url('${card.image}')` }}
                 >
-                  <h3 className={styles.heroKicker}>{card.title}</h3>
-                  <p className={styles.heroTitle1}>{card.subtitle1}</p>
-                  <p className={styles.heroTitle2}>{card.subtitle2}</p>
+                  <h3 className={styles.heroKicker}>
+                    {card.title}
+                  </h3>
+                  <p className={styles.heroTitle1}>
+                    {card.subtitle1}
+                  </p>
+                  <p className={styles.heroTitle2}>
+                    {card.subtitle2}
+                  </p>
 
                   <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
-                      <span>자세히 보기</span>
+                      <span>더 알아보기</span>
                       <div className={styles.heroCtaIcon}>
                         <img
-                          src={ReadMoreIcon}
+                          src={OpenIconWhite}
                           alt={"Read More"}
                           width={20}
                           height={20}
@@ -321,25 +326,24 @@ const IndexPage = ({ data }) => {
       {/* Section 2: About Company */}
       <div className={styles.sectionPad}>
         <div className={styles.aboutBanner}>
-          <h3 className={styles.aboutH3}>
+          <h3 className={styles.aboutBannerLabel}>
             JHAION Engine : The Core of Optimization
           </h3>
-          <p className={styles.aboutP1}>
+          <p className={styles.aboutTitle}>
             Net-Zero와 최적화를 향한 초거대 AI의 여정
           </p>
-          <p className={styles.aboutP2}>
-            <span className={styles.textWhite}>J</span>ourney of{" "}
-            <span className={styles.textWhite}>H</span>yper-scale +{" "}
-            <span className={styles.textWhite}>AI</span> +{" "}
-            <span className={styles.textWhite}>O</span>ptimizatio
-            <span className={styles.textWhite}>n</span> +{" "}
+          <p className={styles.aboutDescription}>
+            <span className={styles.textWhite}>J</span>ourney of&nbsp;
+            <span className={styles.textWhite}>H</span>yper-scale +&nbsp;
+            <span className={styles.textWhite}>AI</span> +&nbsp;
+            <span className={styles.textWhite}>O</span>ptimization +&nbsp;
             <span className={styles.textWhite}>N</span>et-zero
           </p>
         </div>
       </div>
 
       {/* Section 3: Solutions Slider */}
-      <div className={styles.solutionsSec}>
+      <div className={styles.solutionsSection}>
         <div className={styles.linkCardSectionHeader}>
           <h2 className={styles.title}>
             데이터 공학으로 완성된
@@ -485,7 +489,7 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Section 4: Press & News Slider */}
-      <div className={styles.pressSec}>
+      <div className={styles.pressSection}>
         <div>
           <div className={styles.linkCardSectionHeader}>
             <h2 className={styles.title}>

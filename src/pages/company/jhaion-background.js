@@ -51,10 +51,13 @@ export default function JhaionBackgroundNew() {
         <SectionTitle
           sectionLabel={'문제 인식 (The Challenge)'}
           title={'“기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.”'}
-          description={`
-            과거의 에너지 관리는 경험에 의존하거나, 단순한 통계 데이터만을 신뢰했습니다.
-            하지만 시시각각 변하는 산업 현장의 변수와 유체 흐름(CFD)을 배제한 데이터 분석은 잦은 오차와 비효율을 낳았습니다. 우리는 생각했습니다. "보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?"
-          `}
+          description={(
+            <>
+              과거의 에너지 관리는 경험에 의존하거나, 단순한 통계 데이터만을 신뢰했습니다.&nbsp;
+              <br className={bgStyles.brForPC} />
+              하지만 시시각각 변하는 산업 현장의 변수와 유체 흐름(CFD)을 배제한 데이터 분석은 잦은 오차와 비효율을 낳았습니다. 우리는 생각했습니다. "보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?"
+            </>
+          )}
         />
 
         <div className={styles.flexBox}>

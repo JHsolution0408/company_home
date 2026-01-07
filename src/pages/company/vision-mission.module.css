@@ -118,6 +118,7 @@ section {
   .flexBox,
   .flexBoxWithPlus {
     flex-direction: column;
+    align-items: center;
   }
 
   .flexBoxWithPlus {
@@ -142,5 +143,15 @@ section {
     width: 72px;
     top: 40px;
     right: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .valueTitle {
+    font-size: 24px;
+  }
+
+  .valueDescription {
+    font-size: 20px;
   }
 }

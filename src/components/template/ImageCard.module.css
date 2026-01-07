@@ -49,3 +49,12 @@
   line-height: 1.4;
 }
 
+@media (max-width: 768px) {
+  .imageCardContent h3 {
+    font-size: 24px;
+  }
+  .imageCardContent p {
+    font-size: 18px;
+  }
+}
+

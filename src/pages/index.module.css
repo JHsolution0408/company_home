@@ -1,7 +1,7 @@
 /* Home page styles (CSS Modules) */
 
 .headerInner {
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 .headerContent {
@@ -22,7 +22,7 @@
 .heroTrack {
   display: flex;
   width: 100%;
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto; /* center like headerInner */
   height: 100%;
   transition: transform 0.5s;
@@ -66,6 +66,7 @@
   font-size: 24px;
   font-weight: 500;
 }
+
 .heroTitle1 {
   color: #17181B;
   margin-bottom: 10px;
@@ -93,7 +94,7 @@
   background-color: #177D3C;
   height: 48px;
   padding: 12px 20px;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
@@ -142,30 +143,45 @@
 .sectionPad {
   width: 100%;
   max-width: 1920px;
-  margin: 0 auto 80px;
-  padding: 0 60px;
+  margin: 0 auto;
 }
 .solutionsHeader {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 60px;
 }
+
+/*.aboutBanner {*/
+/*  margin-top: 80px;*/
+/*  padding: 60px;*/
+/*  border-radius: 40px;*/
+/*  background-color: #1BA74E;*/
+/*  text-align: left;*/
+/*  background-image: linear-gradient(to right, #F6FEF9 75%, transparent), url(/images/about_jhaion.png);*/
+/*  background-size: cover, auto 30%;*/
+/*  background-position: right center;*/
+/*  background-repeat: no-repeat;*/
+/*  word-break: keep-all;*/
+/*}*/
+
 .aboutBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 450px;
   margin-top: 80px;
-  padding: 80px 40px 80px 40px;
-  padding-right: 0;
-  border: 2px solid #1BA74E;
-  border-radius: 16px;
+  padding: 60px;
+  border-radius: 40px;
   background-color: #1BA74E;
   text-align: left;
-  background-image: linear-gradient(to right, #F6FEF9 75%, transparent), url(/images/about_jhaion.png);
-  background-size: cover, auto 30%;
+  background-image: url(/images/about_jhaion.png);
+  background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
-  word-break: keep-all;
 }
-.aboutH3 {
+
+.aboutBannerLabel {
   margin: 0 0 20px;
   color: #FDFDFD;
   font-size: 24px;
@@ -173,7 +189,7 @@
   line-height: 1.2;
   letter-spacing: -1.5px;
 }
-.aboutP1 {
+.aboutTitle {
   margin: 0;
   font-size: 40px;
   font-weight: 600;
@@ -181,7 +197,7 @@
   line-height: 1.2;
   letter-spacing: -2px;
 }
-.aboutP2 {
+.aboutDescription {
   margin: 0;
   color: rgba(253, 253, 253, 0.60);
   font-size: 40px;
@@ -192,14 +208,6 @@
 
 .textWhite {
   color: #FDFDFD;
-}
-
-/* Solutions Section */
-.linkCardSectionHeader {
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 60px;
 }
 
 .linkCardSectionHeader .title {
@@ -241,7 +249,12 @@
   width: 100vw;
   max-width: 100vw;
 }
-.solutionLink { text-decoration: none; flex: 0 0 clamp(320px,30vw,480px); min-width: 280px; max-width: 600px; }
+.solutionLink {
+  text-decoration: none;
+  flex: 0 0 clamp(320px, 30vw, 480px);
+  min-width: 280px;
+  max-width: 600px;
+}
 .linkCardContainer {
   border: 1px solid #E0E4E8;
   border-radius: 20px;
@@ -302,13 +315,28 @@
 /* Dot Navigation common */
 .dotsWrap { display: flex; justify-content: center; gap: 8px; margin-top: 20px; padding-bottom: 20px; }
 
-/* Press Section */
-.pressSec { width: 100vw; overflow: hidden; background-color: #ffffff; border-top: none; }
 .pressTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
 .pressTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
 .pressLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
-.pressSliderWrap { overflow: hidden; width: 100%; position: relative; }
-.pressSlider { display: flex; justify-content: flex-start; align-items: stretch; gap: clamp(12px,2vw,30px); overflow-x: hidden; overflow-y: hidden; padding-bottom: clamp(8px,2vw,20px); scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; width: 100vw; max-width: 100vw; }
+.pressSliderWrap {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.pressSlider {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: clamp(12px, 2vw, 30px);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: clamp(8px, 2vw, 20px);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100vw;
+  max-width: 100vw;
+}
 .pressLink { text-decoration: none; border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
 .pressHeader { padding: 30px 30px 20px 30px; text-align: left; }
 .pressTitle { color: #17181B; margin-bottom: 8px; font-size: 24px; font-weight: 500; line-height: 1.4; }
@@ -329,17 +357,21 @@
 
 @media (max-width: 1000px) {
   .heroWrapper {
-    padding: 20px 16px;
-    width: calc(100vw - 32px - 80px);
+    margin: 0;
+    padding: 0 16px;
+    width: 100%;
   }
 
   .heroTrack {
-    margin: 40px;
-    width: calc(100%);
+    margin: 0;
+    width: 100%;
   }
 
   .heroSlide {
-    margin-left: 0;
+    margin: 0;
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 
   .heroKicker {
@@ -367,7 +399,7 @@
 /* Home page styles (CSS Modules) */
 
 .headerInner {
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 .headerContent {
@@ -388,7 +420,7 @@
 .heroTrack {
   display: flex;
   width: calc(100vw - 120px);
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto; /* center like headerInner */
   height: 100%;
   transition: transform 0.5s;
@@ -413,7 +445,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-left: 60px;
+  padding: 0 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -432,32 +464,13 @@
   font-size: 24px;
   font-weight: 500;
 }
-.heroTitle1 {
-  color: #17181B;
-  margin-bottom: 10px;
-  font-size: 32px;
-  font-weight: 650;
-  line-height: 1.1;
-  word-break: keep-all;
-  white-space: wrap;
-}
-.heroTitle2 {
-  color: #177D3C;
-  margin-bottom: 30px;
-  font-size: 32px;
-  font-weight: 650;
-  line-height: 1.1;
-  word-break: keep-all;
-  white-space: wrap;
-}
 
 .dots {
-  margin-top: 40px;
+  margin: 40px auto 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
 }
 .dot {
   width: 12px;
@@ -474,71 +487,192 @@
   background-color: #177D3C;
 }
 
-/* About Company */
-.sectionPad {
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 60px;
-}
-
-.aboutBanner {
-  padding: 80px 40px 80px 40px;
-  padding-right: 0;
-  border: 2px solid #1BA74E;
-  border-radius: 16px;
-  background-color: #1BA74E;
-  text-align: left;
-  background-image: url(/images/about_jhaion.png);
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-}
 
 /* Solutions Section */
-.solutionsSec {
-  margin-top: 80px;
-  width: 100dvw;
+.solutionsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 960px;
   overflow: hidden;
-  background-color: #ffffff;
   border-top: none;
+  max-width: 1920px;
+  margin: 0 auto;
 }
-.solutionsTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
-.solutionsTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
-.solutionsLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
+.solutionsTitle1 {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 48px;
+  font-weight: 600;
+  color: #17181B;
+  line-height: 0.2;
+  white-space: nowrap;
+}
+.solutionsTitle2 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 600;
+  color: #177D3C;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+.solutionsLead {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #757B82;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
 .solutionsSlider {
   display: flex;
   gap: clamp(12px,2vw,30px);
   overflow-x: auto;
-  padding-bottom: clamp(8px,2vw,20px);
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
 }
-.solutionLink { text-decoration: none; flex: 0 0 clamp(320px,30vw,480px); min-width: 280px; max-width: 600px; }
-.cardImg { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 8px; }
+.solutionLink {
+  text-decoration: none;
+  flex: 0 0 clamp(320px, 30vw, 480px);
+  min-width: 280px;
+  max-width: 600px;
+}
+.cardImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0 0 8px 8px;
+}
 
 /* Dot Navigation common */
 .dotsWrap { display: flex; justify-content: center; gap: 8px; margin-top: 20px; padding-bottom: 20px; }
 
 /* Press Section */
-.pressSec { width: 100vw; overflow: hidden; background-color: #ffffff; border-top: none; }
-.pressTitle1 { text-align: left; margin-bottom: 0; font-size: 48px; font-weight: 600; color: #17181B; line-height: 0.2; white-space: nowrap; }
-.pressTitle2 { text-align: left; margin-bottom: 10px; font-size: 48px; font-weight: 600; color: #177D3C; line-height: 0.9; white-space: nowrap; }
-.pressLead { text-align: left; margin-top: 20px; margin-bottom: 40px; font-size: 24px; font-weight: 500; color: #757B82; line-height: 1.5; white-space: nowrap; }
-.pressSliderWrap { overflow: hidden; width: 100%; position: relative; }
-.pressSlider { display: flex; justify-content: flex-start; align-items: stretch; gap: clamp(12px,2vw,30px); overflow-x: hidden; overflow-y: hidden; padding-bottom: clamp(8px,2vw,20px); scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; width: 100vw; max-width: 100vw; }
-.pressLink { text-decoration: none; border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
-.pressHeader { padding: 30px 30px 20px 30px; text-align: left; }
-.pressTitle { color: #17181B; margin-bottom: 8px; font-size: 24px; font-weight: 500; line-height: 1.4; }
-.pressSummary { color: #757B82; font-size: 20px; font-weight: 500; line-height: 1.4; margin-bottom: 10px; }
-.pressDate { color: #999; font-size: 12px; margin: 0; }
+.pressSection {
+  width: 100%;
+  height: 960px;
+  overflow: hidden;
+  border-top: none;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.pressTitle1 {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 48px;
+  font-weight: 600;
+  color: #17181B;
+  line-height: 0.2;
+  white-space: nowrap;
+}
+.pressTitle2 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 600;
+  color: #177D3C;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+.pressLead {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #757B82;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.pressSliderWrap {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.pressSlider {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: clamp(12px, 2vw, 30px);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: clamp(8px, 2vw, 20px);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+.pressLink {
+  text-decoration: none;
+  border: 2px solid #FDFDFD;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #FDFDFD;
+  display: flex;
+  flex-direction: column;
+  width: 533px;
+  max-width: 533px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.pressHeader {
+  padding: 30px 30px 20px 30px;
+  text-align: left;
+}
+.pressTitle {
+  color: #17181B;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.pressSummary {
+  color: #757B82;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.pressDate {
+  color: #999;
+  font-size: 12px;
+  margin: 0;
+}
 
 /* Press slider cards */
-.pressSliderInner { display: flex; gap: clamp(12px,2vw,30px); overflow: visible; }
-.pressCard { border: 2px solid #FDFDFD; border-radius: 12px; overflow: hidden; background-color: #FDFDFD; display: flex; flex-direction: column; width: 533px; min-width: 533px; max-width: 533px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); padding: 0; height: auto; cursor: pointer; transition: transform 0.2s ease; }
+.pressSliderInner {
+  display: flex;
+  gap: 40px;
+  overflow: visible;
+}
+.pressCard {
+  width: 532px;
+  border: 2px solid #FDFDFD;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #FDFDFD;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 .pressImgWrap { position: relative; width: 100%; margin-top: auto; }
 .pressImg { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 0; }
 
@@ -672,30 +806,49 @@
 
 
 /**
+  ~1920
+ */
+@media (max-width: 2000px) {
+  .sectionPad {
+    padding: 0 60px;
+  }
+  .solutionsSection,
+  .pressSection {
+    padding-left: 120px;
+  }
+
+  .ctaSection {
+    margin: 0 60px 80px;
+  }
+}
+
+
+/**
   ~1800
  */
 @media (max-width: 1800px) {
   .ctaSection {
-    margin: 60px;
+    margin: 0 60px 80px;
   }
 }
 
 /**
   ~1024
  */
-/* Responsive tweaks for CTA background image scaling */
 @media (max-width: 1024px) {
   .heroWrapper {
-    padding-top: 112px;
+    padding-top: 0;
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
     width: 100%;
     height: 500px;
-    margin: 0;
   }
 
   .heroTrack {
-    margin: 40px auto;
+    margin: 0;
     padding: 0;
-    width: calc(100% - 40px);
+    width: 100%;
   }
 
   .ctaSection {
@@ -711,30 +864,81 @@
 }
 
 @media (max-width: 768px) {
+  /* Hero: ensure full image visibility and mobile typography */
+  .heroWrapper {
+    width: calc(100dvw - 80px);
+    height: 420px;
+    margin: 0 40px;
+    padding: 0;
+  }
+  .heroTrack {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .heroCard {
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* show full image without cropping */
+    background-position: bottom right; /* keep subject visible */
+    background-repeat: no-repeat;
+    padding: 0 60px;
+  }
+  .heroKicker { font-size: 24px; }
+  .heroTitle1 { font-size: 32px; }
+  .heroTitle2 { font-size: 32px; }
+  .heroCta span { font-size: 16px; }
+
+  /* About (JHAION Engine) block */
   .aboutBanner {
     padding: 40px;
+    height: auto;
   }
-  .aboutH3,
-  .aboutP1,
-  .aboutP2 {
+  .aboutBannerLabel {
     font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+  .aboutTitle {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -2px;
+  }
+  .aboutDescription { font-size: 24px; line-height: 140%; letter-spacing: -2px; }
+
+  .linkCardTitle {
+    color: #17181B;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -1.5px;
+    white-space: normal;
   }
 
-  .navCounterCurrent {
+  .solutionsSection,
+  .pressSection {
+    height: 768px;
+    padding-left: 40px;
+  }
+
+  .linkCardSectionHeader .title {
     font-size: 32px;
+    letter-spacing: -2px;
   }
-  .navCounter {
+  .linkCardSectionHeader .description {
     font-size: 24px;
+    letter-spacing: -1.5px;
   }
+
+  .navCounterCurrent { font-size: 32px; }
+  .navCounter { font-size: 24px; }
 }
-
-
-/* Override: align solutions slider with header gutter */
-.sliderWrap {
-  padding-left: 60px;
-}
-
-
 
 /* Smooth momentum + better dragging for sliders */
 .solutionsSlider {
@@ -745,3 +949,108 @@
   user-select: none;
 }
 .solutionsSlider:active { cursor: grabbing; }
+
+
+@media (max-width: 450px) {
+  .heroWrapper {
+    margin: 0; /* remove side margins that created right-side gap */
+    padding: 0 12px; /* minimal internal gutter to match design */
+    width: 100%;
+    height: 300px;
+  }
+
+  .heroTrack {
+    width: 100%;
+    margin: 0;
+  }
+
+  .heroCard {
+    padding: 0 20px;
+    background-size: cover;
+    background-position: right bottom; /* keep artwork visible without empty right area */
+  }
+
+  .heroKicker {
+    font-size: 16px;
+  }
+
+  .heroTitle1,
+  .heroTitle2 {
+    font-size: 20px;
+  }
+
+  .heroCta {
+    height: 43px;
+    font-size: 16px;
+    padding: 4px 16px;
+  }
+
+  .navControls {
+    margin-top: 20px;
+  }
+
+  .sectionPad {
+    padding: 0 20px;
+  }
+
+  .aboutBanner {
+    padding: 40px 20px;
+  }
+
+  .aboutBannerLabel {
+    font-size: 16px;
+  }
+
+  .aboutDescription {
+    font-size: 20px;
+  }
+
+  .linkCardSectionHeader .title {
+    font-size: 24px;
+    letter-spacing: -1.5px;
+    word-break: keep-all;
+    white-space: wrap;
+    line-height: 1.4;
+  }
+
+  .linkCardSectionHeader .description {
+    font-size: 16px;
+    letter-spacing: -1.5px;
+    word-break: keep-all;
+    white-space: wrap;
+    line-height: 1.4;
+  }
+
+  .linkCardHeader {
+    padding: 20px;
+    word-break: keep-all;
+  }
+  .linkCardTitle {
+    font-size: 20px;
+  }
+  .linkCardDescription {
+    font-size: 16px;
+  }
+
+
+
+  .solutionsSection,
+  .pressSection {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+
+  .ctaSection {
+    margin: 40px 20px;
+  }
+
+  .ctaInner {
+    width: 100%;
+    margin: 0;
+    padding: 40px 20px;
+  }
+
+  .ctaTitle {
+    font-size: 20px;
+  }
+}

@@ -39,7 +39,9 @@ const PressPage = () => {
       <div>
         <div id="content" className={styles.container}>
           <h1 className={styles.title}>
-            지속적인 변화의 <span>소식</span>
+            지속적인 변화의&nbsp;
+            <br className={styles.brForMobile} />
+            <span>소식</span>
           </h1>
           <h2 className={styles.description}>
             JH솔루션은 혁신과 소통을 통해 지속적으로 변화하며, 다양한 미디어와 보도자료를 통해 그 여정을 공유합니다.
