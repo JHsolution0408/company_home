@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import * as styles from "./footer.module.css"
+import LogoWhite from '../images/logo/jhsolution-logo-white.svg';
 import DownloadIcon from "/static/icons/common/download-icon.svg";
 
 const ADDRESS_LINK = `https://map.kakao.com/?map_type=TYPE_MAP&q=%EC%84%9C%EC%9A%B8+%EA%B8%88%EC%B2%9C%EA%B5%AC+%EA%B0%80%EC%82%B0%EB%94%94%EC%A7%80%ED%84%B82%EB%A1%9C+135&urlLevel=2&urlX=473026&urlY=1105733`;
@@ -13,7 +14,7 @@ const Footer = () => (
           <div className={styles.logoWrap}>
             <Link to="/" className={styles.logoLink}>
               <img
-                src="/images/btm_logo.svg"
+                src={LogoWhite}
                 alt="JH Solution"
                 className={styles.logoImg}
               />
