@@ -4,7 +4,7 @@ import SectionTitle from "./SectionTitle"
 import ImageCard from "./ImageCard"
 import DescriptionCard from "./DescriptionCard"
 
-export default function VisionMissionContent() {
+export default function VisionMissionContent() { 
   return (
     <div className={styles.container}>
       {/* Global Standard in AI-ENGINEERING */}
@@ -131,7 +131,7 @@ export default function VisionMissionContent() {
           />
           <PlusIconWithFlex />
           <DescriptionCard
-            imageSrc={"/images/about/mission-5.png"}
+            imageSrc={"/images/about/mission-6.png"}
             imageAlt={"혁신적 선도성"}
             title={"혁신적 선도성"}
             description={
@@ -140,10 +140,10 @@ export default function VisionMissionContent() {
           />
           <PlusIconWithFlex />
           <DescriptionCard
-            imageSrc={"/images/about/mission-5.png"}
+            imageSrc={"/images/about/mission-7.png"}
             imageAlt={"검증된 신뢰성"}
             title={"검증된 신뢰성"}
-            description={'남들이 가지 않은 길을 두려워하지 않습니다. 기존 시장에 없던 Hyper-scale AI 기반의 자율 운영 모델을 제시하며, 글로벌 에너지 기술 패러다임을 주도합니다.'}
+            description={'결과는 반드시 증명되어야 합니다. 수많은 시뮬레이션(Digital Twin)과 실증 사례를 통해 예측의 정확도를 보장하며, 고객에게 약속한 효율을 끝까지 책임집니다.'}
           />
         </div>
       </section>
