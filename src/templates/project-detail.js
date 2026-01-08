@@ -58,8 +58,8 @@ const ProjectDetailPage = ({ data }) => {
     <Layout
       type="dark"
       subHeaderTitle="프로젝트"
-      subHeaderDescription={description || "혁신적인 기술로 만들어가는 JH솔루션의 프로젝트"}
-      subHeaderBgImage="/images/banners/bg_energy.png"
+      subHeaderDescription={description || "JH솔루션의 기술이 실현된 혁신의 현장, 데이터로 검증된 다양한 사업 분야의 수행 실적을 소개합니다."}
+      subHeaderBgImage="/images/banners/bg_project.png"
     >
       <section className={styles.container}>
         <div className={styles.projectHeader}>
