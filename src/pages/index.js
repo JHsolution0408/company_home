@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "./index.module.css"
 import { useSlider } from "../hooks/useSlider";
+import { DRAG_THRESHOLD_SOLUTIONS } from "../utils/slider";
 import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
@@ -62,7 +63,7 @@ const IndexPage = ({ data }) => {
   const solutionsSlider = useSlider({
     ref: solutionsSliderRef,
     itemsLength: solutions.length,
-    dragThreshold: 3,
+    dragThreshold: DRAG_THRESHOLD_SOLUTIONS,
     getHrefFromEvent: (e) => {
       const anchor = e.target && (e.target.closest ? e.target.closest('a, [role="link"]') : null)
       return anchor?.getAttribute ? anchor.getAttribute('href') : null

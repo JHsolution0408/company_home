@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { navigate } from 'gatsby'
+import { exceededDragThreshold, DEFAULT_DRAG_THRESHOLD, DEFAULT_TAP_DISTANCE, DEFAULT_TAP_TIME } from '../utils/slider'
 
 /**
  * useSlider — reusable hook for horizontally scrolling, pseudo-infinite carousels built with duplicated tracks [A..N][A..N].
@@ -16,9 +17,9 @@ import { navigate } from 'gatsby'
 export function useSlider({
   ref,                 // React ref to the scroll container (required)
   itemsLength,         // number of unique items in the set (required)
-  dragThreshold = 8,   // px threshold to consider as drag for mouse/pen
-  tapDistance = 8,     // px threshold for tap detection on touch
-  tapTime = 300,       // ms threshold for tap detection
+  dragThreshold = DEFAULT_DRAG_THRESHOLD,   // px threshold to consider as drag for mouse/pen
+  tapDistance = DEFAULT_TAP_DISTANCE,       // px threshold for tap detection on touch
+  tapTime = DEFAULT_TAP_TIME,               // ms threshold for tap detection
   onIndexChange,       // optional callback(idx)
   getHrefFromEvent,    // optional function(e) -> href string; if provided, hook calls navigate(href) on confirmed tap/click
 }) {
@@ -34,7 +35,9 @@ export function useSlider({
   const drag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
   const anim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
   const touchTap = React.useRef({ x: 0, y: 0, t: 0 })
-  const didDrag = React.useRef(false)
+  // Explicit interaction state
+  const isPressingRef = React.useRef(false)
+  const isDraggingRef = React.useRef(false)
 
   // Read gap/stride and place to the middle set on mount/update
   React.useEffect(() => {
@@ -120,20 +123,46 @@ export function useSlider({
   }
 
   // Pointer handlers
-  const onPointerDown = (e) => {
+  // Resolve href robustly, accounting for pointer capture retargeting
+  const resolveHrefFromEvent = (e) => {
+    let href = null
+    try {
+      if (typeof getHrefFromEvent === 'function') {
+        href = getHrefFromEvent(e) || null
+      }
+    } catch {}
+    if (!href) {
+      try {
+        if (typeof document !== 'undefined' && typeof document.elementFromPoint === 'function') {
+          const x = e.clientX ?? 0
+          const y = e.clientY ?? 0
+          const el = document.elementFromPoint(x, y)
+          const anchor = el && (el.closest ? el.closest('a, [role="link"]') : null)
+          if (anchor && anchor.getAttribute) {
+            href = anchor.getAttribute('href') || null
+          }
+        }
+      } catch {}
+    }
+    return href
+  }
+
+  // --- Internal interaction helpers using explicit state ---
+  const handleInteractionStart = (e) => {
     const slider = sliderRef.current
     if (!slider) return
 
-    if (e.pointerType === 'mouse') {
-      return;
-    }
     if (e.pointerType === 'touch') {
       touchTap.current = { x: e.clientX, y: e.clientY, t: performance.now() }
+      isPressingRef.current = true
+      isDraggingRef.current = false
       return
     }
 
-    didDrag.current = false
-    // cancel inertia
+    // Mouse/Pen
+    isPressingRef.current = true
+    isDraggingRef.current = false
+
     if (anim.current.inertId) cancelAnimationFrame(anim.current.inertId)
     anim.current.inertId = 0
 
@@ -155,17 +184,17 @@ export function useSlider({
     e.preventDefault()
   }
 
-  const onPointerMove = (e) => {
+  const handleInteractionMove = (e) => {
     if (e.pointerType === 'touch') return
     const slider = sliderRef.current
-    if (!slider || !drag.current.isDown) return
+    if (!slider || !drag.current.isDown || !isPressingRef.current) return
 
     e.preventDefault()
     const x = e.clientX
     const t = performance.now()
     const dx = x - drag.current.startX
 
-    if (Math.abs(dx) > dragThreshold) didDrag.current = true
+    if (exceededDragThreshold(dx, dragThreshold)) isDraggingRef.current = true
 
     const instDx = x - anim.current.lastX
     const dt = Math.max(1, t - anim.current.lastT)
@@ -185,43 +214,22 @@ export function useSlider({
     anim.current.lastT = t
   }
 
-  const onPointerUp = (e) => {
+  const handleInteractionEndTouch = (e) => {
+    // Decide tap vs drag using distance/time
+    const dx = Math.abs((e.clientX ?? 0) - (touchTap.current.x ?? 0))
+    const dy = Math.abs((e.clientY ?? 0) - (touchTap.current.y ?? 0))
+    const dt = performance.now() - (touchTap.current.t ?? 0)
+    if (dx <= tapDistance && dy <= tapDistance && dt <= tapTime && !isDraggingRef.current) {
+      const href = resolveHrefFromEvent(e)
+      if (href) navigate(href)
+    }
+    isPressingRef.current = false
+    isDraggingRef.current = false
+  }
+
+  const runInertia = () => {
     const slider = sliderRef.current
     if (!slider) return
-
-    if (e.pointerType === 'touch') {
-      const dx = Math.abs((e.clientX ?? 0) - (touchTap.current.x ?? 0))
-      const dy = Math.abs((e.clientY ?? 0) - (touchTap.current.y ?? 0))
-      const dt = performance.now() - (touchTap.current.t ?? 0)
-      if (dx <= tapDistance && dy <= tapDistance && dt <= tapTime) {
-        if (typeof getHrefFromEvent === 'function') {
-          const href = getHrefFromEvent(e)
-          if (href) navigate(href)
-        }
-      }
-      return
-    }
-
-    // mouse/pen
-    const dxMouse = Math.abs((e.clientX ?? 0) - (drag.current.startX ?? 0))
-    const isClick = !didDrag.current && dxMouse <= dragThreshold
-
-    drag.current.isDown = false
-    anim.current.dragging = false
-
-    try {
-      slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId)
-    } catch {}
-
-    const prev = slider.dataset.prevScrollBehavior
-    if (prev !== undefined) slider.style.scrollBehavior = prev
-
-    if (isClick && typeof getHrefFromEvent === 'function') {
-      const href = getHrefFromEvent(e)
-      if (href) return navigate(href)
-    }
-
-    // inertia
     let vx = anim.current.vx
     const decay = 0.95
     const minV = 0.02
@@ -240,21 +248,65 @@ export function useSlider({
     }
   }
 
+  const handleInteractionEndMousePen = (e) => {
+    const slider = sliderRef.current
+    if (!slider) return
+
+    const dxMouse = Math.abs((e.clientX ?? 0) - (drag.current.startX ?? 0))
+    const isClick = !isDraggingRef.current && dxMouse <= dragThreshold
+
+    drag.current.isDown = false
+    anim.current.dragging = false
+    isPressingRef.current = false
+
+    try {
+      slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId)
+    } catch {}
+
+    const prev = slider.dataset.prevScrollBehavior
+    if (prev !== undefined) slider.style.scrollBehavior = prev
+
+    if (isClick) {
+      const href = resolveHrefFromEvent(e)
+      if (href) {
+        navigate(href)
+        isDraggingRef.current = false
+        return
+      }
+    }
+
+    runInertia()
+    isDraggingRef.current = false
+  }
+
+  const onPointerDown = (e) => handleInteractionStart(e)
+  const onPointerMove = (e) => handleInteractionMove(e)
+  const onPointerUp = (e) => {
+    const slider = sliderRef.current
+    if (!slider) return
+    if (e.pointerType === 'touch') return handleInteractionEndTouch(e)
+    return handleInteractionEndMousePen(e)
+  }
+
   const onPointerLeave = () => {
     drag.current.isDown = false
     anim.current.dragging = false
+    isPressingRef.current = false
+    // do not reset isDraggingRef here to allow click guard to catch it; it will reset on next frame in click guard
   }
 
   const onPointerCancel = () => {
     drag.current.isDown = false
     anim.current.dragging = false
+    isPressingRef.current = false
+    isDraggingRef.current = false
   }
 
   const onClickCapture = (e) => {
-    if (didDrag.current) {
+    if (isDraggingRef.current) {
       e.preventDefault()
       e.stopPropagation()
-      requestAnimationFrame(() => { didDrag.current = false })
+      requestAnimationFrame(() => { isDraggingRef.current = false })
     }
   }
 
