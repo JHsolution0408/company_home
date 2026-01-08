@@ -259,9 +259,15 @@ const IndexPage = ({ data }) => {
                     backgroundImage: `linear-gradient(124deg, #F6FEF9 21.51%, transparent 57.84%), url('${card.image}')`,
                   }}
                 >
-                  <h3 className={styles.heroKicker}>{card.title}</h3>
-                  <p className={styles.heroTitle1}>{card.subtitle1}</p>
-                  <p className={styles.heroTitle2}>{card.subtitle2}</p>
+                  <h3 className={styles.heroKicker}>
+                    {card.title}
+                  </h3>
+                  <p className={styles.heroTitle1}>
+                    {card.subtitle1}
+                  </p>
+                  <p className={styles.heroTitle2}>
+                    {card.subtitle2}
+                  </p>
 
                   <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
