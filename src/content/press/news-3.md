@@ -1,6 +1,6 @@
 ---
 title:  "㈜제이에이치솔루션, ‘2025 대한민국환경대상’ 산업통상자원부 장관표창 수상"
-date: "2024-11-20"
+date: "2025-11-20"
 summary: "글로벌 에너지 최적화 컨퍼런스에서 주요 발표를 진행했습니다."
 featureImage: "/images/press/press_3.png"
 slug: "news-3"

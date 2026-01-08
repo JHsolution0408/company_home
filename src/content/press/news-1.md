@@ -1,6 +1,6 @@
 ---
 title: "[KMF 2025] 제이에이치솔루션, 초거대 AI 기반 '디지털 트윈 에너지 최적화 솔루션' 공개하며 KMF 2025 혁신 주도"
-date: "2024-12-01"
+date: "2025-12-01"
 summary: "차세대 AI 기반 에너지 최적화 솔루션이 출시되었습니다."
 featureImage: "/images/press/press_1.png"
 slug: "news-1"
