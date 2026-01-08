@@ -50,7 +50,7 @@ const MediaPage = ({ data }) => {
                   alt: "이미지의 동적 변환",
                 }}
                 title={"이미지의 동적 변환"}
-                description={`그래픽 리소스를 분석하여 자연스러운 애니메이션 움직임을 생성합니다.`}
+                description={`정적인 그래픽 리소스를 정밀 분석하여 자연스럽고 유려한 애니메이션 움직임을 자동으로 구현합니다.`}
               />
 
               <ImageCard
@@ -59,7 +59,7 @@ const MediaPage = ({ data }) => {
                   alt: "장편 제작",
                 }}
                 title={"장편 제작"}
-                description={`숏폼을 넘어 서사가 있는 긴 러닝타임의 고품질 영상을 제작합니다. `}
+                description={`단순한 숏폼을 넘어, 풍부한 서사와 긴 러닝타임이 필요한 고품질 영상을 안정적으로 제작합니다.`}
               />
 
               <ImageCard
@@ -68,7 +68,7 @@ const MediaPage = ({ data }) => {
                   alt: "일관성 유지",
                 }}
                 title={"일관성 유지"}
-                description={`캐릭터·배경 학습으로 영상 전체의 일관성을 유지하는 기술을 보유합니다.`}
+                description={`캐릭터와 배경의 특징을 심층 학습하여, 영상의 시작부터 끝까지 시각적 톤앤매너를 완벽하게 유지합니다.`}
               />
             </div>
             
@@ -120,7 +120,7 @@ const MediaPage = ({ data }) => {
                   alt: "LLM 기반 실시간 대화",
                 }}
                 title={"LLM 기반 실시간 대화"}
-                description={`문맥을 이해하고 자연스럽게 대화하는 AI 엔진을 탑재합니다.`}
+                description={`대화의 문맥과 숨은 의도까지 정확히 파악하는 고성능 AI 엔진을 탑재합니다.`}
               />
 
               <ImageCard
@@ -138,7 +138,7 @@ const MediaPage = ({ data }) => {
                   alt: "맞춤형 페르소나 설계",
                 }}
                 title={"맞춤형 페르소나 설계"}
-                description={`목적에 맞는 외형 커스터마이징과 고유 지식 베이스를 구축합니다.`}
+                description={`서비스 목적에 최적화된 외형 커스터마이징은 물론, 분야별 전문 지식 베이스를 학습시켜 고유한 인격을 부여합니다.`}
               />
             </div>
 
@@ -181,7 +181,7 @@ const MediaPage = ({ data }) => {
                   alt: "AI 기술 적용",
                 }}
                 title={"AI 기술 적용"}
-                description={`AI 아바타와 연동되어 양방향 콘텐츠를 제공합니다.`}
+                description={`공간 내 지능형 AI 아바타와의 유기적인 연동을 통해, 단순 관람을 넘어선 능동적 상호작용을 지원합니다.`}
               />
 
               <ImageCard
@@ -190,7 +190,7 @@ const MediaPage = ({ data }) => {
                   alt: "실시간 다중 접속 환경",
                 }}
                 title={"실시간 다중 접속 환경"}
-                description={`수천 명이 동시에 소통하고 함께 플레이가 가능합니다.`}
+                description={`대규모 트래픽을 안정적으로 처리하는 고도화된 서버 기술로, 수천 명이 한 공간에 동시에 접속해도 쾌적합니다.`}
               />
 
               <ImageCard
@@ -260,7 +260,7 @@ const MediaPage = ({ data }) => {
                   alt: "AI 융합 하이브리드 게임",
                 }}
                 title={"AI 융합 하이브리드 게임"}
-                description={`게임 메카닉 노하우와 최첨단 AI 기술을 융합하여 XR게임과 모바일 캐주얼 게임을 제작합니다.`}
+                description={`검증된 게임 메카닉 노하우에 최첨단 AI 기술을 융합하여 XR의 압도적 몰입감과 모바일의 높은 접근성을 결합해 사용자에게 차세대 하이브리드 게이밍 경험을 선사합니다.`}
               />
 
               <ImageCard
@@ -269,16 +269,16 @@ const MediaPage = ({ data }) => {
                   alt: "AI 파이프라인 혁신",
                 }}
                 title={"AI 파이프라인 혁신"}
-                description={`개발 과정에 AI 적용으로 제작 기간과 비용 절감을 달성합니다.`}
+                description={`기획부터 리소스 제작까지 개발 전 공정에 생성형 AI를 도입하여, 물리적 제작 시간과 비용을 획기적으로 단축했습니다.`}
               />
 
               <ImageCard
                 image={{
                   src: "/images/solutions/card-game-contents3.png",
-                  alt: "지능형 NCP 솔루션",
+                  alt: "지능형 NPC 솔루션",
                 }}
-                title={"지능형 NCP 솔루션"}
-                description={`AI 기반의 지능형 NPC(AI 아바타)를 도입하여 몰입감 있는 게임 환경 제공합니다.`}
+                title={"지능형 NPC 솔루션"}
+                description={`플레이어와 능동적으로 소통하며 상황에 맞춰 반응하는 AI 기반의 지능형 NPC(AI 아바타)를 도입하여 몰입감 있는 게임 환경 제공합니다.`}
               />
             </div> 
 
