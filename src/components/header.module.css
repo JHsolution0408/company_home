@@ -15,6 +15,7 @@
   padding-left: 60px;
   padding-right: 60px;
   margin-top: clamp(8px, 2vw, 15px);
+  z-index: 9999;
 }
 
 .inner {
