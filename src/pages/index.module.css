@@ -44,7 +44,7 @@
   position: relative;
   border-radius: 20px;
   background-color: #fff;
-  background-size: contain;
+  background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
   padding-left: 60px;
@@ -396,6 +396,8 @@
 
 @media (max-width: 360px) {
   .heroCard {
+    background-size: auto 100%;
+    background-position: right;
     padding-left: 24px;
   }
 }
