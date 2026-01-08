@@ -45,10 +45,11 @@ const PressDetailPage = ({ data }) => {
               alt={title}
             />
           )}
-
-          <PressDetailBody
-            html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
-          />
+          <div className={styles.detailBodyWrap}>
+            <PressDetailBody
+              html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
+            />
+          </div>
         </div>
       </section>
     </Layout>

@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 54px;
 }
 
 .title {
   color: #17181B;
-  font-size: 40px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: -2px;
@@ -24,38 +25,37 @@
   letter-spacing: -1px;
 }
 
-.imageCardContainer {
-  flex: 1;
-  width: 100%;
-}
-
-.imageCardContent {
+.headingWrap {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.imageCardContent h3 {
-  color: #17181B;
+.sectionLabel {
+  margin: 0;
+  color: #177D3C; /* subtle grey */
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.4;
   letter-spacing: -1.5px;
-}
-
-.imageCardContent p {
-  color: #757B82;
-  font-size: 18px;
-  font-weight: 600;
   line-height: 1.4;
 }
 
 @media (max-width: 768px) {
-  .imageCardContent h3 {
-    font-size: 24px;
+  .title {
+    font-size: 32px;
   }
-  .imageCardContent p {
-    font-size: 18px;
+
+  .description {
+    font-size: 20px;
   }
 }
 
+@media (max-width: 500px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 20px;
+  }
+}

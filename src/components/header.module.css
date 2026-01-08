@@ -5,7 +5,6 @@
   color: #000;
   margin: 0 auto;
   width: 100%;
-  max-width: 18000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,12 +15,13 @@
   padding-left: 60px;
   padding-right: 60px;
   margin-top: clamp(8px, 2vw, 15px);
+  z-index: 9999;
 }
 
 .inner {
   background-color: #FDFDFD;
   width: 100%;
-  max-width: 1800px;
+  max-width: 1920px;
   display: flex;
   height: clamp(48px, 6vw, 72px);
   padding: 0 clamp(16px, 3vw, 60px);
@@ -47,14 +47,21 @@
 }
 
 .logo {
-  width: 125px;
-  height: 36px;
-  aspect-ratio: 125/36;
+  width: 53px;
+  height: 100%;
 }
 
 .logoLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  display: block;
+}
+
+.logoLink img {
+  margin: 0;
 }
 
 /* Nav panel desktop-only */
@@ -112,7 +119,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   font-family: inherit;
 }
@@ -137,7 +144,7 @@
 
 .navLink {
   color: #17181B;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
 }
@@ -236,15 +243,32 @@
   font-size: 20px;
 }
 
-.contact {
-  color: #333;
-  background-color: #E8E8E8;
-  padding: 12px 20px;
-  height: 46px;
-  border-radius: 10px;
+.contactForm {
   text-decoration: none;
-  font-weight: bold;
+}
+
+.contact {
+  display: flex;
+  min-width: 120px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background-color: #E9EDF0;
+}
+
+.contact span {
+  color: #17181B;
   font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Contact button inside mobile panel */

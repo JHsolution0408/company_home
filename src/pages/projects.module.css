@@ -27,10 +27,11 @@
 }
 
 .projectContainer {
+  box-sizing: border-box;
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 80px 60px 80px 60px;
+  padding: 80px 120px 80px 120px;
 }
 
 .projectTitle {
@@ -141,5 +142,16 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .projectThumbnail {
+    display: none;
+  }
+
+  .project {
+    padding: 20px 0;
+    word-break: keep-all;
   }
 }

@@ -12,9 +12,7 @@ const VisionMissionPage = () => {
       subHeaderDescription={'초거대 AI와 공학의 만남, 지속 가능한 내일을 가장 정밀하게 설계합니다.'}
       subHeaderBgImage="/images/banners/bg_vision.png"
     >
-      <section className={styles.container}>
-        <VisionMissionContent />
-      </section>
+      <VisionMissionContent />
     </Layout>
   );
 };

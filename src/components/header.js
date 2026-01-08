@@ -1,10 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import * as styles from "./header.module.css"
-import PCLogo from '../images/logo/jhsolution-logo-pc.svg';
+import LogoDefault from '../images/logo/jhsolution-logo.svg';
+import LogoWhite from '../images/logo/jhsolution-logo-white.svg';
 import CloseIcon from '/static/icons/common/close-icon.svg';
 import ChevronDownIcon from '/static/icons/common/chevron-down-icon.svg';
 import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
+import OpenIcon from '/static/icons/common/open-icon.svg';
 import subheader from "./subheader"
 
 const ContactFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSd8r-HC_kxlfuRDtX1LJvZaldc6I79aeUgdUQrS8TvHIAuo8Q/viewform';
@@ -42,6 +44,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
     () => !isHome && isDesktop && !isScrolled,
     [isHome, isDesktop, isScrolled]
   );
+  const logoSrc = useDarkDesktop ? LogoWhite : LogoDefault;
 
   React.useEffect(() => {
     // Close on ESC
@@ -169,9 +172,9 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
             <div className={styles.logo}>
               <Link to="/" className={styles.logoLink}>
                 <img
-                  src={PCLogo}
-                  width={"125px"}
-                  height={"36px"}
+                  src={logoSrc}
+                  width={53}
+                  height={40}
                   alt={"JH Solution Logo"}
                 />
               </Link>
@@ -317,10 +320,19 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
                   />
                 </button>
               )}
-
-              <a href={ContactFormLink} className={styles.contact}>
-                문의하기
-              </a>
+              <Link className={styles.contactForm} to={ContactFormLink} target="_self">
+                <div className={styles.contact}>
+                  <span>문의하기</span>
+                  <div className={styles.contactIcon}>
+                    <img
+                      src={OpenIcon}
+                      alt={"문의하기"}
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </header>
