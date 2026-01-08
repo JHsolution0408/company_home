@@ -84,19 +84,19 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/1lWkjbG5VLB3WuoO8temrd9QAJK8-Suog/preview"
+                  src="https://www.youtube.com/embed/Nxe8HhexNVI?si=VfnkuMA6zuCPuxze&amp"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/1EigMmMsyt5rh9LDDXpBeYxJQ5SiwPg3K/preview"
+                  src="https://www.youtube.com/embed/dC7dp1yOM-w?si=uUpRMffGWRhnFLGv"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>
             </div>
@@ -126,9 +126,9 @@ const MediaPage = ({ data }) => {
               <ImageCard
                 image={{
                   src: "/images/solutions/card-ai-avatar2.png",
-                  alt: "대상별 맞춤형 트윈 구축",
+                  alt: "멀티 플랫폼",
                 }}
-                title={"대상별 맞춤형 트윈 구축"}
+                title={"멀티 플랫폼"}
                 description={`PC와 모바일은 물론 XR 플랫폼 내에서도 끊김 없는 렌더링을 지원합니다.`}
               />
 
@@ -154,10 +154,10 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/1OfWuQZBBgesSWAx9p2nnScmm60SiBarI/preview"
+                  src="https://www.youtube.com/embed/9ofXAYn1Qc4?si=kJQK-VpH6UBQquel"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>
             </div>
@@ -224,19 +224,19 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/1r06Ag_1G1TA_JlNOWwRpv0nUsqc4uzRL/preview"
+                  src="https://www.youtube.com/embed/ty81yrLMnuU?si=HD9Kb4bxx02RJHoW"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/10c4oV_gjiMuPiLovfOqwhAv6Gbr1PBUI/preview"
+                  src="https://www.youtube.com/embed/KjdH7_13m1w?si=htcFCixLLDkDVPDK"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>              
             </div>            
@@ -294,10 +294,10 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://drive.google.com/file/d/12rJ5Ef0DJ2xl_koFtZFuGGkSvXMCyDgt/preview"
+                  src="https://www.youtube.com/embed/U6Bc-QdX67I?si=m1F1a7Gdmw-jxK1u"
                   allow="autoplay"
                   allowFullScreen
-                  title="google-drive-video"
+                  title="YouTube video player"
                 />
               </div>            
             </div>            
