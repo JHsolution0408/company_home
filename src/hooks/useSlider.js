@@ -3,27 +3,27 @@ import { navigate } from 'gatsby'
 import { exceededDragThreshold, DEFAULT_DRAG_THRESHOLD, DEFAULT_TAP_DISTANCE, DEFAULT_TAP_TIME } from '../utils/slider'
 
 /**
- * useSlider — reusable hook for horizontally scrolling, pseudo-infinite carousels built with duplicated tracks [A..N][A..N].
+ * useSlider — 수평 스크롤형 캐러셀(중복 트랙 [A..N][A..N] 기반의 유사 무한 루프)을 위한 재사용 가능한 훅.
  *
- * Features:
- * - Accepts an external ref to the scroll container for flexibility.
- * - Computes item stride from first child width + CSS gap.
- * - Keeps scroll position in the middle set and normalizes at edges.
- * - Exposes current index within the original set [0..N-1].
- * - Robust drag (mouse/pen) vs tap (touch) separation, with inertia.
- * - Optional programmatic navigation on confirmed tap/click via getHrefFromEvent.
- * - Dot click helper to scroll to nearest candidate among replicated sets.
+ * 주요 기능:
+ * - 외부에서 전달된 스크롤 컨테이너 ref를 사용해 유연하게 동작.
+ * - 첫 번째 자식의 너비 + CSS gap을 이용해 아이템 이동 간격(stride) 계산.
+ * - 스크롤 위치를 두 번째 세트(가운데 세트)로 유지하고 양 끝에서 자연스럽게 정규화.
+ * - 원본 세트 범위 [0..N-1] 내의 현재 인덱스를 노출.
+ * - 드래그(마우스/펜)와 탭(터치)을 견고하게 구분하고 관성 스크롤을 지원.
+ * - 탭/클릭이 확정된 경우 getHrefFromEvent로 얻은 링크로 programmatic navigation(navigate)을 수행(선택).
+ * - 도트 클릭 시 중복 세트들 중 가장 가까운 후보 위치로 스크롤하는 헬퍼 제공.
  */
 export function useSlider({
-  ref,                 // React ref to the scroll container (required)
-  itemsLength,         // number of unique items in the set (required)
-  dragThreshold = DEFAULT_DRAG_THRESHOLD,   // px threshold to consider as drag for mouse/pen
-  tapDistance = DEFAULT_TAP_DISTANCE,       // px threshold for tap detection on touch
-  tapTime = DEFAULT_TAP_TIME,               // ms threshold for tap detection
-  onIndexChange,       // optional callback(idx)
-  getHrefFromEvent,    // optional function(e) -> href string; if provided, hook calls navigate(href) on confirmed tap/click
+  ref,                 // 스크롤 컨테이너에 대한 외부 React ref (필수)
+  itemsLength,         // 고유 아이템 개수 (필수)
+  dragThreshold = DEFAULT_DRAG_THRESHOLD,   // 드래그로 간주할 마우스/펜 이동 임계값(px)
+  tapDistance = DEFAULT_TAP_DISTANCE,       // 터치 탭 판정을 위한 거리 임계값(px)
+  tapTime = DEFAULT_TAP_TIME,               // 터치 탭 판정을 위한 시간 임계값(ms)
+  onIndexChange,       // 선택: 인덱스 변경 콜백(idx)
+  getHrefFromEvent,    // 선택: function(e) -> href 문자열; 제공 시 탭/클릭 확정 시 navigate(href) 호출
 }) {
-  // Always create an internal ref unconditionally to satisfy Rules of Hooks.
+  // React 훅 규칙을 지키기 위해 내부 ref는 조건 없이 항상 생성합니다.
   const internalRef = React.useRef(null)
   const sliderRef = ref ?? internalRef
   const [current, setCurrent] = React.useState(0)
@@ -35,11 +35,11 @@ export function useSlider({
   const drag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
   const anim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
   const touchTap = React.useRef({ x: 0, y: 0, t: 0 })
-  // Explicit interaction state
+  // 명시적 상호작용 상태
   const isPressingRef = React.useRef(false)
   const isDraggingRef = React.useRef(false)
 
-  // Read gap/stride and place to the middle set on mount/update
+  // 마운트/업데이트 시 gap/stride를 계산하고 스크롤을 가운데 세트로 배치
   React.useEffect(() => {
     const slider = sliderRef.current
     if (!slider || !itemsLength) return
@@ -55,7 +55,7 @@ export function useSlider({
     const setWidth = stride * itemsLength
     setItemStride(stride)
 
-    // Place at the start of the second set
+    // 두 번째 세트의 시작 지점으로 배치
     requestAnimationFrame(() => {
       if (slider.scrollLeft < setWidth * 0.5) {
         slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
@@ -71,7 +71,7 @@ export function useSlider({
       if (anim.current.dragging || anim.current.inertId) return
       if (isNormalizing.current) return
 
-      // Normalize edges
+      // 양 끝 경계 정규화
       if (left <= epsilon) {
         isNormalizing.current = true
         const prevBehavior = slider.style.scrollBehavior
@@ -91,7 +91,7 @@ export function useSlider({
         return
       }
 
-      // Update index within original set [0..N-1]
+      // 원본 세트 [0..N-1] 기준의 현재 인덱스 갱신
       const rel = slider.scrollLeft % setWidth
       let idx = Math.round(rel / stride)
       if (idx >= itemsLength) idx = 0
@@ -122,8 +122,8 @@ export function useSlider({
     onIndexChange && onIndexChange(idx)
   }
 
-  // Pointer handlers
-  // Resolve href robustly, accounting for pointer capture retargeting
+  // 포인터 핸들러
+  // 포인터 캡처로 인한 타깃 변경을 고려하여 href를 견고하게 해석
   const resolveHrefFromEvent = (e) => {
     let href = null
     try {
@@ -147,7 +147,7 @@ export function useSlider({
     return href
   }
 
-  // --- Internal interaction helpers using explicit state ---
+  // --- 명시적 상태를 사용하는 내부 상호작용 헬퍼 ---
   const handleInteractionStart = (e) => {
     const slider = sliderRef.current
     if (!slider) return
@@ -159,7 +159,7 @@ export function useSlider({
       return
     }
 
-    // Mouse/Pen
+    // 마우스/펜
     isPressingRef.current = true
     isDraggingRef.current = false
 
@@ -215,7 +215,7 @@ export function useSlider({
   }
 
   const handleInteractionEndTouch = (e) => {
-    // Decide tap vs drag using distance/time
+    // 거리/시간 기준으로 탭 vs 드래그 판정
     const dx = Math.abs((e.clientX ?? 0) - (touchTap.current.x ?? 0))
     const dy = Math.abs((e.clientY ?? 0) - (touchTap.current.y ?? 0))
     const dt = performance.now() - (touchTap.current.t ?? 0)
@@ -292,7 +292,7 @@ export function useSlider({
     drag.current.isDown = false
     anim.current.dragging = false
     isPressingRef.current = false
-    // do not reset isDraggingRef here to allow click guard to catch it; it will reset on next frame in click guard
+    // 여기서는 isDraggingRef를 리셋하지 않습니다. 클릭 가드(onClickCapture)에서 다음 프레임에 리셋하도록 남겨 둡니다.
   }
 
   const onPointerCancel = () => {

@@ -36,7 +36,7 @@ const cards = [
   }
 ];
 
-// Solutions data (original set)
+// 솔루션 데이터 (원본 세트)
 const solutions = [
   { id: 'jhaion-engine', link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화 하는 통합 운영의 핵심 기술력", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
   { id: 'energy', link: "/solutions/energy", title: "에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => {
   const solutionsSliderRef = React.useRef(null)
   const pressSliderRef = React.useRef(null)
 
-  // Reusable slider hooks
+  // 재사용 가능한 슬라이더 훅
   const solutionsSlider = useSlider({
     ref: solutionsSliderRef,
     itemsLength: solutions.length,
@@ -84,7 +84,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      {/* Section 1: Hero Slider */}
+      {/* 섹션 1: 히어로 슬라이더 */}
       <div className={styles.heroWrapper}>
         <div
           className={styles.heroTrack}
@@ -149,7 +149,7 @@ const IndexPage = ({ data }) => {
           />
         </button>
 
-        {/* ex. 1/3 */}
+        {/* 예: 1/3 */}
         <div className={styles.navCounter}>
           <span className={styles.navCounterCurrent}>
             {String((current ?? 0) + 1).padStart(2, "0")}
@@ -170,7 +170,7 @@ const IndexPage = ({ data }) => {
         </button>
       </div>
 
-      {/* Section 2: About Company */}
+      {/* 섹션 2: 회사 소개 */}
       <div className={styles.sectionPad}>
         <div className={styles.aboutBanner}>
           <h3 className={styles.aboutBannerLabel}>
@@ -189,7 +189,7 @@ const IndexPage = ({ data }) => {
         </div>
       </div>
 
-      {/* Section 3: Solutions Slider */}
+      {/* 섹션 3: 솔루션 슬라이더 */}
       <div className={styles.solutionsSection}>
         <div className={styles.linkCardSectionHeader}>
           <h2 className={styles.title}>
@@ -333,7 +333,7 @@ const IndexPage = ({ data }) => {
 
 function LinkCard({ item, type = 'solutions' }) {
   const isPress = type === 'press'
-  // Map props based on card type
+  // 카드 타입에 따라 props 매핑
   const linkHref = isPress ? `/press/${item.frontmatter.slug}` : item.link
   const imgSrc = isPress ? (item.frontmatter.featureImage || '/images/none_feature.png') : item.img
   const imgAlt = isPress ? item.frontmatter.title : item.alt
