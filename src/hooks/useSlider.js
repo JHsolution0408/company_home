@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { navigate } from 'gatsby'
-import { exceededDragThreshold, DEFAULT_DRAG_THRESHOLD, DEFAULT_TAP_DISTANCE, DEFAULT_TAP_TIME } from '../utils/slider'
+import {
+  exceededDragThreshold,
+  DEFAULT_DRAG_THRESHOLD,
+  DEFAULT_TAP_DISTANCE,
+  DEFAULT_TAP_TIME
+} from '../utils/slider'
 
 /**
  * useSlider — 수평 스크롤형 캐러셀(중복 트랙 [A..N][A..N] 기반의 유사 무한 루프)을 위한 재사용 가능한 훅.
