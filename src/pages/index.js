@@ -17,7 +17,7 @@ const cards = [
     subtitle1: "초거대 AI가 여는 탄소중립의 미래",
     subtitle2: "가장 완벽한 에너지 최적화의 실현",
     link: "/company/vision-mission",
-    image: "/images/main-1.jpg"
+    image: "/images/main-1.png"
   },
   {
     title: "Beyond Data, Integration of Engineering",
@@ -31,7 +31,7 @@ const cards = [
     subtitle1: "데이터로 증명하는 압도적 효율",
     subtitle2: "비즈니스 성공을 위한 검증된 파트너십",
     link: "/company/partners",
-    image: "/images/main-3..png"
+    image: "/images/main-3.png"
   }
 ];
 
@@ -255,7 +255,9 @@ const IndexPage = ({ data }) => {
               >
                 <div
                   className={styles.heroCard}
-                  style={{ backgroundImage: `url('${card.image}')` }}
+                  style={{
+                    backgroundImage: `linear-gradient(124deg, #F6FEF9 21.51%, transparent 57.84%), url('${card.image}')`,
+                  }}
                 >
                   <h3 className={styles.heroKicker}>
                     {card.title}
