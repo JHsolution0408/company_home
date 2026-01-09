@@ -74,6 +74,11 @@ export function useSlider({
     const setWidth = stride * itemsLength
     setItemStride(stride)
 
+    // 터치 기기에서 수직 스크롤(pan-y)은 브라우저에 맡기고, 수평 제스처는 컴포넌트가 처리하도록 지정
+    const prevTA = slider.style.touchAction
+    slider.dataset.prevTouchAction = prevTA
+    slider.style.touchAction = 'pan-y'
+
     // 두 번째 세트의 시작 지점으로 배치
     requestAnimationFrame(() => {
       if (slider.scrollLeft < setWidth * 0.5) {
@@ -115,7 +120,12 @@ export function useSlider({
     }
 
     slider.addEventListener('scroll', onScroll)
-    return () => slider.removeEventListener('scroll', onScroll)
+    return () => {
+      slider.removeEventListener('scroll', onScroll)
+      // 복원: touch-action
+      const prevTA = slider.dataset.prevTouchAction
+      if (prevTA !== undefined) slider.style.touchAction = prevTA
+    }
   }, [itemsLength])
 
   const handleDotClick = (idx) => {
@@ -167,9 +177,30 @@ export function useSlider({
     if (!slider) return
 
     if (e.pointerType === 'touch') {
+      // 터치 시작: 탭 판정 기준 기록 + 드래그 준비 상태로 초기화
       touchTap.current = { x: e.clientX, y: e.clientY, t: performance.now() }
       isPressingRef.current = true
       isDraggingRef.current = false
+
+      if (anim.current.inertId) cancelAnimationFrame(anim.current.inertId)
+      anim.current.inertId = 0
+
+      drag.current.isDown = true
+      anim.current.dragging = true
+      drag.current.startX = e.clientX || 0
+      drag.current.startLeft = slider.scrollLeft
+      anim.current.lastX = e.clientX || 0
+      anim.current.lastT = performance.now()
+      anim.current.vx = 0
+
+      try {
+        slider.setPointerCapture && slider.setPointerCapture(e.pointerId)
+      } catch {}
+
+      const prev = slider.style.scrollBehavior
+      slider.dataset.prevScrollBehavior = prev
+      slider.style.scrollBehavior = 'auto'
+      // 터치는 기본동작을 막지 않습니다. touch-action CSS로 제어합니다.
       return
     }
 
@@ -199,23 +230,24 @@ export function useSlider({
   }
 
   const handleInteractionMove = (e) => {
-    if (e.pointerType === 'touch') return
     const slider = sliderRef.current
     if (!slider || !drag.current.isDown || !isPressingRef.current) return
 
-    e.preventDefault()
-    const x = e.clientX
+    // 마우스/펜에서는 기본동작 방지로 선택 방지 및 스크롤 제어
+    if (e.pointerType !== 'touch') e.preventDefault()
+
+    const x = e.clientX || 0
     const t = performance.now()
-    const dx = x - drag.current.startX
+    const dx = x - (drag.current.startX || 0)
 
     if (exceededDragThreshold(dx, dragThreshold)) isDraggingRef.current = true
 
-    const instDx = x - anim.current.lastX
-    const dt = Math.max(1, t - anim.current.lastT)
+    const instDx = x - (anim.current.lastX || x)
+    const dt = Math.max(1, t - (anim.current.lastT || t))
     const vx = instDx / dt
     anim.current.vx = anim.current.vx * 0.85 + vx * 0.15
 
-    anim.current.nextLeft = drag.current.startLeft - dx
+    anim.current.nextLeft = (drag.current.startLeft || 0) - dx
     if (!anim.current.pending) {
       anim.current.pending = true
       anim.current.rafId = requestAnimationFrame(() => {
@@ -231,15 +263,35 @@ export function useSlider({
   }
 
   const handleInteractionEndTouch = (e) => {
+    const slider = sliderRef.current
+    if (!slider) return
     // 거리/시간 기준으로 탭 vs 드래그 판정
     const dx = Math.abs((e.clientX ?? 0) - (touchTap.current.x ?? 0))
     const dy = Math.abs((e.clientY ?? 0) - (touchTap.current.y ?? 0))
     const dt = performance.now() - (touchTap.current.t ?? 0)
-    if (dx <= tapDistance && dy <= tapDistance && dt <= tapTime && !isDraggingRef.current) {
+    const isTap = dx <= tapDistance && dy <= tapDistance && dt <= tapTime && !isDraggingRef.current
+
+    // 공통 종료 처리
+    drag.current.isDown = false
+    anim.current.dragging = false
+    isPressingRef.current = false
+
+    try {
+      slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId)
+    } catch {}
+
+    const prev = slider.dataset.prevScrollBehavior
+    if (prev !== undefined) slider.style.scrollBehavior = prev
+
+    if (isTap) {
       const href = resolveHrefFromEvent(e)
       if (href) navigate(href)
+      isDraggingRef.current = false
+      return
     }
-    isPressingRef.current = false
+
+    // 드래그였다면 관성 스크롤
+    runInertia()
     isDraggingRef.current = false
   }
 
