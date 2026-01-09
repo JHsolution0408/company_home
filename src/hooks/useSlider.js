@@ -39,6 +39,25 @@ export function useSlider({
   const isPressingRef = React.useRef(false)
   const isDraggingRef = React.useRef(false)
 
+  // 인덱스 갱신: 연속 스크롤 좌표를 단일 계산 함수로 통합하고,
+  // 같은 인덱스면 setState를 피해서 렌더를 최소화합니다.
+  const currentRef = React.useRef(0)
+  const updateIndexFromLeft = (left, stride, itemsLen) => {
+    if (!itemsLen || !stride) return
+    const setWidth = stride * itemsLen
+    // 음수 모듈러 보정 포함
+    const relRaw = left % setWidth
+    const rel = ((relRaw) + setWidth) % setWidth
+    let idx = Math.round(rel / stride)
+    if (idx >= itemsLen) idx = 0
+    if (idx < 0) idx = 0
+    if (currentRef.current !== idx) {
+      currentRef.current = idx
+      setCurrent(idx)
+      onIndexChange && onIndexChange(idx)
+    }
+  }
+
   // 마운트/업데이트 시 gap/stride를 계산하고 스크롤을 가운데 세트로 배치
   React.useEffect(() => {
     const slider = sliderRef.current
@@ -68,36 +87,31 @@ export function useSlider({
       const epsilon = 1
 
       if (padOn && left > 0) setPadOn(false)
-      if (anim.current.dragging || anim.current.inertId) return
-      if (isNormalizing.current) return
 
       // 양 끝 경계 정규화
-      if (left <= epsilon) {
-        isNormalizing.current = true
-        const prevBehavior = slider.style.scrollBehavior
-        slider.style.scrollBehavior = 'auto'
-        slider.scrollLeft = left + setWidth
-        slider.style.scrollBehavior = prevBehavior
-        isNormalizing.current = false
-        return
-      }
-      if (left + slider.clientWidth >= maxScroll - epsilon) {
-        isNormalizing.current = true
-        const prevBehavior = slider.style.scrollBehavior
-        slider.style.scrollBehavior = 'auto'
-        slider.scrollLeft = left - setWidth
-        slider.style.scrollBehavior = prevBehavior
-        isNormalizing.current = false
-        return
+      if (!isNormalizing.current) {
+        if (left <= epsilon) {
+          isNormalizing.current = true
+          const prevBehavior = slider.style.scrollBehavior
+          slider.style.scrollBehavior = 'auto'
+          slider.scrollLeft = left + setWidth
+          slider.style.scrollBehavior = prevBehavior
+          isNormalizing.current = false
+          return
+        }
+        if (left + slider.clientWidth >= maxScroll - epsilon) {
+          isNormalizing.current = true
+          const prevBehavior = slider.style.scrollBehavior
+          slider.style.scrollBehavior = 'auto'
+          slider.scrollLeft = left - setWidth
+          slider.style.scrollBehavior = prevBehavior
+          isNormalizing.current = false
+          return
+        }
       }
 
-      // 원본 세트 [0..N-1] 기준의 현재 인덱스 갱신
-      const rel = slider.scrollLeft % setWidth
-      let idx = Math.round(rel / stride)
-      if (idx >= itemsLength) idx = 0
-      if (idx < 0) idx = 0
-      setCurrent(idx)
-      onIndexChange && onIndexChange(idx)
+      // 현재 스크롤 좌표로부터 인덱스를 항상 갱신 (드래그/관성 중에도)
+      updateIndexFromLeft(left, stride, itemsLength)
     }
 
     slider.addEventListener('scroll', onScroll)
@@ -206,6 +220,8 @@ export function useSlider({
       anim.current.pending = true
       anim.current.rafId = requestAnimationFrame(() => {
         slider.scrollLeft = anim.current.nextLeft
+        // 드래그 중에도 인덱스를 동기화
+        updateIndexFromLeft(anim.current.nextLeft, itemStride, itemsLength)
         anim.current.pending = false
       })
     }
@@ -237,6 +253,8 @@ export function useSlider({
       const step = () => {
         anim.current.nextLeft = slider.scrollLeft - vx * 16
         slider.scrollLeft = anim.current.nextLeft
+        // 관성 스크롤 중에도 인덱스를 동기화
+        updateIndexFromLeft(anim.current.nextLeft, itemStride, itemsLength)
         vx *= decay
         if (Math.abs(vx) > minV && !anim.current.dragging) {
           anim.current.inertId = requestAnimationFrame(step)
