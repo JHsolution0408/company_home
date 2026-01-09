@@ -17,11 +17,11 @@ services:
       - traefik-proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend-main.rule=Host(`dev.jh-solution.net`)" # ★★★ 홈페이지 개발버전 접근 주소 ★★★
-      - "traefik.http.routers.frontend-main.tls=true" # TLS 활성화 (HTTPS 사용)
-      - "traefik.http.routers.frontend-main.entrypoints=websecure" # websecure (8443) 엔트리포인트 사용
-      - "traefik.http.routers.frontend-main.tls.certresolver=sslresolver" # Let's Encrypt 인증서 리졸버
-      - "traefik.http.services.frontend-main.loadbalancer.server.port=8060" # 홈페이지 컨테이너의 내부 포트
+      - "traefik.http.routers.homepage-main.rule=Host(`dev.jh-solution.net`)" # ★★★ 홈페이지 개발버전 접근 주소 ★★★
+      - "traefik.http.routers.homepage-main.tls=true" # TLS 활성화 (HTTPS 사용)
+      - "traefik.http.routers.homepage-main.entrypoints=websecure" # websecure (8443) 엔트리포인트 사용
+      - "traefik.http.routers.homepage-main.tls.certresolver=sslresolver" # Let's Encrypt 인증서 리졸버
+      - "traefik.http.services.homepage-main.loadbalancer.server.port=8060" # 홈페이지 컨테이너의 내부 포트
 networks:
   traefik-proxy:
     external: true # Traefik과 서비스들이 공유할 네트워크
