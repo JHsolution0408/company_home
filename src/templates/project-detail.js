@@ -85,7 +85,7 @@ const ProjectDetailPage = ({ data, pageContext }) => {
 
   return (
     <Layout
-      type="dark"
+      type="light"
       subHeaderTitle="프로젝트"
       subHeaderDescription={description || "JH솔루션의 기술이 실현된 혁신의 현장, 데이터로 검증된 다양한 사업 분야의 수행 실적을 소개합니다."}
       subHeaderBgImage="/images/banners/bg_project.png"

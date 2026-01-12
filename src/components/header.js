@@ -30,9 +30,9 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
 
   const isShowSubHeader = subHeader && !isMenuOpen;
 
-  const filteredBgImage = bgImage
+  const filteredBgImage = type === 'dark'
     ? `linear-gradient(rgba(2, 8, 22, 0.6), rgba(2, 8, 22, 0.6)), url(${bgImage})`
-    : ""
+    : `url(${bgImage})`;
 
 
   // track desktop breakpoint and global listeners

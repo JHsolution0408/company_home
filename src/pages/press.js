@@ -31,7 +31,7 @@ const PressPage = () => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle="보도자료"
       subHeaderDescription="저희 회사의 최신 뉴스, 보도자료, 그리고 미디어 자료들입니다."
       subHeaderBgImage="/images/banners/bg_press.png"

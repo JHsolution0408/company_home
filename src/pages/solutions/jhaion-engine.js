@@ -28,7 +28,7 @@ const JhaionEnginePage = ({ data }) => {
       type={'dark'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
-      subHeaderBgImage="/images/solutions/card_jhaion1.png"
+      subHeaderBgImage="/images/banners/bg_jhaion.png"
     >
       <div className={styles.container}>
           {/* 압도적인 성능을 구현하는 엔진의 핵심 구성 */}
