@@ -696,16 +696,15 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 12px; /* gap-3 */
+  gap: 8px;
   height: 46px;
-  padding: 8px 15px; /* py-3 px-6 */
+  padding: 12px 20px;
   background-color: #16a34a; /* bg-green-600 */
   color: #fff;
   font-size: 16px;
   font-weight: 500;
   border: none;
   border-radius: 10px;
-  line-height: 140%;
   letter-spacing: 0;
   transition: background-color 0.2s ease;
   cursor: pointer;
@@ -841,7 +840,6 @@
   .ctaTitle { margin-bottom: 20px; font-size: 24px; line-height: 1.5; }
   .ctaDescription { display: none; }
   .ctaButton { font-size: 16px; }
-  .ctaButtonIcon { width: 16px; height: 16px; }
 }
 
 @media (max-width: 768px) {
