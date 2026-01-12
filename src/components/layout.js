@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
 import SubHeader from "./subheader"
+import FloatTop from "./template/FloatTop"
 import "../styles/globals.css"
 import "./layout.css"
 
@@ -23,7 +24,9 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
         }
       }
     }
-  `)
+  `);
+
+  const rootRef = React.useRef(null)
 
   const isHome = typeof window !== 'undefined' && window.location && window.location.pathname === '/';
 
@@ -40,6 +43,7 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
         overflowX: "hidden",
         boxSizing: "border-box"
       }}
+      ref={rootRef}
     >
       <Header
         type={type} siteTitle={data.site.siteMetadata?.title || `Title`}
@@ -55,7 +59,10 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
         )}
       />
 
-      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>{children}</main>
+      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>
+        {children}
+        <FloatTop layoutRootRef={rootRef} />
+      </main>
 
       <Footer />
     </div>
