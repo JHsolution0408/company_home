@@ -47,7 +47,7 @@ const SimulationPage = ({ data }) => {
           <div className={styles.flexBox}>
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy1.png",
+                src: "/images/solutions/card_sim1.png",
                 alt: "CAE 시뮬레이션 (Computer Aided Engineering)",
               }}
               title={"CAE 시뮬레이션 (Computer Aided Engineering)"}
@@ -56,7 +56,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy2.png",
+                src: "/images/solutions/card_sim2.png",
                 alt: "AI 기반 예측 (AI Prediction)",
               }}
               title={"AI 기반 예측 (AI Prediction)"}
@@ -65,7 +65,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy3.png",
+                src: "/images/solutions/card_sim3.png",
                 alt: "MRV 시스템 (Measurement, Reporting, Verification)",
               }}
               title={"MRV 시스템 (Measurement, Reporting, Verification)"}
@@ -89,7 +89,7 @@ const SimulationPage = ({ data }) => {
           <div className={styles.flexBox}>
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyBEMS.png",
+                src: "/images/solutions/card_sim4.png",
                 alt: "정밀 해석 전문성",
               }}
               title={"정밀 해석 전문성"}
@@ -98,7 +98,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyHEMS.png",
+                src: "/images/solutions/card_sim5.png",
                 alt: "대규모 해석 역량",
               }}
               title={"대규모 해석 역량"}
@@ -107,7 +107,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyFEMS.png",
+                src: "/images/solutions/card_sim6.png",
                 alt: "융합적 적용 능력",
               }}
               title={"융합적 적용 능력"}

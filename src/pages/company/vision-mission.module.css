@@ -19,7 +19,20 @@
 }
 
 section {
-  margin-bottom: 80px;
+  padding: 80px 0;
+}
+
+section:first-child {
+  padding-top: 0;
+}
+
+section:last-child {
+  padding-bottom: 0;
+}
+
+.aiEngineeringSection span {
+  word-break: keep-all;
+  line-height: 1.2;
 }
 
 .flexBox {
@@ -134,7 +147,19 @@ section {
 
 @media (max-width: 768px) {
   .container {
-    padding: 40px 20px;
+    padding: 40px 40px;
+  }
+
+  section {
+    padding: 40px 0;
+  }
+
+  .aiEngineeringSection {
+    padding: 0 0 16px;
+  }
+
+  .valuesSection {
+    padding: 40px 0 0;
   }
 
   .flexBox,
