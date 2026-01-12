@@ -6,6 +6,7 @@ period: "25년 10월 - 수행 중"
 featureImage: "/images/projects/card_ax.jpg"
 tags: ["GOV"]
 slug: "project-6"
+type: "project"
 client: "과학기술정보통신부/정보통신산업진흥원(NIPA)"
 contents:
   - "소규모 사업장을 대상으로 데이터 기반 4가지 AI 서비스를 적용한 노동법 준수 관리 체계 설계"

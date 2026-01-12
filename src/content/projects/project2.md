@@ -6,6 +6,7 @@ period: "24년 6월 - 24년 12월 (6개월)"
 featureImage: "/images/projects/card_gh.jpg"
 tags: ["INFRA"]
 slug: "project-2"
+type: "project"
 client: "경기주택도시공사(GH)"
 contents:
   - "경기도 및 GH공사의 기후변화 대응 및 스마트도시 추진 여건 분석 및 시사점 도출"

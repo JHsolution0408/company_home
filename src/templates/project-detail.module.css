@@ -31,7 +31,7 @@
 
 /* Content area: image + detail side-by-side on PC, stacked on mobile */
 .contentRow {
-  margin-top: 40px;
+  margin: 40px 0;
   display: grid;
   grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
   gap: 40px;
@@ -143,6 +143,34 @@
   gap: 10px;
 }
 
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-top: 40px;
+}
+
+.pagerBtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listBtnBox {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #177D3C;
+  color: #FDFDFD;
+  line-height: 140%;
+  text-decoration: none;
+}
+
 /* fallback for environments preferring high contrast */
 @media (prefers-contrast: more) {
   .sectionList {
@@ -167,5 +195,9 @@
 
   .detailBox {
     gap: 40px;
+  }
+
+  .pagerBtnBox {
+    gap: 10px;
   }
 }

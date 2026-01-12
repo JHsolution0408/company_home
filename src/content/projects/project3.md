@@ -6,6 +6,7 @@ period: "24년 3월 - 25년 1월 (11개월)"
 featureImage: "/images/projects/card_dangjin.jpg"
 tags: ["GOV"]
 slug: "project-3"
+type: "project"
 client: "충남 당진시"
 contents:
   - "당진시 탄소중립선도도시 지정을 위한 비전·목표 및 기본 추진방향 설정"

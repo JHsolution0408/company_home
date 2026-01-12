@@ -58,6 +58,34 @@ hr {
   max-width: 100%;
 }
 
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-top: 40px;
+}
+
+.pagerBtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listBtnBox {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #177D3C;
+  color: #FDFDFD;
+  line-height: 140%;
+  text-decoration: none;  
+}
+
 @media (max-width: 1000px) {
   .detailBodyWrap {
     padding: 0;
@@ -68,4 +96,8 @@ hr {
   .container {
     padding: 40px 20px;
   }
+
+  .pagerBtnBox {
+    gap: 10px;
+  }  
 }

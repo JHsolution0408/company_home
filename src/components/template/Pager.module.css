@@ -1,0 +1,39 @@
+.pagerBtn {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #E9EDF0;
+  text-decoration: none;
+}
+
+.disableBtn {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #9b9b9b;
+}
+
+.pagerBtn span {
+  color: #17181B;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+.disableBtn span {
+  color: #424346;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
