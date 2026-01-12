@@ -7,7 +7,7 @@
   --color-primary: #7026b9;
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
-  --font-sans: "NanumGothic";
+  --font-sans: "Pretendard";
   --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   --font-lg: 18px;
@@ -42,6 +42,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
+  font-family: sans-serif;
   font-family: var(--font-sans);
   font-weight: normal;
   margin: 0 auto !important;

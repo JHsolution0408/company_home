@@ -37,7 +37,7 @@ section:last-child {
 
 .flexBox {
   display: flex;
-  gap: 40px;
+  gap: 20px;
 }
 
 .flexBoxWithPlus {
