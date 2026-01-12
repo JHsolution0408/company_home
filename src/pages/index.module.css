@@ -674,7 +674,7 @@
 .ctaTitle {
   margin: 0;
   color: #17181B;
-  font-family: 'NanumGothic', sans-serif;
+  font-family: 'NanumGothic';
   font-size: 40px;
   font-weight: 700; /* font-medium */
   letter-spacing: -2px;
@@ -684,7 +684,7 @@
   color: #16a34a; /* text-green-600 */
 }
 .ctaDescription {
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'NanumGothic';
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
@@ -692,7 +692,7 @@
   color: #757B82;
 }
 .ctaButton {
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'NanumGothic';
   display: inline-flex;
   justify-content: center;
   align-items: center;
