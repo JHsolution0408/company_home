@@ -37,7 +37,7 @@ const Header = ({ type = 'light', bgImage, subHeader }) => {
 
   // track desktop breakpoint and global listeners
   const [isDesktop, setIsDesktop] = React.useState(
-    typeof window !== 'undefined' ? window.innerWidth >= MOBILE_BREAKPOINT : false
+    typeof window !== 'undefined' ? window.innerWidth : false
   )
   // Derived theme flag: on non-home desktop pages, dark at top, light after scroll
   const useDarkDesktop = React.useMemo(
