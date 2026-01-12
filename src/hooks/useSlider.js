@@ -37,6 +37,10 @@ export function useSlider({
   // 명시적 상호작용 상태
   const isPressingRef = React.useRef(false)
   const isDraggingRef = React.useRef(false)
+  // 해당 press 사이클 동안 한 번이라도 드래그 판정이 되었는지 추적 (레이스 방지용)
+  const hadDraggedRef = React.useRef(false)
+  // 해당 press 사이클 동안 포인터 이동이 1회라도 발생했는지
+  const movedThisPressRef = React.useRef(false)
 
   // 인덱스 갱신: 연속 스크롤 좌표를 단일 계산 함수로 통합하고,
   // 같은 인덱스면 setState를 피해서 렌더를 최소화합니다.
@@ -192,11 +196,17 @@ export function useSlider({
     const slider = sliderRef.current
     if (!slider) return
 
+    // 새 press 사이클 시작 시 드래그 플래그 리셋
+    hadDraggedRef.current = false
+
     if (e.pointerType === 'touch') {
       // 터치 시작: 탭 판정 기준 기록 + 드래그 준비 상태로 초기화
       touchTap.current = { x: e.clientX, y: e.clientY, t: performance.now() }
       isPressingRef.current = true
       isDraggingRef.current = false
+      // 새 사이클 시작: 이동 플래그 초기화
+      movedThisPressRef.current = false
+      slider.dataset.moved = '0'
 
       if (anim.current.inertId) cancelAnimationFrame(anim.current.inertId)
       anim.current.inertId = 0
@@ -222,6 +232,7 @@ export function useSlider({
     // 마우스/펜
     isPressingRef.current = true
     isDraggingRef.current = false
+    movedThisPressRef.current = false
 
     if (anim.current.inertId) cancelAnimationFrame(anim.current.inertId)
     anim.current.inertId = 0
@@ -256,7 +267,15 @@ export function useSlider({
     const t = performance.now()
     const dx = x - (drag.current.startX || 0)
 
-    if (exceededDragThreshold(dx, dragThreshold)) isDraggingRef.current = true
+    // 미세 이동이라도 발생하면 클릭을 보수적으로 차단하기 위해 이동 플래그/드래그 플래그 세팅
+    if (dx !== 0) {
+      movedThisPressRef.current = true
+      hadDraggedRef.current = true
+    }
+
+    if (exceededDragThreshold(dx, dragThreshold)) {
+      isDraggingRef.current = true
+    }
 
     const instDx = x - (anim.current.lastX || x)
     const dt = Math.max(1, t - (anim.current.lastT || t))
@@ -354,8 +373,33 @@ export function useSlider({
     const slider = sliderRef.current
     if (!slider) return
 
+    const deltaLeft = Math.abs((slider.scrollLeft ?? 0) - (drag.current.startLeft ?? 0))
     const dxMouse = Math.abs((e.clientX ?? 0) - (drag.current.startX ?? 0))
-    const isClick = !isDraggingRef.current && dxMouse <= dragThreshold
+
+    // 업 시점에서도 한 번 더 드래그 여부를 보수적으로 판정하여 클릭 오판정 방지
+    if (dxMouse > dragThreshold || deltaLeft > dragThreshold) {
+      hadDraggedRef.current = true
+    }
+
+    // 포인터가 한 번이라도 이동했다면(보수적) 클릭 네비게이션을 차단하고 관성만 처리
+    if (movedThisPressRef.current || hadDraggedRef.current) {
+      drag.current.isDown = false
+      anim.current.dragging = false
+      isPressingRef.current = false
+      try {
+        slider.releasePointerCapture && slider.releasePointerCapture(e.pointerId)
+      } catch {}
+      const prev = slider.dataset.prevScrollBehavior
+      if (prev !== undefined) slider.style.scrollBehavior = prev
+      runInertia()
+      isDraggingRef.current = false
+      movedThisPressRef.current = false
+      hadDraggedRef.current = false
+      return
+    }
+
+    // 클릭 판정 강화: 실제 스크롤 변위가 임계값 이하인 경우에만 클릭으로 간주
+    const isClick = deltaLeft <= dragThreshold
 
     drag.current.isDown = false
     anim.current.dragging = false
@@ -373,12 +417,16 @@ export function useSlider({
       if (href) {
         navigate(href)
         isDraggingRef.current = false
+        movedThisPressRef.current = false
+        hadDraggedRef.current = false
         return
       }
     }
 
     runInertia()
     isDraggingRef.current = false
+    movedThisPressRef.current = false
+    hadDraggedRef.current = false
   }
 
   // 마우스 등을 누르고있을때
@@ -420,10 +468,13 @@ export function useSlider({
 
   // 드래그 중 클릭 이벤트를 가로채 링크 네비게이션 등 부작용을 방지
   const onClickCapture = (e) => {
-    if (isDraggingRef.current) {
+    if (isDraggingRef.current || hadDraggedRef.current) {
       e.preventDefault()
       e.stopPropagation()
-      requestAnimationFrame(() => { isDraggingRef.current = false })
+      requestAnimationFrame(() => {
+        isDraggingRef.current = false
+        hadDraggedRef.current = false
+      })
     }
   }
 
@@ -431,8 +482,8 @@ export function useSlider({
     sliderRef,
     current,
     next: () => handleDotClick((current + 1) % (itemsLength || 1)),
-    prev: () => handleDotClick((current - 1 + (itemsLength || 1)) % (itemsLength || 1)),
-    goTo: (idx) => handleDotClick(idx),
+    // prev: () => handleDotClick((current - 1 + (itemsLength || 1)) % (itemsLength || 1)),
+    // goTo: (idx) => handleDotClick(idx),
     itemStride,
     gap,
     padOn,

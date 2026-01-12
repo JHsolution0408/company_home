@@ -123,7 +123,8 @@ describe('useSlider', () => {
   })
 
   test('드래그 임계값을 넘으면 클릭으로 간주되지 않아 navigate가 호출되지 않음', async () => {
-    const getHrefFromEvent = jest.fn(() => '/should-not-go')
+    // 드래그 중(pointer 이벤트 단계)에는 href를 해석하지 않도록 테스트 전용 구현
+    const getHrefFromEvent = jest.fn((e) => (e.type === 'click' ? '/should-not-go' : null))
     render(<TestSlider itemsLength={5} getHrefFromEvent={getHrefFromEvent} />)
     const slider = screen.getByTestId('slider')
     const { stride } = setupDomMeasurements(slider, { itemsLength: 5 })
@@ -132,9 +133,17 @@ describe('useSlider', () => {
 
     // 충분히 이동하여 드래그로 판정
     act(() => {
-      fireEvent.pointerDown(slider, { pointerType: 'mouse', clientX: 100 })
-      fireEvent.pointerMove(slider, { pointerType: 'mouse', clientX: 120 }) // 기본 임계값 8px 초과
-      fireEvent.pointerUp(slider, { pointerType: 'mouse', clientX: 120 })
+      fireEvent.pointerDown(slider, { pointerType: 'mouse', pointerId: 1, buttons: 1, clientX: 100, clientY: 0, bubbles: true })
+      fireEvent.pointerMove(slider, { pointerType: 'mouse', pointerId: 1, buttons: 1, clientX: 120, clientY: 0, bubbles: true })
+      fireEvent.pointerMove(slider, { pointerType: 'mouse', pointerId: 1, buttons: 1, clientX: 140, clientY: 0, bubbles: true })
+    })
+
+    // rAF 큐 플러시(스크롤 반영 및 내부 상태 업데이트 보장)
+    await act(async () => { jest.runOnlyPendingTimers() })
+    await act(async () => { jest.runOnlyPendingTimers() })
+
+    act(() => {
+      fireEvent.pointerUp(slider, { pointerType: 'mouse', pointerId: 1, buttons: 0, clientX: 140, clientY: 0, bubbles: true })
     })
 
     expect(navigate).not.toHaveBeenCalled()
