@@ -40,8 +40,8 @@ export default function JhaionBackgroundNew() {
       type="light"
       subHeaderTitle={PAGE_TITLE}
       subHeaderDescription={PAGE_DESCRIPTION}
-      subHeaderBgImage={"/images/about/jhaionbackgrounds/intro.png"}
-      subHeaderChildren={<JourneyTextAnimation />}
+      subHeaderBgImage="/images/banners/bg-jhaiondevelop.png"
+      anymationBanner={<JourneyTextAnimation />}
     >
       {/* Intro Section 아래 본문 */}
       <style>{gradientKeyframes}</style>

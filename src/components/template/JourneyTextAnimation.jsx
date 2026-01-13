@@ -3,10 +3,17 @@ import * as styles from "./JourneyTextAnimation.module.css";
 
 const JourneyTextAnimation = () => {
   return (
-    <div className={styles.interaction}>
+    <div 
+      className={styles.interaction}
+      style={{
+        background: "url(/images/banners/bg-jhaion-banner.png) center center / cover no-repeat",
+      }}
+    >
       <div className={styles.slogan}>
-        <h1 className={styles.title}>데이터와 물리학의 간극을 메우다</h1>
-        <h2>JHAION의 시작</h2>
+        <div className={styles.titleBox}>
+          <h1 className={styles.title}>데이터와 물리학의 간극을 메우다</h1>
+          <h2>JHAION의 시작</h2>
+        </div>
         <h3>
           기존의 예측 방식이 가진 불확실성을 해결하고,
           <br className={styles.brForMobile} />

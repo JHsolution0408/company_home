@@ -10,7 +10,7 @@
 
 /* default padding matches the provided example; can be overridden via inline style if needed */
 .contentPadding {
-  padding: 137px 120px 60px 120px;
+  padding: 137px 120px 46.5px 120px;
 }
 
 .inner {
@@ -40,6 +40,7 @@
   letter-spacing: -1px;
   white-space: nowrap;
   word-break: keep-all;
+  margin: 0;
 }
 
 

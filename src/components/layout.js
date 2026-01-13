@@ -15,7 +15,7 @@ import FloatTop from "./template/FloatTop"
 import "../styles/globals.css"
 import "./layout.css"
 
-const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage, subHeaderChildren }) => {
+const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage, anymationBanner }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -53,11 +53,10 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
             title={subHeaderTitle}
             description={subHeaderDescription}
             bgImage={subHeaderBgImage}
-          >
-            {subHeaderChildren}
-          </SubHeader>
+          />
         )}
       />
+      {anymationBanner}
 
       <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>
         {children}
