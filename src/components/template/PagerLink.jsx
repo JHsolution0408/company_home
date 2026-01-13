@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import * as styles from "./Pager.module.css"
+import * as styles from "./PagerLink.module.css"
 
 /**
  * 이전 / 다음 페이지 이동용 PagerLink 컴포넌트

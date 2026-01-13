@@ -10,6 +10,10 @@
   text-decoration: none;
 }
 
+.pagerBtn:hover {
+  background: rgba(2, 8, 22, 0.10);
+}
+
 .disableBtn {
   display: flex;
   width: 100px;
@@ -18,7 +22,8 @@
   align-items: center;
   gap: 8px;
   border-radius: 10px;
-  background: #9b9b9b;
+  opacity: 0.4;
+  background: rgba(2, 8, 22, 0.10);
 }
 
 .pagerBtn span {
@@ -30,7 +35,7 @@
 }
 
 .disableBtn span {
-  color: #424346;
+  color: #17181B;
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
