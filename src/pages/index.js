@@ -269,7 +269,7 @@ const IndexPage = ({ data }) => {
 
                   <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
-                      <span>자세히 알아보기</span>
+                      <span>자세히 보기</span>
                       <div className={styles.heroCtaIcon}>
                         <img
                           src={OpenIconWhite}
