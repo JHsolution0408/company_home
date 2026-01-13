@@ -86,6 +86,10 @@ hr {
   text-decoration: none;  
 }
 
+.listBtnBox:hover {
+  background: #095123;
+}
+
 @media (max-width: 1000px) {
   .detailBodyWrap {
     padding: 0;

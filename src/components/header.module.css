@@ -258,6 +258,10 @@
   background-color: #E9EDF0;
 }
 
+.contact:hover {
+  background: linear-gradient(0deg, rgba(2, 8, 22, 0.10) 0%, rgba(2, 8, 22, 0.10) 100%), #E9EDF0;
+}
+
 .contact span {
   color: #17181B;
   font-size: 16px;

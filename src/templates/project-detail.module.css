@@ -171,6 +171,10 @@
   text-decoration: none;
 }
 
+.listBtnBox:hover {
+  background: #095123;
+}
+
 /* fallback for environments preferring high contrast */
 @media (prefers-contrast: more) {
   .sectionList {

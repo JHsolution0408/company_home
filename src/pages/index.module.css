@@ -116,6 +116,7 @@
 
 .heroCta:hover {
   background-color: #125d2d;
+  background: linear-gradient(0deg, rgba(253, 253, 253, 0.10) 0%, rgba(253, 253, 253, 0.10) 100%), #095123;
 }
 
 .dots {
@@ -713,7 +714,9 @@
   cursor: pointer;
   text-decoration: none;
 }
-.ctaButton:hover { background-color: #15803d; /* hover:bg-green-700 */ }
+.ctaButton:hover {
+  background-color: #095123;
+}
 
 .ctaButtonIcon { width: 20px; height: 20px; }
 
