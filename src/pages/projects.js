@@ -60,6 +60,7 @@ const ProjectsPage = () => {
         >
           {projects.map(project => (
             <Link
+              key={project.id}
               to={`/projects/${project.frontmatter.slug}`}
               className={styles.projectLink}
             >

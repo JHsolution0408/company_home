@@ -33,19 +33,19 @@ const companyItems = [
 const pressItems = [
   { name: "보도자료", slug: "press" },
   /* 현재 '기술 인사이트' 페이지  Content를 받지 못해 임시 주석처리 */
-  // { name: "기술 인사이트", slug: "techInsights" },
+  { name: "기술 인사이트", slug: "techInsights" },
 ]
 
 const MENU = [
   { key: "company", label: "회사소개", basePath: "/company", items: companyItems },
   { key: "solutions", label: "솔루션", basePath: "/solutions", items: solutionItems },
   { key: "projects", label: "프로젝트", basePath: "/projects" },
-  { key: "press", label: "홍보센터", basePath: "", items: pressItems },
+  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techInsights"] },
 ]
 
-const buildItemPath = (basePath, slug) => {
-  const path = `${basePath}/${slug || ""}`;
-  return path.replace(/\/$/, "")
+const buildItemPath = (menu, item) => {
+  if (item.to) return item.to
+  return `${menu.basePath}/${item.slug}`.replace(/\/$/, "");
 }
 
 function Header({ type = "light", bgImage, subHeader }) {
@@ -73,18 +73,20 @@ function Header({ type = "light", bgImage, subHeader }) {
       ? `linear-gradient(rgba(2, 8, 22, 0.6), rgba(2, 8, 22, 0.6)), url(${bgImage})`
       : `url(${bgImage})`;
 
-  const isActiveMenu = React.useCallback((basePath) => {
-    if (!basePath) return false;
-    return pathname === basePath || pathname.startsWith(`${basePath}/`);
-  }, [pathname]);
+  const isActiveMenu = React.useCallback(
+    (menu) => {
+      const paths = menu.matchPaths?.length ? menu.matchPaths : [menu.basePath]
+      return paths
+        .filter(Boolean)
+        .some((p) => pathname === p || pathname.startsWith(`${p}/`));
+    },
+    [pathname]
+  )
 
   const isActiveSubMenu = React.useCallback(
-    (basePath, slug) => {
-      const targetPath = buildItemPath(basePath, slug)
-      return (
-        pathname === targetPath ||
-        pathname.startsWith(`${targetPath}/`)
-      )
+    (menu, item) => {
+      const targetPath = buildItemPath(menu, item)
+      return pathname === targetPath || pathname.startsWith(`${targetPath}/`);
     },
     [pathname]
   )
@@ -196,11 +198,11 @@ function Header({ type = "light", bgImage, subHeader }) {
               aria-label="데스크탑 내비게이션"
             >
               {MENU.map((menu) => {
-                const active = isActiveMenu(menu.basePath)
+                const active = isActiveMenu(menu);
                 // dropdown menu
                 if (menu.items?.length) {
                   return (
-                    <div key={menu.key} className={styles.menuGroup} tabIndex={0}>
+                    <div key={menu.key} className={styles.menuGroup}>
                       <button
                         type="button"
                         className={[
@@ -215,10 +217,10 @@ function Header({ type = "light", bgImage, subHeader }) {
                           {menu.items.map((item) => (
                             <Link
                               key={item.slug || item.name}
-                              to={buildItemPath(menu.basePath, item.slug)}
+                              to={buildItemPath(menu, item)}
                               className={[
                                 styles.dropdownLink,
-                                isActiveSubMenu(menu.basePath, item.slug)
+                                isActiveSubMenu(menu, item)
                                   ? styles.subMenuButtonSelected
                                   : "",
                                 ].join(" ")
@@ -281,6 +283,7 @@ function Header({ type = "light", bgImage, subHeader }) {
                 className={styles.contactForm} 
                 href={ContactFormLink}
                 target="_self"
+                aria-label="Contact Button Form"
               >
                 <div className={styles.contact}>
                   <span>문의하기</span>

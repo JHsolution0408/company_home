@@ -2,7 +2,6 @@ import * as React from "react"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import PartnersContent from "../../components/template/PartnersContent.jsx";
-import * as styles from "./vision-mission.module.css";
 
 const PartnersPage = () => (
   <Layout

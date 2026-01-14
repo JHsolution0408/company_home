@@ -2,7 +2,6 @@ import * as React from "react";
 import Seo from "../../components/seo";
 import Layout from "../../components/layout"
 import VisionMissionContent from "../../components/template/VisionMissionContent"
-import * as styles from "./vision-mission.module.css";
 
 const VisionMissionPage = () => {
   return (

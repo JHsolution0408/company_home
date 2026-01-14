@@ -39,11 +39,10 @@ function Sidebar({
 
   return (
     <>
-      <div
+      <button
+        type="button"
         className={`${styles.overlay} ${isMenuOpen ? styles.show : ""}`}
         onClick={handleNavClick}
-        role="button"
-        tabIndex={-1}
         aria-label="사이드바 닫기"
       />
 
@@ -81,7 +80,7 @@ function Sidebar({
                   {menu.items.map((item) => (
                     <Link
                       key={item.slug || item.name}
-                      to={buildItemPath(menu.basePath, item.slug)}
+                      to={buildItemPath(menu, item)}
                       className={[
                         styles.dropdownLink,
                         isActiveSubMenu(menu.basePath, item.slug) ? styles.activeLink : "",
@@ -102,14 +101,13 @@ function Sidebar({
               to={menu.basePath}
               className={[
                 styles.navLink,
-                active ? styles.activeNav : "",
               ].join(" ")}
               onClick={handleNavClick}
             >
               <button type="button" className={styles.menuButton}>
                 <span>{menu.label}</span>
               </button>
-            </Link>
+            </Link> 
           )
         })}
       </nav>
