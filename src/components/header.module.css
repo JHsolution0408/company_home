@@ -358,7 +358,7 @@
 
 @media (max-width: 450px) {
   .header {
-    padding: 14px 0 0 0
+    padding: 14px 12px 0 12px
   }
 
   .inner {
