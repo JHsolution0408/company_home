@@ -235,6 +235,7 @@
 }
 
 .contactForm {
+  cursor: pointer;
   text-decoration: none;
 }
 

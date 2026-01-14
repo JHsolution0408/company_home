@@ -30,13 +30,17 @@ const companyItems = [
   { name: "협력 네트워크", slug: "partners" },
 ]
 
-const pressItems = [{ name: "보도자료", slug: "" }]
+const pressItems = [
+  { name: "보도자료", slug: "press" },
+  /* 현재 '기술 인사이트' 페이지  Content를 받지 못해 임시 주석처리 */
+  // { name: "기술 인사이트", slug: "techInsights" },
+]
 
 const MENU = [
   { key: "company", label: "회사소개", basePath: "/company", items: companyItems },
   { key: "solutions", label: "솔루션", basePath: "/solutions", items: solutionItems },
   { key: "projects", label: "프로젝트", basePath: "/projects" },
-  { key: "press", label: "홍보센터", basePath: "/press", items: pressItems },
+  { key: "press", label: "홍보센터", basePath: "", items: pressItems },
 ]
 
 const buildItemPath = (basePath, slug) => {
@@ -57,8 +61,8 @@ function Header({ type = "light", bgImage, subHeader }) {
   const isShowSubHeader = subHeader && !isMenuOpen;
 
   const useDarkDesktop = React.useMemo(
-    () => !isHome && isDesktop && !isScrolled,
-    [isHome, isDesktop, isScrolled]
+    () => !isHome && !isScrolled,
+    [isHome, isScrolled]
   )
 
   const logoSrc = useDarkDesktop ? LogoWhite : LogoDefault;
@@ -69,10 +73,10 @@ function Header({ type = "light", bgImage, subHeader }) {
       ? `linear-gradient(rgba(2, 8, 22, 0.6), rgba(2, 8, 22, 0.6)), url(${bgImage})`
       : `url(${bgImage})`;
 
-  const isActiveMenu = React.useCallback(
-    (basePath) => pathname === basePath || pathname.startsWith(`${basePath}/`),
-    [pathname]
-  )
+  const isActiveMenu = React.useCallback((basePath) => {
+    if (!basePath) return false;
+    return pathname === basePath || pathname.startsWith(`${basePath}/`);
+  }, [pathname]);
 
   const isActiveSubMenu = React.useCallback(
     (basePath, slug) => {
@@ -128,7 +132,7 @@ function Header({ type = "light", bgImage, subHeader }) {
   React.useEffect(() => {
     if (typeof window === "undefined") return
     const onScroll = () => {
-      if (!isHome && isDesktop) {
+      if (!isHome) {
         setIsScrolled(window.scrollY > 0);
       } else {
         setIsScrolled(false);
@@ -273,14 +277,18 @@ function Header({ type = "light", bgImage, subHeader }) {
                 </button>
               )}
 
-              <Link className={styles.contactForm} to={ContactFormLink} target="_self">
+              <a 
+                className={styles.contactForm} 
+                href={ContactFormLink}
+                target="_self"
+              >
                 <div className={styles.contact}>
                   <span>문의하기</span>
                   <div className={styles.contactIcon}>
                     <img src={OpenIcon} alt="문의하기" width={20} height={20} />
                   </div>
                 </div>
-              </Link>
+              </a>
             </div>
           </div>
         </header>
