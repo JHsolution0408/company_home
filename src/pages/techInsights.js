@@ -2,7 +2,7 @@ import * as React from "react"
 import * as styles from "./techInsights.module.css"
 
 import Layout from "../components/layout"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
 
 const TechInsights = () => {
@@ -22,6 +22,7 @@ const TechInsights = () => {
             author
             slug
             type
+            pdfUrl
           }
         }
       }
@@ -73,7 +74,7 @@ const TechInsights = () => {
               <img 
                 className={styles.insightImg} 
                 src={insight.frontmatter.featureImage}
-                alt="Insight Image"
+                alt="Insight Thumbnail"
               />
               <div className={styles.contentBox}>
                 <div className={styles.titleWrap}>
@@ -82,11 +83,11 @@ const TechInsights = () => {
                   </h3>
                 </div>
                 <div className={styles.postMeta}>
-                  <span className={styles.author}>
+                  <span>
                     {insight.frontmatter.author}
                   </span>
                   <span className={styles.rectangle} />
-                  <span className={styles.date}>
+                  <span>
                     {insight.frontmatter.date}
                   </span>
                 </div>
