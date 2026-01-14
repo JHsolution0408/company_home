@@ -137,3 +137,9 @@ Minimal content test pattern (without Jest), if needed quickly:
 - Created `.junie/demo_test.js` with Node’s `assert` to demonstrate running a simple test without adding dependencies.
 - Executed successfully via `node .junie/demo_test.js`.
 - File removed after verification; keep the approach documented here for quick checks without adding a full test stack.
+
+### 제약사항
+
+- 응답은 반드시 한국어로 한다.
+- 대답하기 전 반드시 코드 변경사항을 먼저 확인한다.
+- 자바스크립트 / 타입스크립트 코드는 ES6+의 최신 방식으로 작성한다. 
