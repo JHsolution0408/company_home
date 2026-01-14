@@ -961,9 +961,8 @@
   }
 
   .heroCard {
+    background-size: 100% 43.625rem, auto 18.25rem;
     padding: 0 24px;
-    background-size: cover;
-    background-position: right bottom; /* keep artwork visible without empty right area */
   }
 
   .heroKicker {
