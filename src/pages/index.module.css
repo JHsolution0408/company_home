@@ -852,7 +852,7 @@
   /* Hero: ensure full image visibility and mobile typography */
   .heroWrapper {
     width: calc(100dvw - 80px);
-    height: 420px;
+    height: 352px;
     margin: 0 40px;
     padding: 0;
   }
@@ -871,13 +871,17 @@
   }
   .heroKicker { font-size: 24px; }
   .heroTitle1 { font-size: 32px; }
-  .heroTitle2 { font-size: 32px; }
+  .heroTitle2 { 
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
   .heroCta span { font-size: 16px; }
 
   /* About (JHAION Engine) block */
   .aboutBanner {
-    padding: 40px;
     height: auto;
+    padding: 40px;
+    margin-top: 40px;
   }
   .aboutBannerLabel {
     font-size: 24px;
@@ -909,7 +913,8 @@
   .solutionsSection,
   .pressSection {
     height: 768px;
-    padding-left: 40px;
+    padding: 40px 40px 0;
+    margin-top: 40px;
   }
 
   .linkCardSectionHeader .title {
@@ -919,10 +924,16 @@
   .linkCardSectionHeader .description {
     font-size: 24px;
     letter-spacing: -1.5px;
+    word-break: keep-all;
+    white-space: wrap;
   }
 
   .navCounterCurrent { font-size: 32px; }
   .navCounter { font-size: 24px; }
+
+  .sectionPad {
+    padding: 0 40px;
+  }
 }
 
 /* Smooth momentum + better dragging for sliders */
@@ -939,7 +950,7 @@
 @media (max-width: 450px) {
   .heroWrapper {
     margin: 0; /* remove side margins that created right-side gap */
-    padding: 0 12px; /* minimal internal gutter to match design */
+    padding: 0 20px; /* minimal internal gutter to match design */
     width: 100%;
     height: 300px;
   }
@@ -965,10 +976,14 @@
   }
 
   .heroCta {
-    height: 43px;
-    font-size: 16px;
-    padding: 4px 16px;
+    height: 35px;
+    font-size: 14px;
+    padding: 2px 12px;
   }
+
+  .heroCta span {
+    font-size: 14px;
+  }  
 
   .navControls {
     margin-top: 20px;
@@ -987,7 +1002,11 @@
   }
 
   .aboutDescription {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .aboutTitle {
+    font-size: 20px
   }
 
   .linkCardSectionHeader .title {
@@ -1017,10 +1036,9 @@
     font-size: 16px;
   }
 
-
-
   .solutionsSection,
   .pressSection {
+    height: 600px;
     margin-top: 40px;
     padding: 0 20px;
   }
@@ -1037,5 +1055,11 @@
 
   .ctaTitle {
     font-size: 20px;
+  }
+
+  .ctaButton {
+    height: 35px;
+    font-size: 14px;
+    padding: 2px 12px;
   }
 }

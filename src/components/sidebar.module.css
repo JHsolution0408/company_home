@@ -179,3 +179,9 @@
     pointer-events: auto;
   }  
 }
+
+@media (max-width: 768px) {
+  .navMobile {
+    padding: 98px 16px
+  }
+}

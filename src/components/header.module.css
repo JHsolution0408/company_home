@@ -355,3 +355,13 @@
     display: block;
   }
 }
+
+@media (max-width: 450px) {
+  .header {
+    padding: 14px 0 0 0
+  }
+
+  .inner {
+    padding: 0 20px;
+  }
+}
