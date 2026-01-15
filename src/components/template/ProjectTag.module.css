@@ -25,3 +25,9 @@
   background: #F8F0E0;
   color: #6B5119;
 }
+
+@media (max-width: 450px) {
+  .tag {
+    font-size: 14px;
+  }  
+}

@@ -186,6 +186,7 @@
   .contentRow {
     grid-template-columns: 1fr; /* stack: image on top, details below */
   }
+
   .sectionRow {
     gap: 20px;
     padding: 0;
@@ -194,7 +195,7 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 40px 20px;
+    padding: 40px 40px;
   }
 
   .detailBox {
@@ -203,5 +204,35 @@
 
   .pagerBtnBox {
     gap: 10px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .sectionRow {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .sectionContent {
+    font-size: 18px;
+  }
+
+  .sectionList li {
+    font-size: 18px;
   }
 }
