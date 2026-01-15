@@ -13,6 +13,7 @@ export default function VisionMissionContent() {
           title={
             <>
               Global Standard in&nbsp;
+              <br className={styles.brForMobile} />
               <span>AI-ENGINEERING</span>
             </>
           }
@@ -54,7 +55,9 @@ export default function VisionMissionContent() {
         <SectionTitle
           title={
             <>
-              고객과 함께하는 동행의 <span>핵심 미션</span>
+              고객과 함께하는 동행의&nbsp;
+              <br className={styles.brForMobile} />
+              <span>핵심 미션</span>
             </>
           }
           description={
@@ -112,7 +115,9 @@ export default function VisionMissionContent() {
         <SectionTitle
           title={
             <>
-              기술 혁신을 이끄는 <span>핵심 가치</span>
+              기술 혁신을 이끄는&nbsp;
+              <br className={styles.brForMobile} />
+              <span>핵심 가치</span>
             </>
           }
           description={

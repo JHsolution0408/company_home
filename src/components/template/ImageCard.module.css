@@ -48,12 +48,18 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 1.4;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
+  .imageCardContainer img{
+    margin-bottom: 16px;
+  }
+
   .imageCardContent h3 {
     font-size: 24px;
   }
+
   .imageCardContent p {
     font-size: 18px;
   }

@@ -14,6 +14,7 @@ export default function PartnersContent() {
           title={
             <>
               혁신 시너지를 창출하는&nbsp;
+              <br className={styles.brForMobile} />
               <span>협력 철학</span>
             </>
           }

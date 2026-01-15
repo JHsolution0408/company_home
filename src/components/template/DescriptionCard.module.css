@@ -41,3 +41,10 @@ img.descriptionCardImage {
   line-height: 1.4;
   letter-spacing: -1px;
 }
+
+
+@media (max-width: 450px) {
+  .descriptionCard {
+    padding: 25px;
+  }
+}
