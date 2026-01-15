@@ -54,7 +54,7 @@ function Sidebar({
         aria-hidden={!isMenuOpen}
       >
         {menu.map((menu) => {
-          const active = isActiveMenu(menu.basePath)
+          const active = isActiveMenu(menu)
           const opened = openKey === menu.key
 
           if (menu.items?.length) {
@@ -83,7 +83,7 @@ function Sidebar({
                       to={buildItemPath(menu, item)}
                       className={[
                         styles.dropdownLink,
-                        isActiveSubMenu(menu.basePath, item.slug) ? styles.activeLink : "",
+                        isActiveSubMenu(menu, item) ? styles.activeLink : "",
                       ].join(" ")}
                       onClick={handleNavClick}
                     >
