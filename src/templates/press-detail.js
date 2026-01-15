@@ -48,7 +48,7 @@ const PressDetailPage = ({ data, pageContext }) => {
     <Layout
       type="light"
       subHeaderTitle="보도자료"
-      subHeaderDescription={description || "저희 회사의 최신 뉴스, 보도자료, 그리고 미디어 자료들입니다."}
+      subHeaderDescription={description || "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다."}
       subHeaderBgImage="/images/banners/bg_press_detail.png"
     >
       <div className={styles.container}>
