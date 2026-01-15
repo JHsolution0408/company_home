@@ -45,7 +45,7 @@
 .topBar {
   display: flex;
   justify-content: space-between;
-  padding-bottom: clamp(12px, 2vw, 30px);
+  padding-bottom: clamp(12px, 2vw, 40px);
 }
 
 .leftCol {
@@ -132,7 +132,7 @@
 
 .bottomBar {
   text-align: left;
-  padding-top: 20px;
+  padding-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -148,26 +148,46 @@
 
 
 @media (max-width: 900px) {
-    .container {
-        padding: 40px;
-    }
+  .container {
+      padding: 40px;
+  }
 
-    .topBar {
-        flex-direction: column;
-        gap: 40px;
-    }
+  .topBar {
+      flex-direction: column;
+      gap: 40px;
+  }
 
-    .leftCol {
-        width: 100%;
-    }
+  .leftCol {
+      width: 100%;
+  }
 
-    .rightCol {
-        width: 100%;
-        justify-content: flex-start;
-        padding-left: 0;
-    }
+  .rightCol {
+      width: 100%;
+      justify-content: flex-start;
+      padding-left: 0;
+  }
 
-    .br {
-        display: block;
-    }
+  .br {
+      display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    margin: 0;
+  }
+
+  .topBar {
+    padding-bottom: 40px;
+  }
+
+  .section {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
 }

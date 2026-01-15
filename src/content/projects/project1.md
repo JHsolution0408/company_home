@@ -6,6 +6,7 @@ period: "23년 1월 - 24년 12월 (24개월)"
 featureImage: "/images/projects/card_k-water.jpg"
 tags: ["INDUSTRY"]
 slug: "project-1"
+type: "project"
 client: "한국수자원공사(K-WATER)"
 contents:
   - "강원수열클러스터 탄소중립도시 조성을 위한 비전·목표 및 기본 추진방향 설정"

@@ -8,7 +8,7 @@ export default function VisionMissionContent() {
   return (
     <div className={styles.container}>
       {/* Global Standard in AI-ENGINEERING */}
-      <section>
+      <section className={styles.aiEngineeringSection}>
         <SectionTitle
           title={
             <>
@@ -17,9 +17,9 @@ export default function VisionMissionContent() {
             </>
           }
           description={`
-          우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다.
-          에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
-        `}
+            우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다.
+            에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
+          `}
         />
 
         <div className={styles.flexBox}>
@@ -30,9 +30,9 @@ export default function VisionMissionContent() {
             }}
             title={"기술의 한계를 넘는 융합 혁신"}
             description={`
-            Hyper-scale AI의 연산력에 CFD(수치해석)의 정밀함을 더해,
-            기존 방식으로는 불가능했던 산업 전반의 초정밀 에너지 최적화를 실현합니다.
-          `}
+              Hyper-scale AI의 연산력에 CFD(수치해석)의 정밀함을 더해,
+              기존 방식으로는 불가능했던 산업 전반의 초정밀 에너지 최적화를 실현합니다.
+            `}
           />
 
           <ImageCard
@@ -42,9 +42,9 @@ export default function VisionMissionContent() {
             }}
             title={"데이터로 증명하는 Net-Zero 생태계"}
             description={`
-            막연한 선언이 아닌, 측정 가능하고 검증된 데이터(MRV)를 기반으로
-            가장 현실적이고 경제적인 탄소 중립 로드맵을 완성합니다.
-          `}
+              막연한 선언이 아닌, 측정 가능하고 검증된 데이터(MRV)를 기반으로
+              가장 현실적이고 경제적인 탄소 중립 로드맵을 완성합니다.
+            `}
           />
         </div>
       </section>
@@ -108,7 +108,7 @@ export default function VisionMissionContent() {
       </section>
 
       {/* 기술 혁신을 이끄는 핵심 가치 */}
-      <section>
+      <section className={styles.valuesSection}>
         <SectionTitle
           title={
             <>
@@ -143,7 +143,9 @@ export default function VisionMissionContent() {
             imageSrc={"/images/about/mission-7.png"}
             imageAlt={"검증된 신뢰성"}
             title={"검증된 신뢰성"}
-            description={'결과는 반드시 증명되어야 합니다. 수많은 시뮬레이션(Digital Twin)과 실증 사례를 통해 예측의 정확도를 보장하며, 고객에게 약속한 효율을 끝까지 책임집니다.'}
+            description={
+              '결과는 반드시 증명되어야 합니다. 수많은 시뮬레이션(Digital Twin)과 실증 사례를 통해 예측의 정확도를 보장하며, 고객에게 약속한 효율을 끝까지 책임집니다.'
+            }
           />
         </div>
       </section>

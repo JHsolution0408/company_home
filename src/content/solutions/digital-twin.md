@@ -2,6 +2,7 @@
 title: "디지털 트윈"
 description: "현실을 정밀하게 모사하는 디지털 트윈으로 운영 효율을 높입니다."
 slug: "digital-twin"
+type: "ai"
 ---
 
 # 현실을 가상으로 완벽하게 동기화하는 <span style="color: #177D3C">디지털 트윈의 핵심 구성 </span>

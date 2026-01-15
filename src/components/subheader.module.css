@@ -10,7 +10,7 @@
 
 /* default padding matches the provided example; can be overridden via inline style if needed */
 .contentPadding {
-  padding: 137px 120px 60px 120px;
+  padding: 137px 120px 46.5px 120px;
 }
 
 .inner {
@@ -25,6 +25,7 @@
 .title {
   margin: 0;
   color: #FDFDFD;
+  font-family: "NanumGothic";
   font-size: 40px;
   font-weight: 700;
   line-height: 1.4;
@@ -39,6 +40,7 @@
   letter-spacing: -1px;
   white-space: nowrap;
   word-break: keep-all;
+  margin: 0;
 }
 
 

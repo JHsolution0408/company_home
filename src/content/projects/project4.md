@@ -6,6 +6,7 @@ period: "25년 2월 - 25년 7월 (6개월)"
 featureImage: "/images/projects/card_suwon.jpg"
 tags: ["GOV"]
 slug: "project-4"
+type: "project"
 client: "경기 수원시"
 contents:
   - "수원시 탄소중립 그린도시 통합플랫폼 구축을 위해 정책·제도·기술 환경과 관련 기관 업무 현황 종합 분석"

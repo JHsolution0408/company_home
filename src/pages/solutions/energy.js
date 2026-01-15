@@ -24,7 +24,7 @@ const EnergyManagementPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_project.png"

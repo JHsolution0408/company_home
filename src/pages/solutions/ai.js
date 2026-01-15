@@ -25,7 +25,7 @@ const AiPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_ai.png"

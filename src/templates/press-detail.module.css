@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 80px 60px;
+  padding: 80px 120px;
 }
 
 .pressHeader {
@@ -50,14 +50,44 @@ hr {
 }
 
 .detailBodyWrap {
-  /* padding: 0 320px; */
   display: flex;
-  max-width: 1280px;
-  padding: 0 clamp(24px, 10vw, 320px);
+  max-width: 1040px;
 }
 
 .detailBodyWrap p {
   max-width: 100%;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-top: 40px;
+}
+
+.pagerBtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listBtnBox {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #177D3C;
+  color: #FDFDFD;
+  line-height: 140%;
+  text-decoration: none;  
+}
+
+.listBtnBox:hover {
+  background: #095123;
 }
 
 @media (max-width: 1000px) {
@@ -70,4 +100,8 @@ hr {
   .container {
     padding: 40px 20px;
   }
+
+  .pagerBtnBox {
+    gap: 10px;
+  }  
 }

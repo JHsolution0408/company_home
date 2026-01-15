@@ -6,6 +6,7 @@ period: "25년 6월 - 수행 중"
 featureImage: "/images/projects/card_bees.jpg"
 tags: ["INDUSTRY"]
 slug: "project-5"
+type: "project"
 client: "(주)OOOO"
 contents:
   - "표준 프로토콜 기반 설비 연동과 디지털 트윈을 활용한 빌딩 운영 통합관제 서비스 개발"

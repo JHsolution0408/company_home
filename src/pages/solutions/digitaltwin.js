@@ -25,7 +25,7 @@ const DigitalTwinPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_digitaltwin.png"
@@ -55,7 +55,7 @@ const DigitalTwinPage = ({ data }) => {
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_dt3.png",
+                  src: "/images/solutions/card_dt2.png",
                   alt: "대상별 맞춤형 트윈 구축",
                 }}
                 title={"대상별 맞춤형 트윈 구축"}
@@ -64,7 +64,7 @@ const DigitalTwinPage = ({ data }) => {
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_energy3.png",
+                  src: "/images/solutions/card_dt3.png",
                   alt: "통합 제어 및 시뮬레이션",
                 }}
                 title={"통합 제어 및 시뮬레이션"}

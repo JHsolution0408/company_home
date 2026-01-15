@@ -1,0 +1,214 @@
+.container {
+  display: flex;
+  padding: 80px 120px;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  align-self: stretch;
+}
+
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  align-self: stretch;
+  max-width: 1130px;
+  width: 100%;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.mainTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.firstTitle {
+  color: #17181B;
+  font-family: 'NanumGothic';
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -2px;
+  margin: 0;
+}
+
+.secondTitle {
+  color: #177D3C;
+  font-family: 'NanumGothic';
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -2px;
+  margin: 0;
+}
+
+.subTitle {
+  color: #2E3236;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+.listWrap {
+  display: flex;
+  max-width: 1680px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.list {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  gap: 40px;
+  align-self: stretch;
+  border-top: 1px solid #CFD3D8;
+}
+
+.list:last-child {
+  border-bottom: 1px solid #CFD3D8;
+}
+
+.insightImg {
+  width: 320px;
+  height: 180px;
+  aspect-ratio: 16/9;
+  margin: 0;
+  border-radius: 20px;
+  background: url('') lightgray 50% / cover no-repeat, #E0E4E8;
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 12px;
+}
+
+.title {
+  flex: 1 0 0;
+  align-self: stretch;
+  color: #17181B;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -1.5px;  
+}
+
+.brForMobile {
+  display: none;
+}
+
+.postMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.postMeta span {
+  color: #757B82;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -1px;  
+}
+
+.rectangle {
+  width: 1px;
+  height: 20px;
+  background: #D9D9D9;
+}
+
+.downloadWrap {
+  display: flex;
+  padding: 8px 10px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #D9F9E4;
+  border: none;
+  cursor: pointer;
+}
+
+.downloadWrap span {
+  color: #095123;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.pdfButtonIcon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: -8px;  
+}
+
+@media (max-width: 1024px) {
+  .brForMobile {
+    display: block;
+  }
+
+  .container {
+    display: flex;
+    max-width: 1024px;
+    padding: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .titleWrap {
+    align-items: flex-start;
+  }
+
+  .titleBox {
+    gap: 8px;
+  }
+
+  .firstTitle {
+    font-size: 32px;
+  }
+
+  .brForMobile {
+    display: block;
+  }
+
+  .secondTitle {
+    font-size: 32px;
+  }
+
+  .list {
+    padding: 20px 0;
+    gap: 20px;
+  }
+
+  .insightImg {
+    display: none;
+  }
+
+  .contentBox {
+    gap: 20px;
+    flex: 1 0 0;
+  }
+}

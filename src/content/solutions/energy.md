@@ -2,6 +2,7 @@
 title: "에너지 관리"
 description: "에너지 소비를 실시간 모니터링하고 최적화합니다."
 slug: "energy"
+type: "ai"
 ---
 
 # 지능형 에너지 관리를 구현하는 <span style="color: #177D3C"> 핵심 구성 </span>
