@@ -89,6 +89,6 @@ const PressPage = () => {
   )
 }
 
-export const Head = () => <Seo title="홍보센터" />
+export const Head = () => <Seo title="보도자료" />
 
 export default PressPage

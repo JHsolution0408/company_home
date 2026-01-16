@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as styles from "./techInsights.module.css"
 
+import Seo from "../components/seo"
 import Layout from "../components/layout"
 import { graphql, useStaticQuery } from "gatsby"
 import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
@@ -113,5 +114,7 @@ const TechInsights = () => {
     </Layout>
   );
 }
+
+export const Head = () => <Seo title="기술 인사이트" />
 
 export default TechInsights;
