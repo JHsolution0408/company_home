@@ -30,7 +30,7 @@ const gradientKeyframes = `
 `;
 
 // 페이지 SEO 정보 (필요시 SEO 컴포넌트에 전달)
-const PAGE_TITLE = "JHAION 개발배경";
+const PAGE_TITLE = "JHAION 개발 배경";
 const PAGE_DESCRIPTION = "JHAION 개발의 배경과 문제의식, 기술적 해답, 궁극적 목표를 소개합니다.";
 
 export default function JhaionBackgroundNew() {

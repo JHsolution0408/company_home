@@ -55,7 +55,7 @@ export default function VisionMissionContent() {
         <SectionTitle
           title={
             <>
-              고객과 함께하는 동행의&nbsp;
+              고객과 함께하는&nbsp;
               <br className={styles.brForMobile} />
               <span>핵심 미션</span>
             </>
@@ -80,9 +80,9 @@ export default function VisionMissionContent() {
                 고객의 성공을 위한 정략적 최적화
               </h3>
               <p className={styles.valueDescription}>
-                우리 기술은 고객의 이익으로 이어져야 합니다. JHAION 엔진으로
-                운영 효율을 극대화 하고 에너지 비용과 탄소 배출을 동시에 낮춰
-                고객의 경쟁력을 수치로 증명합니다.
+                우리의 기술은 고객의 이익으로 귀결되어야 합니다. JHAION 엔진으로
+                운영 효율을 극대화하고, 에너지 비용과 탄소 배출을 동시에 저감하여
+                고객의 비즈니스 경쟁력을 가장 확실한 수치로 높입니다.
               </p>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function VisionMissionContent() {
               </h3>
               <p className={styles.valueDescription}>
                 기술의 진보는 환경을 해치지 않아야 합니다. 건물부터 도시, 산업
-                현장까지 에너지 흐름을 투명하게 시각화 하고 제어하여 다음 세대를
+                현장까지 에너지 흐름을 투명하게 시각화하고 제어하여, 다음 세대를
                 위한 깨끗하고 안전한 환경을 구축하는데 앞장섭니다.
               </p>
             </div>
@@ -131,7 +131,7 @@ export default function VisionMissionContent() {
             imageAlt={"융합적 전문성"}
             title={"융합적 전문성"}
             description={
-              "우리는 IT와 공학의 경계를 허뭅니다. AI엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다."
+              "우리는 IT와 공학의 경계를 허뭅니다. AI 엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다."
             }
           />
           <PlusIconWithFlex />
