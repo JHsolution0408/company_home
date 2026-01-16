@@ -86,6 +86,15 @@ const JhaionEnginePage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="JHAION 엔진" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default JhaionEnginePage;

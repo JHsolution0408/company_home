@@ -238,51 +238,49 @@ const IndexPage = ({ data }) => {
 
       {/* Section 4: Press & News Slider */}
       <div className={styles.pressSection}>
-        <div>
-          <div className={styles.linkCardSectionHeader}>
-            <h2 className={styles.title}>
-              산업의 변화와 흐름을 주도하는
-              <br />
-              <span>JH솔루션의 새로운 소식을 만나보세요.</span>
-            </h2>
-            <p className={styles.description}>
-              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
-              창출하는 가치를 생생하게 전달합니다.
-            </p>
-          </div>
-          <div className={styles.sliderWrap}>
-            <div
-              ref={pressSliderRef}
-              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
-              style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
-              onPointerDown={pressSlider.handlers.onPointerDown}
-              onPointerMove={pressSlider.handlers.onPointerMove}
-              onPointerUp={pressSlider.handlers.onPointerUp}
-              onPointerLeave={pressSlider.handlers.onPointerLeave}
-              onPointerCancel={pressSlider.handlers.onPointerCancel}
-              onClickCapture={pressSlider.handlers.onClickCapture}
-            >
-              {pressReleases.concat(pressReleases).map((item, idx) => (
-                <LinkCard
-                  item={item}
-                  type="press"
-                  key={`press-${idx}-${item.frontmatter?.slug || idx}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={styles.dots}>
-            {pressReleases.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => pressSlider.handleDotClick(idx)}
-                className={`${styles.dot} ${
-                  pressSlider.current === idx ? styles.dotActive : ""
-                }`}
-                aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+        <div className={styles.linkCardSectionHeader}>
+          <h2 className={styles.title}>
+            산업의 변화와 흐름을 주도하는
+            <br />
+            <span>JH솔루션의 새로운 소식을 만나보세요.</span>
+          </h2>
+          <p className={styles.description}>
+            언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
+            창출하는 가치를 생생하게 전달합니다.
+          </p>
+        </div>
+        <div className={styles.sliderWrap}>
+          <div
+            ref={pressSliderRef}
+            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+            style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
+            onPointerDown={pressSlider.handlers.onPointerDown}
+            onPointerMove={pressSlider.handlers.onPointerMove}
+            onPointerUp={pressSlider.handlers.onPointerUp}
+            onPointerLeave={pressSlider.handlers.onPointerLeave}
+            onPointerCancel={pressSlider.handlers.onPointerCancel}
+            onClickCapture={pressSlider.handlers.onClickCapture}
+          >
+            {pressReleases.concat(pressReleases).map((item, idx) => (
+              <LinkCard
+                item={item}
+                type="press"
+                key={`press-${idx}-${item.frontmatter?.slug || idx}`}
               />
             ))}
           </div>
+        </div>
+        <div className={styles.dots}>
+          {pressReleases.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => pressSlider.handleDotClick(idx)}
+              className={`${styles.dot} ${
+                pressSlider.current === idx ? styles.dotActive : ""
+              }`}
+              aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+            />
+          ))}
         </div>
       </div>
 
