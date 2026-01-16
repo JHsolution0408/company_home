@@ -77,6 +77,15 @@ const DigitalTwinPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="디지털 트윈" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default DigitalTwinPage;

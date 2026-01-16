@@ -121,8 +121,15 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => (
-  <Seo title={data.markdownRemark.frontmatter.title} />
-)
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  )
+}
 
 export default PressDetailPage

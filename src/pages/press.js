@@ -6,6 +6,9 @@ import Seo from "../components/seo"
 import Layout from "../components/layout"
 import * as styles from "./press.module.css"
 
+const PAGE_TITLE = "보도자료";
+const PAGE_DESCRIPTION = "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다.";
+
 const PressPage = () => {
   const data = useStaticQuery(graphql`
     query PressListQuery {
@@ -32,8 +35,8 @@ const PressPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle="보도자료"
-      subHeaderDescription="JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다."
+      subHeaderTitle={PAGE_TITLE}
+      subHeaderDescription={PAGE_DESCRIPTION}
       subHeaderBgImage="/images/banners/bg_press.png"
     >
       <div>
@@ -89,6 +92,13 @@ const PressPage = () => {
   )
 }
 
-export const Head = () => <Seo title="보도자료" />
+export const Head = () => {
+  return (
+    <Seo 
+      title={PAGE_TITLE}
+      description={PAGE_DESCRIPTION}
+    />
+  )
+}
 
 export default PressPage

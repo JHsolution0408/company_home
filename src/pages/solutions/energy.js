@@ -127,7 +127,16 @@ const EnergyManagementPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="에너지 관리" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default EnergyManagementPage;
 
