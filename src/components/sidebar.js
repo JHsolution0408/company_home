@@ -29,12 +29,22 @@ function Sidebar({
   React.useEffect(() => {
     if (!isMenuOpen) return
 
-    const activeGroup = menu.find(
-      (m) => m.items?.length && (pathname === m.basePath || pathname.startsWith(`${m.basePath}/`))
-    );
+    const activeGroup = menu.find((m) => {
+      if (!m.items?.length) return false;
+
+      if (m.matchPaths?.length) {
+        return m.matchPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+      }
+
+      if (!m.basePath) return false;
+
+      return pathname === m.basePath || pathname.startsWith(`${m.basePath}/`);
+    })
+
     if (activeGroup) {
       setOpenKey(activeGroup.key);
     }
+
   }, [isMenuOpen, pathname, menu])
 
   return (
