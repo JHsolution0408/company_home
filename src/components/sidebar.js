@@ -30,13 +30,15 @@ function Sidebar({
     if (!isMenuOpen) return
 
     const activeGroup = menu.find((m) => {
-      if (!m.items?.length) return false;
-
       if (m.matchPaths?.length) {
         return m.matchPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
       }
 
-      if (!m.basePath) return false;
+      const isInvalidGroup = !m.items?.length || !m.basePath;
+
+      if (isInvalidGroup) {
+        return false;
+      }
 
       return pathname === m.basePath || pathname.startsWith(`${m.basePath}/`);
     })
@@ -46,6 +48,7 @@ function Sidebar({
     }
 
   }, [isMenuOpen, pathname, menu])
+
 
   return (
     <>
