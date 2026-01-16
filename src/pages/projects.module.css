@@ -147,12 +147,42 @@
 }
 
 @media (max-width: 1024px) {
-  .projectThumbnail {
-    display: none;
-  }
-
   .project {
     padding: 20px 0;
     word-break: keep-all;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .projectThumbnail {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .projectContainer {
+    padding: 40px 24px;
+  }
+
+  .projectTitle {
+    font-size: 28px;
+  }  
+
+  .projectContainer h2 {
+    font-size: 17px;
+  }
+
+  .projectDetail h3 {
+    font-size: 20px;
+  }
+
+  .projectDate {
+    font-size: 18px;
   }
 }

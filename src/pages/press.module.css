@@ -112,11 +112,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 12px;
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+
   .press {
     padding: 20px 0;
   }
@@ -136,4 +140,39 @@
     white-space: nowrap;
     font-size: 24px;
   }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .description {
+    margin-bottom: 40px;
+  }
 }
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .pressDetail {
+    gap: 10px;
+  }
+
+  .pressDetail h3 {
+    font-size: 20px;
+  }
+
+  .pressDate {
+    font-size: 18px;
+  }
+}
+ 

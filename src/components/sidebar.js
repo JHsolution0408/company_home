@@ -29,13 +29,26 @@ function Sidebar({
   React.useEffect(() => {
     if (!isMenuOpen) return
 
-    const activeGroup = menu.find(
-      (m) => m.items?.length && (pathname === m.basePath || pathname.startsWith(`${m.basePath}/`))
-    );
+    const activeGroup = menu.find((m) => {
+      if (m.matchPaths?.length) {
+        return m.matchPaths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+      }
+
+      const isInvalidGroup = !m.items?.length || !m.basePath;
+
+      if (isInvalidGroup) {
+        return false;
+      }
+
+      return pathname === m.basePath || pathname.startsWith(`${m.basePath}/`);
+    })
+
     if (activeGroup) {
       setOpenKey(activeGroup.key);
     }
+
   }, [isMenuOpen, pathname, menu])
+
 
   return (
     <>
@@ -54,7 +67,7 @@ function Sidebar({
         aria-hidden={!isMenuOpen}
       >
         {menu.map((menu) => {
-          const active = isActiveMenu(menu.basePath)
+          const active = isActiveMenu(menu)
           const opened = openKey === menu.key
 
           if (menu.items?.length) {
@@ -83,7 +96,7 @@ function Sidebar({
                       to={buildItemPath(menu, item)}
                       className={[
                         styles.dropdownLink,
-                        isActiveSubMenu(menu.basePath, item.slug) ? styles.activeLink : "",
+                        isActiveSubMenu(menu, item) ? styles.activeLink : "",
                       ].join(" ")}
                       onClick={handleNavClick}
                     >

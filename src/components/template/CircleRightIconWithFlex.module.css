@@ -11,6 +11,10 @@
 }
 
 @media (max-width: 768px) {
+  .imageContainer {
+    align-items: normal;
+  }
+
   .imageContainer img {
     transform: rotate(90deg);
   }

@@ -49,7 +49,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "탄소회계",
                 }}
                 title={"탄소회계"}
-                description={`복잡한 탄소 배출원을 자동으로 식별하고, 국제 표준에 맞춘 배출량 산정 및 리포팅을 자동화 합니다`}
+                description={`복잡한 탄소 배출원을 자동으로 식별하고, 국제 표준에 맞춘 배출량 산정 및 리포팅을 자동화합니다.`}
               />
 
               <ImageCard
@@ -58,7 +58,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "ESG 대응",
                 }}
                 title={"ESG 대응"}
-                description={`기업의 에너지 사용 데이터를 분석하여 환경(E)지표 관리를 돕고, 글로벌 이니셔티브(RE100 등) 대응을 위한 객관적 데이터를 제공합니다.`}
+                description={`기업의 에너지 사용 데이터를 분석하여 환경(E) 지표 관리를 돕고, 글로벌 이니셔티브(RE100 등) 대응을 위한 객관적 데이터를 제공합니다.`}
               />
 
               <ImageCard
@@ -67,7 +67,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "효율 최적화",
                 }}
                 title={"효율 최적화"}
-                description={`설비의 운전 효율을 실시간으로 분석하여 낭비되는 에너지를 차단하고, 피크부하를 제어하여 전력 비용을 절감합니다.`}
+                description={`설비의 운전 효율을 실시간으로 분석하여 낭비되는 에너지를 차단하고, 피크 부하를 제어하여 전력 비용을 절감합니다.`}
               />
             </div>
           </section>
@@ -100,7 +100,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "HEMS (Home)",
                 }}
                 title={"HEMS (Home)"}
-                description={`가정 내 IoT 기기와 연동해 전력 소비를 관리하고 AI가 생활패턴에 맞춰 에너지를 절약하는 시스템 입니다.`}
+                description={`가정 내 IoT 기기와 연동해 전력 소비를 관리하고 AI가 생활패턴에 맞춰 에너지를 절약하는 시스템입니다.`}
               />
 
               <ImageCard
@@ -118,7 +118,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "CEMS (Community)",
                 }}
                 title={"CEMS (Community)"}
-                description={`산업단지,도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유.거래하는 지역 에너지 관리 시스템 입니다.`}
+                description={`산업단지,도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유.거래하는 지역 에너지 관리 시스템입니다.`}
               />
             </div>
           </section>

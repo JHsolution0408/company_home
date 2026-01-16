@@ -154,6 +154,10 @@
   line-height: 140%;
 }
 
+.downloadWrap:hover {
+  background: #70c790;
+}
+
 .pdfButtonIcon {
   display: flex;
   width: 20px;
@@ -210,5 +214,39 @@
   .contentBox {
     gap: 20px;
     flex: 1 0 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .contentBox {
+    gap: 12px;
+  }
+
+  .firstTitle {
+    font-size: 28px;
+  }
+
+  .secondTitle {
+    font-size: 28px;
+  }
+
+  .subTitle {
+    font-size: 17px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .postMeta span {
+    font-size: 16px;
+  }
+
+  .downloadWrap {
+    font-size: 16px;
   }
 }

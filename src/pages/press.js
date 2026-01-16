@@ -33,7 +33,7 @@ const PressPage = () => {
     <Layout
       type={'light'}
       subHeaderTitle="보도자료"
-      subHeaderDescription="저희 회사의 최신 뉴스, 보도자료, 그리고 미디어 자료들입니다."
+      subHeaderDescription="JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다."
       subHeaderBgImage="/images/banners/bg_press.png"
     >
       <div>
@@ -89,6 +89,6 @@ const PressPage = () => {
   )
 }
 
-export const Head = () => <Seo title="홍보센터" />
+export const Head = () => <Seo title="보도자료" />
 
 export default PressPage

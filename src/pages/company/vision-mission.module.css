@@ -37,7 +37,7 @@ section:last-child {
 
 .flexBox {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .flexBoxWithPlus {
@@ -83,8 +83,7 @@ section:last-child {
   display: flex;
   justify-content: flex-start;
   gap: 8px;
-  margin-bottom: 12px;
-  min-height: 100px;
+  min-height: 84px;
 }
 
 /* top-right decorative image */
@@ -145,6 +144,10 @@ section:last-child {
   border-radius: 20px;
 }
 
+.brForMobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 40px;
@@ -162,6 +165,10 @@ section:last-child {
     padding: 40px 0 0;
   }
 
+  .flexBox {
+    gap: 40px;
+  }
+
   .flexBox,
   .flexBoxWithPlus {
     flex-direction: column;
@@ -172,12 +179,8 @@ section:last-child {
     align-items: center;
   }
 
-  .valueHeader {
-    min-height: 80px;
-  }
-
   .valueTitle {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 600;
   }
 
@@ -191,14 +194,30 @@ section:last-child {
     top: 40px;
     right: 40px;
   }
+
+  .valueCard {
+    min-height: 0;
+  }
+
+  .brForMobile {
+    display: block;
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
+
   .valueTitle {
     font-size: 24px;
   }
 
   .valueDescription {
-    font-size: 20px;
+    font-size: 17px;
+  }
+
+  .valueCard {
+    padding: 25px;
   }
 }

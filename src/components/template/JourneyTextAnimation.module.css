@@ -132,7 +132,8 @@
 
 @media (max-width: 768px) {
   .interaction {
-    padding: 108px 40px; /* 임시 */
+    padding: 108px 40px;
+    height: auto;
   }
 
   .slogan {
@@ -157,12 +158,16 @@
     letter-spacing: -1px;
   }
 
+  .slogan .title {
+    font-size: 32px;
+  }
+
   .copylightContainer {
     gap: 10px;
   }
 
   .copylightText {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .copylightWrapper {
@@ -183,5 +188,31 @@
 
   .brForMobile {
     display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .slogan h2 {
+    font-size: 28px;
+  }
+
+  .slogan h3 {
+    font-size: 16px;
+  }
+
+  .slogan .title {
+    font-size: 28px;
+  }
+
+  .interaction {
+    padding: 40px 24px 120px;
+  }
+
+  .copylightWrapper {
+    margin-bottom: 0;
+  }
+
+  .copylightText {
+    font-size: 24px;
   }
 }
