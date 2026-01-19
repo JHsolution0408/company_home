@@ -37,6 +37,7 @@ const AiPage = ({ data }) => {
               title={
                 <>
                   현장의 데이터를 자산으로 만드는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>산업용 AI의 핵심 기술</span>
                 </>
               }

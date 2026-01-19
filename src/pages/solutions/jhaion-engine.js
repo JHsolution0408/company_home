@@ -37,6 +37,7 @@ const JhaionEnginePage = ({ data }) => {
               title={
                 <>
                   압도적인 성능을 구현하는 엔진의&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>핵심 구성</span>
                 </>
               }

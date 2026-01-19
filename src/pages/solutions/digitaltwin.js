@@ -37,6 +37,7 @@ const DigitalTwinPage = ({ data }) => {
               title={
                 <>
                   현실을 가상으로 완벽하게 동기화하는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>디지털 트윈의 핵심 구성</span>
                 </>
               }

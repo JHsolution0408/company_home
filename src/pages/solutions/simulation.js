@@ -38,6 +38,7 @@ const SimulationPage = ({ data }) => {
             title={
               <>
                 보이지 않는 물리 현상을 제현하는&nbsp;
+                <br className={styles.brForMobile} />
                 <span>시뮬레이션의 핵심 구성</span>
               </>
             }
