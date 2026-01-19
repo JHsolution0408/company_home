@@ -289,7 +289,7 @@ const IndexPage = ({ data }) => {
         className={styles.ctaSection}
         style={{
           backgroundImage:
-            "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-img.png)",
+            "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)",
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",
