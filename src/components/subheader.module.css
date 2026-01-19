@@ -25,7 +25,7 @@
 .title {
   margin: 0;
   color: #FDFDFD;
-  font-family: "NanumGothic";
+  font-family: var(--font-serif);
   font-size: 40px;
   font-weight: 700;
   line-height: 1.4;

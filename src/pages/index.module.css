@@ -70,7 +70,7 @@
 .heroTitle1 {
   color: #17181B;
   margin-bottom: 10px;
-  font-family: "NanumGothic";
+  font-family: var(--font-serif);
   font-size: 48px;
   font-weight: 650;
   line-height: 1.1;
@@ -80,7 +80,7 @@
 .heroTitle2 {
   color: #177D3C;
   margin-bottom: 30px;
-  font-family: "NanumGothic";
+  font-family: var(--font-serif);
   font-size: 48px;
   font-weight: 650;
   line-height: 1.1;
@@ -209,7 +209,7 @@
   color: #17181B;
   text-align: left;
   margin-bottom: 0;
-  font-family: "NanumGothic";
+  font-family: var(--font-serif);
   font-size: 48px;
   font-weight: 700;
   line-height: 1.4;
@@ -665,7 +665,7 @@
 .ctaTitle {
   margin: 0;
   color: #17181B;
-  font-family: 'NanumGothic', sans-serif;
+  font-family: var(--font-serif);
   font-size: 40px;
   font-weight: 700; /* font-medium */
   letter-spacing: -2px;
@@ -675,7 +675,6 @@
   color: #177D3C;
 }
 .ctaDescription {
-  font-family: 'Pretendard', sans-serif;
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
@@ -684,7 +683,6 @@
   margin-bottom: 40px;
 }
 .ctaButton {
-  font-family: 'Pretendard', sans-serif;
   display: inline-flex;
   justify-content: center;
   align-items: center;

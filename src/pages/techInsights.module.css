@@ -34,7 +34,7 @@
 
 .firstTitle {
   color: #17181B;
-  font-family: 'NanumGothic';
+  font-family: var(--font-serif);
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -45,7 +45,7 @@
 
 .secondTitle {
   color: #177D3C;
-  font-family: 'NanumGothic';
+  font-family: var(--font-serif);
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
