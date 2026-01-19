@@ -24,24 +24,26 @@ const Footer = () => (
           <div className={styles.topBar}>
             {/* 오시는 길 섹션 */}
             <div className={styles.leftCol}>
-              <a
-                href={ADDRESS_LINK}
-                target="_blank"
-                rel="noreferrer"
+              <div
                 className={styles.addressLink}
               >
                 <div className={styles.infoText}>
                   <div className={styles.mb8}>
                     <strong className={styles.infoTitle}>오시는길</strong>
                   </div>
-
-                  <div className={styles.address}>
-                    제이에이치솔루션 (우)08504&nbsp;
-                    <br className={styles.br} />
-                    서울특별시 금천구 가산디지털2로 135, 1동
-                    1701-1703호(가산동, 가산어반워크)
+                  <div className={styles.addressBox}>
+                    <a
+                      href={ADDRESS_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.address}
+                    >
+                      제이에이치솔루션 (우)08504&nbsp;
+                      <br className={styles.br} />
+                      서울특별시 금천구 가산디지털2로 135, 1동
+                      1701-1703호(가산동, 가산어반워크)
+                    </a>
                   </div>
-
                   <div className={styles.tel}>
                     <div>
                       <span className={styles.telLabel}>Tel:</span>
@@ -54,7 +56,7 @@ const Footer = () => (
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             {/* 회사 소개서 섹션 */}
