@@ -3,6 +3,7 @@ title: "AI모델 혁신 통한 에너지 효율화, 지속가능한 미래 만�
 date: "2025-11-25"
 summary: "Net-Zero 목표 달성에 업계 최고의 에너지 효율을 기록했습니다."
 featureImage: "/images/press/press_2.png"
+newsUrl: ""
 slug: "news-2"
 type: "news"
 ---
