@@ -33,11 +33,12 @@
 
 /* Content area: image + detail side-by-side on PC, stacked on mobile */
 .contentRow {
-  margin: 40px 0;
+  padding: 40px 0;
   display: grid;
   grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
   gap: 40px;
   align-items: start;
+  border-bottom: 1px solid #969BA2;
 }
 
 .imageBox {
@@ -98,11 +99,11 @@
 .sectionContent {
   margin-bottom: 4px;
   position: relative;
-  color: #17181B;
-  font-size: 20px;
-  font-weight: 600;
+  color: #4A4F55;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.4;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
 }
 
@@ -119,11 +120,11 @@
 .sectionList li {
   margin-bottom: 4px;
   position: relative;
-  color: #17181B;
-  font-size: 20px;
-  font-weight: 600;
+  color: #4A4F55;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.4;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
 }
 
@@ -190,7 +191,8 @@
   }
 
   .sectionRow {
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 10px;
     padding: 0;
   }
 }
@@ -220,10 +222,6 @@
 
   .title {
     font-size: 28px;
-  }
-
-  .sectionRow {
-    grid-template-columns: 70px 1fr;
   }
 
   .sectionTitle {
