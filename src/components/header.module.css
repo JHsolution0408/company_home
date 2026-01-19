@@ -34,6 +34,10 @@
   backdrop-filter: blur(calc(24px / 2));
 }
 
+.lightGnbBackground {
+  box-shadow: 2px 4px 12px 0 rgba(73, 94, 148, 0.20);
+}
+
 .sidemenuInnerOpen {
   box-shadow: none;
   border-radius: 0;
