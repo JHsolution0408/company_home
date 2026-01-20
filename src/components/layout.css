@@ -14,6 +14,8 @@
   --font-md: 16px;
   --font-sm: 14px;
   --font-sx: 12px;
+  --font-title-lg: 48px;
+  --font-title-md: 40px;
   --line-height-loose: 1.75;
   --line-height-normal: 1.5;
   --line-height-dense: 1.1;
@@ -26,6 +28,10 @@
   --size-content: 54rem;
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
+  --ls-xl: -2px; /* font-size 40px 이상 */
+  --ls-md: -1px; /* font-size 24px, 20px */
+  --fw-xl: 600; /* semibold, font-size 40px 일 경우 */
+  --fw-md: 500; /* medium */
 }
 html {
   -webkit-text-size-adjust: 100%;

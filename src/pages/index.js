@@ -339,7 +339,7 @@ function LinkCard({ item, type = 'solutions' }) {
   const dateText = isPress
     ? new Date(item.frontmatter.date)
       .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })
-      .replace(/\. /g, '.')
+      .replace(/\. /g, '-')
       .replace(/\.$/, '')
     : null
 

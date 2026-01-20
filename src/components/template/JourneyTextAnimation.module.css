@@ -29,8 +29,8 @@
 
 .slogan .title {
   color: #FDFDFD;
-  font-size: 48px;
-  font-weight: 700;
+  font-size: var(--font-title-lg);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
   margin: 0;
@@ -43,7 +43,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 48px;
+  font-size: var(--font-title-lg);
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -2px;
@@ -54,7 +54,7 @@
   font-size: 24px;
   font-weight: 400;
   line-height: 1.4;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
 }
 
 .copylightContainer {
@@ -66,7 +66,9 @@
 }
 
 .copylightWrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 0fr;
+  grid-template-rows: 1em;
   align-items: center;
   animation: text-fade 1.5s .5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
@@ -153,7 +155,7 @@
 
   .slogan h3 {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: var(--fw-xl);
     line-height: 1.4;
     letter-spacing: -1px;
   }

@@ -11,8 +11,8 @@
   margin-bottom: 20px;
   color: #17181B;
   font-family: var(--font-serif);
-  font-size: 40px;
-  font-weight: 700;
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
@@ -25,7 +25,7 @@
   margin-bottom: 50px;
   color: #2E3236;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }
@@ -36,6 +36,14 @@
 
 .pressLink:visited {
   color: inherit;
+}
+
+.pressLink:hover h3 {
+  color: #1BA74E;
+}
+
+.pressLink:hover .pressDate {
+  color: #2E3236;
 }
 
 .press {
@@ -69,7 +77,7 @@
 .pressDetail h3 {
   color: #17181B;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1.5px;
   text-align: left;
@@ -84,7 +92,7 @@
 .pressDate {
   color: #757B82;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }

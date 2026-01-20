@@ -129,6 +129,10 @@
   gap: 8px;
 }
 
+.brochureLink:hover {
+  opacity: 60%;
+}
+
 /* Ensure the arrow inherits proper color */
 .brochureLink svg path {
   stroke: #CFD3D8;

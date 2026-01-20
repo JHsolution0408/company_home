@@ -16,8 +16,8 @@
 
 .title {
   margin: 0;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
