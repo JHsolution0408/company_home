@@ -286,9 +286,6 @@ function Header({ type = "light", bgImage, subHeader }) {
               >
                 <div className={styles.contact}>
                   <span>문의하기</span>
-                  <div className={styles.contactIcon}>
-                    <img src={OpenIcon} alt="문의하기" width={20} height={20} />
-                  </div>
                 </div>
               </a>
             </div>
