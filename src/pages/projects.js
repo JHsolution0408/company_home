@@ -8,6 +8,9 @@ import * as styles from "./projects.module.css"
 import { graphql, useStaticQuery } from "gatsby"
 import ProjectTag from "../components/template/ProjectTag"
 
+const PAGE_TITLE = "프로젝트";
+const PAGE_DESCRIPTION = "JH솔루션의 기술이 실현된 혁신의 현장, 데이터로 검증된 다양한 사업 분야의 수행 실적을 소개합니다.";
+
 const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
     query ProjectListQuery {
@@ -37,8 +40,8 @@ const ProjectsPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle="프로젝트"
-      subHeaderDescription="JH솔루션의 기술이 실현된 혁신의 현장, 데이터로 검증된 다양한 사업 분야의 수행 실적을 소개합니다."
+      subHeaderTitle={PAGE_TITLE}
+      subHeaderDescription={PAGE_DESCRIPTION}
       subHeaderBgImage="/images/banners/bg_project.png"
     >
       <div id="content" className={styles.projectContainer}>
@@ -105,6 +108,13 @@ const ProjectsPage = () => {
   )
 }
 
-export const Head = () => <Seo title="프로젝트" />
+export const Head = () => {
+  return (
+    <Seo 
+      title={PAGE_TITLE}
+      description={PAGE_DESCRIPTION}
+    />
+  )
+}
 
 export default ProjectsPage

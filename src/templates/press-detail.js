@@ -36,7 +36,7 @@ const getPrevNextPress = (list, currentId) => {
 
 const PressDetailPage = ({ data, pageContext }) => {
   const node = data.markdownRemark;
-  const { title, description, date, featureImage, type } = node.frontmatter;
+  const { title, description, date, featureImage, newsUrl, type } = node.frontmatter;
 
   const sortedPressList = [...pageContext.list].sort((a, b) => {
     return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
@@ -77,6 +77,17 @@ const PressDetailPage = ({ data, pageContext }) => {
               <PressDetailBody
                 html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
               />
+              {newsUrl && (
+                <div>
+                  <a
+                    href={newsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    기사 원문 보기
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
@@ -115,14 +126,22 @@ export const query = graphql`
         date
         description
         featureImage
+        newsUrl
         type
       }
     }
   }
 `
 
-export const Head = ({ data }) => (
-  <Seo title={data.markdownRemark.frontmatter.title} />
-)
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  )
+}
 
 export default PressDetailPage

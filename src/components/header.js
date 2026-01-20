@@ -32,7 +32,6 @@ const companyItems = [
 
 const pressItems = [
   { name: "보도자료", slug: "press" },
-  /* 현재 '기술 인사이트' 페이지  Content를 받지 못해 임시 주석처리 */
   { name: "기술 인사이트", slug: "techInsights" },
 ]
 
@@ -182,7 +181,7 @@ function Header({ type = "light", bgImage, subHeader }) {
             className={[
               styles.inner,
               isMenuOpen ? styles.sidemenuInnerOpen : "",
-              useDarkDesktop ? styles.darkGnbBackground : "",
+              useDarkDesktop ? styles.darkGnbBackground : styles.lightGnbBackground,
             ].join(" ")}
           >
             <div className={styles.logo}>
@@ -287,9 +286,6 @@ function Header({ type = "light", bgImage, subHeader }) {
               >
                 <div className={styles.contact}>
                   <span>문의하기</span>
-                  <div className={styles.contactIcon}>
-                    <img src={OpenIcon} alt="문의하기" width={20} height={20} />
-                  </div>
                 </div>
               </a>
             </div>

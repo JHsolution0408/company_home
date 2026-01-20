@@ -3,6 +3,7 @@ title: "[KMF2025] 제이에이치솔루션 '자율형 DT 제조안전 플랫폼'
 date: "2025-11-15"
 summary: "주요 에너지 기업과의 전략적 파트너십을 체결했습니다."
 featureImage: "/images/press/press_4.png"
+newsUrl: ""
 slug: "news-4"
 type: "news"
 ---

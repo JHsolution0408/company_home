@@ -6,6 +6,9 @@ import Layout from "../components/layout"
 import { graphql, useStaticQuery } from "gatsby"
 import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
 
+const PAGE_TITLE = "기술 인사이트";
+const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
+
 const TechInsights = () => {
   const data = useStaticQuery(graphql`
     query InsightsListQuery {
@@ -41,8 +44,8 @@ const TechInsights = () => {
   return (
     <Layout
       type="dark"
-      subHeaderTitle="기술 인사이트"
-      subHeaderDescription="지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다."
+      subHeaderTitle={PAGE_TITLE}
+      subHeaderDescription={PAGE_DESCRIPTION}
       subHeaderBgImage="/images/banners/bg_techInsights.png"
     >
       {/* 타이틀 영역 */}
@@ -115,6 +118,13 @@ const TechInsights = () => {
   );
 }
 
-export const Head = () => <Seo title="기술 인사이트" />
+export const Head = () => {
+  return (
+    <Seo 
+      title={PAGE_TITLE}
+      description={PAGE_DESCRIPTION}
+    />
+  )
+}
 
 export default TechInsights;

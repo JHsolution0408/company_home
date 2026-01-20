@@ -29,16 +29,16 @@ img.descriptionCardImage {
   margin-bottom: 12px;
   color: var(--dc-text);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
 }
 
 .descriptionCardDescription {
   margin: 0;
   color: var(--dc-sub-text);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }

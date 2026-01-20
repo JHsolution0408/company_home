@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 import * as styles from "./index.module.css"
 import { useSlider } from "../hooks/useSlider";
 import { DRAG_THRESHOLD_SOLUTIONS } from "../utils/slider";
-import OpenIconWhite from '../../static/icons/common/open-icon-white.svg';
+import AngleBracketRight from '../../static/icons/common/angle-bracket-right-icon.svg';
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
 
@@ -43,7 +43,7 @@ const solutions = [
   { id: 'simulation', link: "/solutions/simulation", title: "시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
   { id: 'ai', link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업 공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영 효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
   { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털 트윈", desc: "현실의 물리적 자산을 가상 공간에 실시간 동기화해 3D 관제를 구현하고, 다양한 시나리오 테스트로 최적의 의사결정 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
-  { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터레기션을 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사 결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
+  { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터랙션을 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사 결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
 ];
 
 const IndexPage = ({ data }) => {
@@ -117,7 +117,7 @@ const IndexPage = ({ data }) => {
                       <span>자세히 보기</span>
                       <div className={styles.heroCtaIcon}>
                         <img
-                          src={OpenIconWhite}
+                          src={AngleBracketRight}
                           alt={"Read More"}
                           width={20}
                           height={20}
@@ -238,51 +238,49 @@ const IndexPage = ({ data }) => {
 
       {/* Section 4: Press & News Slider */}
       <div className={styles.pressSection}>
-        <div>
-          <div className={styles.linkCardSectionHeader}>
-            <h2 className={styles.title}>
-              산업의 변화와 흐름을 주도하는
-              <br />
-              <span>JH솔루션의 새로운 소식을 만나보세요.</span>
-            </h2>
-            <p className={styles.description}>
-              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
-              창출하는 가치를 생생하게 전달합니다.
-            </p>
-          </div>
-          <div className={styles.sliderWrap}>
-            <div
-              ref={pressSliderRef}
-              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
-              style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
-              onPointerDown={pressSlider.handlers.onPointerDown}
-              onPointerMove={pressSlider.handlers.onPointerMove}
-              onPointerUp={pressSlider.handlers.onPointerUp}
-              onPointerLeave={pressSlider.handlers.onPointerLeave}
-              onPointerCancel={pressSlider.handlers.onPointerCancel}
-              onClickCapture={pressSlider.handlers.onClickCapture}
-            >
-              {pressReleases.concat(pressReleases).map((item, idx) => (
-                <LinkCard
-                  item={item}
-                  type="press"
-                  key={`press-${idx}-${item.frontmatter?.slug || idx}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={styles.dots}>
-            {pressReleases.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => pressSlider.handleDotClick(idx)}
-                className={`${styles.dot} ${
-                  pressSlider.current === idx ? styles.dotActive : ""
-                }`}
-                aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+        <div className={styles.linkCardSectionHeader}>
+          <h2 className={styles.title}>
+            산업의 변화와 흐름을 주도하는
+            <br />
+            <span>JH솔루션의 새로운 소식을 만나보세요.</span>
+          </h2>
+          <p className={styles.description}>
+            언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
+            창출하는 가치를 생생하게 전달합니다.
+          </p>
+        </div>
+        <div className={styles.sliderWrap}>
+          <div
+            ref={pressSliderRef}
+            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+            style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
+            onPointerDown={pressSlider.handlers.onPointerDown}
+            onPointerMove={pressSlider.handlers.onPointerMove}
+            onPointerUp={pressSlider.handlers.onPointerUp}
+            onPointerLeave={pressSlider.handlers.onPointerLeave}
+            onPointerCancel={pressSlider.handlers.onPointerCancel}
+            onClickCapture={pressSlider.handlers.onClickCapture}
+          >
+            {pressReleases.concat(pressReleases).map((item, idx) => (
+              <LinkCard
+                item={item}
+                type="press"
+                key={`press-${idx}-${item.frontmatter?.slug || idx}`}
               />
             ))}
           </div>
+        </div>
+        <div className={styles.dots}>
+          {pressReleases.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => pressSlider.handleDotClick(idx)}
+              className={`${styles.dot} ${
+                pressSlider.current === idx ? styles.dotActive : ""
+              }`}
+              aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+            />
+          ))}
         </div>
       </div>
 
@@ -291,7 +289,7 @@ const IndexPage = ({ data }) => {
         className={styles.ctaSection}
         style={{
           backgroundImage:
-            "linear-gradient(to right bottom, #F6FEF9, transparent), url(/images/banners/contact-illustration-img.png)",
+            "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)",
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",
@@ -320,7 +318,7 @@ const IndexPage = ({ data }) => {
               <img
                 width={20}
                 height={20}
-                src={OpenIconWhite}
+                src={AngleBracketRight}
                 alt={"Read More"}
               />
             </span>
@@ -341,7 +339,7 @@ function LinkCard({ item, type = 'solutions' }) {
   const dateText = isPress
     ? new Date(item.frontmatter.date)
       .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' })
-      .replace(/\. /g, '.')
+      .replace(/\. /g, '-')
       .replace(/\.$/, '')
     : null
 

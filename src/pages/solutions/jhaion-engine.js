@@ -37,6 +37,7 @@ const JhaionEnginePage = ({ data }) => {
               title={
                 <>
                   압도적인 성능을 구현하는 엔진의&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>핵심 구성</span>
                 </>
               }
@@ -86,6 +87,15 @@ const JhaionEnginePage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="JHAION 엔진" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default JhaionEnginePage;

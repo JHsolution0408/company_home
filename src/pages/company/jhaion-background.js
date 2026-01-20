@@ -1,4 +1,5 @@
 import React from "react";
+import Seo from "../../components/seo";
 import Layout from "../../components/layout";
 import JourneyTextAnimation from "../../components/template/JourneyTextAnimation";
 import SectionTitle from "../../components/template/SectionTitle";
@@ -40,7 +41,7 @@ export default function JhaionBackgroundNew() {
       type="light"
       subHeaderTitle={PAGE_TITLE}
       subHeaderDescription={PAGE_DESCRIPTION}
-      subHeaderBgImage="/images/banners/bg-jhaiondevelop.png"
+      subHeaderBgImage={'/images/banners/bg-jhaiondevelop.png'}
       anymationBanner={<JourneyTextAnimation />}
     >
       {/* Intro Section 아래 본문 */}
@@ -149,5 +150,14 @@ export default function JhaionBackgroundNew() {
         </section>
       </div>
     </Layout>
+  )
+}
+
+export const Head = () => {
+  return (
+    <Seo 
+      title={PAGE_TITLE}
+      description={PAGE_DESCRIPTION}
+    />
   )
 }

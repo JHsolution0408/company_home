@@ -20,7 +20,7 @@
 .description {
   color: #2E3236;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }
@@ -35,7 +35,7 @@
   margin: 0;
   color: #177D3C; /* subtle grey */
   font-size: 24px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   letter-spacing: -1.5px;
   line-height: 1.4;
 }

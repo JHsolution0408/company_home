@@ -307,7 +307,16 @@ const MediaPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="미디어" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default MediaPage;
 
