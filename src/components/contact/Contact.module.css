@@ -1,0 +1,188 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 80px 120px;
+}
+
+.brForMobile {
+  display: none;
+}
+
+.contactForm {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  align-self: stretch;
+}
+
+.userInfoSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 0 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.field input {
+  display: flex;
+  height: 56px;
+  padding: 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #B4B9BE;
+  background: #F8F9FA;
+}
+
+.label {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: #202225;
+  font-size: 24px;
+  font-weight: var(--fw-xl);
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+.star {
+  color: #177D3C;
+  font-size: 24px;
+  font-weight: var(--fw-xl);
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+.inquirySection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.checkboxGrid {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkboxItem:hover input, .checkboxItem:hover {
+  cursor: pointer;
+}
+
+.contactTitle {
+  align-self: stretch;
+}
+
+.textarea {
+  display: flex;
+  padding: 16px 16px;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #B4B9BE;
+  background: #F8F9FA;
+}
+
+.messageInputBox {
+  height: 100%;
+}
+
+.submitBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 160px;
+  height: 46px;
+  padding: 12px 20px;
+  background-color: #177D3C;
+  color: #FDFDFD;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 0;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn[data-is-valid="true"] {
+  opacity: 0.4;
+}
+
+.submitBtn[data-is-valid="false"] {
+  cursor: pointer;
+}
+
+.submitBtn[data-is-valid="false"]:hover {
+  background-color: #095123;
+}
+
+@media (max-width: 1000px) {
+  .contactForm {
+    align-items: normal;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 40px;
+    padding: 40px 40px;
+  }
+
+  .contactForm {
+    gap: 20px;
+  }  
+
+  .brForMobile {
+    display: block;
+  }
+
+  .checkboxGrid {
+    flex-wrap: wrap;
+  }
+
+  .inquirySection {
+    gap: 20px;
+  }  
+
+  .messageInputBox {
+    height: 200px;
+  }  
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .checkboxItem input {
+    height: 20px;
+  }
+}
