@@ -26,7 +26,6 @@
 
 .section {
   width: 100%;
-  margin-bottom: clamp(16px, 3vw, 40px);
 }
 
 .logoWrap {

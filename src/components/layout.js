@@ -15,6 +15,8 @@ import FloatTop from "./template/FloatTop"
 import "../styles/globals.css"
 import "./layout.css"
 
+import { ToastProvider } from "./toast/ToastProvider"
+
 const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription, subHeaderBgImage, anymationBanner }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -31,40 +33,42 @@ const Layout = ({ type = 'light', children, subHeaderTitle, subHeaderDescription
   const isHome = typeof window !== 'undefined' && window.location && window.location.pathname === '/';
 
   return (
-    <div
-      id="__gatsby"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        maxWidth: "100vw",
-        width: "100%",
-        margin: "0 auto",
-        overflowX: "hidden",
-        boxSizing: "border-box"
-      }}
-      ref={rootRef}
-    >
-      <Header
-        type={type} siteTitle={data.site.siteMetadata?.title || `Title`}
-        bgImage={subHeaderBgImage}
-        subHeader={!isHome && subHeaderTitle && (
-          <SubHeader
-            title={subHeaderTitle}
-            description={subHeaderDescription}
-            bgImage={subHeaderBgImage}
-          />
-        )}
-      />
-      {anymationBanner}
+    <ToastProvider>
+      <div
+        id="__gatsby"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "100vw",
+          width: "100%",
+          margin: "0 auto",
+          overflowX: "hidden",
+          boxSizing: "border-box"
+        }}
+        ref={rootRef}
+      >
+        <Header
+          type={type} siteTitle={data.site.siteMetadata?.title || `Title`}
+          bgImage={subHeaderBgImage}
+          subHeader={!isHome && subHeaderTitle && (
+            <SubHeader
+              title={subHeaderTitle}
+              description={subHeaderDescription}
+              bgImage={subHeaderBgImage}
+            />
+          )}
+        />
+        {anymationBanner}
 
-      <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>
-        {children}
-        <FloatTop layoutRootRef={rootRef} />
-      </main>
+        <main id="gatsby-focus-wrapper" style={{ flex: 1, overflowX: "hidden", width: "100vw" }}>
+          {children}
+          <FloatTop layoutRootRef={rootRef} />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </ToastProvider>
   )
 }
 
