@@ -47,18 +47,15 @@ const solutions = [
 ];
 
 const IndexPage = ({ data }) => {
-  // 자동 롤링 타이머
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent(prev => (prev + 1) % cards.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [cards.length]);
   const pressReleases = data.allMarkdownRemark.nodes
-  const [current, setCurrent] = React.useState(0);
+
+  const [current, setCurrent] = React.useState(1);
+  const [transitionOn, setTransitionOn] = React.useState(true);
+  const [isAnimating, setIsAnimating] = React.useState(false);
+
   const solutionsSliderRef = React.useRef(null)
   const pressSliderRef = React.useRef(null)
-
+  
   // 재사용 가능한 슬라이더 훅
   const solutionsSlider = useSlider({
     ref: solutionsSliderRef,
@@ -70,6 +67,56 @@ const IndexPage = ({ data }) => {
     },
   })
 
+  // 사용자에게 보여줄 실제 슬라이드 인덱스
+  const displayIndex = (() => {
+    if (current === 0) {
+      return cards.length - 1;
+    }
+
+    if (current === cards.length + 1) {
+      return 0;
+    }
+
+    return current - 1;
+  })();
+
+  const slides = React.useMemo(() => {
+    if (!cards?.length) {
+      return [];
+    }
+    return [
+      cards[cards.length - 1],
+      ...cards,
+      cards[0],
+    ];
+  }, [cards]);
+
+  // Hero 배너 다음 버튼
+  const handleHeroBannerNext = React.useCallback(() => {
+    if (isAnimating) {
+      return;
+    }
+    setIsAnimating(true);
+    setCurrent(prev => prev + 1);
+  }, [isAnimating]);
+
+  // Hero 배너 이전 버튼
+  const handleHeroBannerPrev = React.useCallback(() => {
+    if (isAnimating) {
+      return;
+    }
+    setIsAnimating(true);
+    setCurrent(prev => prev - 1);
+  }, [isAnimating]);
+
+  // 자동 롤링 타이머
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      handleHeroBannerNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [handleHeroBannerNext]);
+
   const pressSlider = useSlider({
     ref: pressSliderRef,
     itemsLength: pressReleases.length,
@@ -80,8 +127,6 @@ const IndexPage = ({ data }) => {
     },
   })
 
-
-
   return (
     <Layout>
       {/* 섹션 1: 히어로 슬라이더 */}
@@ -90,16 +135,36 @@ const IndexPage = ({ data }) => {
           className={styles.heroTrack}
           style={{
             transform: `translateX(-${current * 100}%)`,
+            transition: transitionOn ? "transform 500ms ease" : "none",
+          }}
+          onTransitionEnd={() => {
+            // 맨 앞에 있는 "마지막 슬라이드 복제본"까지 이동한 경우
+            // → 트랜지션을 끄고 실제 마지막 슬라이드 위치로 즉시 이동
+            if (current === 0) {
+              setCurrent(cards.length);
+            }
+
+            // 맨 뒤에 있는 "첫 번째 슬라이드 복제본"까지 이동한 경우
+            // → 트랜지션을 끄고 실제 첫 번째 슬라이드 위치로 즉시 이동
+            if (current === cards.length + 1) {
+              setCurrent(1);
+            }
+
+            setIsAnimating(false);
+            setTransitionOn(false);
+
+            // transition을 다시 활성화
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => setTransitionOn(true));
+            });
           }}
         >
-          {cards.map((card, idx) => {
+          {slides.map((card, idx) => {
             const isCurrent = current === idx
             return (
               <div
                 key={idx}
-                className={`${styles.heroSlide} ${
-                  !isCurrent ? styles.heroSlideHidden : ""
-                }`}
+                className={`${styles.heroSlide} ${!isCurrent ? styles.heroSlideHidden : ""}`}
                 aria-hidden={!isCurrent}
               >
                 <div
@@ -136,9 +201,7 @@ const IndexPage = ({ data }) => {
       <div className={styles.navControls}>
         {/* 이전 화살표 버튼 */}
         <button
-          onClick={() =>
-            setCurrent(prev => (prev - 1 + cards.length) % cards.length)
-          }
+          onClick={handleHeroBannerPrev}
           className={styles.navBtn}
           aria-label="이전 슬라이드"
         >
@@ -152,7 +215,7 @@ const IndexPage = ({ data }) => {
         {/* 예: 1/3 */}
         <div className={styles.navCounter}>
           <span className={styles.navCounterCurrent}>
-            {String((current ?? 0) + 1).padStart(2, "0")}
+            {String(displayIndex + 1).padStart(2, "0")}
           </span>
           <span className={styles.navCounterSep}>|</span>
           <span className={styles.navCounterTotal}>
@@ -162,7 +225,7 @@ const IndexPage = ({ data }) => {
 
         {/* 다음 화살표 버튼 */}
         <button
-          onClick={() => setCurrent(prev => (prev + 1) % cards.length)}
+          onClick={handleHeroBannerNext}
           className={styles.navBtn}
           aria-label="다음 슬라이드"
         >
@@ -275,8 +338,8 @@ const IndexPage = ({ data }) => {
             <button
               key={idx}
               onClick={() => pressSlider.handleDotClick(idx)}
-              className={`${styles.dot} ${
-                pressSlider.current === idx ? styles.dotActive : ""
+              className={`${styles.dot} 
+                ${pressSlider.current === idx ? styles.dotActive : ""
               }`}
               aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
             />
