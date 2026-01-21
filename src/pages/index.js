@@ -377,14 +377,6 @@ const IndexPage = ({ data }) => {
 
           <a href={ContactFormLink} className={styles.ctaButton}>
             <span>문의하기</span>
-            <span className={styles.ctaButtonIcon}>
-              <img
-                width={20}
-                height={20}
-                src={AngleBracketRight}
-                alt={"Read More"}
-              />
-            </span>
           </a>
         </div>
       </section>
