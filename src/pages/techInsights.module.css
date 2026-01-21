@@ -156,6 +156,7 @@
 
 .downloadWrap:hover {
   background: #70c790;
+  transition: var(--hover-transition);
 }
 
 .pdfButtonIcon {

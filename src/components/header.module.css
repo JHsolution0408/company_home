@@ -110,6 +110,7 @@
 
 .menuButton:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* When route is not home, make the menu button text white */
@@ -119,6 +120,7 @@
 
 .menuButtonDarkTheme:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Selected (active) top menu item color */
@@ -150,6 +152,7 @@
 
 .navLinkDarkTheme:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Dropdown container (desktop only) */
@@ -206,6 +209,7 @@
   border-radius: 10px;
   color: #1BA74E;
   text-align: center;
+  transition: var(--hover-transition);
 }
 
 /* Active state for current route in mobile sidebar */
@@ -250,6 +254,7 @@
 
 .contact:hover {
   background: linear-gradient(0deg, rgba(2, 8, 22, 0.10) 0%, rgba(2, 8, 22, 0.10) 100%), #E9EDF0;
+  transition: var(--hover-transition);
 }
 
 .contact span {

@@ -114,6 +114,7 @@
 .heroCta:hover {
   background-color: #125d2d;
   background: linear-gradient(0deg, rgba(253, 253, 253, 0.10) 0%, rgba(253, 253, 253, 0.10) 100%), #095123;
+  transition: var(--hover-transition);
 }
 
 .dot {
@@ -270,18 +271,22 @@
 
 .linkCardContainer:hover {
   background-color: #4A4F55;
+  transition: var(--hover-transition);
 }
 
 .linkCardContainer:hover .linkCardTitle {
   color: #2FC968;
+  transition: var(--hover-transition);
 }
 
 .linkCardContainer:hover .linkCardDescription {
   color: #B4B9BE;
+  transition: var(--hover-transition);
 }
 
 .linkCardContainer:hover .topGradient {
   background: linear-gradient(180deg, #4A4F55 0%, rgba(74, 79, 85, 0.00) 100%);
+  transition: var(--hover-transition);
 }
 
 .linkCardTitle {
@@ -865,6 +870,7 @@
 
 .ctaButton:hover {
   background-color: #095123;
+  transition: var(--hover-transition);
 }
 
 .ctaButtonIcon {

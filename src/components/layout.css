@@ -32,6 +32,7 @@
   --ls-md: -1px; /* font-size 24px, 20px */
   --fw-xl: 600; /* semibold, font-size 40px 일 경우 */
   --fw-md: 500; /* medium */
+  --hover-transition: all 0.2s ease-out;
 }
 html {
   -webkit-text-size-adjust: 100%;

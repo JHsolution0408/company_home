@@ -141,6 +141,7 @@
 
 .submitBtn[data-is-valid="false"]:hover {
   background-color: #095123;
+  transition: var(--hover-transition);
 }
 
 @media (max-width: 1000px) {

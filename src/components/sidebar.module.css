@@ -33,6 +33,7 @@
 
 .dropdownLink:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Ensure active color applies within dropdown containers */

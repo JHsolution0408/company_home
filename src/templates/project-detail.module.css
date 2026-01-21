@@ -176,6 +176,7 @@
 
 .listBtnBox:hover {
   background: #095123;
+  transition: var(--hover-transition);
 }
 
 /* fallback for environments preferring high contrast */

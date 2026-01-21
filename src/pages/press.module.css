@@ -40,10 +40,12 @@
 
 .pressLink:hover h3 {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 .pressLink:hover .pressDate {
   color: #2E3236;
+  transition: var(--hover-transition);
 }
 
 .press {

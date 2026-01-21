@@ -130,6 +130,7 @@
 
 .brochureLink:hover {
   opacity: 60%;
+  transition: var(--hover-transition);
 }
 
 /* Ensure the arrow inherits proper color */

@@ -12,6 +12,7 @@
 
 .pagerBtn:hover {
   background: rgba(2, 8, 22, 0.10);
+  transition: var(--hover-transition);
 }
 
 .disableBtn {
