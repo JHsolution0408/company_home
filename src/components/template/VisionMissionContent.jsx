@@ -133,6 +133,7 @@ export default function VisionMissionContent() {
             description={
               "우리는 IT와 공학의 경계를 허뭅니다. AI 엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다."
             }
+            className={styles.firstCard}
           />
           <PlusIconWithFlex />
           <DescriptionCard

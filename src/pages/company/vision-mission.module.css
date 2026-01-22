@@ -37,7 +37,12 @@ section:last-child {
 
 .flexBox {
   display: flex;
-  gap: 40px;
+  gap: 20px;
+}
+
+.mediaFlexBox {
+  display: flex;
+  gap: 20px;
 }
 
 .flexBoxWithPlus {
@@ -107,7 +112,7 @@ section:last-child {
 .valueTitle {
   margin-bottom: 12px;
   color: var(--vm-text);
-  font-size: 32px;
+  font-size: 24px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1.5px;
@@ -148,6 +153,10 @@ section:last-child {
   display: none;
 }
 
+.firstCard {
+  padding: 40px 39px
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 40px;
@@ -165,12 +174,13 @@ section:last-child {
     padding: 40px 0 0;
   }
 
-  .flexBox {
+  .mediaFlexBox {
     gap: 40px;
   }
 
   .flexBox,
-  .flexBoxWithPlus {
+  .flexBoxWithPlus,
+  .mediaFlexBox {
     flex-direction: column;
     align-items: center;
   }
@@ -180,7 +190,6 @@ section:last-child {
   }
 
   .valueTitle {
-    font-size: 24px;
     font-weight: var(--fw-xl);
   }
 
@@ -207,10 +216,6 @@ section:last-child {
 @media (max-width: 450px) {
   .container {
     padding: 40px 24px;
-  }
-
-  .valueTitle {
-    font-size: 24px;
   }
 
   .valueDescription {

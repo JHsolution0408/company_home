@@ -110,7 +110,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "FEMS (Factory)",
                 }}
                 title={"FEMS (Factory)"}
-                description={`생산 설비와 유틸리티를 최적화 해 생산성을 유지하면서 에너지 비용을 낮추는 공장 에너지 관리 시스템입니다.`}
+                description={`생산 설비와 유틸리티를 최적화해 생산성을 유지하면서 에너지 비용을 낮추는 공장 에너지 관리 시스템입니다.`}
               />
 
               <ImageCard
@@ -119,7 +119,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "CEMS (Community)",
                 }}
                 title={"CEMS (Community)"}
-                description={`산업단지,도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유.거래하는 지역 에너지 관리 시스템입니다.`}
+                description={`산업단지·도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유·거래하는 지역 에너지 관리 시스템입니다.`}
               />
             </div>
           </section>

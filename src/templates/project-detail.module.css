@@ -38,7 +38,8 @@
   grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
   gap: 40px;
   align-items: start;
-  border-bottom: 1px solid #969BA2;
+  border-top: 1px solid hsla(0, 0%, 0%, 0.2);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
 }
 
 .imageBox {

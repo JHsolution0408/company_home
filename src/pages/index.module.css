@@ -261,16 +261,8 @@
   box-shadow: 2px 4px 12px rgba(49, 78, 152, 0.08);
 }
 
-.linkCardHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 40px 40px 20px;
-  text-align: left;
-}
-
 .linkCardContainer:hover {
-  background-color: #4A4F55;
+  border: 1px solid var(--light-primary-70, #1BA74E);
   transition: var(--hover-transition);
 }
 
@@ -279,14 +271,12 @@
   transition: var(--hover-transition);
 }
 
-.linkCardContainer:hover .linkCardDescription {
-  color: #B4B9BE;
-  transition: var(--hover-transition);
-}
-
-.linkCardContainer:hover .topGradient {
-  background: linear-gradient(180deg, #4A4F55 0%, rgba(74, 79, 85, 0.00) 100%);
-  transition: var(--hover-transition);
+.linkCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 40px 20px;
+  text-align: left;
 }
 
 .linkCardTitle {

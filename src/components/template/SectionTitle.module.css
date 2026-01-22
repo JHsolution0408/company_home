@@ -23,6 +23,7 @@
   font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
+  margin-bottom: 40px;
 }
 
 .headingWrap {
@@ -47,7 +48,6 @@
 
   .description {
     font-size: 20px;
-    margin-bottom: 40px;
   }
 }
 

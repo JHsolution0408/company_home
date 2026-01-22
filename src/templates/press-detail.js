@@ -64,8 +64,6 @@ const PressDetailPage = ({ data, pageContext }) => {
             )}
           </div>
 
-          <hr />
-
           <div className={styles.pressContainer}>
             {featureImage && (
               <img

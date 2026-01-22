@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-top: 54px;
+  padding-top: 80px;
 }
 
 .title {
@@ -18,7 +18,7 @@
 }
 
 .description {
-  color: #2E3236;
+  color: #757B82;
   font-size: 20px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
