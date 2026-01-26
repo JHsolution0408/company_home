@@ -104,7 +104,6 @@ function Header({ type = "light", bgImage, subHeader }) {
       if (desktopNow) {
         setIsMenuOpen(false);
       }
-      setIsScrolled(!isHome && desktopNow && window.scrollY > 0);
     }
 
     if (typeof window !== "undefined") {
