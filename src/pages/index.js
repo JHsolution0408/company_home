@@ -271,108 +271,112 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* 섹션 3: 솔루션 슬라이더 */}
-      <div className={styles.solutionsSection}>
-        <div className={styles.linkCardSectionHeader}>
-          <h2 className={styles.title}>
-            데이터 공학으로 완성된
-            <br />
-            <span>JH솔루션의 통합플랫폼을 경험하세요.</span>
-          </h2>
-          <p className={styles.description}>
-            에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의
-            운영환경을 자동 설계합니다.
-          </p>
-        </div>
-
-        <div className={styles.sliderWrap}>
-          <div
-            ref={solutionsSliderRef}
-            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
-            style={{ paddingLeft: solutionsSlider.padOn ? `${solutionsSlider.gap}px` : 0 }}
-            onPointerDown={solutionsSlider.handlers.onPointerDown}
-            onPointerMove={solutionsSlider.handlers.onPointerMove}
-            onPointerUp={solutionsSlider.handlers.onPointerUp}
-            onPointerLeave={solutionsSlider.handlers.onPointerLeave}
-            onPointerCancel={solutionsSlider.handlers.onPointerCancel}
-            onClickCapture={solutionsSlider.handlers.onClickCapture}
-          >
-            {solutions.concat(solutions).map((item, idx) => (
-              <LinkCard item={item} key={`solutions-${idx}-${item.id}`} />
-            ))}
+      <section className={styles.sliderSection}>
+        <div className={styles.solutionsSection}>
+          <div className={styles.linkCardSectionHeader}>
+            <h2 className={styles.title}>
+              데이터 공학으로 완성된
+              <br />
+              <span>JH솔루션의 통합플랫폼을 경험하세요.</span>
+            </h2>
+            <p className={styles.description}>
+              에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의
+              운영환경을 자동 설계합니다.
+            </p>
           </div>
-          {!isMobile && (
-            /* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */
-            <div className={styles.dots}>
-              {solutions.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => solutionsSlider.handleDotClick(idx)}
-                  className={`${styles.dot} ${solutionsSlider.current === idx ? styles.dotActive : ""
-                    }`}
-                  aria-label={`${idx + 1}번 슬라이드로 이동`}
-                />
+
+          <div className={styles.sliderWrap}>
+            <div
+              ref={solutionsSliderRef}
+              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+              style={{ paddingLeft: solutionsSlider.padOn ? `${solutionsSlider.gap}px` : 0 }}
+              onPointerDown={solutionsSlider.handlers.onPointerDown}
+              onPointerMove={solutionsSlider.handlers.onPointerMove}
+              onPointerUp={solutionsSlider.handlers.onPointerUp}
+              onPointerLeave={solutionsSlider.handlers.onPointerLeave}
+              onPointerCancel={solutionsSlider.handlers.onPointerCancel}
+              onClickCapture={solutionsSlider.handlers.onClickCapture}
+            >
+              {solutions.concat(solutions).map((item, idx) => (
+                <LinkCard item={item} key={`solutions-${idx}-${item.id}`} />
               ))}
             </div>
-          )}
+          </div>
         </div>
-      </div>
-
-      {/* Section 4: Press & News Slider */}
-      <div className={styles.pressSection}>
-        <div className={styles.linkCardSectionHeader}>
-          <h2 className={styles.title}>
-            산업의 변화와 흐름을 주도하는
-            <br />
-            <span>JH솔루션의 새로운 소식을 만나보세요.</span>
-          </h2>
-          <p className={styles.description}>
-            언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
-            창출하는 가치를 생생하게 전달합니다.
-          </p>
-        </div>
-        <div className={styles.sliderWrap}>
-          <div
-            ref={pressSliderRef}
-            className={`${styles.solutionsSlider} slider-hide-scrollbar`}
-            style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
-            onPointerDown={pressSlider.handlers.onPointerDown}
-            onPointerMove={pressSlider.handlers.onPointerMove}
-            onPointerUp={pressSlider.handlers.onPointerUp}
-            onPointerLeave={pressSlider.handlers.onPointerLeave}
-            onPointerCancel={pressSlider.handlers.onPointerCancel}
-            onClickCapture={pressSlider.handlers.onClickCapture}
-          >
-            {pressReleases.concat(pressReleases).map((item, idx) => (
-              <LinkCard
-                item={item}
-                type="press"
-                key={`press-${idx}-${item.frontmatter?.slug || idx}`}
+        {!isMobile && (
+          /* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */
+          <div className={styles.dots}>
+            {solutions.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => solutionsSlider.handleDotClick(idx)}
+                className={`${styles.dot} ${solutionsSlider.current === idx ? styles.dotActive : ""
+                  }`}
+                aria-label={`${idx + 1}번 슬라이드로 이동`}
               />
             ))}
           </div>
-          {!isMobile && (
-            <div className={styles.dots}>
-              {pressReleases.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => pressSlider.handleDotClick(idx)}
-                  className={`${styles.dot} 
-                  ${pressSlider.current === idx ? styles.dotActive : ""
-                    }`}
-                  aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+        )}
+      </section>
+
+      {/* Section 4: Press & News Slider */}
+      <section className={styles.sliderSection}>
+        <div className={styles.pressSection}>
+          <div className={styles.linkCardSectionHeader}>
+            <h2 className={styles.title}>
+              산업의 변화와 흐름을 주도하는
+              <br />
+              <span>JH솔루션의 새로운 소식을 만나보세요.</span>
+            </h2>
+            <p className={styles.description}>
+              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
+              창출하는 가치를 생생하게 전달합니다.
+            </p>
+          </div>
+          <div className={styles.sliderWrap}>
+            <div
+              ref={pressSliderRef}
+              className={`${styles.solutionsSlider} slider-hide-scrollbar`}
+              style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
+              onPointerDown={pressSlider.handlers.onPointerDown}
+              onPointerMove={pressSlider.handlers.onPointerMove}
+              onPointerUp={pressSlider.handlers.onPointerUp}
+              onPointerLeave={pressSlider.handlers.onPointerLeave}
+              onPointerCancel={pressSlider.handlers.onPointerCancel}
+              onClickCapture={pressSlider.handlers.onClickCapture}
+            >
+              {pressReleases.concat(pressReleases).map((item, idx) => (
+                <LinkCard
+                  item={item}
+                  type="press"
+                  key={`press-${idx}-${item.frontmatter?.slug || idx}`}
                 />
               ))}
             </div>
-          )}
+          </div>
         </div>
-      </div>
+        {!isMobile && (
+          <div className={styles.dots}>
+            {pressReleases.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => pressSlider.handleDotClick(idx)}
+                className={`${styles.dot} 
+                    ${pressSlider.current === idx ? styles.dotActive : ""
+                  }`}
+                aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+              />
+            ))}
+          </div>
+        )}
+      </section>
 
       {/* Section 5: CTA */}
       <section
         className={styles.ctaSection}
         style={{
-          backgroundImage:!isMobile
-            ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)" 
+          backgroundImage: !isMobile
+            ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
             : 'url(/images/banners/mobile-contact-illustration-img.png)',
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
@@ -396,8 +400,8 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
 
-          <a 
-            href={ContactFormLink} 
+          <a
+            href={ContactFormLink}
             className={`
               ${!isMobile ? styles.ctaButton : styles.ctaMobileButton}`
             }
@@ -410,7 +414,7 @@ const IndexPage = ({ data }) => {
                 src={!isMobile ? AngleBracketRight : AngleBracketRightLight}
                 alt={"Read More"}
               />
-            </span>            
+            </span>
           </a>
         </div>
       </section>
