@@ -37,12 +37,22 @@ section:last-child {
 
 .flexBox {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .mediaFlexBox {
   display: flex;
-  gap: 20px;
+  gap: 40px;
+}
+
+.visionMissionBox {
+  display: flex;
+  gap: 40px;
+}
+
+.partnersFlexBox {
+  display: flex;
+  gap: 40px;
 }
 
 .flexBoxWithPlus {
@@ -91,6 +101,13 @@ section:last-child {
   min-height: 84px;
 }
 
+.jhAionValueHeader {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 84px;
+}
+
 /* top-right decorative image */
 .valueImage {
   position: absolute;
@@ -101,7 +118,7 @@ section:last-child {
 }
 
 .valueLabel {
-  color: var(--vm-green);
+  color: var(--color-point);
   font-size: 24px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -109,8 +126,15 @@ section:last-child {
   opacity: 0.4;
 }
 
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+
 .valueTitle {
-  margin-bottom: 12px;
   color: var(--vm-text);
   font-size: 24px;
   font-weight: var(--fw-xl);
@@ -193,6 +217,10 @@ section:last-child {
     font-weight: var(--fw-xl);
   }
 
+  .titleWrap {
+    gap: 8px;
+  }
+
   .valueDescription {
     font-size: 20px;
     font-weight: var(--fw-xl);
@@ -206,23 +234,77 @@ section:last-child {
 
   .valueCard {
     min-height: 0;
+    gap: 10px;
   }
 
   .brForMobile {
     display: block;
   }
+
+  .solutionFlexBox {
+    gap: 40px;
+  }
+
+  .jhAionValueHeader {
+    min-height: 0;
+  }
+
+  .challengeBg1 {
+    background: none;
+  }
+
+  .challengeBg2 {
+    background: none;
+  }
+
+  .valueMobileImg {
+    height: 194.064px;
+    flex: 1 0 0;
+    aspect-ratio: 318.00/194.06;
+    margin: 0;
+  }
 }
 
 @media (max-width: 450px) {
   .container {
-    padding: 40px 24px;
+    padding: 40px 16px;
   }
 
   .valueDescription {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .valueCard {
-    padding: 25px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .valueTitle {
+    font-size: 22px;
+  }
+
+  .valueLabel {
+    font-size: 22px;
+  }
+
+  .firstCard {
+    padding: 20px;
+  }
+
+  .videoIframe {
+    border-radius: 16px;
+  }
+
+  .valueImage {
+    top: 20px;
+    right: 20px;
+  }
+
+  .partnersFlexBox {
+    flex-direction: column;
+  }
+  
+  .jhaionTitle h2 {
+    font-size: 22px;
   }
 }

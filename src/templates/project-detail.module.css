@@ -15,7 +15,7 @@
 
 .title {
   margin: 0;
-  color: #17181B;
+  color: var(--color-text);
   font-size: var(--font-title-md);
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -23,7 +23,7 @@
 }
 
 .date {
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -79,7 +79,7 @@
 
 .sectionTitle {
   margin: 0;
-  color: #17181B;
+  color: var(--color-text);
   font-size: 20px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -87,7 +87,7 @@
 }
 
 .sectionSubtitle {
-  color: #757B82; /* light grey as in screenshot */
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -169,8 +169,8 @@
   align-items: center;
   gap: 8px;
   border-radius: 10px;
-  background: #177D3C;
-  color: #FDFDFD;
+  background: var(--color-point);
+  color: var(--color-text-white);
   line-height: 140%;
   text-decoration: none;
 }
@@ -219,10 +219,27 @@
 
 @media (max-width: 450px) {
   .container {
-    padding: 40px 24px;
+    padding: 40px 16px;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .sectionContent {
+    font-size: 16px;
+  }
+
+  .sectionList li {
+    font-size: 16px;
+  }
+
+  .listBtnBox {
+    width: auto;
+    height: 38px;
+  }  
 }

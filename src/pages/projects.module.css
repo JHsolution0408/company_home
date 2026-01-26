@@ -10,7 +10,7 @@
 
 .menuHeader h1 {
   margin: 0;
-  color: #FDFDFD;
+  color: var(--color-text-white);
   font-size: var(--font-title-md);
   font-weight: 700;
   line-height: 1.4;
@@ -36,7 +36,7 @@
 
 .projectTitle {
   margin-bottom: 20px;
-  color: #17181B;
+  color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--font-title-md);
   font-weight: var(--fw-xl);
@@ -54,7 +54,7 @@
 }
 
 .projectTitle span {
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .brForMobile {
@@ -111,7 +111,7 @@
 }
 
 .projectDetail h3 {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 24px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -123,7 +123,7 @@
 }
 
 .projectDate {
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 20px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -139,6 +139,11 @@
 }
 
 @media (max-width: 1024px) {
+  .project {
+    padding: 20px 0;
+    word-break: keep-all;
+  }
+
   .projectContainer {
     padding: 40px;
   }
@@ -182,22 +187,30 @@
 
 @media (max-width: 450px) {
   .projectContainer {
-    padding: 40px 24px;
+    padding: 40px 16px;
   }
 
   .projectTitle {
-    font-size: 28px;
+    font-size: 24px;
   }  
 
   .projectContainer h2 {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .projectDetail {
+    gap: 8px;
   }
 
   .projectDetail h3 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .projectDate {
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  .tags {
+    margin-top: 8px;
   }
 }

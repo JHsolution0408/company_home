@@ -24,7 +24,7 @@
 
 .date {
   margin: 0;
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -93,8 +93,8 @@ hr {
   align-items: center;
   gap: 8px;
   border-radius: 10px;
-  background: #177D3C;
-  color: #FDFDFD;
+  background: var(--color-point);
+  color: var(--color-text-white);
   line-height: 140%;
   text-decoration: none;  
 }
@@ -126,10 +126,15 @@ hr {
 
 @media (max-width: 450px) {
   .container {
-    padding: 40px 24px ;
+    padding: 40px 16px ;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
+
+  .listBtnBox {
+    width: auto;
+    height: 38px;
+  }  
 }

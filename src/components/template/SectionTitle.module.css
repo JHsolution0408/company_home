@@ -5,7 +5,7 @@
 }
 
 .title {
-  color: #17181B;
+  color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--font-title-md);
   font-weight: var(--fw-xl);
@@ -14,7 +14,7 @@
 }
 
 .title span {
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .description {
@@ -34,7 +34,7 @@
 
 .sectionLabel {
   margin: 0;
-  color: #177D3C; /* subtle grey */
+  color: var(--color-point);
   font-size: 24px;
   font-weight: var(--fw-xl);
   letter-spacing: -1.5px;
@@ -53,10 +53,14 @@
 
 @media (max-width: 500px) {
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .description {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .sectionLabel {
+    font-size: 18px;
   }
 }

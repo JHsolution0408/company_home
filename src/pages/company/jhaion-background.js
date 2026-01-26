@@ -10,17 +10,7 @@ import * as styles from "./vision-mission.module.css";
 import * as bgStyles from "./jhaion-background.module.css";
 
 
-// 그라데이션 애니메이션 스타일 추가
-const gradientTextStyle = {
-  background: 'linear-gradient(90deg, #177D3C 0%, #4be085 50%, #177D3C 100%)',
-  backgroundSize: '200% auto',
-  color: '#177D3C',
-  backgroundClip: 'text',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  animation: 'gradient-move 2.5s linear infinite',
-  display: 'block',
-};
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 // 전역 스타일에 keyframes 추가
 const gradientKeyframes = `
@@ -36,6 +26,19 @@ const PAGE_DESCRIPTION = "JHAION 개발의 배경과 문제의식, 기술적 해
 
 export default function JhaionBackgroundNew() {
   // TODO: 아래 공간에 SEO 컴포넌트(Helmet, Seo 등) 추가 가능
+
+  const isMobile = useIsMobile(768);
+
+  const MobileValueImage = ({ imgSrc }) => {
+    return (
+      <img
+        className={styles.valueMobileImg}
+        src={imgSrc}
+        alt="challenge"
+      />
+    )
+  }
+
   return (
     <Layout
       type="light"
@@ -58,16 +61,17 @@ export default function JhaionBackgroundNew() {
                 <br className={bgStyles.brForPC} />
                 하지만 시시각각 변하는 산업 현장의 변수와 유체 흐름(CFD)을 배제한 데이터 분석은 잦은 오차와 비효율을 낳았습니다. 우리는 생각했습니다. "보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?"
               </>
-            )} 
+            )}
+            className={styles.jhaionTitle}
           />
 
-          <div className={styles.flexBox}>
+          <div className={styles.flexBoxWithPlus}>
             {/* Left card: Technical Problem */}
             <div className={`${styles.valueCard} ${styles.challengeCard} ${styles.challengeBg1}`}>
-              <div className={styles.valueHeader}>
+              <div className={styles.jhAionValueHeader}>
                 <span className={styles.valueLabel}>Technical Problem</span>
               </div>
-              <div>
+              <div className={styles.titleWrap}>
                 <h3 className={styles.valueTitle}>
                   기존 기술의 명확한 한계 직면
                 </h3>
@@ -75,16 +79,17 @@ export default function JhaionBackgroundNew() {
                   기존 CFD 시뮬레이션은 정확했지만, 복잡한 시스템의 최적화와 대규모 자동화에는 시간 및 비용적 제약이 커서 실무적인 활용이 어려움이 있었습니다.
                 </p>
               </div>
+              {isMobile && <MobileValueImage imgSrc={"/images/about/jhaionbackgrounds/challenge_1.png"} />}
             </div>
 
             <CircleArrowRightIconWithFlex />
 
             {/* Right card: New Solution */}
             <div className={`${styles.valueCard} ${styles.challengeCard} ${styles.challengeBg2}`}>
-              <div className={styles.valueHeader}>
+              <div className={styles.jhAionValueHeader}>
                 <span className={styles.valueLabel}>New Solution</span>
               </div>
-              <div>
+              <div className={styles.titleWrap}>
                 <h3 className={styles.valueTitle}>
                   초거대 AI 기반의 새로운 해법 확인
                 </h3>
@@ -92,6 +97,7 @@ export default function JhaionBackgroundNew() {
                   복잡하고 방대한 비선형 데이터를 처리하고 예측하기 위해, 일반 AI를 뛰어넘는 HYPER-SCALE AI 도입이 필수적인 해결책이었습니다.
                 </p>
               </div>
+              {isMobile && <MobileValueImage imgSrc={"/images/about/jhaionbackgrounds/challenge_2.png"} />}
             </div>
           </div>
         </section>
@@ -106,6 +112,7 @@ export default function JhaionBackgroundNew() {
               <br className={bgStyles.brForPC} />
               데이터를 빠르게 처리하는 AI의 속도에 물리 법칙을 해석하는 공학적 깊이를 융합하여, 현실과 오차 없이 동기화되는 초정밀 엔진 'JHAION'을 개발했습니다.
             </>)}
+            className={styles.jhaionTitle}
           />
 
           <div className={styles.flexBoxWithPlus}>
@@ -139,11 +146,12 @@ export default function JhaionBackgroundNew() {
               <br className={bgStyles.brForPC} />
               기업에게는 최적의 비용 절감을, 지구에게는 탄소 없는 미래를 선물하는 것. 이것이 JHAION 엔진이 끊임없이 진화하는 이유입니다.
             </>)}
+            className={styles.jhaionTitle}
           />
 
           <div className={bgStyles.bannerImageContainer}>
             <img
-              src={'/images/about/jhaionbackgrounds/jbg-5.png'}
+              src={'/images/about/jhaionbackgrounds/jbg-6.png'}
               alt={'jhaion-banner'}
             />
           </div>

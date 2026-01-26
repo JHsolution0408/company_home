@@ -44,7 +44,7 @@ const DigitalTwinPage = ({ data }) => {
               description={`언리얼 엔진의 압도적 몰입감과 WebGL의 웹 접근성을 결합하여 공장과 빌딩을 통합 관제합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_dt1.png",

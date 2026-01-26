@@ -6,15 +6,7 @@ export default function ImageCard({ image, title, description }) {
   
   return (
     <div className={styles.imageCardContainer}>
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          borderRadius: 20,
-          width: "100%",
-        }}
-      />
-
+      <img src={src} alt={alt} />
       {title && (
         <div className={styles.imageCardContent}>
           <h3>{title}</h3>

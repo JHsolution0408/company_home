@@ -1,4 +1,4 @@
-.backToTop {
+.floatTop {
   display: flex;
   padding: 8px;
   align-items: center;
@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-.backToTop img {
+.floatTop img {
   margin: 0;
 }
 
@@ -28,4 +28,11 @@
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+@media (max-width: 450px) {
+  .floatTop {
+    right: 20px;
+    bottom: 20px;
+  }
 }

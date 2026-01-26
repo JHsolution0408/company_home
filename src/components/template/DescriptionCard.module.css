@@ -1,6 +1,5 @@
 :root {
   --dc-text: #2E3236;
-  --dc-sub-text: #757B82;
   --dc-gray: #F8F9FA;
   --dc-gray-border: #E0E4E8;
   --dc-bg: #F8F9FA;
@@ -36,7 +35,7 @@ img.descriptionCardImage {
 
 .descriptionCardDescription {
   margin: 0;
-  color: var(--dc-sub-text);
+  color: var(--color-subtitle);
   font-size: 20px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -46,6 +45,15 @@ img.descriptionCardImage {
 
 @media (max-width: 450px) {
   .descriptionCard {
-    padding: 25px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .descriptionCardTitle {
+    font-size: 20px;
+  }
+
+  .descriptionCardDescription {
+    font-size: 16px;
   }
 }

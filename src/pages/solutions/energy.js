@@ -43,7 +43,7 @@ const EnergyManagementPage = ({ data }) => {
               description={`데이터 기반의 정략적 관리 시스템을 통해 고객의 재무적, 환경적 목표를 달성하겠습니다`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_energy1.png",
@@ -79,13 +79,14 @@ const EnergyManagementPage = ({ data }) => {
               title={
                 <>
                   다양한 공간에 확장되는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>에너지 관리 솔루션</span>
                 </>
               }
               description={`건물, 공장, 주택, 커뮤니티 등 모든 환경에 특화된 솔루션을 제공합니다`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_energyBEMS.png",

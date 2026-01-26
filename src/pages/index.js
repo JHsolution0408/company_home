@@ -1,12 +1,13 @@
-
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "./index.module.css"
 import { useSlider } from "../hooks/useSlider";
+import { useIsMobile } from '../hooks/useIsMobile';
 import { DRAG_THRESHOLD_SOLUTIONS } from "../utils/slider";
 import AngleBracketRight from '../../static/icons/common/angle-bracket-right-icon.svg';
+import AngleBracketRightLight from '../../static/icons/common/angle-bracket-right-icon-light.svg';
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
 
@@ -18,21 +19,30 @@ const cards = [
     subtitle1: "초거대 AI가 여는 탄소중립의 미래",
     subtitle2: "가장 완벽한 에너지 최적화의 실현",
     link: "/company/vision-mission",
-    image: "/images/main-1.png"
+    image: {
+      desktop: "/images/main-1.png",
+      mobile: "/images/mobile-main-1.png",
+    }
   },
   {
     title: "Beyond Data, Integration of Engineering",
     subtitle1: "데이터의 한계를 넘는 공학적 통찰",
     subtitle2: "현장의 난제를 꿰뚫는 AI와 시뮬레이션의 혁신적 융합",
     link: "/company/jhaion-background",
-    image: "/images/main-2.png"
+    image: {
+      desktop: "/images/main-2.png",
+      mobile: "/images/mobile-main-2.png",
+    }
   },
   {
     title: "Proven Success, Trusted Partner",
     subtitle1: "데이터로 증명하는 압도적 효율",
     subtitle2: "비즈니스 성공을 위한 검증된 파트너십",
     link: "/company/partners",
-    image: "/images/main-3.png"
+    image: {
+      desktop: "/images/main-3.png",
+      mobile: "/images/mobile-main-3.png",
+    }
   }
 ];
 
@@ -55,7 +65,9 @@ const IndexPage = ({ data }) => {
 
   const solutionsSliderRef = React.useRef(null)
   const pressSliderRef = React.useRef(null)
-  
+
+  const isMobile = useIsMobile();
+
   // 재사용 가능한 슬라이더 훅
   const solutionsSlider = useSlider({
     ref: solutionsSliderRef,
@@ -89,7 +101,7 @@ const IndexPage = ({ data }) => {
       ...cards,
       cards[0],
     ];
-  }, [cards]);
+  }, []);
 
   // Hero 배너 다음 버튼
   const handleHeroBannerNext = React.useCallback(() => {
@@ -170,7 +182,9 @@ const IndexPage = ({ data }) => {
                 <div
                   className={styles.heroCard}
                   style={{
-                    backgroundImage: `linear-gradient(124deg, #F6FEF9 21.51%, transparent 57.84%), url('${card.image}')`,
+                    backgroundImage: `
+                      linear-gradient(124deg, #F6FEF9 21.51%, transparent 57.84%), url('${!isMobile ? card.image.desktop : card.image.mobile}')
+                    `,
                   }}
                 >
                   <h3 className={styles.heroKicker}>{card.title}</h3>
@@ -180,14 +194,16 @@ const IndexPage = ({ data }) => {
                   <Link to={card.link} target="_self">
                     <div className={styles.heroCta}>
                       <span>자세히 보기</span>
-                      <div className={styles.heroCtaIcon}>
-                        <img
-                          src={AngleBracketRight}
-                          alt={"Read More"}
-                          width={20}
-                          height={20}
-                        />
-                      </div>
+                      {!isMobile && (
+                        <div className={styles.heroCtaIcon}>
+                          <img
+                            src={AngleBracketRight}
+                            alt={"Read More"}
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                      )}
                     </div>
                   </Link>
                 </div>
@@ -236,9 +252,11 @@ const IndexPage = ({ data }) => {
       {/* 섹션 2: 회사 소개 */}
       <div className={styles.sectionPad}>
         <div className={styles.aboutBanner}>
-          <h3 className={styles.aboutBannerLabel}>
-            JHAION Engine : The Core of Optimization
-          </h3>
+          {!isMobile && (
+            <h3 className={styles.aboutBannerLabel}>
+              JHAION Engine : The Core of Optimization
+            </h3>
+          )}
           <p className={styles.aboutTitle}>
             Net-Zero와 최적화를 향한 초거대 AI의 여정
           </p>
@@ -282,20 +300,20 @@ const IndexPage = ({ data }) => {
               <LinkCard item={item} key={`solutions-${idx}-${item.id}`} />
             ))}
           </div>
-        </div>
-
-        {/* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */}
-        <div className={styles.dots}>
-          {solutions.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => solutionsSlider.handleDotClick(idx)}
-              className={`${styles.dot} ${
-                solutionsSlider.current === idx ? styles.dotActive : ""
-              }`}
-              aria-label={`${idx + 1}번 슬라이드로 이동`}
-            />
-          ))}
+          {!isMobile && (
+            /* AI: 두번째 컨트롤 컴포넌트 : 도트 인디케이터 (스왑됨) */
+            <div className={styles.dots}>
+              {solutions.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => solutionsSlider.handleDotClick(idx)}
+                  className={`${styles.dot} ${solutionsSlider.current === idx ? styles.dotActive : ""
+                    }`}
+                  aria-label={`${idx + 1}번 슬라이드로 이동`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -332,18 +350,20 @@ const IndexPage = ({ data }) => {
               />
             ))}
           </div>
-        </div>
-        <div className={styles.dots}>
-          {pressReleases.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => pressSlider.handleDotClick(idx)}
-              className={`${styles.dot} 
-                ${pressSlider.current === idx ? styles.dotActive : ""
-              }`}
-              aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
-            />
-          ))}
+          {!isMobile && (
+            <div className={styles.dots}>
+              {pressReleases.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => pressSlider.handleDotClick(idx)}
+                  className={`${styles.dot} 
+                  ${pressSlider.current === idx ? styles.dotActive : ""
+                    }`}
+                  aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -351,8 +371,9 @@ const IndexPage = ({ data }) => {
       <section
         className={styles.ctaSection}
         style={{
-          backgroundImage:
-            "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)",
+          backgroundImage:!isMobile
+            ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)" 
+            : 'url(/images/banners/mobile-contact-illustration-img.png)',
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",
@@ -375,8 +396,21 @@ const IndexPage = ({ data }) => {
             </p>
           </div>
 
-          <a href={ContactFormLink} className={styles.ctaButton}>
+          <a 
+            href={ContactFormLink} 
+            className={`
+              ${!isMobile ? styles.ctaButton : styles.ctaMobileButton}`
+            }
+          >
             <span>문의하기</span>
+            <span className={styles.ctaButtonIcon}>
+              <img
+                width={20}
+                height={20}
+                src={!isMobile ? AngleBracketRight : AngleBracketRightLight}
+                alt={"Read More"}
+              />
+            </span>            
           </a>
         </div>
       </section>

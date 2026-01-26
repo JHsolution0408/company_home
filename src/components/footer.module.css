@@ -7,7 +7,7 @@
 }
 
 .footer {
-  color: #FDFDFD;
+  color: var(--color-text-white);
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -211,7 +211,7 @@
 
 @media (max-width: 450px) {
   .container {
-    padding: 40px 24px;
+    padding: 40px 16px;
   }
 
   .address {
@@ -219,7 +219,7 @@
   }
 
   .tel {
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
   }
 
@@ -228,6 +228,18 @@
   }
 
   .copy {
+    font-size: 12px;
+  }
+
+  .infoTitle {
+    font-size: 12px;
+  }
+
+  .infoText {
+    font-size: 12px;
+  }
+
+  .brochureLink {
     font-size: 12px;
   }
 }

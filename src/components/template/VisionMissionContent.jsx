@@ -23,7 +23,7 @@ export default function VisionMissionContent() {
           `}
         />
 
-        <div className={styles.flexBox}>
+        <div className={`${styles.flexBox} ${styles.visionMissionBox}`}>
           <ImageCard
             image={{
               src: "/images/about/mission-1.png",
@@ -65,7 +65,7 @@ export default function VisionMissionContent() {
           }
         />
 
-        <div className={styles.flexBox}>
+        <div className={`${styles.flexBox} ${styles.visionMissionBox}`}>
           <div className={styles.valueCard}>
             <div className={styles.valueHeader}>
               <span className={styles.valueLabel}>Value for Customers</span>
@@ -75,7 +75,7 @@ export default function VisionMissionContent() {
                 alt="미션 3"
               />
             </div>
-            <div>
+            <div className={styles.titleWrap}>
               <h3 className={styles.valueTitle}>
                 고객의 성공을 위한 정략적 최적화
               </h3>
@@ -96,7 +96,7 @@ export default function VisionMissionContent() {
               />
               <span className={styles.valueLabel}>Value for Society</span>
             </div>
-            <div>
+            <div className={styles.titleWrap}>
               <h3 className={styles.valueTitle}>
                 지속 가능한 미래를 위한 기술적 책임
               </h3>
