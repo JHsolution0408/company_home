@@ -1,7 +1,7 @@
 ---
-order: 3
+order: 2
 title: "당진시 탄소중립도시 지정 계획수립"
-date: "2025-12-12"
+date: "2024-03-04"
 period: "24년 3월 - 25년 1월 (11개월)"
 featureImage: "/images/projects/card_dangjin.jpg"
 tags: ["GOV"]
