@@ -9,11 +9,8 @@ import LogoWhite from '../images/logo/jhsolution-logo-white.svg';
 import CloseIcon from '/static/icons/common/close-icon.svg';
 import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
 import HamburgerIconWhite from '/static/icons/common/hamburger-menu-icon-white.svg';
-import OpenIcon from '/static/icons/common/open-icon.svg';
 
 const MOBILE_BREAKPOINT = 1000
-const ContactFormLink =
-  "https://docs.google.com/forms/d/e/1FAIpQLSd8r-HC_kxlfuRDtX1LJvZaldc6I79aeUgdUQrS8TvHIAuo8Q/viewform"
 
 const solutionItems = [
   { name: "JHAION 엔진", slug: "jhaion-engine" },
@@ -279,7 +276,7 @@ function Header({ type = "light", bgImage, subHeader }) {
 
               <a 
                 className={styles.contactForm} 
-                href={ContactFormLink}
+                href="/contact"
                 target="_self"
                 aria-label="Contact Button Form"
               >

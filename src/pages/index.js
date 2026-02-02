@@ -11,8 +11,6 @@ import AngleBracketRightLight from '../../static/icons/common/angle-bracket-righ
 import arrowLeft from '../../static/icons/common/arrow-left-icon.svg';
 import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
 
-const ContactFormLink = 'https://forms.gle/7b4LuMCWArfwgv2p6';
-
 const cards = [
   {
     title: "Hyper-scale AI for Net-Zero",
@@ -401,7 +399,7 @@ const IndexPage = ({ data }) => {
           </div>
 
           <a
-            href={ContactFormLink}
+            href="/contact"
             className={`
               ${!isMobile ? styles.ctaButton : styles.ctaMobileButton}`
             }

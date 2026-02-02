@@ -1,5 +1,4 @@
-import React, { useMemo, useState } from "react";
-import { Link } from "gatsby"
+import React from "react";
 
 import Contact from "../components/contact/Contact";
 import Layout from "../components/layout";
