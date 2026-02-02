@@ -84,7 +84,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/Nxe8HhexNVI?si=VfnkuMA6zuCPuxze&amp"
+                  src="https://www.youtube.com/embed/pIQV18_YQWg"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -93,7 +93,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/dC7dp1yOM-w?si=uUpRMffGWRhnFLGv"
+                  src="https://www.youtube.com/embed/Iu2eRf_ZAGE"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -154,7 +154,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/9ofXAYn1Qc4?si=kJQK-VpH6UBQquel"
+                  src="https://www.youtube.com/embed/LSVmHfOLvf8"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -224,7 +224,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/ty81yrLMnuU?si=HD9Kb4bxx02RJHoW"
+                  src="https://www.youtube.com/embed/uYQob4HOzAI"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -233,7 +233,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/KjdH7_13m1w?si=htcFCixLLDkDVPDK"
+                  src="https://www.youtube.com/embed/UXBqCF__toA"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -294,7 +294,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/U6Bc-QdX67I?si=m1F1a7Gdmw-jxK1u"
+                  src="https://www.youtube.com/embed/cE-V2Qsetn8"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
