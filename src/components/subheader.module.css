@@ -24,7 +24,7 @@
 
 .title {
   margin: 0;
-  color: #FDFDFD;
+  color: var(--color-text-white);
   font-family: var(--font-serif);
   font-size: var(--font-title-md);
   font-weight: var(--fw-xl);
@@ -46,7 +46,7 @@
 
 @media (max-width: 1000px) {
   .contentPadding {
-    padding: 110px 20px 40px 24px;
+    padding: 110px 24px 40px 24px;
   }
 
   .inner {
@@ -66,7 +66,16 @@
 
 @media (max-width: 450px) {
   .title {
-    font-size: 30px;
+    font-size: 26px;
   }
+
+  .description {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .contentPadding {
+    padding: 110px 16px 40px 16px;
+  }  
 }
 

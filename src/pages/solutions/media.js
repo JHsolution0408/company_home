@@ -43,7 +43,7 @@ const MediaPage = ({ data }) => {
               description={`AI 솔루션은 일러스트, 웹툰이나 만화책 및 사진 등 정적인 이미지 IP를 분석하여 역동적인 고품질 영상으로 제작합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={styles.mediaFlexBox}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card-ai-video1.png",
@@ -84,7 +84,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/Nxe8HhexNVI?si=VfnkuMA6zuCPuxze&amp"
+                  src="https://www.youtube.com/embed/pIQV18_YQWg"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -93,7 +93,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/dC7dp1yOM-w?si=uUpRMffGWRhnFLGv"
+                  src="https://www.youtube.com/embed/Iu2eRf_ZAGE"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -113,7 +113,7 @@ const MediaPage = ({ data }) => {
               description={`고도화된 페이셜 애니메이션과 음성 합성 기술을 통해 자연스러운 감정 표현이 가능한 AI아바타를 제작합니다. XR, PC와 모바일 등 다양한 플랫폼에서 지능형 가이드, 강사 또는 개인화 된 파트너로서 최상의 교육, 홍보 및 커뮤니케이션 경험을 제공합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={styles.mediaFlexBox}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card-ai-avatar1.png",
@@ -154,7 +154,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/9ofXAYn1Qc4?si=kJQK-VpH6UBQquel"
+                  src="https://www.youtube.com/embed/LSVmHfOLvf8"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -174,7 +174,7 @@ const MediaPage = ({ data }) => {
               description={`공간 컴퓨팅 기술을 기반으로 단순한 관람을 넘어 실시간 다중 접속, 인터랙티브 요소 그리고 AI 아바타와 유기적으로 결합을 통한 몰입감있는 콘텐츠를 제공합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={styles.mediaFlexBox}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card-xp-platform1.png",
@@ -224,7 +224,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/ty81yrLMnuU?si=HD9Kb4bxx02RJHoW"
+                  src="https://www.youtube.com/embed/uYQob4HOzAI"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -233,7 +233,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/KjdH7_13m1w?si=htcFCixLLDkDVPDK"
+                  src="https://www.youtube.com/embed/UXBqCF__toA"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"
@@ -253,7 +253,7 @@ const MediaPage = ({ data }) => {
               description={`재미의 본질을 꿰뚫는 기획력 위에 AI 기반의 효율적인 제작 파이프라인과 XR의 확장성을 결합하였습니다. 단순한 플레이를 넘어 사용자의 감각을 깨우는 차세대 게임 경험을 설계합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={styles.mediaFlexBox}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card-game-contents1.png",
@@ -294,7 +294,7 @@ const MediaPage = ({ data }) => {
               <div className={styles.video}>
                 <iframe
                   className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/U6Bc-QdX67I?si=m1F1a7Gdmw-jxK1u"
+                  src="https://www.youtube.com/embed/cE-V2Qsetn8"
                   allow="autoplay"
                   allowFullScreen
                   title="YouTube video player"

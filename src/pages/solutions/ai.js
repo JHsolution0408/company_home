@@ -44,7 +44,7 @@ const AiPage = ({ data }) => {
               description={`아날로그 정보를 디지털화하고, 설비 고장을 사전에 예측하여 운영 효율의 정점을 실현합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai1.png",

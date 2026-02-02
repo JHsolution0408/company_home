@@ -43,7 +43,7 @@ const EnergyManagementPage = ({ data }) => {
               description={`데이터 기반의 정략적 관리 시스템을 통해 고객의 재무적, 환경적 목표를 달성하겠습니다`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_energy1.png",
@@ -79,13 +79,14 @@ const EnergyManagementPage = ({ data }) => {
               title={
                 <>
                   다양한 공간에 확장되는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>에너지 관리 솔루션</span>
                 </>
               }
               description={`건물, 공장, 주택, 커뮤니티 등 모든 환경에 특화된 솔루션을 제공합니다`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_energyBEMS.png",
@@ -110,7 +111,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "FEMS (Factory)",
                 }}
                 title={"FEMS (Factory)"}
-                description={`생산 설비와 유틸리티를 최적화 해 생산성을 유지하면서 에너지 비용을 낮추는 공장 에너지 관리 시스템입니다.`}
+                description={`생산 설비와 유틸리티를 최적화해 생산성을 유지하면서 에너지 비용을 낮추는 공장 에너지 관리 시스템입니다.`}
               />
 
               <ImageCard
@@ -119,7 +120,7 @@ const EnergyManagementPage = ({ data }) => {
                   alt: "CEMS (Community)",
                 }}
                 title={"CEMS (Community)"}
-                description={`산업단지,도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유.거래하는 지역 에너지 관리 시스템입니다.`}
+                description={`산업단지·도시 단위의 에너지를 통합 관제하고 잉여 에너지를 공유·거래하는 지역 에너지 관리 시스템입니다.`}
               />
             </div>
           </section>

@@ -44,7 +44,7 @@ const JhaionEnginePage = ({ data }) => {
               description={`기존 기술의 한계를 돌파하는 세가지 핵심 기술이 유기적으로 결합되어 있습니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_jhaion1.png",

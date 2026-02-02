@@ -12,6 +12,7 @@
 
 .pagerBtn:hover {
   background: rgba(2, 8, 22, 0.10);
+  transition: var(--hover-transition);
 }
 
 .disableBtn {
@@ -27,7 +28,7 @@
 }
 
 .pagerBtn span {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
@@ -35,10 +36,21 @@
 }
 
 .disableBtn span {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
   letter-spacing: 0;
 }
 
+@media (max-width: 450px) {
+  .pagerBtn {
+    width: auto;
+    height: 38px;
+  }
+
+  .disableBtn {
+    width: auto;
+    height: 38px;
+  }
+}

@@ -1,7 +1,7 @@
 ---
 order: 4
 title: "수원시 탄소중립 그린도시 통합플랫폼 구축을 위한 세부 실행계획 수립"
-date: "2025-12-12"
+date: "2025-02-10"
 period: "25년 2월 - 25년 7월 (6개월)"
 featureImage: "/images/projects/card_suwon.jpg"
 tags: ["GOV"]

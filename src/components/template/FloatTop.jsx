@@ -1,8 +1,8 @@
 import React from "react"
 import * as styles from "./FloatTop.module.css"
-import BackToTopIcon from "/static/icons/common/floatTop-icon.svg";
+import FloatTopIcon from "/static/icons/common/floatTop-icon.svg";
 
-export default function BackToTop({ layoutRootRef }) {
+export default function FloatTop({ layoutRootRef }) {
   const [visible, setVisible] = React.useState(false)
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ export default function BackToTop({ layoutRootRef }) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const handleClickBackToTop = () => {
+  const handleClickFloatTop = () => {
     if (!layoutRootRef?.current) return
     layoutRootRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -26,15 +26,15 @@ export default function BackToTop({ layoutRootRef }) {
   return (
     <button
       type="button"
-      className={`${styles.backToTop} ${visible ? styles.show : styles.hide}`}
-      onClick={handleClickBackToTop}
-      aria-label="Back to Top"
+      className={`${styles.floatTop} ${visible ? styles.show : styles.hide}`}
+      onClick={handleClickFloatTop}
+      aria-label="Float Top"
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
     >
       <img 
-        src={BackToTopIcon} 
-        alt="BackToTop Icon" 
+        src={FloatTopIcon} 
+        alt="FloatTop Icon" 
         width={24}
         height={24}
       />
@@ -42,4 +42,4 @@ export default function BackToTop({ layoutRootRef }) {
   )
 }
 
-BackToTop.displayName = "BackToTop"
+FloatTop.displayName = "FloatTop"

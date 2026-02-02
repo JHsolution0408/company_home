@@ -114,8 +114,6 @@ const ProjectDetailPage = ({ data, pageContext }) => {
             )}
           </div>
 
-          <hr />
-
           <div className={styles.contentRow}>
             {featureImage && (
               <div className={styles.imageBox}>

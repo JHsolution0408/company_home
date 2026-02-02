@@ -1,7 +1,7 @@
 ---
-order: 2
+order: 3
 title: "기후위기 대응형 노후도시 스마트화 구상 연구"
-date: "2025-12-12"
+date: "2024-06-17"
 period: "24년 6월 - 24년 12월 (6개월)"
 featureImage: "/images/projects/card_gh.jpg"
 tags: ["INFRA"]

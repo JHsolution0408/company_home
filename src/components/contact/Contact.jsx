@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useEffect, useState } from "react";
 import { navigate } from "gatsby";
-import SectionTitle from "../../components/template/SectionTitle"
+import SectionTitle from "../../components/template/SectionTitle";
 import * as styles from "./Contact.module.css";
 import { useToast } from "../toast/ToastProvider";
 
@@ -14,7 +14,6 @@ const INQUIRY_TYPES = [
   { key: "media", label: "미디어" },
 ];
 
-// 이메일 형식 검증용 정규식
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 // 문의하기 유효성 검사
@@ -54,16 +53,11 @@ const validate = (form) => {
   return next;
 };
 
-/**
- * Contact (문의하기) 페이지
- * - 사용자 입력 폼 관리
- * - 입력값 유효성 검사 (validate)
- * - Toast 알림
- * - (추후) Submit시 제출 후 Home 이동
- */
 const Contact = () => {
   const { showToast } = useToast();
-  const timerRef = useRef(null); // 제출 후 이동용 타이머 참조 (cleanup 목적)
+
+  const timerRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -73,17 +67,9 @@ const Contact = () => {
     message: "",
   });
 
-  // 현재 폼 상태 기준 에러 계산
   const errors = useMemo(() => validate(form), [form]);
-  // 에러가 하나도 없으면 유효성 폼
-  const isValid = useMemo(
-    () => Object.keys(errors).length === 0,
-    [errors]
-  );
+  const isValid = useMemo(() => Object.keys(errors).length === 0, [errors]);
 
-  /**
-   * 컴포넌트 언마운트 시 타이머
-   */
   useEffect(() => {
     return () => {
       if (timerRef.current) {
@@ -92,48 +78,80 @@ const Contact = () => {
     };
   }, []);
 
-  // 일반 input / textarea 변경 처리 핸들러
   const handleChange = (key) => (e) => {
     const value = e.target.value;
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  // 연락처 입력 핸들러
   const handlePhoneInput = (e) => {
     const onlyDigits = e.target.value.replace(/\D/g, "");
     setForm((prev) => ({ ...prev, phone: onlyDigits }));
   };
 
-  // 체크박스 토글 처리
   const toggleType = (typeKey) => {
     setForm((prev) => {
       const exists = prev.types.includes(typeKey);
       return {
         ...prev,
-        types: exists
-          ? prev.types.filter((k) => k !== typeKey)
-          : [...prev.types, typeKey],
+        types: exists ? prev.types.filter((k) => k !== typeKey) : [...prev.types, typeKey],
       };
     });
   };
 
-  // 문의하기 제출 처리
-  const handleSubmit = (e) => {
+  // 선택된 key 배열을 label 배열로 변환 (서버로 label을 보내는 게 안전)
+  const selectedTypeLabels = useMemo(() => {
+    const map = new Map(INQUIRY_TYPES.map((t) => [t.key, t.label]));
+    return form.types.map((k) => map.get(k)).filter(Boolean);
+  }, [form.types]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isValid) {
       showToast({ message: "필수 항목을 확인해 주세요.", type: "error" });
       return;
     }
-    
-    // 추 후 해당부분에 메일 전송에 대한 코드와 로직이 필요함
 
-    showToast({ message: "제출이 완료되었습니다.", type: "success" });
-    setForm({ name: "", email: "", phone: "", types: [], message: "" });
+    if (isSubmitting) {
+      return;
+    }
 
-    timerRef.current = setTimeout(() => {
-      navigate("/");
-    }, 3000);
+    setIsSubmitting(true);
+
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          inquiryType: selectedTypeLabels,
+          message: form.message.trim(),
+        }),
+      });
+
+      const data = await resp.json().catch(() => null);
+
+      if (!resp.ok || !data?.ok) {
+        throw new Error(data?.error || "Submit failed");
+      }
+
+      showToast({ message: "제출이 완료되었습니다.", type: "success" });
+
+      timerRef.current = setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
+      setForm({ name: "", email: "", phone: "", types: [], message: "" });
+    } catch (err) {
+      showToast({
+        message: "제출에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+        type: "error",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -142,23 +160,18 @@ const Contact = () => {
         title={
           <>
             JH솔루션&nbsp;
-            <br className={styles.brForMobile} />
             <span>문의</span>
           </>
         }
         className={styles.contactTitle}
       />
-      <form
-        id="contactForm"
-        onSubmit={handleSubmit}
-        className={styles.contactForm}
-      >
-        {/*  사용자 정보 입력 영역 */}
+
+      <form id="contactForm" onSubmit={handleSubmit} className={styles.contactForm}>
+        {/* 사용자 정보 입력 영역 */}
         <div className={styles.userInfoSection}>
           <div className={styles.field}>
             <label htmlFor="name" className={styles.label}>
-              이름
-              <span className={styles.star}>*</span>
+              이름 <span className={styles.star}>*</span>
             </label>
             <input
               id="name"
@@ -171,8 +184,7 @@ const Contact = () => {
 
           <div className={styles.field}>
             <label htmlFor="email" className={styles.label}>
-              이메일 주소
-              <span className={styles.star}>*</span>
+              이메일 주소 <span className={styles.star}>*</span>
             </label>
             <input
               id="email"
@@ -186,8 +198,7 @@ const Contact = () => {
 
           <div className={styles.field}>
             <label htmlFor="phone" className={styles.label}>
-              연락처
-              <span className={styles.star}>*</span>
+              연락처 <span className={styles.star}>*</span>
             </label>
             <input
               id="phone"
@@ -200,14 +211,14 @@ const Contact = () => {
           </div>
         </div>
 
-        {/*  문의 관련 입력 영역 */}
+        {/* 문의 관련 입력 영역 */}
         <div className={styles.inquirySection}>
-          {/* 4. 문의 유형 체크박스 */}
+          {/* 문의 유형 체크박스 */}
           <div className={styles.field}>
-            <label className={styles.label}>
-              문의 유형
-              <span className={styles.star}>*</span>
-            </label>
+            <div className={styles.label}>
+              문의 유형 <span className={styles.star}>*</span>
+            </div>
+
             <div className={styles.checkboxGrid}>
               {INQUIRY_TYPES.map((t) => {
                 const checked = form.types.includes(t.key);
@@ -225,11 +236,10 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* 5. 문의 내용 */}
+          {/* 문의 내용 */}
           <div className={`${styles.field} ${styles.messageInputBox}`}>
             <label htmlFor="message" className={styles.label}>
-              문의 내용
-              <span className={styles.star}>*</span>
+              문의 내용 <span className={styles.star}>*</span>
             </label>
             <textarea
               id="message"
@@ -238,6 +248,7 @@ const Contact = () => {
               placeholder="문의 내용 입력 (최대: 5,000자)"
               className={styles.textarea}
               maxLength={5000}
+              required
             />
           </div>
         </div>
@@ -247,13 +258,13 @@ const Contact = () => {
         type="submit"
         form="contactForm"
         className={styles.submitBtn}
-        disabled={!isValid}
+        disabled={!isValid || isSubmitting}
         data-is-valid={!isValid}
       >
-        문의하기
+        {isSubmitting ? "전송 중..." : "문의하기"}
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default Contact;

@@ -21,7 +21,7 @@ export default function PartnersContent() {
           description={`단독이 아닌 파트너들과 함께 기술적 시너지를 창출하여 시장의 혁신을 주도하겠습니다.`}
         />
 
-        <div className={styles.flexBox}>
+        <div className={`${styles.flexBox} ${styles.partnersFlexBox}`}>
           <ImageCard
             image={{
               src: "/images/partners/partner1.png",
@@ -51,7 +51,9 @@ export default function PartnersContent() {
         <SectionTitle
           title={
             <>
-              JHAION의 분야별 <span>네트워크 구성</span>
+              JHAION의 분야별&nbsp;
+              <br className={styles.brForMobile} />
+              <span>네트워크 구성</span>
             </>
           }
           description={

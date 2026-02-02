@@ -5,7 +5,7 @@
 }
 
 .title {
-  color: #17181B;
+  color: var(--color-text);
   font-size: var(--font-title-md);
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -13,7 +13,7 @@
 }
 
 .title span {
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .description {
@@ -36,7 +36,7 @@
 }
 
 .imageCardContent h3 {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 24px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -44,24 +44,37 @@
 }
 
 .imageCardContent p {
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 18px;
   font-weight: var(--fw-xl);
   line-height: 1.4;
   margin: 0;
 }
 
+.imageCardContainer img {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+}
+
 @media (max-width: 768px) {
   .imageCardContainer img{
     margin-bottom: 16px;
   }
+}
+
+@media (max-width: 450px) {
+  .imageCardContainer img{
+    height: 200px;
+    border-radius: 16px;
+  }
 
   .imageCardContent h3 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .imageCardContent p {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 

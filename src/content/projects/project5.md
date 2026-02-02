@@ -1,7 +1,7 @@
 ---
 order: 5
 title: "빌딩 운영 연합 D/T 개발 및 서비스 고도화"
-date: "2025-12-19"
+date: "2025-06-27"
 period: "25년 6월 - 수행 중"
 featureImage: "/images/projects/card_bees.jpg"
 tags: ["INDUSTRY"]

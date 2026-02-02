@@ -12,7 +12,7 @@
 }
 
 .inner {
-  background-color: #FDFDFD;
+  background-color: var(--color-text-white);
   width: 100%;
   max-width: 1920px;
   display: flex;
@@ -110,15 +110,17 @@
 
 .menuButton:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* When route is not home, make the menu button text white */
 .menuButtonDarkTheme {
-  color: #FDFDFD;
+  color: var(--color-text-white);
 }
 
 .menuButtonDarkTheme:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Selected (active) top menu item color */
@@ -137,19 +139,20 @@
 }
 
 .navLink {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 20px;
   font-weight: var(--fw-xl);
   text-decoration: none;
 }
 
 .navLinkDarkTheme {
-  color: #FDFDFD;
+  color: var(--color-text-white);
 }
 
 
 .navLinkDarkTheme:hover {
   color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Dropdown container (desktop only) */
@@ -157,7 +160,7 @@
   position: absolute;
   top: calc(100% + 15px);
   left: 50%;
-  background-color: #FDFDFD;
+  background-color: var(--color-text-white);
   min-width: 200px;
   width: 220px;
   box-shadow: 2px 4px 12px rgba(73, 94, 148, 0.20);
@@ -206,6 +209,7 @@
   border-radius: 10px;
   color: #1BA74E;
   text-align: center;
+  transition: var(--hover-transition);
 }
 
 /* Active state for current route in mobile sidebar */
@@ -250,10 +254,11 @@
 
 .contact:hover {
   background: linear-gradient(0deg, rgba(2, 8, 22, 0.10) 0%, rgba(2, 8, 22, 0.10) 100%), #E9EDF0;
+  transition: var(--hover-transition);
 }
 
 .contact span {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
@@ -272,7 +277,7 @@
 }
 
 .contactMobile {
-  color: #17181B;
+  color: var(--color-text);
   background-color: #E9EDF0;
   padding: 12px 20px;
   border-radius: 10px;
@@ -310,13 +315,13 @@
   .panelTitle {
     font-size: 16px;
     font-weight: bold;
-    color: #17181B;
+    color: var(--color-text);
   }
 
   .panelCloseBtn {
     background: transparent;
     border: none;
-    color: #17181B;
+    color: var(--color-text);
     font-size: 24px;
     cursor: pointer;
     padding: 0;
@@ -333,7 +338,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #17181B;
+    color: var(--color-text);
     font-size: 22px;
     padding: 16px 24px;
   }
@@ -356,10 +361,10 @@
 
 @media (max-width: 450px) {
   .header {
-    padding: 14px 12px 0 12px
+    padding: 10px 16px 0px;
   }
 
   .inner {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 }

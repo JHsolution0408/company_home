@@ -61,7 +61,7 @@
 }
 
 .star {
-  color: #177D3C;
+  color: var(--color-point);
   font-size: 24px;
   font-weight: var(--fw-xl);
   line-height: 140%;
@@ -121,8 +121,8 @@
   width: 160px;
   height: 46px;
   padding: 12px 20px;
-  background-color: #177D3C;
-  color: #FDFDFD;
+  background-color: var(--color-point);
+  color: var(--color-text-white);
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -141,6 +141,7 @@
 
 .submitBtn[data-is-valid="false"]:hover {
   background-color: #095123;
+  transition: var(--hover-transition);
 }
 
 @media (max-width: 1000px) {
@@ -179,10 +180,14 @@
 
 @media (max-width: 450px) {
   .container {
-    padding: 40px 24px;
+    padding: 40px 16px;
   }
 
   .checkboxItem input {
     height: 20px;
+  }
+
+  .label {
+    font-size: 20px;
   }
 }

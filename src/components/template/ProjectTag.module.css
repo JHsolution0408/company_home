@@ -13,7 +13,7 @@
 
 .tagIndustry {
   background: #C4F0D4;
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .tagInfra {
@@ -28,6 +28,8 @@
 
 @media (max-width: 450px) {
   .tag {
-    font-size: 14px;
+    font-size: 12px;
+    padding: 10px 10px;
+    height: 24px;
   }  
 }

@@ -45,7 +45,7 @@ const SimulationPage = ({ data }) => {
             description={`복잡한 물리 환경을 정밀하게 재현하고 분석하는 가상모델 기술이 미래 운영 지능의 기반이 됩니다.`}
           />
 
-          <div className={styles.flexBox}>
+          <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
             <ImageCard
               image={{
                 src: "/images/solutions/card_sim1.png",
@@ -81,13 +81,14 @@ const SimulationPage = ({ data }) => {
             title={
               <>
                 효율적이고 정밀한&nbsp;
+                <br className={styles.brForMobile} />
                 <span>시뮬레이션 솔루션</span>
               </>
             }
             description={`최적설계, 고효율, 친환경을 핵심 가치로 삼아 정밀 시뮬레이션을 통해 리스크와 비용을 최소화하고 탄소중립 실현을 앞당깁니다.`}
           />
 
-          <div className={styles.flexBox}>
+          <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
             <ImageCard
               image={{
                 src: "/images/solutions/card_sim4.png",

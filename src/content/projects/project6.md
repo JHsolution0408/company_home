@@ -1,7 +1,7 @@
 ---
 order: 6
 title: "AI 기반 노동법 준수 지원 솔루션 개발 및 실증"
-date: "2025-12-26"
+date: "2025-10-02"
 period: "25년 10월 - 수행 중"
 featureImage: "/images/projects/card_ax.jpg"
 tags: ["GOV"]

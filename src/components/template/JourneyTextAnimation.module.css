@@ -28,7 +28,7 @@
 }
 
 .slogan .title {
-  color: #FDFDFD;
+  color: var(--color-text-white);
   font-size: var(--font-title-lg);
   font-weight: var(--fw-xl);
   line-height: 1.4;
@@ -39,7 +39,7 @@
 .slogan h2 {
   text-align: center;
   font-feature-settings: 'liga' off, 'clig' off;
-  background: linear-gradient(90deg, #66E695 40.47%, #177D3C 59.58%);
+  background: linear-gradient(90deg, #66E695 40.47%, var(--color-point) 59.58%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -50,7 +50,7 @@
 }
 
 .slogan h3 {
-  color: #FDFDFD;
+  color: var(--color-text-white);
   font-size: 24px;
   font-weight: 400;
   line-height: 1.4;
@@ -207,7 +207,8 @@
   }
 
   .interaction {
-    padding: 40px 24px 120px;
+    padding: 40px 16px 80px;
+    gap: 60px;
   }
 
   .copylightWrapper {
@@ -216,5 +217,11 @@
 
   .copylightText {
     font-size: 24px;
+  }
+
+  .copylightContainer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
   }
 }
