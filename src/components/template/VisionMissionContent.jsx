@@ -77,7 +77,7 @@ export default function VisionMissionContent() {
             </div>
             <div className={styles.titleWrap}>
               <h3 className={styles.valueTitle}>
-                고객의 성공을 위한 정략적 최적화
+                고객의 성공을 위한 전략적 최적화
               </h3>
               <p className={styles.valueDescription}>
                 우리의 기술은 고객의 이익으로 귀결되어야 합니다. JHAION 엔진으로
@@ -89,12 +89,12 @@ export default function VisionMissionContent() {
 
           <div className={styles.valueCard}>
             <div className={styles.valueHeader}>
+              <span className={styles.valueLabel}>Value for Society</span>
               <img
                 className={styles.valueImage}
                 src="/images/about/mission-4.png"
                 alt="미션 4"
-              />
-              <span className={styles.valueLabel}>Value for Society</span>
+              />              
             </div>
             <div className={styles.titleWrap}>
               <h3 className={styles.valueTitle}>

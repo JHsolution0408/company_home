@@ -40,7 +40,7 @@ const EnergyManagementPage = ({ data }) => {
                   <span>핵심 구성</span>
                 </>
               }
-              description={`데이터 기반의 정략적 관리 시스템을 통해 고객의 재무적, 환경적 목표를 달성하겠습니다`}
+              description={`데이터 기반의 정량적 관리 시스템을 통해 고객의 재무적, 환경적 목표를 달성하겠습니다`}
             />
 
             <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>

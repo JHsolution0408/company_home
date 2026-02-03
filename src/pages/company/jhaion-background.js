@@ -151,7 +151,7 @@ export default function JhaionBackgroundNew() {
 
           <div className={bgStyles.bannerImageContainer}>
             <img
-              src={'/images/about/jhaionbackgrounds/jbg-6.png'}
+              src={!isMobile ? '/images/about/jhaionbackgrounds/jbg-7-pc.png' : '/images/about/jhaionbackgrounds/jbg-7-mobile.png'}
               alt={'jhaion-banner'}
             />
           </div>
