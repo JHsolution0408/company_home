@@ -39,7 +39,6 @@
 
 .field input {
   display: flex;
-  height: 56px;
   padding: 16px;
   align-items: center;
   gap: 8px;
@@ -81,12 +80,51 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .checkboxItem {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.checkboxItem input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkboxItem .box {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #c9c9c9;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;  
+}
+
+.checkboxItem .box::after {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.checkboxItem input:checked + .box {
+  background: #121212;
+  border-color: #121212;
+}
+
+.checkboxItem input:checked + .box::after {
+  opacity: 1;
 }
 
 .checkboxItem:hover input, .checkboxItem:hover {

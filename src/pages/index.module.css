@@ -642,6 +642,34 @@
   .heroCard {
     background-size: 100% 43.625rem, auto 30rem;
   }
+
+  .aboutBanner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aboutBanner::before {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .aboutBannerLabel {
+    z-index: 2;
+  }
+
+  .aboutTitle {
+    z-index: 2;
+  }
+
+  .aboutDescription {
+    z-index: 2;
+  }
 }
 
 /**

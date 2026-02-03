@@ -229,6 +229,7 @@ const Contact = () => {
                       checked={checked}
                       onChange={() => toggleType(t.key)}
                     />
+                    <span className={styles.box}></span>
                     <span>{t.label}</span>
                   </label>
                 );

@@ -365,6 +365,11 @@
   }
 
   .inner {
+    height: 48px;
     padding: 0 24px;
+  }
+
+  .logo {
+    width: 37px;
   }
 }

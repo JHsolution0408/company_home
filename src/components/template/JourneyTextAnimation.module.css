@@ -132,6 +132,18 @@
   display: none;
 }
 
+@media (max-width: 1400px) {
+  .interaction {
+    height: 740px;
+  }
+
+  .copylightContainer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 50px;
+  }
+}
+
 @media (max-width: 768px) {
   .interaction {
     padding: 108px 40px;
@@ -217,11 +229,5 @@
 
   .copylightText {
     font-size: 24px;
-  }
-
-  .copylightContainer {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 16px;
   }
 }
