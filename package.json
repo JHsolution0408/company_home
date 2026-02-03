@@ -43,7 +43,10 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest --watchAll=false"
+    "test": "jest --watchAll=false",
+    "deploy:main": "docker compose -f docker/docker-compose.yml down && docker compose -f docker/docker-compose.yml up -d --build",
+    "deploy:dev": "docker compose -f docker/docker-compose.dev.yml down && docker compose -f docker/docker-compose.dev.yml up -d --build",
+    "deploy:all": "docker compose -f docker/docker-compose.yml down && docker compose -f docker/docker-compose.dev.yml down && docker compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up -d --build"
   },
   "repository": {
     "type": "git",
