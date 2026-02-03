@@ -5,7 +5,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px 60px 0;
   flex-direction: column;
   z-index: 9999;
@@ -22,7 +22,6 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 20px;
-  align-self: stretch;
 }
 
 .innerDark {
