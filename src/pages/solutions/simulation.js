@@ -26,7 +26,7 @@ const SimulationPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_simulation.png"
@@ -38,16 +38,17 @@ const SimulationPage = ({ data }) => {
             title={
               <>
                 보이지 않는 물리 현상을 제현하는&nbsp;
+                <br className={styles.brForMobile} />
                 <span>시뮬레이션의 핵심 구성</span>
               </>
             }
             description={`복잡한 물리 환경을 정밀하게 재현하고 분석하는 가상모델 기술이 미래 운영 지능의 기반이 됩니다.`}
           />
 
-          <div className={styles.flexBox}>
+          <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy1.png",
+                src: "/images/solutions/card_sim1.png",
                 alt: "CAE 시뮬레이션 (Computer Aided Engineering)",
               }}
               title={"CAE 시뮬레이션 (Computer Aided Engineering)"}
@@ -56,7 +57,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy2.png",
+                src: "/images/solutions/card_sim2.png",
                 alt: "AI 기반 예측 (AI Prediction)",
               }}
               title={"AI 기반 예측 (AI Prediction)"}
@@ -65,7 +66,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energy3.png",
+                src: "/images/solutions/card_sim3.png",
                 alt: "MRV 시스템 (Measurement, Reporting, Verification)",
               }}
               title={"MRV 시스템 (Measurement, Reporting, Verification)"}
@@ -80,16 +81,17 @@ const SimulationPage = ({ data }) => {
             title={
               <>
                 효율적이고 정밀한&nbsp;
+                <br className={styles.brForMobile} />
                 <span>시뮬레이션 솔루션</span>
               </>
             }
             description={`최적설계, 고효율, 친환경을 핵심 가치로 삼아 정밀 시뮬레이션을 통해 리스크와 비용을 최소화하고 탄소중립 실현을 앞당깁니다.`}
           />
 
-          <div className={styles.flexBox}>
+          <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyBEMS.png",
+                src: "/images/solutions/card_sim4.png",
                 alt: "정밀 해석 전문성",
               }}
               title={"정밀 해석 전문성"}
@@ -98,7 +100,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyHEMS.png",
+                src: "/images/solutions/card_sim5.png",
                 alt: "대규모 해석 역량",
               }}
               title={"대규모 해석 역량"}
@@ -107,7 +109,7 @@ const SimulationPage = ({ data }) => {
 
             <ImageCard
               image={{
-                src: "/images/solutions/card_energyFEMS.png",
+                src: "/images/solutions/card_sim6.png",
                 alt: "융합적 적용 능력",
               }}
               title={"융합적 적용 능력"}
@@ -120,6 +122,16 @@ const SimulationPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="시뮬레이션" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
+
 
 export default SimulationPage;

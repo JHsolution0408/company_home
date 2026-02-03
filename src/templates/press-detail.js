@@ -1,9 +1,10 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Seo from "../components/seo"
 import Layout from "../components/layout"
 import * as styles from "./press-detail.module.css"
+import PagerLink from "../components/template/PagerLink"
 
 // 보도자료 상세 템플릿
 const PressDetailBody = ({ html }) => {
@@ -13,44 +14,102 @@ const PressDetailBody = ({ html }) => {
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-const PressDetailPage = ({ data }) => {
-  const node = data.markdownRemark
-  const { title, description, date, featureImage } = node.frontmatter
+// Press 상세 페이지용 이전/다음 네비게이션 계산 함수
+const getPrevNextPress = (list, currentId) => {
+  if (!Array.isArray(list) || list.length === 0) {
+    return { prev: null, next: null }
+  }
+
+  const idx = list.findIndex(v => v.id === currentId)
+  if (idx === -1) {
+    return { prev: null, next: null }
+  }
+
+  const nextNode = idx > 0 ? list[idx - 1] : null
+  const prevNode = idx < list.length - 1 ? list[idx + 1] : null
+
+  return {
+    prev: prevNode?.frontmatter ?? null,
+    next: nextNode?.frontmatter ?? null,
+  }
+}
+
+const PressDetailPage = ({ data, pageContext }) => {
+  const node = data.markdownRemark;
+  const { title, description, date, featureImage, newsUrl, type } = node.frontmatter;
+
+  const sortedPressList = [...pageContext.list].sort((a, b) => {
+    return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+  }).filter(v => v.frontmatter.type === type);
+
+  const { prev, next } = getPrevNextPress(sortedPressList, node.id);
 
   return (
     <Layout
-      type="dark"
+      type="light"
       subHeaderTitle="보도자료"
-      subHeaderDescription={description || "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다"}
+      subHeaderDescription={description || "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다."}
       subHeaderBgImage="/images/banners/bg_press_detail.png"
     >
-      <section className={styles.container}>
-        <div className={styles.pressHeader}>
-          <h1 className={styles.title}>
-            {title}
-          </h1>
-          {date && (
-            <p className={styles.date}>
-              {date}
-            </p>
-          )}
-        </div>
+      <div className={styles.container}>
+        <section>
+          <div className={styles.pressHeader}>
+            <h1 className={styles.title}>
+              {title}
+            </h1>
+            {date && (
+              <p className={styles.date}>
+                {date}
+              </p>
+            )}
+          </div>
 
-        <hr />
+          <div className={styles.pressContainer}>
+            {featureImage && (
+              <img
+                src={featureImage}
+                alt={title}
+              />
+            )}
+            <div className={styles.detailBodyWrap}>
+              <PressDetailBody
+                html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
+              />
+              {newsUrl && (
+                <div>
+                  <a
+                    href={newsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    기사 원문 보기
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
 
-        <div className={styles.pressContainer}>
-          {featureImage && (
-            <img
-              src={featureImage}
-              alt={title}
-            />
-          )}
+          <nav className={styles.pager}>
+            <div className={styles.pagerBtnBox}>
+              <PagerLink
+                to={`/press/${prev?.slug}/`}
+                disabled={!prev}
+              >
+                이전
+              </PagerLink>
 
-          <PressDetailBody
-            html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
-          />
-        </div>
-      </section>
+              <PagerLink
+                to={`/press/${next?.slug}/`}
+                align="right"
+                disabled={!next} 
+              >
+                다음
+              </PagerLink>
+            </div>
+            <Link className={styles.listBtnBox} to={`/press`} target="_self">목록</Link>
+          </nav>
+        </section>
+      </div>
     </Layout>
   )
 }
@@ -65,13 +124,22 @@ export const query = graphql`
         date
         description
         featureImage
+        newsUrl
+        type
       }
     }
   }
 `
 
-export const Head = ({ data }) => (
-  <Seo title={data.markdownRemark.frontmatter.title} />
-)
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  )
+}
 
 export default PressDetailPage

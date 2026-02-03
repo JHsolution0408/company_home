@@ -13,7 +13,7 @@
 
 .tagIndustry {
   background: #C4F0D4;
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .tagInfra {
@@ -24,4 +24,12 @@
 .tagGov {
   background: #F8F0E0;
   color: #6B5119;
+}
+
+@media (max-width: 450px) {
+  .tag {
+    font-size: 12px;
+    padding: 10px 10px;
+    height: 24px;
+  }  
 }

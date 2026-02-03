@@ -17,6 +17,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           id
           frontmatter {
             slug
+            type
+            date
           }
           parent {
             ... on File {
@@ -41,7 +43,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     default: require.resolve("./src/templates/markdown-page.js"),
   }
 
-  result.data.allMarkdownRemark.nodes.forEach((node) => {
+  const nodes = result.data.allMarkdownRemark.nodes;
+
+  nodes.forEach(node => {
     const dir = node.parent?.relativeDirectory || ""
     const top = (dir.split("/")[0] || "").toLowerCase()
     const basePath = top ? `/${top}` : ""
@@ -56,6 +60,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         id: node.id,
         section: top,
+        list: nodes,
       },
     })
   })

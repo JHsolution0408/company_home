@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
 import SectionTitle from "../../components/template/SectionTitle"
+import SectionMovieTitle from "../../components/template/SectionMovieTitle";
 import ImageCard from "../../components/template/ImageCard"
 
 
@@ -25,59 +26,297 @@ const MediaPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_media.png"
     >
       <div className={styles.container}>
-          {/* 다양한 데이터를 시각 경험으로 전환하는 미디어의 핵심 구성 */}
+          {/* AI 영상 제작 솔루션 */}
           <section>
             <SectionTitle
               title={
                 <>
-                  다양한 데이터를 시각 경험으로 전환하는&nbsp;
-                  <span>미디어의 핵심 구성</span>
+                  AI 영상 제작 솔루션
                 </>
               }
-              description={`고해상도 렌더링의 사실성과 인터랙티브 UI의 유연성을 결합하여 데이터를 생생한 시각 경험으로 전달합니다.`}
+              description={`AI 솔루션은 일러스트, 웹툰이나 만화책 및 사진 등 정적인 이미지 IP를 분석하여 역동적인 고품질 영상으로 제작합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={styles.mediaFlexBox}>
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_ai1.png",
-                  alt: "에너지 효율 최적화",
+                  src: "/images/solutions/card-ai-video1.png",
+                  alt: "이미지의 동적 변환",
                 }}
-                title={"에너지 효율 최적화"}
-                description={`실시간 데이터 학습을 통해 에너지 소비 패턴을 분석하고, 설비 운전 부하를 AI가 능동적으로 조절하여 탄소 배출과 비용을 절감합니다.`}
+                title={"이미지의 동적 변환"}
+                description={`정적인 그래픽 리소스를 정밀 분석하여 자연스럽고 유려한 애니메이션 움직임을 자동으로 구현합니다.`}
               />
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_ai2.png",
-                  alt: "OCR 데이터 자산화",
+                  src: "/images/solutions/card-ai-video2.png",
+                  alt: "장편 제작",
                 }}
-                title={"OCR 데이터 자산화"}
-                description={`현장에 방치된 아날로그 계기판, 수기 기록, 도면 정보를 AI 시각 지능으로 판독하여 시스템이 분석 가능한 디지털 자산으로 변환합니다.`}
+                title={"장편 제작"}
+                description={`단순한 숏폼을 넘어, 풍부한 서사와 긴 러닝타임이 필요한 고품질 영상을 안정적으로 제작합니다.`}
               />
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_ai3.png",
-                  alt: "설비 예지보전",
+                  src: "/images/solutions/card-ai-video3.png",
+                  alt: "일관성 유지",
                 }}
-                title={"설비 예지보전"}
-                description={`설비의 진동, 소음, 온도 데이터를 분석하여 고장 징후를 사전에 포착합니다. 돌발 정지를 막고 유지보수 비용을 획기적으로 낮춥니다.`}
+                title={"일관성 유지"}
+                description={`캐릭터와 배경의 특징을 심층 학습하여, 영상의 시작부터 끝까지 시각적 톤앤매너를 완벽하게 유지합니다.`}
               />
             </div>
+            
+            <SectionMovieTitle
+              title={
+                <>
+                  이미지 원작 기반 생동감 있는 장편 AI 영상 제작
+                </>
+              }
+              description={`정적인 이미지 소스를 동적 영상화하는 기술을 통해 사용자 움직임에 반응하는 양방향 콘텐츠 제작한 영상을 직접 확인해보세요.`}
+            />
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/pIQV18_YQWg"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/Iu2eRf_ZAGE"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* AI AVATAR */}
+          <section>
+            <SectionTitle
+              title={
+                <>
+                  AI AVATAR
+                </>
+              }
+              description={`고도화된 페이셜 애니메이션과 음성 합성 기술을 통해 자연스러운 감정 표현이 가능한 AI아바타를 제작합니다. XR, PC와 모바일 등 다양한 플랫폼에서 지능형 가이드, 강사 또는 개인화 된 파트너로서 최상의 교육, 홍보 및 커뮤니케이션 경험을 제공합니다.`}
+            />
+
+            <div className={styles.mediaFlexBox}>
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-ai-avatar1.png",
+                  alt: "LLM 기반 실시간 대화",
+                }}
+                title={"LLM 기반 실시간 대화"}
+                description={`대화의 문맥과 숨은 의도까지 정확히 파악하는 고성능 AI 엔진을 탑재합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-ai-avatar2.png",
+                  alt: "멀티 플랫폼",
+                }}
+                title={"멀티 플랫폼"}
+                description={`PC와 모바일은 물론 XR 플랫폼 내에서도 끊김 없는 렌더링을 지원합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-ai-avatar3.png",
+                  alt: "맞춤형 페르소나 설계",
+                }}
+                title={"맞춤형 페르소나 설계"}
+                description={`서비스 목적에 최적화된 외형 커스터마이징은 물론, 분야별 전문 지식 베이스를 학습시켜 고유한 인격을 부여합니다.`}
+              />
+            </div>
+
+            <SectionMovieTitle
+              title={
+                <>
+                  소통하는 지능형 디지털 휴먼
+                </>
+              }
+              description={`사용자의 음성과 감정에 반응하는 실시간 리깅 기술을 직접 확인해보세요.`}
+            />
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/LSVmHfOLvf8"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* XR PLATFORM */}
+          <section>
+            <SectionTitle
+              title={
+                <>
+                  XR PLATFORM
+                </>
+              }
+              description={`공간 컴퓨팅 기술을 기반으로 단순한 관람을 넘어 실시간 다중 접속, 인터랙티브 요소 그리고 AI 아바타와 유기적으로 결합을 통한 몰입감있는 콘텐츠를 제공합니다.`}
+            />
+
+            <div className={styles.mediaFlexBox}>
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-xp-platform1.png",
+                  alt: "AI 기술 적용",
+                }}
+                title={"AI 기술 적용"}
+                description={`공간 내 지능형 AI 아바타와의 유기적인 연동을 통해, 단순 관람을 넘어선 능동적 상호작용을 지원합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-xp-platform2.png",
+                  alt: "실시간 다중 접속 환경",
+                }}
+                title={"실시간 다중 접속 환경"}
+                description={`대규모 트래픽을 안정적으로 처리하는 고도화된 서버 기술로, 수천 명이 한 공간에 동시에 접속해도 쾌적합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-xp-platform3.png",
+                  alt: "디바이스 최적화",
+                }}
+                title={"디바이스 최적화"}
+                description={`PC와 모바일 및 VR/AR 기기 등 다양한 플랫폼에서 최상의 퍼포먼스를 발휘합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-xp-platform4.png",
+                  alt: "검증된 솔루션",
+                }}
+                title={"검증된 솔루션"}
+                 description={`다수의 공공 및 민간 프로젝트를 통해 입증된 기술적 완성도를 보유하고 있습니다.`}
+              />              
+            </div>
+
+            <SectionMovieTitle
+              title={
+                <>
+                  상상이 현실이 되는, 무한의 가능성을 확장하는 공간
+                </>
+              }
+              description={`첨단 게임 엔진 기반의 독보적인 몰입감으로 차별화 된 XR 경험을 설계된 내용을 직접 확인해보세요.`}
+            />
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/uYQob4HOzAI"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/UXBqCF__toA"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>              
+            </div>            
+          </section>
+
+          {/* GAME CONTENTS */}
+          <section>
+            <SectionTitle
+              title={
+                <>
+                  GAME CONTENTS
+                </>
+              }
+              description={`재미의 본질을 꿰뚫는 기획력 위에 AI 기반의 효율적인 제작 파이프라인과 XR의 확장성을 결합하였습니다. 단순한 플레이를 넘어 사용자의 감각을 깨우는 차세대 게임 경험을 설계합니다.`}
+            />
+
+            <div className={styles.mediaFlexBox}>
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-game-contents1.png",
+                  alt: "AI 융합 하이브리드 게임",
+                }}
+                title={"AI 융합 하이브리드 게임"}
+                description={`검증된 게임 메카닉 노하우에 최첨단 AI 기술을 융합하여 XR의 압도적 몰입감과 모바일의 높은 접근성을 결합해 사용자에게 차세대 하이브리드 게이밍 경험을 선사합니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-game-contents2.png",
+                  alt: "AI 파이프라인 혁신",
+                }}
+                title={"AI 파이프라인 혁신"}
+                description={`기획부터 리소스 제작까지 개발 전 공정에 생성형 AI를 도입하여, 물리적 제작 시간과 비용을 획기적으로 단축했습니다.`}
+              />
+
+              <ImageCard
+                image={{
+                  src: "/images/solutions/card-game-contents3.png",
+                  alt: "지능형 NPC 솔루션",
+                }}
+                title={"지능형 NPC 솔루션"}
+                description={`플레이어와 능동적으로 소통하며 상황에 맞춰 반응하는 AI 기반의 지능형 NPC(AI 아바타)를 도입하여 몰입감 있는 게임 환경 제공합니다.`}
+              />
+            </div> 
+
+            <SectionMovieTitle
+              title={
+                <>
+                  AI와 XR 요소 결합한 게임 콘텐츠 제작
+                </>
+              }
+              description={`AI 기반의 절차적 생성 기술(Procedural Generation)을 활용하여 XR 환경 내 무한한 콘텐츠를 제공합니다.`}
+            />
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/cE-V2Qsetn8"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>            
+            </div>            
           </section>
       </div>
     </Layout>
   );
 };
 
-export const Head = () => <Seo title="미디어" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default MediaPage;
 

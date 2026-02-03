@@ -25,7 +25,7 @@ const DigitalTwinPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_digitaltwin.png"
@@ -37,13 +37,14 @@ const DigitalTwinPage = ({ data }) => {
               title={
                 <>
                   현실을 가상으로 완벽하게 동기화하는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>디지털 트윈의 핵심 구성</span>
                 </>
               }
               description={`언리얼 엔진의 압도적 몰입감과 WebGL의 웹 접근성을 결합하여 공장과 빌딩을 통합 관제합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_dt1.png",
@@ -55,7 +56,7 @@ const DigitalTwinPage = ({ data }) => {
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_dt3.png",
+                  src: "/images/solutions/card_dt2.png",
                   alt: "대상별 맞춤형 트윈 구축",
                 }}
                 title={"대상별 맞춤형 트윈 구축"}
@@ -64,7 +65,7 @@ const DigitalTwinPage = ({ data }) => {
 
               <ImageCard
                 image={{
-                  src: "/images/solutions/card_energy3.png",
+                  src: "/images/solutions/card_dt3.png",
                   alt: "통합 제어 및 시뮬레이션",
                 }}
                 title={"통합 제어 및 시뮬레이션"}
@@ -77,6 +78,15 @@ const DigitalTwinPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="디지털 트윈" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default DigitalTwinPage;

@@ -17,7 +17,7 @@ const SubHeader = ({ title, description, bgImage = "", paddingClass, children })
   return (
     <div
       id="subheader"
-      className={`${styles.wrapper} ${paddingClass ? paddingClass : styles.contentPadding}`}
+      className={`${styles.wrapper} ${styles.contentPadding}`}
       role="region"
       aria-label="페이지 상단 소개 영역"
     >

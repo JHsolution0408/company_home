@@ -6,9 +6,10 @@ export default function DescriptionCard({
   imageAlt,
   title,
   description,
+  className,
 }) {
   return (
-    <div className={styles.descriptionCard}>
+    <div className={`${styles.descriptionCard} ${className}`}>
       <div>
         <img
           className={styles.descriptionCardImage}

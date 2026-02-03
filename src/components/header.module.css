@@ -2,26 +2,19 @@
 
 .header {
   position: fixed;
-  color: #000;
-  margin: 0 auto;
   width: 100%;
-  max-width: 18000px;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-top: 0;
-  padding-left: 60px;
-  padding-right: 60px;
-  margin-top: clamp(8px, 2vw, 15px);
+  padding: 20px 60px 0;
+  flex-direction: column;
+  z-index: 9999;
 }
 
 .inner {
-  background-color: #FDFDFD;
+  background-color: var(--color-text-white);
   width: 100%;
-  max-width: 1800px;
+  max-width: 1920px;
   display: flex;
   height: clamp(48px, 6vw, 72px);
   padding: 0 clamp(16px, 3vw, 60px);
@@ -29,7 +22,6 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 20px;
-  box-shadow: 2px 4px 12px rgba(73, 94, 148, 0.20);
 }
 
 .innerDark {
@@ -38,6 +30,11 @@
 
 .darkGnbBackground {
   background-color: rgba(253, 253, 253, 0.10);
+  backdrop-filter: blur(calc(24px / 2));
+}
+
+.lightGnbBackground {
+  box-shadow: 2px 4px 12px 0 rgba(73, 94, 148, 0.20);
 }
 
 .sidemenuInnerOpen {
@@ -47,14 +44,21 @@
 }
 
 .logo {
-  width: 125px;
-  height: 36px;
-  aspect-ratio: 125/36;
+  width: 53px;
+  height: 100%;
 }
 
 .logoLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  display: block;
+}
+
+.logoLink img {
+  margin: 0;
 }
 
 /* Nav panel desktop-only */
@@ -82,21 +86,6 @@
   display: none;
 }
 
-/* Overlay (shown only on mobile breakpoint when menu is open) */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: var(--z-index-level-100);
-  display: none;
-}
-
-/* Utility: show */
-.show {}
-
 /* Menu group wrapper (each dropdown group) */
 .menuGroup {
   position: relative;
@@ -112,43 +101,57 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: var(--fw-xl);
   font-family: inherit;
+  text-decoration: none;
+}
+
+.menuButton:hover {
+  color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* When route is not home, make the menu button text white */
 .menuButtonDarkTheme {
-  color: #FDFDFD;
+  color: var(--color-text-white);
 }
 
 .menuButtonDarkTheme:hover {
-  color: #66E695;
+  color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Selected (active) top menu item color */
 .menuButtonSelected {
-  color: #66E695;
+  color: #1BA74E;
 }
 /* Ensure nested link text inherits the selected color */
 .menuButtonSelected .navLink {
-  color: #66E695;
+  color: #1BA74E;
+}
+
+.subMenuButtonSelected {
+  background: #EEFCF3;
+  border-radius: 10px;
+  color: #1BA74E !important;
 }
 
 .navLink {
-  color: #17181B;
-  font-size: 22px;
-  font-weight: 600;
+  color: var(--color-text);
+  font-size: 20px;
+  font-weight: var(--fw-xl);
   text-decoration: none;
 }
 
 .navLinkDarkTheme {
-  color: #FDFDFD;
+  color: var(--color-text-white);
 }
 
 
 .navLinkDarkTheme:hover {
-  color: #66E695;
+  color: #1BA74E;
+  transition: var(--hover-transition);
 }
 
 /* Dropdown container (desktop only) */
@@ -156,9 +159,9 @@
   position: absolute;
   top: calc(100% + 15px);
   left: 50%;
-  background-color: #FDFDFD;
+  background-color: var(--color-text-white);
   min-width: 200px;
-  width: 260px;
+  width: 220px;
   box-shadow: 2px 4px 12px rgba(73, 94, 148, 0.20);
   z-index: var(--z-index-level-100);
   border-radius: 20px;
@@ -174,7 +177,6 @@
 /* 데스크탑에서 hover 또는 focus-within 시 표시 (1000px 이상) */
 @media (min-width: 1000px) {
   .menuGroup:hover .dropdownDesktop,
-  .menuGroup:focus-within .dropdownDesktop,
   .menuButton:hover + .dropdownDesktop,
   .dropdownDesktop:hover {
     opacity: 1;
@@ -189,28 +191,28 @@
 }
 
 .dropdownLink {
-  color: #17181B;
+  color: #4A4F55;
+  text-align: center;
+  font-size: 18px;
+  font-weight: var(--fw-xl);
   padding: 12px 20px;
   text-decoration: none;
   display: block;
-  font-size: 18px;
   transition: background-color 0.2s ease;
+  line-height: 140%; /* 28px */
+  letter-spacing: -1px;  
 }
 
-.dropdownMobileContainer .dropdownLink {
-  padding: 16px 24px;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
+.dropdownLink:hover {
+  background: #EEFCF3;
+  border-radius: 10px;
+  color: #1BA74E;
+  text-align: center;
+  transition: var(--hover-transition);
 }
 
 /* Active state for current route in mobile sidebar */
 .activeLink {
-  color: #1BA74E !important;
-}
-
-/* Ensure active color applies within dropdown containers */
-.dropdownMobileContainer .dropdownLink.activeLink {
   color: #1BA74E !important;
 }
 
@@ -223,7 +225,6 @@
 .rightControls {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .hamburger {
@@ -236,15 +237,36 @@
   font-size: 20px;
 }
 
-.contact {
-  color: #333;
-  background-color: #E8E8E8;
-  padding: 12px 20px;
-  height: 46px;
-  border-radius: 10px;
+.contactForm {
+  cursor: pointer;
   text-decoration: none;
-  font-weight: bold;
+}
+
+.contact {
+  display: flex;
+  padding: 12px 20px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background-color: #E9EDF0;
+}
+
+.contact:hover {
+  background: linear-gradient(0deg, rgba(2, 8, 22, 0.10) 0%, rgba(2, 8, 22, 0.10) 100%), #E9EDF0;
+  transition: var(--hover-transition);
+}
+
+.contact span {
+  color: var(--color-text);
   font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Contact button inside mobile panel */
@@ -254,7 +276,7 @@
 }
 
 .contactMobile {
-  color: #17181B;
+  color: var(--color-text);
   background-color: #E9EDF0;
   padding: 12px 20px;
   border-radius: 10px;
@@ -264,20 +286,8 @@
   display: inline-block;
 }
 
-.navIconContainer {
-  display: none;
-}
-
-
 /* Responsive: mobile <= 900px */
 @media (max-width: 1000px) {
-  /* isMobile */
-  .navIconContainer {
-    display: block;
-    width: 20px;
-    height: 20px;
-  }
-
   .header {
     padding: 14px 16px 0 16px;
     height: 78px;
@@ -289,30 +299,6 @@
     border-radius: 16px;
     padding: 0 24px;
     z-index: var(--z-index-level-2000);
-  }
-
-  /* Off-canvas sidebar nav (hidden by default) */
-  .navMobile {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100dvh;
-    width: 100dvw;
-    display: block;
-    background: #fff; /* slate-900 */
-    color: #17181B;
-    padding: 98px var(--size-gutter) 0;
-    z-index: var(--z-index-level-1000);
-    box-shadow: -4px 0 16px rgba(0,0,0,0.25);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform 300ms ease;
-  }
-
-  /* open state for mobile nav */
-  .navMobileOpen {
-    transform: translateX(0);
   }
 
   .panelTopBar {
@@ -328,21 +314,17 @@
   .panelTitle {
     font-size: 16px;
     font-weight: bold;
-    color: #17181B;
+    color: var(--color-text);
   }
 
   .panelCloseBtn {
     background: transparent;
     border: none;
-    color: #17181B;
+    color: var(--color-text);
     font-size: 24px;
     cursor: pointer;
     padding: 0;
     line-height: 1;
-  }
-
-  .overlay.show {
-    display: block;
   }
 
   .menuGroup {
@@ -351,47 +333,13 @@
     gap: 20px;
   }
 
-  .navMobile .menuGroup {
-    gap: 0;
-  }
-
   .menuButton {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #17181B;
+    color: var(--color-text);
     font-size: 22px;
     padding: 16px 24px;
-  }
-
-
-  .dropdownMobileContainer {
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding-top: 0;
-    z-index: var(--z-index-level-100);
-    /* 기본적으로 숨김: 모바일은 상태로만 열림 */
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity .18s ease, transform .18s ease;
-    background-color: #F2F2F2;
-    border-radius: 20px;
-  }
-
-  /* 모바일(사이드바)에서 상태(showXMenu)로 열리는 가시화 클래스 */
-  .dropdownOpenMobile {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    pointer-events: auto !important;
   }
 
   .hamburger {
@@ -407,5 +355,20 @@
 
   .contactMobileWrap {
     display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .header {
+    padding: 10px 16px 0px;
+  }
+
+  .inner {
+    height: 48px;
+    padding: 0 24px;
+  }
+
+  .logo {
+    width: 37px;
   }
 }

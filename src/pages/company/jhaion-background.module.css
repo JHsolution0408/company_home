@@ -26,8 +26,24 @@
   border-radius: inherit; /* ensure corners clip in all browsers */
 }
 
+
+.brForPC {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 20px;
   }
+
+  .brForPC {
+    display: none;
+  }
 }
+
+@media (max-width: 768px) {
+  .bannerImageContainer {
+    border-radius: 16px;
+  }
+}
+

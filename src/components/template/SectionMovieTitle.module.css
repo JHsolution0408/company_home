@@ -1,0 +1,55 @@
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 80px;
+}
+
+.title {
+  color: var(--color-text);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.title span {
+  color: var(--color-point);
+}
+
+.description {
+  color: var(--color-subtitle);
+  font-size: 20px;
+  font-weight: var(--fw-xl);
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+.headingWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionLabel {
+  margin: 0;
+  color: var(--color-point);
+  font-size: 24px;
+  font-weight: var(--fw-xl);
+  letter-spacing: -1.5px;
+  line-height: 1.4;
+}
+
+@media (max-width: 450px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .titleContainer {
+    gap: 10px;
+  }
+}

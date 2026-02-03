@@ -2,6 +2,7 @@
 title: "인공지능"
 description: "머신러닝 기반의 지능형 솔루션을 제공합니다."
 slug: "ai"
+type: "ai"
 ---
 
 # 현장의 데이터를 자산으로 만드는 <span style="color: #177D3C"> 산업용 AI의 핵심 기술 </span>

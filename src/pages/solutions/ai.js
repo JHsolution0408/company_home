@@ -25,7 +25,7 @@ const AiPage = ({ data }) => {
 
   return (
     <Layout
-      type={'dark'}
+      type={'light'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
       subHeaderBgImage="/images/banners/bg_ai.png"
@@ -37,13 +37,14 @@ const AiPage = ({ data }) => {
               title={
                 <>
                   현장의 데이터를 자산으로 만드는&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>산업용 AI의 핵심 기술</span>
                 </>
               }
               description={`아날로그 정보를 디지털화하고, 설비 고장을 사전에 예측하여 운영 효율의 정점을 실현합니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai1.png",
@@ -77,6 +78,15 @@ const AiPage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="AI" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default AiPage;

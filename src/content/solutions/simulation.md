@@ -2,6 +2,7 @@
 title: "시뮬레이션"
 description: "보이지 않는 흐름을 시각화하고, 불확실한 미래를 데이터로 검증합니다."
 slug: "simulation"
+type: "ai"
 ---
 
 # 보이지 않는 물리 현상을 제현하는 <span style="color: #177D3C">가상 모델의 핵심 구성 </span>

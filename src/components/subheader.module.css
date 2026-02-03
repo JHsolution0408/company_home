@@ -10,7 +10,7 @@
 
 /* default padding matches the provided example; can be overridden via inline style if needed */
 .contentPadding {
-  padding: 137px 20px 60px 50px;
+  padding: 137px 120px 46.5px 120px;
 }
 
 .inner {
@@ -24,9 +24,10 @@
 
 .title {
   margin: 0;
-  color: #FDFDFD;
-  font-size: 40px;
-  font-weight: 700;
+  color: var(--color-text-white);
+  font-family: var(--font-serif);
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
@@ -34,17 +35,18 @@
 .description {
   color: rgba(253, 253, 253, 0.60);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
   white-space: nowrap;
   word-break: keep-all;
+  margin: 0;
 }
 
 
 @media (max-width: 1000px) {
   .contentPadding {
-    padding: 110px 20px 40px 24px;
+    padding: 110px 24px 40px 24px;
   }
 
   .inner {
@@ -53,12 +55,27 @@
   }
 
   .title {
-    font-size: 40px;
+    font-size: var(--font-title-md);
   }
 
   .description {
     font-size: 20px;
     white-space: normal;
   }
+}
+
+@media (max-width: 450px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .contentPadding {
+    padding: 110px 16px 40px 16px;
+  }  
 }
 

@@ -106,3 +106,7 @@ table {
   --z-index-level-1250: 1250; /* subpage header */
   --z-index-level-2000: 2000; /* header wrapper, highest local */
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

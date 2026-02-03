@@ -28,7 +28,7 @@ const JhaionEnginePage = ({ data }) => {
       type={'dark'}
       subHeaderTitle={frontmatter.title}
       subHeaderDescription={frontmatter.description}
-      subHeaderBgImage="/images/solutions/card_jhaion1.png"
+      subHeaderBgImage="/images/banners/bg_jhaion.png"
     >
       <div className={styles.container}>
           {/* 압도적인 성능을 구현하는 엔진의 핵심 구성 */}
@@ -37,13 +37,14 @@ const JhaionEnginePage = ({ data }) => {
               title={
                 <>
                   압도적인 성능을 구현하는 엔진의&nbsp;
+                  <br className={styles.brForMobile} />
                   <span>핵심 구성</span>
                 </>
               }
-              description={`기존 기술의 한계를 돌파하는 세가지 핵심 시굴이 유기적으로 결합되어 있습니다.`}
+              description={`기존 기술의 한계를 돌파하는 세가지 핵심 기술이 유기적으로 결합되어 있습니다.`}
             />
 
-            <div className={styles.flexBox}>
+            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_jhaion1.png",
@@ -76,7 +77,7 @@ const JhaionEnginePage = ({ data }) => {
                 title={"데이터 기반 시뮬레이션 기술"}
                 description={`
                   실제 운영 데이터를 기반으로 가상 환경에서 시뮬레이션해 예측 정확도를 높입니다.
-                  물리 법칙을 학습한 AI가 현장과 오차 없는 결과를 제공합니다
+                  물리 법칙을 학습한 AI가 현장과 오차 없는 결과를 제공합니다.
                 `}
               />
             </div>
@@ -86,6 +87,15 @@ const JhaionEnginePage = ({ data }) => {
   );
 };
 
-export const Head = () => <Seo title="JHAION 엔진" />;
+export const Head = ({ data }) => {
+  const { frontmatter } = data.markdownRemark;
+
+  return (
+    <Seo 
+      title={frontmatter.title}
+      description={frontmatter.description}
+    />
+  );
+}
 
 export default JhaionEnginePage;

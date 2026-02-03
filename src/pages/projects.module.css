@@ -10,8 +10,8 @@
 
 .menuHeader h1 {
   margin: 0;
-  color: #FDFDFD;
-  font-size: 40px;
+  color: var(--color-text-white);
+  font-size: var(--font-title-md);
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: -2px;
@@ -20,39 +20,41 @@
 .menuHeader p {
   color: rgba(253, 253, 253, 0.60);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
   white-space: nowrap;
 }
 
 .projectContainer {
+  box-sizing: border-box;
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 80px 60px 80px 60px;
+  padding: 80px 120px 80px 120px;
 }
 
 .projectTitle {
   margin-bottom: 20px;
-  color: #17181B;
-  font-size: 40px;
-  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
 
 .projectContainer h2 {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   color: #2E3236;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }
 
 .projectTitle span {
-  color: #177D3C;
+  color: var(--color-point);
 }
 
 .brForMobile {
@@ -74,15 +76,30 @@
   justify-content: space-between;
   align-items: center;
   gap: 40px;
-  border-top: 1px solid #ccc;
   padding: 20px;
 }
 
 .projectLink {
   text-decoration: none;
+  border-top: 1px solid #ccc;
 }
+
+.projectLink:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
 .projectLink:visited {
   color: inherit;
+}
+
+.projectLink:hover h3 {
+  color: #1BA74E;
+  transition: var(--hover-transition);
+}
+
+.projectLink:hover .projectDate {
+  color: #2E3236;
+  transition: var(--hover-transition);
 }
 
 .projectDetail {
@@ -94,9 +111,9 @@
 }
 
 .projectDetail h3 {
-  color: #17181B;
+  color: var(--color-text);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1.5px;
 }
@@ -106,9 +123,9 @@
 }
 
 .projectDate {
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }
@@ -122,6 +139,11 @@
 }
 
 @media (max-width: 1024px) {
+  .project {
+    padding: 20px 0;
+    word-break: keep-all;
+  }
+
   .projectContainer {
     padding: 40px;
   }
@@ -141,5 +163,54 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project {
+    padding: 20px 0;
+    word-break: keep-all;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .projectThumbnail {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .projectContainer {
+    padding: 40px 16px;
+  }
+
+  .projectTitle {
+    font-size: 24px;
+  }  
+
+  .projectContainer h2 {
+    font-size: 16px;
+  }
+
+  .projectDetail {
+    gap: 8px;
+  }
+
+  .projectDetail h3 {
+    font-size: 18px;
+  }
+
+  .projectDate {
+    font-size: 16px;
+  }
+
+  .tags {
+    margin-top: 8px;
   }
 }

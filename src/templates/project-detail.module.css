@@ -3,39 +3,43 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 80px 60px;
+  padding: 80px 120px;
 }
 
 .projectHeader {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 40px;
 }
 
 .title {
   margin: 0;
-  color: #17181B;
-  font-size: 40px;
-  font-weight: 700;
+  color: var(--color-text);
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
 
 .date {
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0;
+  margin: 0;
 }
 
 /* Content area: image + detail side-by-side on PC, stacked on mobile */
 .contentRow {
-  margin-top: 40px;
+  padding: 40px 0;
   display: grid;
   grid-template-columns: minmax(0, 544px) 1fr; /* PC: image fixed to 544px, content fills */
   gap: 40px;
   align-items: start;
+  border-top: 1px solid hsla(0, 0%, 0%, 0.2);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
 }
 
 .imageBox {
@@ -75,15 +79,15 @@
 
 .sectionTitle {
   margin: 0;
-  color: #17181B;
+  color: var(--color-text);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -1px;
 }
 
 .sectionSubtitle {
-  color: #757B82; /* light grey as in screenshot */
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -96,11 +100,11 @@
 .sectionContent {
   margin-bottom: 4px;
   position: relative;
-  color: #17181B;
-  font-size: 20px;
+  color: #4A4F55;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
 }
 
@@ -117,11 +121,11 @@
 .sectionList li {
   margin-bottom: 4px;
   position: relative;
-  color: #17181B;
-  font-size: 20px;
-  font-weight: 600;
+  color: #4A4F55;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.4;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   padding-left: calc(var(--dot-size) + 10px); /* space for custom dot */
 }
 
@@ -143,6 +147,39 @@
   gap: 10px;
 }
 
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-top: 40px;
+}
+
+.pagerBtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listBtnBox {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--color-point);
+  color: var(--color-text-white);
+  line-height: 140%;
+  text-decoration: none;
+}
+
+.listBtnBox:hover {
+  background: #095123;
+  transition: var(--hover-transition);
+}
+
 /* fallback for environments preferring high contrast */
 @media (prefers-contrast: more) {
   .sectionList {
@@ -150,22 +187,59 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   .contentRow {
     grid-template-columns: 1fr; /* stack: image on top, details below */
   }
+
   .sectionRow {
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 10px;
     padding: 0;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 40px 20px;
+    padding: 40px 40px;
   }
 
   .detailBox {
     gap: 40px;
   }
+
+  .pagerBtnBox {
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .sectionContent {
+    font-size: 16px;
+  }
+
+  .sectionList li {
+    font-size: 16px;
+  }
+
+  .listBtnBox {
+    width: auto;
+    height: 38px;
+  }  
 }

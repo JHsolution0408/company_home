@@ -6,6 +6,9 @@ import Seo from "../components/seo"
 import Layout from "../components/layout"
 import * as styles from "./press.module.css"
 
+const PAGE_TITLE = "보도자료";
+const PAGE_DESCRIPTION = "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다.";
+
 const PressPage = () => {
   const data = useStaticQuery(graphql`
     query PressListQuery {
@@ -31,15 +34,17 @@ const PressPage = () => {
 
   return (
     <Layout
-      type={'dark'}
-      subHeaderTitle="보도자료"
-      subHeaderDescription="저희 회사의 최신 뉴스, 보도자료, 그리고 미디어 자료들입니다."
+      type={'light'}
+      subHeaderTitle={PAGE_TITLE}
+      subHeaderDescription={PAGE_DESCRIPTION}
       subHeaderBgImage="/images/banners/bg_press.png"
     >
       <div>
         <div id="content" className={styles.container}>
           <h1 className={styles.title}>
-            지속적인 변화의 <span>소식</span>
+            지속적인 변화의&nbsp;
+            <br className={styles.brForMobile} />
+            <span>소식</span>
           </h1>
           <h2 className={styles.description}>
             JH솔루션은 혁신과 소통을 통해 지속적으로 변화하며, 다양한 미디어와 보도자료를 통해 그 여정을 공유합니다.
@@ -87,6 +92,13 @@ const PressPage = () => {
   )
 }
 
-export const Head = () => <Seo title="홍보센터" />
+export const Head = () => {
+  return (
+    <Seo 
+      title={PAGE_TITLE}
+      description={PAGE_DESCRIPTION}
+    />
+  )
+}
 
 export default PressPage

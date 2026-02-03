@@ -2,6 +2,7 @@
 title: "JHAION 엔진"
 description: "초거대 AI와 공학적 시뮬레이션의 융합, 세상에 없던 에너지 최적화의 기준을 만듭니다."
 slug: "jhaion-engine"
+type: "ai"
 ---
 
 # 압도적인 성능을 구현하는 엔진의 <span style="color: #177D3C"> 핵심 구성 <span>

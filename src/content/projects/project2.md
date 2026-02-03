@@ -1,11 +1,12 @@
 ---
-order: 2
+order: 3
 title: "기후위기 대응형 노후도시 스마트화 구상 연구"
-date: "2025-12-12"
+date: "2024-06-17"
 period: "24년 6월 - 24년 12월 (6개월)"
 featureImage: "/images/projects/card_gh.jpg"
 tags: ["INFRA"]
 slug: "project-2"
+type: "project"
 client: "경기주택도시공사(GH)"
 contents:
   - "경기도 및 GH공사의 기후변화 대응 및 스마트도시 추진 여건 분석 및 시사점 도출"

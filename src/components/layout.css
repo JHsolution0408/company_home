@@ -3,17 +3,22 @@
 
 :root {
   --border-radius: 4px;
-  --color-text: #333;
+  --color-text: #17181B;
+  --color-text-white: #FDFDFD;
+  --color-subtitle: #757B82;
   --color-primary: #7026b9;
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
-  --font-sans: "Pretendard";
-  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --color-point: #177D3C;
+  --font-sans: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Nanum Gothic", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-lg: 18px;
   --font-md: 16px;
   --font-sm: 14px;
   --font-sx: 12px;
+  --font-title-lg: 48px;
+  --font-title-md: 40px;
   --line-height-loose: 1.75;
   --line-height-normal: 1.5;
   --line-height-dense: 1.1;
@@ -26,6 +31,11 @@
   --size-content: 54rem;
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
+  --ls-xl: -2px; /* font-size 40px 이상 */
+  --ls-md: -1px; /* font-size 24px, 20px */
+  --fw-xl: 600; /* semibold, font-size 40px 일 경우 */
+  --fw-md: 500; /* medium */
+  --hover-transition: all 0.2s ease-out;
 }
 html {
   -webkit-text-size-adjust: 100%;
@@ -38,11 +48,11 @@ html {
   background-color: #FFF;
   margin-top: 0;
 }
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
   font-family: var(--font-sans);
   font-weight: normal;
   margin: 0 auto !important;

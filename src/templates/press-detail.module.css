@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 80px 60px;
+  padding: 80px 120px;
 }
 
 .pressHeader {
@@ -16,15 +16,15 @@
 
 .title {
   margin: 0;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: var(--font-title-md);
+  font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
 }
 
 .date {
   margin: 0;
-  color: #757B82;
+  color: var(--color-subtitle);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -35,7 +35,12 @@ hr {
 }
 
 .pressContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
   padding: 40px 0;
+  border-top: 1px solid hsla(0, 0%, 0%, 0.2);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
 }
 
 .pressContainer img {
@@ -46,8 +51,90 @@ hr {
   object-fit: contain;
 }
 
+.detailBodyWrap {
+  display: flex;
+  max-width: 1040px;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.detailBodyWrap p {
+  max-width: 100%;
+  color: #4A4F55;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+.detailBodyWrap p:last-child {
+  margin: 0;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-top: 40px;
+}
+
+.pagerBtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.listBtnBox {
+  display: flex;
+  width: 100px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--color-point);
+  color: var(--color-text-white);
+  line-height: 140%;
+  text-decoration: none;  
+}
+
+.listBtnBox:hover {
+  background: #095123;
+  transition: var(--hover-transition);
+}
+
+@media (max-width: 1000px) {
+  .detailBodyWrap {
+    padding: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 40px 20px;
+    padding: 40px;
   }
+
+  .pagerBtnBox {
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 40px 16px ;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .listBtnBox {
+    width: auto;
+    height: 38px;
+  }  
 }
