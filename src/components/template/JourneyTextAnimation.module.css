@@ -55,6 +55,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -1px;
+  text-align: center;
 }
 
 .copylightContainer {
@@ -144,6 +145,32 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .slogan .title {
+    font-size: 32px;
+  }
+
+  .slogan h2 {
+    font-size: 32px;
+  }
+
+  .slogan h3 {
+    font-size: 20px
+  }
+
+  .copylightText {
+    font-size: 30px;
+  }
+
+  .copylightContainer {
+    gap: 30px;
+  }
+
+  .interaction {
+    height: 640px;
+  }
+}
+
 @media (max-width: 768px) {
   .interaction {
     padding: 108px 40px;
@@ -172,16 +199,8 @@
     letter-spacing: -1px;
   }
 
-  .slogan .title {
-    font-size: 32px;
-  }
-
   .copylightContainer {
     gap: 10px;
-  }
-
-  .copylightText {
-    font-size: 30px;
   }
 
   .copylightWrapper {
