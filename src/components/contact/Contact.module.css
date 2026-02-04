@@ -182,7 +182,7 @@
   transition: var(--hover-transition);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .contactForm {
     align-items: normal;
     flex-direction: column;

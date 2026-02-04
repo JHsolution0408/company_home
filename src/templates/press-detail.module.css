@@ -104,7 +104,7 @@ hr {
   transition: var(--hover-transition);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .detailBodyWrap {
     padding: 0;
   }
