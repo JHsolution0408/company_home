@@ -76,11 +76,6 @@
   box-shadow: none;
 }
 
-/* Hide desktop nav on mobile */
-@media (max-width: 1000px) {
-  .navDesktop { display: none; }
-}
-
 /* close/top bar for mobile panel */
 .panelTopBar {
   display: none;
@@ -287,9 +282,9 @@
 }
 
 /* Responsive: mobile <= 900px */
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .header {
-    padding: 14px 16px 0 16px;
+    padding: 14px 40px 0 40px;
     height: 78px;
     z-index: var(--z-index-level-100);
   }
@@ -355,6 +350,10 @@
 
   .contactMobileWrap {
     display: block;
+  }
+
+  .navDesktop { 
+    display: none;
   }
 }
 

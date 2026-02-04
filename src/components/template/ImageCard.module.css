@@ -65,7 +65,7 @@
 
 @media (max-width: 450px) {
   .imageCardContainer img{
-    height: 200px;
+    height: auto;
     border-radius: 16px;
   }
 

@@ -171,12 +171,10 @@
     padding: 20px 0;
     word-break: keep-all;
   }
-}
 
-@media (max-width: 768px) {
   .projectTitle {
     font-size: 32px;
-  }
+  }  
 }
 
 @media (max-width: 500px) {
