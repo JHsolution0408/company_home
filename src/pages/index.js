@@ -375,7 +375,7 @@ const IndexPage = ({ data }) => {
         style={{
           backgroundImage: !isMobile
             ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
-            : 'url(/images/banners/mobile-contact-illustration-img.png)',
+            : 'url(/images/banners/mobile-contact-illustration-img.jpg)',
           backgroundRepeat: "no-repeat, no-repeat",
           backgroundPosition: "left top, right bottom",
           backgroundSize: "cover, auto 90%",

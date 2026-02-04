@@ -199,6 +199,10 @@ section:last-child {
 }
 
 @media (max-width: 1024px) {
+  .container {
+    padding: 40px 40px;
+  }
+
   .flexBox,
   .flexBoxWithPlus,
   .mediaFlexBox {
@@ -208,10 +212,6 @@ section:last-child {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 40px 40px;
-  }
-
   section {
     padding: 40px 0;
   }
