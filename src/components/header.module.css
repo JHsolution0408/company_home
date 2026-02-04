@@ -284,7 +284,7 @@
 /* Responsive: mobile <= 900px */
 @media (max-width: 1024px) {
   .header {
-    padding: 14px 16px 0 16px;
+    padding: 14px 40px 0 40px;
     height: 78px;
     z-index: var(--z-index-level-100);
   }

@@ -105,16 +105,16 @@ hr {
 }
 
 @media (max-width: 1024px) {
+  .container {
+    padding: 40px;
+  }
+  
   .detailBodyWrap {
     padding: 0;
   }
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 40px;
-  }
-
   .pagerBtnBox {
     gap: 10px;
   }

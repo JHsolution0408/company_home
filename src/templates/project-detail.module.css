@@ -199,11 +199,13 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container {
     padding: 40px 40px;
   }
+}
 
+@media (max-width: 768px) {
   .detailBox {
     gap: 40px;
   }

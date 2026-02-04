@@ -679,8 +679,8 @@
   .heroWrapper {
     padding-top: 0;
     margin: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 40px;
+    padding-right: 40px;
     width: 100%;
     height: 500px;
   }
@@ -689,6 +689,16 @@
     margin: 0;
     padding: 0;
     width: 100%;
+  }
+
+  .solutionsSection,
+  .pressSection {
+    margin-top: 40px;
+    padding: 40px 0 0 40px;
+  }
+
+  .sectionPad {
+    padding: 0 40px;
   }
 
   .ctaSection {
@@ -714,6 +724,30 @@
   .cardImg {
     height: 225px;
   }
+
+  .aboutBanner {
+    height: 320px;
+  }
+
+  .aboutTitle {
+    font-size: 32px;
+  }
+
+  .aboutDescription {
+    font-size: 32px;
+  }
+
+  .linkCardSectionHeader .title {
+    font-size: 32px;
+    letter-spacing: -2px;
+  }
+
+  .linkCardSectionHeader .description {
+    font-size: 20px;
+    letter-spacing: -1px;
+    word-break: keep-all;
+    white-space: wrap;
+  }  
 }
 
 @media (max-width: 768px) {
@@ -794,24 +828,6 @@
 
   .sliderSection {
     padding-bottom: 0;
-  }
-
-  .solutionsSection,
-  .pressSection {
-    margin-top: 40px;
-    padding: 40px 0 0 40px;
-  }
-
-  .linkCardSectionHeader .title {
-    font-size: 32px;
-    letter-spacing: -2px;
-  }
-
-  .linkCardSectionHeader .description {
-    font-size: 24px;
-    letter-spacing: -1px;
-    word-break: keep-all;
-    white-space: wrap;
   }
 
   .navCounterCurrent {
@@ -1009,5 +1025,17 @@
   .ctaButtonIcon, .ctaButtonIcon img {
     width: 14px;
     height: 14px;
+  }
+
+  .navCounterCurrent {
+    font-size: 24px;
+  }
+
+  .navCounterSep {
+    font-size: 18px;
+  }
+
+  .navCounterTotal {
+    font-size: 18px; 
   }
 }

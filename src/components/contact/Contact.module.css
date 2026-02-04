@@ -183,6 +183,11 @@
 }
 
 @media (max-width: 1024px) {
+  .container {
+    padding: 40px 40px;
+    
+  }
+
   .contactForm {
     align-items: normal;
     flex-direction: column;
@@ -192,7 +197,6 @@
 @media (max-width: 768px) {
   .container {
     gap: 40px;
-    padding: 40px 40px;
   }
 
   .contactForm {
