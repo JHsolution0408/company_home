@@ -256,7 +256,9 @@ const IndexPage = ({ data }) => {
             </h3>
           )}
           <p className={styles.aboutTitle}>
-            Net-Zero와 최적화를 향한 초거대 AI의 여정
+            AI 최적화로 Net‑Zero의 기준을 새로 쓰는,&nbsp;
+            <br className={styles.brForMobile} />
+            JH의 데이터 인텔리전스 실행 엔진
           </p>
           <p className={styles.aboutDescription}>
             <span className={styles.textWhite}>J</span>ourney of&nbsp;

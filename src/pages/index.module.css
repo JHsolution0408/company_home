@@ -601,6 +601,9 @@
   font-weight: var(--fw-xl);
 }
 
+.brForMobile {
+  display: none;
+}
 
 /**
   ~1920
@@ -747,7 +750,11 @@
     letter-spacing: -1px;
     word-break: keep-all;
     white-space: wrap;
-  }  
+  }
+
+  .brForMobile {
+    display: block;
+  }
 }
 
 @media (max-width: 768px) {

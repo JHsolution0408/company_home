@@ -29,16 +29,16 @@ export default function PartnersContent() {
             }}
             title={"AI 생태계 확장을 위한 공동의 목표"}
             description={`
-              JHAION 엔진은 학계, 산업계, 플랫폼 전문가와의 유기적인 협력을 통해 완성됩니다. 우리는 함께 기술적 한계를 극복하고 고객에게 최적의 솔루션을 제공하는 것을 공동의 목표로 삼습니다.
+              제이에이치솔루션은 학계, 산업계, 플랫폼 전문가와의 유기적인 협력을 통해 완성됩니다. 우리는 함께 기술적 한계를 극복하고 고객에게 최적의 솔루션을 제공하는 것을 공동의 목표로 삼습니다.
             `}
           />
 
           <ImageCard
             image={{
               src: "/images/partners/partner2.png",
-              alt: "NET-ZERO 전환이라는 시대적 가치 실현",
+              alt: "Net Zero 전환이라는 시대적 가치 실현",
             }}
-            title={"NET-ZERO 전환이라는 시대적 가치 실현"}
+            title={"Net Zero 전환이라는 시대적 가치 실현"}
             description={`
               기술 개발의 궁극적인 목적을 지속 가능한 미래 설계에 두고 있습니다. 파트너들과 함께 환경적 가치를 실현하는 데 집중하고 있습니다.
             `}
@@ -51,7 +51,7 @@ export default function PartnersContent() {
         <SectionTitle
           title={
             <>
-              JHAION의 분야별&nbsp;
+              제이에이치솔루션의 분야별&nbsp;
               <br className={styles.brForMobile} />
               <span>네트워크 구성</span>
             </>
@@ -67,7 +67,7 @@ export default function PartnersContent() {
             imageAlt={"기술 파트너"}
             title={"기술 파트너"}
             description={
-              "HYPER-SCALE AI 기술 및 플랫폼 개발을 공동 연구하는 핵심 IT 기업 및 연구소와의 협력을 통해 기술의 깊이와 속도를 확보하고 있습니다."
+              "Hyper scale AI 기술 및 플랫폼 개발을 공동 연구하는 핵심 IT 기업 및 연구소와의 협력을 통해 기술의 깊이와 속도를 확보하고 있습니다."
             }
           />
           <PlusIconWithFlex />
