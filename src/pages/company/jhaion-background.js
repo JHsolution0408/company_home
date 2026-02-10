@@ -84,6 +84,7 @@ export default function JhaionBackgroundNew() {
 
             <CircleArrowRightIconWithFlex />
 
+                
             {/* Right card: New Solution */}
             <div className={`${styles.valueCard} ${styles.challengeCard} ${styles.challengeBg2}`}>
               <div className={styles.jhAionValueHeader}>
