@@ -1,5 +1,5 @@
 ---
-title: "㈜제이에이치솔루션, 시무식…\"불확실성의 시대, 대응할 수 있는 힘과 사람 중심의 성장을 강조\""
+title: "qwdqwdfsadfdasfasdfasdfasdfasdfasdfasdfasdfsfd"
 date: "2026-01-07"
 summary: "변화 대응을 바탕으로 한 기술·사람 중심 성장 비전을 공유했습니다."
 featureImage: "/images/press/press_5.png"
