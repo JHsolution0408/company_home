@@ -30,13 +30,14 @@ const companyItems = [
 const pressItems = [
   { name: "보도자료", slug: "press" },
   { name: "기술 인사이트", slug: "techInsights" },
+  { name: "공지사항", slug: "notice" },
 ]
 
 const MENU = [
   { key: "company", label: "회사소개", basePath: "/company", items: companyItems },
   { key: "solutions", label: "솔루션", basePath: "/solutions", items: solutionItems },
   { key: "projects", label: "프로젝트", basePath: "/projects" },
-  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techInsights"] },
+  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techInsights", "/notice"] },
 ]
 
 const buildItemPath = (menu, item) => {
@@ -182,7 +183,7 @@ function Header({ type = "light", bgImage, subHeader }) {
           >
             <div className={styles.logo}>
               <Link to="/" className={styles.logoLink}>
-                <img src={logoSrc} width={53} height={40} alt="JH Solution Logo" />
+                <img src={logoSrc} width={53} height={40} alt="JH SOLUTION Logo" />
               </Link>
             </div>
 

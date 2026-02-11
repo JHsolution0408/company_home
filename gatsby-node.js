@@ -40,6 +40,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     press: require.resolve("./src/templates/press-detail.js"),
     project: require.resolve("./src/templates/project-detail.js"),
     projects: require.resolve("./src/templates/project-detail.js"),
+    notice: require.resolve("./src/templates/notice-detail.js"),
     default: require.resolve("./src/templates/markdown-page.js"),
   }
 
