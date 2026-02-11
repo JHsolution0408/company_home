@@ -114,11 +114,11 @@
   transition: var(--hover-transition);
 }
 
-@media (max-width: 1024px) {
-  .brForMobile {
-    display: block;
-  }
+.brForMobile {
+  display: none;
+}
 
+@media (max-width: 1024px) {
   .container {
     display: flex;
     max-width: 1024px;
