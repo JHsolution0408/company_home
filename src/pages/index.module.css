@@ -137,6 +137,19 @@
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.aboutBanner::before {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .aboutBannerLabel {
@@ -146,6 +159,7 @@
   font-weight: var(--fw-xl);
   line-height: 1.2;
   letter-spacing: -1.5px;
+  z-index: 2;
 }
 
 .aboutTitle {
@@ -155,6 +169,7 @@
   color: var(--color-text-white);
   line-height: 1.2;
   letter-spacing: -2px;
+  z-index: 2;
 }
 
 .aboutDescription {
@@ -164,6 +179,7 @@
   font-weight: var(--fw-xl);
   line-height: 1.4;
   letter-spacing: -2px;
+  z-index: 2;
 }
 
 .textWhite {
@@ -601,6 +617,9 @@
   font-weight: var(--fw-xl);
 }
 
+.brForMobile {
+  display: none;
+}
 
 /**
   ~1920
@@ -641,34 +660,6 @@
 @media (max-width: 1400px) {
   .heroCard {
     background-size: 100% 43.625rem, auto 30rem;
-  }
-
-  .aboutBanner {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .aboutBanner::before {
-    content:"";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-
-  .aboutBannerLabel {
-    z-index: 2;
-  }
-
-  .aboutTitle {
-    z-index: 2;
-  }
-
-  .aboutDescription {
-    z-index: 2;
   }
 }
 
@@ -747,7 +738,11 @@
     letter-spacing: -1px;
     word-break: keep-all;
     white-space: wrap;
-  }  
+  }
+
+  .brForMobile {
+    display: block;
+  }
 }
 
 @media (max-width: 768px) {
@@ -794,12 +789,12 @@
   }
 
   .aboutBannerLabel {
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: var(--fw-xl);
     line-height: 140%;
     letter-spacing: -1px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .aboutTitle {
@@ -918,7 +913,7 @@
   }
 
   .aboutBanner {
-    height: 100px;
+    height: 120px;
     padding: 20px 16px;
     border-radius: 0;
     background-image: none;

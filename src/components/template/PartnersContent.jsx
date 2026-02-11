@@ -13,12 +13,12 @@ export default function PartnersContent() {
         <SectionTitle
           title={
             <>
-              혁신 시너지를 창출하는&nbsp;
+              혁신 시너지를 함께 만드는&nbsp;
               <br className={styles.brForMobile} />
               <span>협력 철학</span>
             </>
           }
-          description={`단독이 아닌 파트너들과 함께 기술적 시너지를 창출하여 시장의 혁신을 주도하겠습니다.`}
+          description={`파트너와 함께 연구·검증하며 더 빠르게 혁신을 만들어갑니다.`}
         />
 
         <div className={`${styles.flexBox} ${styles.partnersFlexBox}`}>
@@ -28,36 +28,44 @@ export default function PartnersContent() {
               alt: "AI 생태계 확장을 위한 공동의 목표",
             }}
             title={"AI 생태계 확장을 위한 공동의 목표"}
-            description={`
-              JHAION 엔진은 학계, 산업계, 플랫폼 전문가와의 유기적인 협력을 통해 완성됩니다. 우리는 함께 기술적 한계를 극복하고 고객에게 최적의 솔루션을 제공하는 것을 공동의 목표로 삼습니다.
-            `}
+            description={
+              <>
+                JHAION 엔진은 학계·산업계·플랫폼 전문가와 함께 만듭니다.
+                <br />
+                기술의 한계를 함께 넘고, 고객에게 가장 적합한 해답을 제공합니다.
+              </>
+            }
           />
 
           <ImageCard
             image={{
               src: "/images/partners/partner2.png",
-              alt: "NET-ZERO 전환이라는 시대적 가치 실현",
+              alt: "넷제로(Net Zero) 전환 실현",
             }}
-            title={"NET-ZERO 전환이라는 시대적 가치 실현"}
-            description={`
-              기술 개발의 궁극적인 목적을 지속 가능한 미래 설계에 두고 있습니다. 파트너들과 함께 환경적 가치를 실현하는 데 집중하고 있습니다.
-            `}
+            title={"넷제로(Net Zero) 전환 실현"}
+            description={
+              <>
+                기술 개발의 목표는 지속 가능한 미래를 만들기 위함입니다.
+                <br />
+                또한 파트너와 함께 탄소 저감과 환경 가치를 실현합니다.
+              </>
+            }
           />
         </div>
       </section>
 
-      {/* JHAION의 분야별 네트워크 구성 */}
+      {/* 제이에이치솔루션 분야별 파트너 네트워크 */}
       <section>
         <SectionTitle
           title={
             <>
-              JHAION의 분야별&nbsp;
-              <br className={styles.brForMobile} />
-              <span>네트워크 구성</span>
+              제이에이치솔루션 분야별
+              <br />
+              <span>파트너 네트워크</span>
             </>
           }
           description={
-            "핵심 기술력 확보와 산업 적용 확대를 위해 입체적인 파트너십을 구축했습니다."
+            "핵심 기술을 강화하고 적용 분야를 넓히기 위해 분야별 파트너십을 구축했습니다."
           }
         />
 
@@ -67,7 +75,7 @@ export default function PartnersContent() {
             imageAlt={"기술 파트너"}
             title={"기술 파트너"}
             description={
-              "HYPER-SCALE AI 기술 및 플랫폼 개발을 공동 연구하는 핵심 IT 기업 및 연구소와의 협력을 통해 기술의 깊이와 속도를 확보하고 있습니다."
+              "Hyper scale AI와 플랫폼을 공동 연구하는 IT 기업·연구소와 협력해 개발 속도와 완성도를 높입니다."
             }
           />
           <PlusIconWithFlex />
@@ -76,16 +84,16 @@ export default function PartnersContent() {
             imageAlt={"산업 적용 파트너"}
             title={"산업 적용 파트너"}
             description={
-              "AI+플랫폼(에너지, 설비 안전, 자율 운영)을 실제 산업 현장에 적용하는 선도적인 고객사 및 엔지니어링 파트너와 긴밀히 협력하고 있습니다."
+              "에너지·설비 안전·자율 운영 솔루션을 실제 현장에 적용·검증하는 고객사 및 엔지니어링 파트너와 협력합니다."
             }
           />
           <PlusIconWithFlex />
           <DescriptionCard
             imageSrc={"/images/partners/network_icon3.png"}
-            imageAlt={"학술/연구 파트너"}
-            title={"학술/연구 파트너"}
+            imageAlt={"학술·연구 파트너"}
+            title={"학술·연구 파트너"}
             description={
-              "AI 및 CFD 분야의 최신 이론과 동향을 연구하고 기술 검증을 수행하는 국내외 유수의 대학 및 전문 연구기관과 협력하고 있습니다."
+              "AI와 CFD 최신 이론을 연구하고 성능을 검증하는 국내외 대학·연구기관과 함께합니다."
             }
           />
         </div>

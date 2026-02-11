@@ -17,6 +17,7 @@ const MarkdownBody = ({ html }) => {
 const SECTION_HEADERS = {
   press: { title: "보도자료", description: "JH솔루션의 혁신과 성과를 언론을 통해 전해드립니다" },
   project: { title: "프로젝트", description: "혁신적인 기술로 만들어가는 JH솔루션의 프로젝트" },
+  notice: { title: "공지사항", description: "제이에이치솔루션의 주요 소식과 최신 정보를 전해드립니다." },
 }
 
 const MarkdownPage = ({ data, pageContext }) => {

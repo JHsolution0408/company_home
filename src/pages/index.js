@@ -14,8 +14,8 @@ import arrowRight from '../../static/icons/common/arrow-right-icon.svg';
 const cards = [
   {
     title: "Hyper-scale AI for Net-Zero",
-    subtitle1: "초거대 AI가 여는 탄소중립의 미래",
-    subtitle2: "가장 완벽한 에너지 최적화의 실현",
+    subtitle1: "AI 기술로 실현하는 탄소중립의 미래",
+    subtitle2: "에너지를 가장 효율적으로 관리하는 솔루션",
     link: "/company/vision-mission",
     image: {
       desktop: "/images/main-1.png",
@@ -24,8 +24,8 @@ const cards = [
   },
   {
     title: "Beyond Data, Integration of Engineering",
-    subtitle1: "데이터의 한계를 넘는 공학적 통찰",
-    subtitle2: "현장의 난제를 꿰뚫는 AI와 시뮬레이션의 혁신적 융합",
+    subtitle1: "데이터와 공학기술의 완벽한 결합",
+    subtitle2: "AI와 시뮬레이션 기술로 현장 문제 해결",
     link: "/company/jhaion-background",
     image: {
       desktop: "/images/main-2.png",
@@ -34,8 +34,8 @@ const cards = [
   },
   {
     title: "Proven Success, Trusted Partner",
-    subtitle1: "데이터로 증명하는 압도적 효율",
-    subtitle2: "비즈니스 성공을 위한 검증된 파트너십",
+    subtitle1: "데이터로 입증된 탁월한 효율성",
+    subtitle2: "비즈니스 성공을 함께하는 믿을 수 있는 파트너",
     link: "/company/partners",
     image: {
       desktop: "/images/main-3.png",
@@ -46,12 +46,12 @@ const cards = [
 
 // 솔루션 데이터 (원본 세트)
 const solutions = [
-  { id: 'jhaion-engine', link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "Hyper-scale AI와 최적화 알고리즘 기반으로 산업과 도시 환경의 에너지 효율을 극대화하는 통합 운영의 핵심 기술력", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
-  { id: 'energy', link: "/solutions/energy", title: "에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용 절감 및 ESG/탄소회계 대응 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
-  { id: 'simulation', link: "/solutions/simulation", title: "시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI 기반의 예측 기술로 설비의 고장을 사전 진단하고, 에너지 흐름과 설계를 정량적으로 검증", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
-  { id: 'ai', link: "/solutions/ai", title: "인공지능", desc: "머신러닝과 딥러닝 기반의 자율학습을 통해 복잡한 산업 공정을 자동 제어하고, 수요/공급의 초정밀 예측으로 운영 효율 혁신", img: "/images/solutions/card_ai.png", alt: "인공지능" },
-  { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털 트윈", desc: "현실의 물리적 자산을 가상 공간에 실시간 동기화해 3D 관제를 구현하고, 다양한 시나리오 테스트로 최적의 의사결정 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
-  { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 시각적 인터랙션을 재구성해 핵심 정보를 즉시 이해시키고, 명확한 전달과 빠른 의사 결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
+  { id: 'jhaion-engine', link: "/solutions/jhaion-engine", title: "JHAION 엔진", desc: "고성능 AI와 최적화 기술로 에너지를 가장 효율적으로 사용할 수 있도록 돕는 핵심 솔루션", img: "/images/solutions/card_jhaion1.png", alt: "JHAION 엔진" },
+  { id: 'energy', link: "/solutions/energy", title: "지능형 에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용을 절감하며 탄소배출 관리 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
+  { id: 'simulation', link: "/solutions/simulation", title: "스마트 시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI로 설비 이상을 미리 예측하고, 에너지 사용을 체계적으로 분석", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
+  { id: 'ai', link: "/solutions/ai", title: "산업 맞춤형 인공지능", desc: "AI 학습을 통해 복잡한 공정을 자동으로 제어하고, 수요와 공급을 정확하게 예측하여 효율성 증대", img: "/images/solutions/card_ai.png", alt: "인공지능" },
+  { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털트윈", desc: "실제 현장을 가상공간에 그대로 구현하여 3D 모니터링과 사전 시뮬레이션을 통해 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
+  { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 보기 쉽게 시각화하여 핵심 정보를 즉시 이해하고 빠른 의결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
 ];
 
 const IndexPage = ({ data }) => {
@@ -256,7 +256,9 @@ const IndexPage = ({ data }) => {
             </h3>
           )}
           <p className={styles.aboutTitle}>
-            Net-Zero와 최적화를 향한 초거대 AI의 여정
+            AI 최적화로 Net‑Zero의 기준을 새로 쓰는,&nbsp;
+            <br className={styles.brForMobile} />
+            JH의 데이터 인텔리전스 실행 엔진
           </p>
           <p className={styles.aboutDescription}>
             <span className={styles.textWhite}>J</span>ourney of&nbsp;
@@ -273,13 +275,12 @@ const IndexPage = ({ data }) => {
         <div className={styles.solutionsSection}>
           <div className={styles.linkCardSectionHeader}>
             <h2 className={styles.title}>
-              데이터 공학으로 완성된
+              제이에이치솔루션의 통합 플랫폼으로
               <br />
-              <span>JH솔루션의 통합플랫폼을 경험하세요.</span>
+              <span>에너지를 효율적으로 관리하세요.</span>
             </h2>
             <p className={styles.description}>
-              에너지 소비패턴을 예측하고, AI가 CFD 시뮬레이션을 학습하여 최적의
-              운영환경을 자동 설계합니다.
+              에너지 사용 패턴을 예측하고, AI가 최적의 운영 방안을 자동으로 제안합니다.
             </p>
           </div>
 
@@ -327,8 +328,7 @@ const IndexPage = ({ data }) => {
               <span>JH솔루션의 새로운 소식을 만나보세요.</span>
             </h2>
             <p className={styles.description}>
-              언론이 주목한 혁신 기술부터 최신 프로젝트 수주까지, JH솔루션이
-              창출하는 가치를 생생하게 전달합니다.
+              주요 기술 개발부터 프로젝트 수주까지, JH솔루션의 다양한 활동을 소개합니다.
             </p>
           </div>
           <div className={styles.sliderWrap}>
@@ -385,7 +385,7 @@ const IndexPage = ({ data }) => {
         <div className={styles.ctaInner}>
           <div className={styles.ctaContent}>
             <h1 className={styles.ctaTitle}>
-              지능형 운영의 첫걸음
+              효율적인 에너지 관리
               <br />
               <span className={styles.ctaEmphasis}>
                 제이에이치솔루션이 함께합니다.
@@ -393,8 +393,7 @@ const IndexPage = ({ data }) => {
             </h1>
 
             <p className={styles.ctaDescription}>
-              검증된 노하우와 최신 기술을 바탕으로 데이터를 분석해 최적의
-              솔루션을 제안합니다.
+              풍부한 경험과 최신 기술로 고객에게 최적의 솔루션을 제공합니다.
             </p>
           </div>
 
