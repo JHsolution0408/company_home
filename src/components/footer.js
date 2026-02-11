@@ -19,7 +19,7 @@ const Footer = () => {
               <Link to="/" className={styles.logoLink}>
                 <img
                   src={LogoWhite}
-                  alt="JH Solution"
+                  alt="JH SOLUTION"
                   className={styles.logoImg}
                 />
               </Link>

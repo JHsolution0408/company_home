@@ -192,6 +192,7 @@
 
   .firstTitle {
     font-size: 32px;
+    word-break: keep-all;
   }
 
   .brForMobile {

@@ -109,7 +109,7 @@ const SubPageHeader = ({ siteTitle, bgImage }) => {
           {/* 로고 (footer와 동일 이미지) */}
           <div style={{ width: "125px", height: "40px" }}>
             <Link to="/" style={{ textDecoration: "none", display: "block" }}>
-              <img src="/images/btm_logo.svg" alt="JH Solution" style={{ height: "40px" }} />
+              <img src="/images/btm_logo.svg" alt="JH SOLUTION" style={{ height: "40px" }} />
             </Link>
           </div>
 

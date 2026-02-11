@@ -7,7 +7,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
 
 const PAGE_TITLE = "기술 인사이트";
-const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
+const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
 
 const TechInsights = () => {
   const data = useStaticQuery(graphql`
