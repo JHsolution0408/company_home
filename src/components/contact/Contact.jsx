@@ -10,7 +10,7 @@ const INQUIRY_TYPES = [
   { key: "energy", label: "에너지 관리" },
   { key: "simulation", label: "시뮬레이션" },
   { key: "ai", label: "인공지능" },
-  { key: "digitaltwin", label: "디지털 트윈" },
+  { key: "digitaltwin", label: "디지털트윈" },
   { key: "media", label: "미디어" },
 ];
 

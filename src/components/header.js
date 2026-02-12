@@ -17,7 +17,7 @@ const solutionItems = [
   { name: "에너지 관리", slug: "energy" },
   { name: "시뮬레이션", slug: "simulation" },
   { name: "인공지능", slug: "ai" },
-  { name: "디지털 트윈", slug: "digitaltwin" },
+  { name: "디지털트윈", slug: "digitaltwin" },
   { name: "미디어", slug: "media" },
 ]
 
