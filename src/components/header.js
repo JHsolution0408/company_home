@@ -29,7 +29,7 @@ const companyItems = [
 
 const pressItems = [
   { name: "보도자료", slug: "press" },
-  { name: "기술 인사이트", slug: "techInsights" },
+  { name: "기술 인사이트", slug: "techinsights" },
   { name: "공지사항", slug: "notice" },
 ]
 
@@ -37,7 +37,7 @@ const MENU = [
   { key: "company", label: "회사소개", basePath: "/company", items: companyItems },
   { key: "solutions", label: "솔루션", basePath: "/solutions", items: solutionItems },
   { key: "projects", label: "프로젝트", basePath: "/projects" },
-  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techInsights", "/notice"] },
+  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techinsights", "/notice"] },
 ]
 
 const buildItemPath = (menu, item) => {
