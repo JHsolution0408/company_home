@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import * as styles from "./project-detail.module.css"
 import ProjectTag from "../components/template/ProjectTag"
 import PagerLink from "../components/template/PagerLink"
+import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
 
 const Section = ({ title, items }) => {
   if (!items) {
@@ -51,6 +52,24 @@ const Section = ({ title, items }) => {
   )
 }
 
+const DownloadButton = ({ label, url, downloadName }) => (
+  <a
+    href={url}
+    download={downloadName || true}
+    className={styles.downloadWrap}
+  >
+    <span>{label}</span>
+    <span className={styles.pdfButtonIcon}>
+      <img
+        width={20}
+        height={20}
+        src={DownloadIcon}
+        alt={"PDF Download"}
+      />
+    </span>
+  </a>
+)
+
 // Project 상세 페이지용 이전/다음 네비게이션 계산 함수
 const getPrevNextProject = (list, currentId) => {
   if (!Array.isArray(list) || list.length === 0) {
@@ -75,7 +94,7 @@ const getPrevNextProject = (list, currentId) => {
 const ProjectDetailPage = ({ data, pageContext }) => {
   const node = data.markdownRemark;
 
-  const { title, description, date, period, featureImage, tags, client, contents, type } = node.frontmatter
+  const { title, description, date, period, featureImage, tags, client, contents, type, slug, pdfUrl, pdfLabel, pdfDownloadName } = node.frontmatter
 
   const sortedProjectList = [...pageContext.list].sort((a, b) => {
     return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
@@ -130,6 +149,20 @@ const ProjectDetailPage = ({ data, pageContext }) => {
               <Section title="사업기간" items={period} />
               <Section title="발주처/지원기관" items={client} />
               <Section title="사업내용" items={contents} />
+
+              {/* 삼성 BEES 홍보 팜플렛 다운로드 */}
+              {pdfUrl && (
+                <Section
+                  title="다운로드"
+                  items={
+                    <DownloadButton
+                      label={pdfLabel || "다운로드"}
+                      url={pdfUrl}
+                      downloadName={pdfDownloadName}
+                    />
+                  }
+                />
+              )}
             </div>
           </div>
 
@@ -173,6 +206,9 @@ export const query = graphql`
         contents
         slug
         type
+        pdfUrl
+        pdfLabel
+        pdfDownloadName
       }
     }
   }

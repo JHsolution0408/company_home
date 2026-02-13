@@ -142,6 +142,38 @@
   box-shadow: 0 0 0 3px var(--dot-ring); /* soft ring around dot */
 }
 
+.downloadWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--light-primary-20, #D9F9E4);
+  color: var(--light-primary-90, #095123);
+  font-family: var(--typo-font-type, Pretendard);
+  font-size: var(--font-size-body-medium, 18px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.pdfButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.pdfButtonIcon img {
+  display: block;
+  margin: 0;
+}
+
 .tags {
   display: flex;
   gap: 10px;
