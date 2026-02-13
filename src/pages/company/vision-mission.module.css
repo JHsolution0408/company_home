@@ -209,6 +209,14 @@ section:last-child {
     flex-direction: column;
     align-items: center;
   }
+
+  .descriptionCard {
+    width: 100%;
+  }
+
+  .valueCard {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
