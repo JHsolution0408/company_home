@@ -8,6 +8,9 @@ tags: ["INDUSTRY"]
 slug: "project-5"
 type: "project"
 client: "(주)OOOO"
+pdfUrl: "/document/bees-pamphlet.pdf"
+pdfLabel: "삼성 BEES 홍보 팜플렛 다운로드"
+pdfDownloadName: "BEES플랫폼_홍보팜플렛_v0.5.pdf"
 contents:
   - "표준 프로토콜 기반 설비 연동과 디지털트윈을 활용한 빌딩 운영 통합관제 서비스 개발"
   - "실시간 모니터링, 원격 제어, 이상징후 예측·알림 기능을 통해 설비 운영의 효율성 및 안정성 강화"
