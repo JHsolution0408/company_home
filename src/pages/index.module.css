@@ -120,6 +120,7 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
+  padding: 0 60px;
 }
 
 .aboutBanner {
@@ -399,6 +400,7 @@
   flex-direction: column;
   gap: 32px;
   padding: 0;
+  padding-bottom: 114px;
 }
 
 /* Solutions Section */
@@ -479,6 +481,11 @@
   overflow: hidden;
   width: 100%;
   gap: 40px;
+}
+
+.solutionsSection,
+.pressSection {
+  padding: 114px 0 0 120px;
 }
 
 /* CTA Section extracted from inline styles */
@@ -620,39 +627,6 @@
 .brForMobile {
   display: none;
 }
-
-/**
-  ~1920
- */
-@media (max-width: 2000px) {
-  .sliderSection {
-    padding-bottom: 114px;
-  }
-
-  .sectionPad {
-    padding: 0 60px;
-  }
-
-  .solutionsSection,
-  .pressSection {
-    padding: 114px 0 0 120px;
-  }
-
-  .ctaSection {
-    margin: 0 60px 80px;
-  }
-}
-
-
-/**
-  ~1800
- */
-@media (max-width: 1800px) {
-  .ctaSection {
-    margin: 0 60px 80px;
-  }
-}
-
 
 /**
   ~1400
