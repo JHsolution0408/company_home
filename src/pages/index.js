@@ -370,19 +370,18 @@ const IndexPage = ({ data }) => {
       </section>
 
       {/* Section 5: CTA */}
-      <section
-        className={styles.ctaSection}
-        style={{
-          backgroundImage: !isMobile
-            ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
-            : 'url(/images/banners/mobile-contact-illustration-img.jpg)',
-          backgroundRepeat: "no-repeat, no-repeat",
-          backgroundPosition: "left top, right bottom",
-          backgroundSize: "cover, auto 90%",
-          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)",
-        }}
-      >
-        <div className={styles.ctaInner}>
+      <section className={styles.ctaSection} >
+        <div className={styles.ctaInner}
+          style={{
+            backgroundImage: !isMobile
+              ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
+              : 'url(/images/banners/mobile-contact-illustration-img.jpg)',
+            backgroundRepeat: "no-repeat, no-repeat",
+            backgroundPosition: "left top, right bottom",
+            backgroundSize: "cover, auto 90%",
+            boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)",
+          }}
+        >
           <div className={styles.ctaContent}>
             <h1 className={styles.ctaTitle}>
               효율적인 에너지 관리

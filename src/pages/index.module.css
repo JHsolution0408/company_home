@@ -490,15 +490,15 @@
 
 /* CTA Section extracted from inline styles */
 .ctaSection {
-  border-radius: 40px;
   max-width: 1920px;
-  margin: 40px auto;
-  padding: 0;
+  margin: 0 auto 80px;
+  padding: 0 60px;
 }
 
 .ctaInner {
   margin: 0 auto;
   padding: 60px;
+  border-radius: 40px;
 }
 
 .ctaContent {
@@ -669,7 +669,8 @@
   .ctaSection {
     background-size: cover, auto 70%;
     background-position: left top, right 10% bottom;
-    margin: 40px;
+    padding: 0 40px 40px 40px;
+    margin: 0 auto;
   }
 
   .ctaTitle {
@@ -810,6 +811,10 @@
   .sectionPad {
     padding: 0 40px;
   }
+
+  .ctaSection {
+    padding: 40px;
+  }
 }
 
 /* Smooth momentum + better dragging for sliders */
@@ -948,12 +953,14 @@
   .ctaSection {
     margin: 60px 0 0 0;
     border-radius: 0;
+    padding: 0;
   }
 
   .ctaInner {
     width: 100%;
     margin: 0;
     padding: 32px 16px;
+    border-radius: 0;
   }
 
   .ctaTitle {
