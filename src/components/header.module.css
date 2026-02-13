@@ -355,6 +355,10 @@
   .navDesktop { 
     display: none;
   }
+
+  .logo {
+    width: 43px;
+  }
 }
 
 @media (max-width: 450px) {

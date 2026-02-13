@@ -50,7 +50,7 @@ const solutions = [
   { id: 'energy', link: "/solutions/energy", title: "지능형 에너지 관리", desc: "BEMS, FEMS, HEMS를 통합 관리하여 실시간 에너지 소비 패턴을 분석하고, 비용을 절감하며 탄소배출 관리 자동화", img: "/images/solutions/card_energy1.png", alt: "에너지 관리" },
   { id: 'simulation', link: "/solutions/simulation", title: "스마트 시뮬레이션", desc: "CFD 융합 시뮬레이션과 AI로 설비 이상을 미리 예측하고, 에너지 사용을 체계적으로 분석", img: "/images/solutions/card_simulation.png", alt: "시뮬레이션" },
   { id: 'ai', link: "/solutions/ai", title: "산업 맞춤형 인공지능", desc: "AI 학습을 통해 복잡한 공정을 자동으로 제어하고, 수요와 공급을 정확하게 예측하여 효율성 증대", img: "/images/solutions/card_ai.png", alt: "인공지능" },
-  { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털트윈", desc: "실제 현장을 가상공간에 그대로 구현하여 3D 모니터링과 사전 시뮬레이션을 통해 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털 트윈" },
+  { id: 'digital-twin', link: "/solutions/digitaltwin", title: "디지털트윈", desc: "실제 현장을 가상공간에 그대로 구현하여 3D 모니터링과 사전 시뮬레이션을 통해 최적의 의사결정을 지원", img: "/images/solutions/card_digitaltwin.png", alt: "디지털트윈" },
   { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 보기 쉽게 시각화하여 핵심 정보를 즉시 이해하고 빠른 의결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
 ];
 
@@ -370,19 +370,18 @@ const IndexPage = ({ data }) => {
       </section>
 
       {/* Section 5: CTA */}
-      <section
-        className={styles.ctaSection}
-        style={{
-          backgroundImage: !isMobile
-            ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
-            : 'url(/images/banners/mobile-contact-illustration-img.jpg)',
-          backgroundRepeat: "no-repeat, no-repeat",
-          backgroundPosition: "left top, right bottom",
-          backgroundSize: "cover, auto 90%",
-          boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)",
-        }}
-      >
-        <div className={styles.ctaInner}>
+      <section className={styles.ctaSection} >
+        <div className={styles.ctaInner}
+          style={{
+            backgroundImage: !isMobile
+              ? "linear-gradient(124deg, rgb(246, 254, 249) 21.51%, transparent 57.84%), url(/images/banners/contact-illustration-img.png)"
+              : 'url(/images/banners/mobile-contact-illustration-img.jpg)',
+            backgroundRepeat: "no-repeat, no-repeat",
+            backgroundPosition: "left top, right bottom",
+            backgroundSize: "cover, auto 90%",
+            boxShadow: "2px 4px 20px 0 rgba(49, 78, 152, 0.12)",
+          }}
+        >
           <div className={styles.ctaContent}>
             <h1 className={styles.ctaTitle}>
               효율적인 에너지 관리

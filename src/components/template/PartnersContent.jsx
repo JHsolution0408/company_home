@@ -59,8 +59,8 @@ export default function PartnersContent() {
         <SectionTitle
           title={
             <>
-              제이에이치솔루션 분야별
-              <br />
+              제이에이치솔루션 분야별&nbsp;
+              <br className={styles.brForMobile} />
               <span>파트너 네트워크</span>
             </>
           }
