@@ -64,7 +64,7 @@ const Techinsights = () => {
           </div>
           <div className={styles.titleBox}>
             <h3 className={styles.subTitle}>
-              지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.
+              지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.
             </h3>
           </div>
         </div>
