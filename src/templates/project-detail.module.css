@@ -229,6 +229,15 @@
     gap: 10px;
     padding: 0;
   }
+
+  .downloadWrap span {
+    font-size: 16px;
+  }
+
+  .downloadWrap img {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 1024px) {
