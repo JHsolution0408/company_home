@@ -14,13 +14,16 @@ export default function VisionMissionContent() {
             <>
               Global Standard in&nbsp;
               <br className={styles.brForMobile} />
-              <span>AI-ENGINEERING</span>
+              <span>AI-Engineering</span>
             </>
           }
-          description={`
-            우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다.
-            에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.
-          `}
+          description={
+            <>
+              데이터와 물리 법칙을 결합한 우리만의 기술로 산업 현장의 복잡한 문제를 해결합니다.
+              <br />
+              에너지 효율화는 물론, 사람과 환경이 함께하는 탄소 중립 사회를 위한 기술 표준을 만들어갑니다.
+            </>            
+          }
         />
 
         <div className={`${styles.flexBox} ${styles.visionMissionBox}`}>
@@ -31,20 +34,19 @@ export default function VisionMissionContent() {
             }}
             title={"기술의 한계를 넘는 융합 혁신"}
             description={`
-              Hyper-scale AI의 연산력에 CFD(수치해석)의 정밀함을 더해,
-              기존 방식으로는 불가능했던 산업 전반의 초정밀 에너지 최적화를 실현합니다.
+              Hyper-scale AI의 빠른 연산 능력과 수치해석(CFD)의 정밀함을 결합하여,
+              기존 방식으로는 불가능했던 산업 전반의 정밀한 에너지 최적화를 실현합니다.
             `}
           />
 
           <ImageCard
             image={{
               src: "/images/about/mission-2.png",
-              alt: "데이터로 증명하는 Net-Zero 생태계",
+              alt: "데이터로 증명하는 Net Zero 생태계",
             }}
-            title={"데이터로 증명하는 Net-Zero 생태계"}
+            title={"데이터로 증명하는 Net Zero 생태계"}
             description={`
-              막연한 선언이 아닌, 측정 가능하고 검증된 데이터(MRV)를 기반으로
-              가장 현실적이고 경제적인 탄소 중립 로드맵을 완성합니다.
+              우리는 MRV 기반의 정량적 데이터를 통해 현실적이고 효율적인 탄소중립 로드맵을 제시합니다.
             `}
           />
         </div>
@@ -80,9 +82,9 @@ export default function VisionMissionContent() {
                 고객의 성공을 위한 전략적 최적화
               </h3>
               <p className={styles.valueDescription}>
-                우리의 기술은 고객의 이익으로 귀결되어야 합니다. JHAION 엔진으로
-                운영 효율을 극대화하고, 에너지 비용과 탄소 배출을 동시에 저감하여
-                고객의 비즈니스 경쟁력을 가장 확실한 수치로 높입니다.
+                우리의 기술은 고객의 실질적인 이익으로 연결되어야 합니다.
+                <br />
+                JHAION 엔진으로 운영 효율을 높이고, 에너지 비용과 탄소 배출을 동시에 줄여 고객의 비즈니스 경쟁력을 명확한 수치로 향상시킵니다.
               </p>
             </div>
           </div>
@@ -101,9 +103,9 @@ export default function VisionMissionContent() {
                 지속 가능한 미래를 위한 기술적 책임
               </h3>
               <p className={styles.valueDescription}>
-                기술의 진보는 환경을 해치지 않아야 합니다. 건물부터 도시, 산업
-                현장까지 에너지 흐름을 투명하게 시각화하고 제어하여, 다음 세대를
-                위한 깨끗하고 안전한 환경을 구축하는데 앞장섭니다.
+                기술의 발전은 환경을 해치지 않아야 합니다.
+                <br />
+                건물부터 도시, 산업 현장까지 에너지 흐름을 눈에 보이게 하고 효율적으로 관리하여, 다음 세대를 위한 깨끗하고 안전한 환경을 만드는 데 앞장섭니다.
               </p>
             </div>
           </div>
@@ -121,7 +123,7 @@ export default function VisionMissionContent() {
             </>
           }
           description={
-            "AI 기반의 독보적인 기술 역량으로 지속 가능한 미래를 선도하는 글로벌 파트너가 되겠습니다."
+            "AI 기반의 독보적인 기술력으로 지속 가능한 미래를 이끄는 글로벌 파트너가 되겠습니다."
           }
         />
 
@@ -131,7 +133,10 @@ export default function VisionMissionContent() {
             imageAlt={"융합적 전문성"}
             title={"융합적 전문성"}
             description={
-              "우리는 IT와 공학의 경계를 허뭅니다. AI 엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다."
+              <>
+                우리는 IT와 공학의 경계를 허뭅니다.<br />
+                AI 엔지니어와 도메인 전문가의 협업을 통해, 단순히 데이터를 읽는 것을 넘어 물리적 현상의 원인까지 규명하는 깊이 있는 솔루션을 만듭니다.
+              </>
             }
             className={styles.firstCard}
           />
@@ -141,7 +146,10 @@ export default function VisionMissionContent() {
             imageAlt={"혁신적 선도성"}
             title={"혁신적 선도성"}
             description={
-              "남들이 가지 않은 길을 두려워하지 않습니다. 기존 시장에 없던 Hyper-scale AI 기반의 자율 운영 모델을 제시하며, 글로벌 에너지 기술 패러다임을 주도합니다."
+              <>
+                새로운 길을 개척하는 것을 두려워하지 않습니다.<br />
+                기존 시장에 없던 Hyper scale AI 기반 자율 운영 모델을 제시하며, 글로벌 에너지 기술의 새로운 기준을 만들어갑니다.
+              </>
             }
           />
           <PlusIconWithFlex />
@@ -150,7 +158,10 @@ export default function VisionMissionContent() {
             imageAlt={"검증된 신뢰성"}
             title={"검증된 신뢰성"}
             description={
-              '결과는 반드시 증명되어야 합니다. 수많은 시뮬레이션(Digital Twin)과 실증 사례를 통해 예측의 정확도를 보장하며, 고객에게 약속한 효율을 끝까지 책임집니다.'
+              <>
+                결과는 반드시 증명되어야 합니다.<br />
+                수많은 시뮬레이션(Simulation)과 실제 적용 사례를 통해 예측의 정확성을 보장하며, 고객과의 약속을 끝까지 지킵니다.
+              </>
             }
           />
         </div>

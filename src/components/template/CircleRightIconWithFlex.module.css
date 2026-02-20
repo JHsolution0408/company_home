@@ -10,12 +10,15 @@
   justify-content: center;
 }
 
+@media (max-width: 1024px) {
+  .imageContainer img {
+    margin: 0;
+    transform: rotate(90deg);
+  }
+}
+
 @media (max-width: 768px) {
   .imageContainer {
     align-items: normal;
-  }
-
-  .imageContainer img {
-    transform: rotate(90deg);
   }
 }

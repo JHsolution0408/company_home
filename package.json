@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "jhsolution-homepage",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "Journey of Hyper-scale + AI + Optimization + Net-Zero",
+  "version": "1.0.0",
+  "author": "Jehoon park <jeehoon.park@jh-solution.net>",
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "gatsby": "^5.15.0",

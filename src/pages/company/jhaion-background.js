@@ -22,7 +22,7 @@ const gradientKeyframes = `
 
 // 페이지 SEO 정보 (필요시 SEO 컴포넌트에 전달)
 const PAGE_TITLE = "JHAION 개발 배경";
-const PAGE_DESCRIPTION = "JHAION 개발의 배경과 문제의식, 기술적 해답, 궁극적 목표를 소개합니다.";
+const PAGE_DESCRIPTION = "JHAION 개발 배경과 기술적 해결 방법, 최종 목표를 소개합니다.";
 
 export default function JhaionBackgroundNew() {
   // TODO: 아래 공간에 SEO 컴포넌트(Helmet, Seo 등) 추가 가능
@@ -50,16 +50,15 @@ export default function JhaionBackgroundNew() {
       {/* Intro Section 아래 본문 */}
       <style>{gradientKeyframes}</style>
       <div className={styles.container}>
-        {/* AI: “기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.” 섹션 디자인 변경사항 반영 */}
         <section>
           <SectionTitle
             sectionLabel={'문제 인식 (The Challenge)'}
-            title={'“기존의 방식으로는 복잡한 현실을 담을 수 없었습니다.”'}
+            title={'“기존 방식만으로는 복잡한 현실을 담을 수 없었습니다.”'}
             description={(
               <>
-                과거의 에너지 관리는 경험에 의존하거나, 단순한 통계 데이터만을 신뢰했습니다.&nbsp;
+                그동안 에너지 관리는 경험이나 단순 통계에 의존했습니다.&nbsp;
                 <br className={bgStyles.brForPC} />
-                하지만 시시각각 변하는 산업 현장의 변수와 유체 흐름(CFD)을 배제한 데이터 분석은 잦은 오차와 비효율을 낳았습니다. 우리는 생각했습니다. "보이지 않는 물리적 현상까지 AI가 이해할 수는 없을까?"
+                현장의 다양한 변수와 유체 흐름(CFD)을 반영하지 못해 오차와 비효율이 커졌습니다. 그래서 우리는 "보이지 않는 물리 현상까지 이해하는 AI"를 고민했습니다.
               </>
             )}
             className={styles.jhaionTitle}
@@ -76,7 +75,7 @@ export default function JhaionBackgroundNew() {
                   기존 기술의 명확한 한계 직면
                 </h3>
                 <p className={styles.valueDescription}>
-                  기존 CFD 시뮬레이션은 정확했지만, 복잡한 시스템의 최적화와 대규모 자동화에는 시간 및 비용적 제약이 커서 실무적인 활용이 어려움이 있었습니다.
+                  CFD 시뮬레이션은 정확하지만, 계산 시간이 길고 비용이 커서 현장에서 자동화·최적화에 바로 쓰기 어려웠습니다.
                 </p>
               </div>
               {isMobile && <MobileValueImage imgSrc={"/images/about/jhaionbackgrounds/challenge_1.png"} />}
@@ -91,10 +90,10 @@ export default function JhaionBackgroundNew() {
               </div>
               <div className={styles.titleWrap}>
                 <h3 className={styles.valueTitle}>
-                  초거대 AI 기반의 새로운 해법 확인
+                  Hyper scale AI의 새로운 해법 확인
                 </h3>
                 <p className={styles.valueDescription}>
-                  복잡하고 방대한 비선형 데이터를 처리하고 예측하기 위해, 일반 AI를 뛰어넘는 HYPER-SCALE AI 도입이 필수적인 해결책이었습니다.
+                  복잡한 현장 데이터를 빠르게 처리하고 예측하려면, 더 큰 연산 능력을 가진 인텔리전스 AI가 필요했습니다.
                 </p>
               </div>
               {isMobile && <MobileValueImage imgSrc={"/images/about/jhaionbackgrounds/challenge_2.png"} />}
@@ -102,14 +101,14 @@ export default function JhaionBackgroundNew() {
           </div>
         </section>
 
-        {/* Hyper-scale AI와 공학(Engineering)의 필연적 만남 */}
+        {/* Hyper scale AI와 공학(Engineering)의 필연적 만남 */}
         <section>
           <SectionTitle
             sectionLabel={'기술적 해답 (The Solution)'}
-            title={'Hyper-scale AI와 공학(Engineering)의 필연적 만남'}
+            title={'Hyper scale AI와 공학(Engineering)의 필연적 만남'}
             description={(<>
               제이에이치솔루션은 IT 개발자와 공학 박사들이 머리를 맞대고 탄생시킨 결과물입니다.
-              <br className={bgStyles.brForPC} />
+              <br />
               데이터를 빠르게 처리하는 AI의 속도에 물리 법칙을 해석하는 공학적 깊이를 융합하여, 현실과 오차 없이 동기화되는 초정밀 엔진 'JHAION'을 개발했습니다.
             </>)}
             className={styles.jhaionTitle}
@@ -118,19 +117,23 @@ export default function JhaionBackgroundNew() {
           <div className={styles.flexBoxWithPlus}>
             <DescriptionCard
               imageSrc={"/images/about/mission-8.png"}
-              imageAlt={"AI + 시뮬레이션 융합으로 한계 돌파"}
-              title={"AI + 시뮬레이션 융합으로 한계 돌파"}
+              imageAlt={"AI와 시뮬레이션 결합"}
+              title={"AI와 시뮬레이션 결합"}
               description={
-                "AI의 효율과 CFD의 정확함을 결합하여, 단순 예측을 넘어 정확한 시뮬레이션 기반의 초고속 최적 설계 및 자율 운영 시스템을 구현했습니다."
+                "AI의 속도와 CFD의 정확도를 함께 써서, 단순 예측을 넘어 ‘시뮬레이션 기반 최적 설계’와 ‘자율 운영’을 가능하게 했습니다."
               }
             />
             <PlusIconWithFlex />
             <DescriptionCard
               imageSrc={"/images/about/mission-9.png"}
-              imageAlt={"AI+플랫폼으로 산업 현장에 확장"}
-              title={"AI+플랫폼으로 산업 현장에 확장"}
+              imageAlt={"AI를 활용한 플랫폼으로 현장 적용"}
+              title={"AI를 활용한 플랫폼으로 현장 적용"}
               description={
-                "에너지 효율, 설비 안전, 자율 운영 등 핵심 산업 분야에 JHAION 엔진을 적용하여, 정량적 데이터 기반의 효율 극대화를 실현하는 플랫폼을 제공합니다."
+                <>
+                  에너지 효율, 설비 안전, 자율 운영 등 다양한 현장에 적용할 수 있도록 플랫폼 형태로 확장했습니다.
+                  <br />
+                  정량적 데이터로 성과를 검증하며 효율을 높입니다.
+                </>
               }
             />
           </div>
@@ -140,11 +143,11 @@ export default function JhaionBackgroundNew() {
         <section>
           <SectionTitle
             sectionLabel={'궁극적 목표 (The Impact)'}
-            title={'Net-Zero를 향한 가장 확실한 기술 표준'}
+            title={'Net Zero를 향한 가장 확실한 기술 표준'}
             description={(<>
-              우리의 기술 개발은 단순히 효율을 높이는 데 그치지 않습니다.
-              <br className={bgStyles.brForPC} />
-              기업에게는 최적의 비용 절감을, 지구에게는 탄소 없는 미래를 선물하는 것. 이것이 JHAION 엔진이 끊임없이 진화하는 이유입니다.
+              목표는 ‘효율 향상’에만 그치지 않습니다.
+              <br />
+              기업에는 비용 절감을, 지구에는 탄소 없는 미래를 만들기 위해 JHAION 엔진은 계속 발전합니다.
             </>)}
             className={styles.jhaionTitle}
           />

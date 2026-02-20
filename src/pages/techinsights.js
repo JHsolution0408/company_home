@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as styles from "./techInsights.module.css"
+import * as styles from "./techinsights.module.css"
 
 import Seo from "../components/seo"
 import Layout from "../components/layout"
@@ -7,13 +7,13 @@ import { graphql, useStaticQuery } from "gatsby"
 import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
 
 const PAGE_TITLE = "기술 인사이트";
-const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
+const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
 
-const TechInsights = () => {
+const Techinsights = () => {
   const data = useStaticQuery(graphql`
     query InsightsListQuery {
       allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/techInsights/.*.md$/" } }
+        filter: { fileAbsolutePath: { regex: "/content/techinsights/.*.md$/" } }
         sort: { frontmatter: { order: DESC } }
       ) {
         nodes {
@@ -46,7 +46,7 @@ const TechInsights = () => {
       type="dark"
       subHeaderTitle={PAGE_TITLE}
       subHeaderDescription={PAGE_DESCRIPTION}
-      subHeaderBgImage="/images/banners/bg_techInsights.png"
+      subHeaderBgImage="/images/banners/bg_techinsights.png"
     >
       {/* 타이틀 영역 */}
       <div className={styles.container}>
@@ -64,7 +64,7 @@ const TechInsights = () => {
           </div>
           <div className={styles.titleBox}>
             <h3 className={styles.subTitle}>
-              지속가능한 미래를 위한 JH Solution의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.
+              지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.
             </h3>
           </div>
         </div>
@@ -127,4 +127,4 @@ export const Head = () => {
   )
 }
 
-export default TechInsights;
+export default Techinsights;

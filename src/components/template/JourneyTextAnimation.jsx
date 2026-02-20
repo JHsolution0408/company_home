@@ -15,9 +15,9 @@ const JourneyTextAnimation = () => {
           <h2>JHAION의 시작</h2>
         </div>
         <h3>
-          기존의 예측 방식이 가진 불확실성을 해결하고,&nbsp;
+          기존 예측 방식의 한계를 극복하고,&nbsp;
           <br className={styles.brForMobile} />
-          탄소 중립이라는 시대적 과제에 가장 정밀한 답을 내놓기 위해 탄생했습니다.
+          탄소중립이라는 시대적 과제에 정확한 해답을 제시하기 위해 탄생했습니다.
         </h3>
       </div>
 

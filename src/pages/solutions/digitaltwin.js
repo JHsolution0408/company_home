@@ -31,14 +31,14 @@ const DigitalTwinPage = ({ data }) => {
       subHeaderBgImage="/images/banners/bg_digitaltwin.png"
     >
       <div className={styles.container}>
-          {/* 현실을 가상으로 완벽하게 동기화하는 디지털 트윈의 핵심 구성 */}
+          {/* 현실을 가상으로 완벽하게 동기화하는 디지털트윈의 핵심 구성 */}
           <section>
             <SectionTitle
               title={
                 <>
                   현실을 가상으로 완벽하게 동기화하는&nbsp;
                   <br className={styles.brForMobile} />
-                  <span>디지털 트윈의 핵심 구성</span>
+                  <span>디지털트윈의 핵심 구성</span>
                 </>
               }
               description={`언리얼 엔진의 압도적 몰입감과 WebGL의 웹 접근성을 결합하여 공장과 빌딩을 통합 관제합니다.`}

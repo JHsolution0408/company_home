@@ -2,10 +2,9 @@
 title: "㈜제이에이치솔루션, 시무식…\"불확실성의 시대, 대응할 수 있는 힘과 사람 중심의 성장을 강조\""
 date: "2026-01-07"
 summary: "변화 대응을 바탕으로 한 기술·사람 중심 성장 비전을 공유했습니다."
-featureImage: "/images/press/press_5.png"
-newsUrl: ""
-slug: "news-5"
-type: "news"
+featureImage: "/images/notice/notice_1.png"
+slug: "notice-1"
+type: "notice"
 ---
 
 ㈜제이에이치솔루션은 2026년 시무식을 열고, 급변하는 경제 환경 속에서 회사의 방향성과 중장기 비전을 공유했다.
