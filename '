@@ -1,0 +1,46 @@
+name: STAGING-AWS-DEPLOY
+
+#트리거
+on:
+  push:
+    branches:
+      - chore/deploy-s3 
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+	
+    #각 단계
+    steps:
+      - uses: actions/checkout@v3
+
+	# 의존성 install
+      - name: Install Dependencies
+        run: pnpm install
+
+	# 빌드
+      - name: Build
+        run: pnpm build:staging
+
+	#빌드한 파일 S3 업로드
+      - name: Upload S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.DEV_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          SOURCE_DIR: 'dist'
+          DEST_DIR: 'dist'
+
+	# CloudFront 캐시 무효화
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          PATHS: '/*'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          DISTRIBUTION: ${{ secrets.DEV_AWS_DISTRIBUTION_ID }}

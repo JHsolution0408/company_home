@@ -1,0 +1,67 @@
+name: STAGING-AWS-DEPLOY
+
+on:
+  push:
+    branches:
+      - chore/deploy-s3 
+
+jobs:
+  run-remote-script:
+    runs-on: ['self-hosted', 'homepage']
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy and Restart Application via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          proxy_agent: true
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "Loading NVM environment on remote server..."
+
+            source /home/${{ secrets.SSH_USERNAME }}/.nvm/nvm.sh || \
+            source ~/.nvm/nvm.sh || \
+            { echo "Error: NVM script not found. Please check the path."; exit 1; }
+            
+            echo "Using Node.js version 24.4.0 with NVM..."
+            nvm use 24 || \
+            { echo "Error: Node.js version 24.4.0 not found via NVM. Please install it."; exit 1; }
+
+            echo "Executing deployment commands on remote server..."
+            cd /opt/frontend/company_home # 프로젝트 경로로 이동
+            
+            echo "Current Location is :"
+            pwd # 디버그용
+            
+            git checkout chore/deploy-s3 # Git checkout
+            git pull origin chore/deploy-s3 # Git pull
+            npm run clean
+            npm install # 의존성 설치
+            npm run build # 빌드
+
+      - name: Upload S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.DEV_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          SOURCE_DIR: 'dist'
+          DEST_DIR: 'dist'
+
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          PATHS: '/*'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          DISTRIBUTION: ${{ secrets.DEV_AWS_DISTRIBUTION_ID }}
