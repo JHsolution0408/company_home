@@ -3,7 +3,7 @@ name: STAGING-AWS-DEPLOY
 on:
   push:
     branches:
-      - chore/deploy-s3 
+      - develop
 
 jobs:
   run-remote-script:
