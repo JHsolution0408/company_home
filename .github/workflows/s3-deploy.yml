@@ -1,0 +1,48 @@
+name: STAGING-AWS-DEPLOY
+
+on:
+  push:
+    branches:
+      - develop 
+
+jobs:
+  run-remote-script:
+    runs-on: ['self-hosted', 'homepage']
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (러너 환경에 노드가 있다면 생략 가능)
+        # self-hosted의 경우 nvm 등을 직접 서버에 세팅해두는 것이 속도면에서 유리합니다.
+        run: |
+          source ~/.nvm/nvm.sh
+          nvm use 24
+
+      - name: Build Project
+        run: |
+          # 러너가 코드를 가져온 폴더 내부에서 직접 수행
+          npm install
+          npm run build
+
+      - name: Upload S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.DEV_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          SOURCE_DIR: 'public' # 이제 러너 폴더 내의 public이 정상 인식됨
+          DEST_DIR: 'public'
+
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          PATHS: '/*'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          DISTRIBUTION: ${{ secrets.DEV_AWS_DISTRIBUTION_ID }}
