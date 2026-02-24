@@ -3,7 +3,7 @@ name: STAGING-AWS-DEPLOY
 on:
   push:
     branches:
-      - develop 
+      - chore/deploy-s3 
 
 jobs:
   run-remote-script:
@@ -36,7 +36,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-northeast-2'
           SOURCE_DIR: 'public' # 이제 러너 폴더 내의 public이 정상 인식됨
-          DEST_DIR: 'public'
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@master
