@@ -2,7 +2,7 @@
 title: "㈜제이에이치솔루션, 개인정보보호 및 정보보안 자체교육 실시"
 date: "2026-03-10"
 summary: "㈜제이에이치솔루션(대표이사 이정훈)은 개인정보보호 및 정보보안 관리 수준을 높이고 임직원의 보안 인식을 강화하기 위해 사내 교육을 실시했다.."
-featureImage: "/images/press/press_5.png"
+featureImage: "/images/press/press_6.png"
 newsUrl: ""
 slug: "news-5"
 type: "news"
