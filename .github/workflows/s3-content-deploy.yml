@@ -1,0 +1,59 @@
+# Content 브랜치에 비개발자분이 올린 변경사항을 검토할 수 있도록
+# dev.jh-solution.net에 자동 배포합니다.
+
+name: STAGING-AWS-CONTENT-DEPLOY
+
+on:
+  pull_request:
+    # 풀리퀘스트가 (다시) 열리거나 / 업데이트될때 실행
+    types: [opened, synchronize, reopened]
+
+    # develop 브랜치로 병합하는 풀리퀘스트에 대해서만 실행
+    branches:
+      - develop
+
+jobs:
+  run-remote-script:
+    # content 브랜치에 대한 PR이 열리거나 업데이트될 때만 실행
+    if: startsWith(github.head_ref, 'content/')
+
+    runs-on: ['self-hosted', 'homepage']
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (러너 환경에 노드가 있다면 생략 가능)
+        run: |
+          source ~/.nvm/nvm.sh
+          nvm use 24
+
+      # 빌드 폴더 생성
+      - name: Build Project
+        run: |
+          # 러너가 코드를 가져온 폴더 내부에서 직접 수행
+          npm install
+          npm run build
+
+      # 빌드된 결과물을 S3에 업로드
+      - name: Upload S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.DEV_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          SOURCE_DIR: 'public'
+
+      # CloudFront 캐시 무효화 수행
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          PATHS: '/*'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          DISTRIBUTION: ${{ secrets.DEV_AWS_DISTRIBUTION_ID }}
