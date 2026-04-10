@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
 import SectionTitle from "../../components/template/SectionTitle"
+import SectionMovieTitle from "../../components/template/SectionMovieTitle"
 import ImageCard from "../../components/template/ImageCard"
 
 
@@ -71,6 +72,32 @@ const DigitalTwinPage = ({ data }) => {
                 title={"통합 제어 및 시뮬레이션"}
                 description={`가상 공간에서의 제어가 실제 설비에 즉시 반영되는 양방향 제어를 구현하고, 에너지 흐름을 시뮬레이션하여 최적 효율을 사전 검증합니다.`}
               />
+            </div>
+
+            <SectionMovieTitle
+              title={
+                <>
+                  현실을 가상으로 완벽하게 동기화하는 디지털 트윈 기술
+                </>
+              }
+              description={
+                <>
+                  현실의 복잡한 산업 현장을 가상 공간에 완벽하게 구현하는 제이에이치솔루션의 디지털 트윈 플랫폼 R&D 시연 영상입니다.
+                  <br />
+                  압도적인 그래픽 퍼포먼스를 자랑하는 '언리얼 엔진'과 데이터의 숨은 맥락까지 분석하는 'AI 온톨로지' 기술을 결합하여, 단순한 3D 시각화를 넘어 실질적인 공정/건물/현장 제어와 에너지 효율화를 실현합니다.
+                </>
+              }
+            />
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/DlPk9X3Hbrc"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
             </div>
           </section>
       </div>
