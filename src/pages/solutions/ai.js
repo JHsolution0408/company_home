@@ -4,7 +4,6 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
 import SectionTitle from "../../components/template/SectionTitle"
-import SectionMovieTitle from "../../components/template/SectionMovieTitle"
 import ImageCard from "../../components/template/ImageCard"
 
 
@@ -32,20 +31,44 @@ const AiPage = ({ data }) => {
       subHeaderBgImage="/images/banners/bg_ai.png"
     >
       <div className={styles.container}>
-          {/* 현장의 데이터를 자산으로 만드는 산업용 AI의 핵심 기술 */}
+          {/* AI 기반 에너지 최적화 시뮬레이션, 온톨로지 */}
           <section>
             <SectionTitle
               title={
                 <>
-                  현장의 데이터를 자산으로 만드는&nbsp;
+                  AI 기반 에너지 최적화 시뮬레이션,&nbsp;
                   <br className={styles.brForMobile} />
-                  <span>산업용 AI의 핵심 기술</span>
+                  <span>온톨로지</span>
                 </>
               }
-              description={`아날로그 정보를 디지털화하고, 설비 고장을 사전에 예측하여 운영 효율의 정점을 실현합니다.`}
+              description={`단순한 통계와 경험에 의존하던 방식을 넘어, 현실의 복잡한 물리 법칙까지 이해하는 제이에이치솔루션의 차세대 인공지능 기법인 온톨로지에 대한 영상입니다.`}
             />
 
-            <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
+            <div className={styles.videoBox}>
+              <div className={styles.video}>
+                <iframe
+                  className={styles.videoIframe}
+                  src="https://www.youtube.com/embed/gpiJCUs1bII"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="YouTube video player"
+                />
+              </div>
+            </div>
+
+            <div className={styles.videoContentGap}>
+              <SectionTitle
+                title={
+                  <>
+                    현장의 데이터를 자산으로 만드는&nbsp;
+                    <br className={styles.brForMobile} />
+                    <span>산업용 AI의 핵심 기술</span>
+                  </>
+                }
+                description={`아날로그 정보를 디지털화하고, 설비 고장을 사전에 예측하여 운영 효율의 정점을 실현합니다.`}
+              />
+
+              <div className={`${styles.flexBox} ${styles.solutionFlexBox}`}>
               <ImageCard
                 image={{
                   src: "/images/solutions/card_ai1.png",
@@ -73,25 +96,6 @@ const AiPage = ({ data }) => {
                 description={`설비의 진동, 소음, 온도 데이터를 분석하여 고장 징후를 사전에 포착합니다. 돌발 정지를 막고 유지보수 비용을 획기적으로 낮춥니다.`}
               />
             </div>
-
-            <SectionMovieTitle
-              title={
-                <>
-                  AI 기반 에너지 최적화 시뮬레이션, 온톨로지
-                </>
-              }
-              description={`단순한 통계와 경험에 의존하던 방식을 넘어, 현실의 복잡한 물리 법칙까지 이해하는 제이에이치솔루션의 차세대 인공지능 기법인 온톨로지에 대한 영상입니다.`}
-            />
-            <div className={styles.videoBox}>
-              <div className={styles.video}>
-                <iframe
-                  className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/gpiJCUs1bII"
-                  allow="autoplay"
-                  allowFullScreen
-                  title="YouTube video player"
-                />
-              </div>
             </div>
           </section>
       </div>

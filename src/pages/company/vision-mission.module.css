@@ -151,6 +151,10 @@ section:last-child {
   letter-spacing: -1px;
 }
 
+.videoContentGap {
+  padding-top: 80px;
+}
+
 .videoBox {
   display: flex;
   gap: 40px;
