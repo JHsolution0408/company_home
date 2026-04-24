@@ -39,7 +39,7 @@ const getPrevNextNotice = (list, currentId) => {
 
 const NoticeDetailPage = ({ data, pageContext }) => {
   const node = data.markdownRemark;
-  const { title, date, type } = node.frontmatter;
+  const { title, date, type, featureImage } = node.frontmatter;
   
   const sortedNoticeList = [...pageContext.list].sort((a, b) => {
     return new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
@@ -68,6 +68,12 @@ const NoticeDetailPage = ({ data, pageContext }) => {
           </div>
 
           <div className={styles.noticeContainer}>
+            {featureImage && (
+              <img
+                src={featureImage}
+                alt={title}
+              />
+            )}
             <div className={styles.detailBodyWrap}>
               <NoticeDetailBody
                 html={node.html.replace(/<img([^>]*)>/g, '<img$1 style="border-radius:16px;">')}
