@@ -55,7 +55,7 @@ const PressPage = () => {
               flexDirection: 'column',
             }}
           >
-            {pressList.slice(0, 5).map(press => (
+            {pressList.map(press => (
               <Link
                 to={`/press/${press.frontmatter.slug}`}
                 className={styles.pressLink}

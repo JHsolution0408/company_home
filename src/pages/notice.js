@@ -13,7 +13,7 @@ const Notice = () => {
     query NoticeQuery {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/notice/.*.md$/" } }
-        sort: { frontmatter: { order: DESC } }
+        sort: { frontmatter: { date: DESC } }
       ) {
         nodes {
           id

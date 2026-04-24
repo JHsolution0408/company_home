@@ -56,11 +56,11 @@ hr {
   max-width: 1040px;
   flex-direction: column;
   gap: 40px;
+  color: #4A4F55;
 }
 
 .detailBodyWrap p {
   max-width: 100%;
-  color: #4A4F55;
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
@@ -68,6 +68,19 @@ hr {
 }
 
 .detailBodyWrap p:last-child {
+  margin: 0;
+}
+
+.detailBodyWrap ul {
+  margin: 0 0 24px 0;
+  padding-left: 24px;
+  list-style: disc;
+}
+
+.detailBodyWrap li {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
   margin: 0;
 }
 
