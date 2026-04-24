@@ -2,7 +2,7 @@
 title: "㈜제이에이치솔루션, 건강한 근로환경 조성을 위한 ‘성고충상담요원 제도’ 시행"
 date: "2026-04-23"
 summary: "㈜제이에이치솔루션(대표이사 이정훈)은 근로자 편의와 안전을 위한 기술 개발을 지속적으로 추진하고 있습니다."
-featureImage: "/images/press/press_8.png"
+featureImage: "/images/notice/notice_2.png"
 newsUrl: ""
 slug: "notice-2"
 type: "notice"
