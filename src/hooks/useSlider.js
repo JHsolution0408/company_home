@@ -149,11 +149,34 @@ export function useSlider({
   const handleDotClick = (idx) => {
     const slider = sliderRef.current
     if (!slider || !itemStride || !itemsLength) return
+
+    // 직전 드래그의 관성 스크롤이나 대기 중인 RAF가 살아 있으면
+    // scrollTo({behavior:'smooth'})가 매 프레임 덮어써져 동작하지 않으므로 먼저 취소한다.
+    if (anim.current.inertId) {
+      cancelAnimationFrame(anim.current.inertId)
+      anim.current.inertId = 0
+    }
+    if (anim.current.rafId) {
+      cancelAnimationFrame(anim.current.rafId)
+      anim.current.rafId = 0
+      anim.current.pending = false
+    }
+    anim.current.vx = 0
+    anim.current.dragging = false
+
     const stride = itemStride
     const setWidth = stride * itemsLength
+    // 듀얼 세트 레이아웃이라 같은 idx에 대해 여러 좌표가 존재하지만,
+    // 실제 스크롤 가능한 최대 좌표(maxLeft)를 넘는 후보는 브라우저가 클램프하면서
+    // onScroll이 잘못된 인덱스로 덮어써버리므로 도달 가능한 후보만 사용한다.
+    const maxLeft = Math.max(0, slider.scrollWidth - slider.clientWidth)
 
     const base = setWidth + stride * idx
-    const candidates = [base, base - setWidth, base + setWidth]
+    const reachable = [base - setWidth, base, base + setWidth]
+      .filter(c => c >= 0 && c <= maxLeft)
+    // 모든 후보가 범위를 벗어나는 비정상 케이스는 첫 세트 위치로 폴백
+    const candidates = reachable.length ? reachable : [Math.min(Math.max(stride * idx, 0), maxLeft)]
+
     const currentLeft = slider.scrollLeft
     const targetLeft = candidates.reduce((best, c) => (
       Math.abs(c - currentLeft) < Math.abs(best - currentLeft) ? c : best
