@@ -71,10 +71,18 @@ hr {
   margin: 0;
 }
 
-.detailBodyWrap ul {
+.detailBodyWrap ul,
+.detailBodyWrap ol {
   margin: 0 0 24px 0;
   padding-left: 24px;
+}
+
+.detailBodyWrap ul {
   list-style: disc;
+}
+
+.detailBodyWrap ol {
+  list-style: decimal;
 }
 
 .detailBodyWrap li {

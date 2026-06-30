@@ -1,11 +1,10 @@
 ---
-title: "[KMF2025] 제이에이치솔루션 '자율형 DT 제조안전 플랫폼' 과제로 KMF 2025 전시 참가"
+title: "[행사][KMF2025] 제이에이치솔루션 '자율형 DT 제조안전 플랫폼' 과제로 KMF 2025 전시 참가"
 date: "2025-11-15"
 summary: "주요 에너지 기업과의 전략적 파트너십을 체결했습니다."
-featureImage: "/images/press/press_4.png"
-newsUrl: ""
-slug: "news-4"
-type: "news"
+featureImage: "/images/notice/notice_6.png"
+slug: "notice-6"
+type: "notice"
 ---
 
 AI와 만난 가상융합, 모두의 일상이 되다'라는 주제 아래, 제이에이치솔루션은 에너지 산업과 빌딩 운영의 복잡성을 가상현실에 구현하고 실시간으로 최적화하는 기술력을 시연했다.

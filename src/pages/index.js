@@ -54,15 +54,26 @@ const solutions = [
   { id: 'media', link: "/solutions/media", title: "미디어", desc: "복잡한 데이터를 보기 쉽게 시각화하여 핵심 정보를 즉시 이해하고 빠른 의결정을 지원", img: "/images/solutions/card_media.png", alt: "미디어" },
 ];
 
+const sortByDateDesc = (a, b) => {
+  const dateA = new Date(a.frontmatter.date).getTime()
+  const dateB = new Date(b.frontmatter.date).getTime()
+  return dateB - dateA
+}
+
 const IndexPage = ({ data }) => {
-  const pressReleases = data.allMarkdownRemark.nodes
+  // 보도자료 / 공지사항 목록 슬라이더 카드
+  const posts = React.useMemo(() => {
+    const merged = [...data.press.nodes, ...data.notice.nodes];
+
+    return [...merged].sort(sortByDateDesc);
+  }, [data.press.nodes, data.notice.nodes])
 
   const [current, setCurrent] = React.useState(1);
   const [transitionOn, setTransitionOn] = React.useState(true);
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   const solutionsSliderRef = React.useRef(null)
-  const pressSliderRef = React.useRef(null)
+  const postsSliderRef = React.useRef(null)
 
   const isMobile = useIsMobile();
 
@@ -127,9 +138,9 @@ const IndexPage = ({ data }) => {
     return () => clearInterval(timer);
   }, [handleHeroBannerNext]);
 
-  const pressSlider = useSlider({
-    ref: pressSliderRef,
-    itemsLength: pressReleases.length,
+  const postsSlider = useSlider({
+    ref: postsSliderRef,
+    itemsLength: posts.length,
     dragThreshold: 10,
     getHrefFromEvent: (e) => {
       const anchor = e.target && (e.target.closest ? e.target.closest('a, [role="link"]') : null)
@@ -333,21 +344,21 @@ const IndexPage = ({ data }) => {
           </div>
           <div className={styles.sliderWrap}>
             <div
-              ref={pressSliderRef}
+              ref={postsSliderRef}
               className={`${styles.solutionsSlider} slider-hide-scrollbar`}
-              style={{ paddingLeft: pressSlider.padOn ? `${pressSlider.gap}px` : 0 }}
-              onPointerDown={pressSlider.handlers.onPointerDown}
-              onPointerMove={pressSlider.handlers.onPointerMove}
-              onPointerUp={pressSlider.handlers.onPointerUp}
-              onPointerLeave={pressSlider.handlers.onPointerLeave}
-              onPointerCancel={pressSlider.handlers.onPointerCancel}
-              onClickCapture={pressSlider.handlers.onClickCapture}
+              style={{ paddingLeft: postsSlider.padOn ? `${postsSlider.gap}px` : 0 }}
+              onPointerDown={postsSlider.handlers.onPointerDown}
+              onPointerMove={postsSlider.handlers.onPointerMove}
+              onPointerUp={postsSlider.handlers.onPointerUp}
+              onPointerLeave={postsSlider.handlers.onPointerLeave}
+              onPointerCancel={postsSlider.handlers.onPointerCancel}
+              onClickCapture={postsSlider.handlers.onClickCapture}
             >
-              {pressReleases.concat(pressReleases).map((item, idx) => (
+              {posts.concat(posts).map((item, idx) => (
                 <LinkCard
                   item={item}
                   type="press"
-                  key={`press-${idx}-${item.frontmatter?.slug || idx}`}
+                  key={`post-${idx}-${item.frontmatter?.slug || idx}`}
                 />
               ))}
             </div>
@@ -355,12 +366,12 @@ const IndexPage = ({ data }) => {
         </div>
         {!isMobile && (
           <div className={styles.dots}>
-            {pressReleases.map((_, idx) => (
+            {posts.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => pressSlider.handleDotClick(idx)}
-                className={`${styles.dot} 
-                    ${pressSlider.current === idx ? styles.dotActive : ""
+                onClick={() => postsSlider.handleDotClick(idx)}
+                className={`${styles.dot}
+                    ${postsSlider.current === idx ? styles.dotActive : ""
                   }`}
                 aria-label={`프레스 ${idx + 1}번 슬라이드로 이동`}
               />
@@ -421,7 +432,8 @@ const IndexPage = ({ data }) => {
 function LinkCard({ item, type = 'solutions' }) {
   const isPress = type === 'press'
   // 카드 타입에 따라 props 매핑
-  const linkHref = isPress ? `/press/${item.frontmatter.slug}` : item.link
+  const postSection = item?.frontmatter?.type === 'notice' ? 'notice' : 'press'
+  const linkHref = isPress ? `/${postSection}/${item.frontmatter.slug}` : item.link
   const imgSrc = isPress ? (item.frontmatter.featureImage || '/images/none_feature.png') : item.img
   const imgAlt = isPress ? item.frontmatter.title : item.alt
   const title = isPress ? item.frontmatter.title : item.title
@@ -471,10 +483,10 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
+    press: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/src/content/press/" } }
       sort: { frontmatter: { date: DESC } }
-      limit: 6
+      limit: 3
     ) {
       nodes {
         frontmatter {
@@ -483,6 +495,23 @@ export const query = graphql`
           summary
           featureImage
           slug
+          type
+        }
+      }
+    }
+    notice: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/src/content/notice/" } }
+      sort: { frontmatter: { date: DESC } }
+      limit: 8
+    ) {
+      nodes {
+        frontmatter {
+          title
+          date
+          summary
+          featureImage
+          slug
+          type
         }
       }
     }
