@@ -206,9 +206,6 @@ export const query = graphql`
         contents
         slug
         type
-        pdfUrl
-        pdfLabel
-        pdfDownloadName
       }
     }
   }
