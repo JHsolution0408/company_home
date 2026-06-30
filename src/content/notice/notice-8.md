@@ -1,11 +1,10 @@
 ---
-title: "㈜제이에이치솔루션, 임직원 소통 강화를 위한 ‘문화의 날’ 행사 진행"
+title: "[소식] 임직원 소통 강화를 위한 ‘문화의 날’ 행사 진행"
 date: "2026-03-12"
 summary: "㈜제이에이치솔루션(대표이사 이정훈)은 임직원 간 소통을 활성화하고 건강한 조직문화를 조성하기 위해 ‘문화의 날’ 행사를 진행했다."
-featureImage: "/images/press/press_7.png"
-newsUrl: ""
-slug: "news-6"
-type: "news"
+featureImage: "/images/notice/notice_8.png"
+slug: "notice-8"
+type: "notice"
 ---
 
 ㈜제이에이치솔루션(대표이사 이정훈)은 임직원 간 소통을 활성화하고 건강한 조직문화를 조성하기 위해 ‘문화의 날’ 행사를 진행했다.

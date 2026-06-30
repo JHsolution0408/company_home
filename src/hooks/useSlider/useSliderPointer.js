@@ -4,35 +4,29 @@ import {
   exceededDragThreshold,
   DEFAULT_DRAG_THRESHOLD,
   DEFAULT_TAP_DISTANCE,
-  DEFAULT_TAP_TIME
-} from '../utils/slider'
+  DEFAULT_TAP_TIME,
+} from '../../utils/slider'
 
 /**
- * useSlider
- * 
- * ref를 전달받아 무한 스크롤을 지원하는 슬라이더.
- * 이동 임계값을 사용해 드래그와 터치를 구분하여 링크 이동 또는 슬라이더 드래그 동작을 수행합니다.
+ * useSliderPointer
+ *
+ * 포인터(터치/마우스/펜) 입력만 담당. 터치는 네이티브 스크롤에 위임하고
+ * 마우스/펜은 수동 scrollLeft 갱신 + 관성 트리거. 탭/클릭과 드래그를 구분해
+ * 드래그 중에는 링크 네비게이션(`navigate`)을 차단한다.
  */
-export function useSlider({
-  ref,                 // 스크롤 컨테이너에 대한 외부 React ref (필수)
-  itemsLength,         // 슬라이드될 아이템 개수 (필수)
-  dragThreshold = DEFAULT_DRAG_THRESHOLD,   // 드래그로 간주할 마우스/펜 이동 임계값(px)
-  tapDistance = DEFAULT_TAP_DISTANCE,       // 터치 탭 판정을 위한 거리 임계값(px)
-  tapTime = DEFAULT_TAP_TIME,               // 터치 탭 판정을 위한 시간 임계값(ms)
-  onIndexChange,       // 선택: 인덱스 변경 콜백(idx)
-  getHrefFromEvent,    // 선택: function(e) -> href 문자열; 제공 시 탭/클릭 확정 시 navigate(href) 호출
+export function useSliderPointer({
+  sliderRef,
+  itemStride,
+  itemsLength,
+  anim,
+  dragThreshold = DEFAULT_DRAG_THRESHOLD,
+  tapDistance = DEFAULT_TAP_DISTANCE,
+  tapTime = DEFAULT_TAP_TIME,
+  getHrefFromEvent,
+  updateIndexFromLeft,
+  runInertia,
 }) {
-  // React 훅 규칙을 지키기 위해 내부 ref는 조건 없이 항상 생성합니다.
-  const internalRef = React.useRef(null)
-  const sliderRef = ref ?? internalRef
-  const [current, setCurrent] = React.useState(0)
-  const [gap, setGap] = React.useState(0)
-  const [itemStride, setItemStride] = React.useState(0)
-  const [padOn, setPadOn] = React.useState(true)
-
-  const isNormalizing = React.useRef(false)
   const drag = React.useRef({ isDown: false, startX: 0, startLeft: 0 })
-  const anim = React.useRef({ rafId: 0, inertId: 0, nextLeft: 0, pending: false, lastX: 0, lastT: 0, vx: 0, dragging: false })
   const touchTap = React.useRef({ x: 0, y: 0, t: 0 })
   // 명시적 상호작용 상태
   const isPressingRef = React.useRef(false)
@@ -42,130 +36,6 @@ export function useSlider({
   // 해당 press 사이클 동안 포인터 이동이 1회라도 발생했는지
   const movedThisPressRef = React.useRef(false)
 
-  // 인덱스 갱신: 연속 스크롤 좌표를 단일 계산 함수로 통합하고,
-  // 같은 인덱스면 setState를 피해서 렌더를 최소화합니다.
-  const currentRef = React.useRef(0)
-  // 스크롤 좌표(left)로부터 현재 아이템 인덱스를 계산하고 변경 시 setState/콜백을 트리거
-  const updateIndexFromLeft = (left, stride, itemsLen) => {
-    if (!itemsLen || !stride) return
-    const setWidth = stride * itemsLen
-    // 음수 모듈러 보정 포함
-    const relRaw = left % setWidth
-    const rel = ((relRaw) + setWidth) % setWidth
-    let idx = Math.round(rel / stride)
-    if (idx >= itemsLen) idx = 0
-    if (idx < 0) idx = 0
-    if (currentRef.current !== idx) {
-      currentRef.current = idx
-      setCurrent(idx)
-      onIndexChange && onIndexChange(idx)
-    }
-  }
-
-  // 마운트/업데이트 시 gap/stride를 계산하고 스크롤을 가운데 세트로 배치
-  React.useEffect(() => {
-    const slider = sliderRef.current
-    if (!slider || !itemsLength) return
-    const first = slider.firstChild
-    if (!first) return
-
-    const computed = window.getComputedStyle(slider)
-    const gapStr = computed.gap || computed.columnGap || '30px'
-    const g = parseFloat(gapStr) || 30
-    setGap(g)
-
-    const stride = first.offsetWidth + g
-    const setWidth = stride * itemsLength
-    setItemStride(stride)
-
-    // 터치 기기에서 기본 제스처를 브라우저에 맡겨(iOS Safari 호환) 수평/수직 패닝 모두 허용
-    const prevTA = slider.style.touchAction
-    slider.dataset.prevTouchAction = prevTA
-    slider.style.touchAction = 'auto'
-    // iOS 관성 스크롤 활성화
-    const prevWO = slider.style.webkitOverflowScrolling
-    slider.dataset.prevWebkitOverflowScrolling = prevWO
-    slider.style.webkitOverflowScrolling = 'touch'
-
-    // 두 번째 세트의 시작 지점으로 배치
-    requestAnimationFrame(() => {
-      if (slider.scrollLeft < setWidth * 0.5) {
-        slider.scrollLeft = setWidth + (slider.scrollLeft || 0)
-      }
-    })
-
-    const onScroll = () => {
-      const maxScroll = slider.scrollWidth
-      const left = slider.scrollLeft
-      const epsilon = 1
-
-      if (padOn && left > 0) setPadOn(false)
-
-      // 양 끝 경계 정규화
-      if (!isNormalizing.current) {
-        if (left <= epsilon) {
-          isNormalizing.current = true
-          const prevBehavior = slider.style.scrollBehavior
-          slider.style.scrollBehavior = 'auto'
-          slider.scrollLeft = left + setWidth
-          slider.style.scrollBehavior = prevBehavior
-          isNormalizing.current = false
-          return
-        }
-        if (left + slider.clientWidth >= maxScroll - epsilon) {
-          isNormalizing.current = true
-          const prevBehavior = slider.style.scrollBehavior
-          slider.style.scrollBehavior = 'auto'
-          slider.scrollLeft = left - setWidth
-          slider.style.scrollBehavior = prevBehavior
-          isNormalizing.current = false
-          return
-        }
-      }
-
-      // 현재 스크롤 좌표로부터 인덱스를 항상 갱신 (드래그/관성 중에도)
-      updateIndexFromLeft(left, stride, itemsLength)
-    }
-
-    slider.addEventListener('scroll', onScroll)
-    return () => {
-      slider.removeEventListener('scroll', onScroll)
-
-      const prevTA = slider.dataset.prevTouchAction
-
-      if (prevTA !== undefined) {
-        slider.style.touchAction = prevTA
-      }
-
-      const prevWO = slider.dataset.prevWebkitOverflowScrolling
-
-      if (prevWO !== undefined) {
-        slider.style.webkitOverflowScrolling = prevWO
-      }
-    }
-  }, [itemsLength])
-
-  // 도트(인디케이터) 클릭 시 가장 가까운 동일 인덱스 위치로 스크롤하고 상태를 갱신
-  const handleDotClick = (idx) => {
-    const slider = sliderRef.current
-    if (!slider || !itemStride || !itemsLength) return
-    const stride = itemStride
-    const setWidth = stride * itemsLength
-
-    const base = setWidth + stride * idx
-    const candidates = [base, base - setWidth, base + setWidth]
-    const currentLeft = slider.scrollLeft
-    const targetLeft = candidates.reduce((best, c) => (
-      Math.abs(c - currentLeft) < Math.abs(best - currentLeft) ? c : best
-    ), candidates[0])
-
-    slider.scrollTo({ left: targetLeft, behavior: 'smooth' })
-    setCurrent(idx)
-    onIndexChange && onIndexChange(idx)
-  }
-
-  // 포인터 핸들러
-  // 포인터 캡처로 인한 타깃 변경을 고려하여 href를 견고하게 해석
   // 포인터 캡처 등으로 달라질 수 있는 이벤트 타깃에서 안전하게 링크 href를 추출
   const resolveHrefFromEvent = (e) => {
     let href = null
@@ -190,7 +60,6 @@ export function useSlider({
     return href
   }
 
-  // --- 명시적 상태를 사용하는 내부 상호작용 헬퍼 ---
   // 포인터 다운 시(터치/마우스/펜) 드래그 준비 상태로 전환하고 필요한 캡처/스타일을 설정
   const handleInteractionStart = (e) => {
     const slider = sliderRef.current
@@ -300,7 +169,7 @@ export function useSlider({
     anim.current.lastT = t
   }
 
-  // 터치 포인터 업 시 탭/드래그를 판정하고 공통 종료 처리 및 관성 스크롤 실행
+  // 터치 포인터 업 시 탭/드래그를 판정하고 공통 종료 처리 (관성은 네이티브에 위임)
   const handleInteractionEndTouch = (e) => {
     const slider = sliderRef.current
     if (!slider) return
@@ -330,42 +199,7 @@ export function useSlider({
     }
 
     // 드래그였다면 네이티브(iOS) 관성에 위임하고 JS 관성은 호출하지 않습니다.
-    // runInertia() 호출 제거: iOS Safari에서 네이티브 관성과 충돌 가능성 방지
     isDraggingRef.current = false
-  }
-
-  // 스와이프 효과
-  // 드래그 종료 후 잔여 속도를 기반으로 감속하며 스크롤하는 관성 애니메이션 실행
-  const runInertia = () => {
-    const slider = sliderRef.current
-
-    if (!slider) return
-
-    let vx = anim.current.vx
-
-    const decay = 0.95
-    const minV = 0.02
-
-    const hasInitialVelocity = Math.abs(vx) > minV
-
-    if (hasInitialVelocity) {
-      const step = () => {
-        anim.current.nextLeft = slider.scrollLeft - vx * 16
-        slider.scrollLeft = anim.current.nextLeft
-        // 관성 스크롤 중에도 인덱스를 동기화
-        updateIndexFromLeft(anim.current.nextLeft, itemStride, itemsLength)
-        vx *= decay
-        const stillHasVelocity = Math.abs(vx) > minV
-        const shouldContinueInertia = stillHasVelocity && !anim.current.dragging
-        
-        if (shouldContinueInertia) {
-          anim.current.inertId = requestAnimationFrame(step)
-        } else {
-          anim.current.inertId = 0
-        }
-      }
-      anim.current.inertId = requestAnimationFrame(step)
-    }
   }
 
   // 마우스/펜 포인터 업 시 클릭 여부를 판정하고 필요 시 링크 이동, 아니면 관성 스크롤 실행
@@ -429,24 +263,16 @@ export function useSlider({
     hadDraggedRef.current = false
   }
 
-  // 마우스 등을 누르고있을때
-  const onPointerDown = (e) => handleInteractionStart(e);
+  const onPointerDown = (e) => handleInteractionStart(e)
+  const onPointerMove = (e) => handleInteractionMove(e)
 
-  // 포인터 이동 시
-  const onPointerMove = (e) => handleInteractionMove(e);
-
-  // 마우스 등을 뗐을때
   const onPointerUp = (e) => {
     const slider = sliderRef.current
-
-    if (!slider) {
-      return;
-    }
+    if (!slider) return
 
     if (e.pointerType === 'touch') {
       return handleInteractionEndTouch(e)
     }
-
     return handleInteractionEndMousePen(e)
   }
 
@@ -478,17 +304,16 @@ export function useSlider({
     }
   }
 
+  // 외부(orchestrator)에서 dot 클릭 직전에 드래그 갱신 RAF를 정리할 수 있도록 노출
+  const cancelDragRaf = () => {
+    if (anim.current.rafId) {
+      cancelAnimationFrame(anim.current.rafId)
+      anim.current.rafId = 0
+      anim.current.pending = false
+    }
+  }
+
   return {
-    sliderRef,
-    current,
-    next: () => handleDotClick((current + 1) % (itemsLength || 1)),
-    // prev: () => handleDotClick((current - 1 + (itemsLength || 1)) % (itemsLength || 1)),
-    // goTo: (idx) => handleDotClick(idx),
-    itemStride,
-    gap,
-    padOn,
-    setPadOn,
-    handleDotClick,
     handlers: {
       onPointerDown,
       onPointerMove,
@@ -497,5 +322,6 @@ export function useSlider({
       onPointerCancel,
       onClickCapture,
     },
+    cancelDragRaf,
   }
 }
