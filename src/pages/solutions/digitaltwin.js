@@ -50,18 +50,6 @@ const DigitalTwinPage = ({ data }) => {
               }
             />
 
-            <div className={styles.videoBox}>
-              <div className={styles.video}>
-                <iframe
-                  className={styles.videoIframe}
-                  src="https://www.youtube.com/embed/DlPk9X3Hbrc"
-                  allow="autoplay"
-                  allowFullScreen
-                  title="YouTube video player"
-                />
-              </div>
-            </div>
-
             <div className={styles.videoContentGap}>
               <SectionTitle
                 title={
