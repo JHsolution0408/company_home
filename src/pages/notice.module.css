@@ -207,3 +207,18 @@
     font-size: 16px;
   }
 }
+
+.status,
+.error {
+  width: 100%;
+  margin: 0;
+  padding: 40px 20px;
+  border-top: 1px solid #CFD3D8;
+  border-bottom: 1px solid #CFD3D8;
+  color: #757B82;
+  text-align: center;
+}
+
+.error {
+  color: #b42318;
+}
