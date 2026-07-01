@@ -1,44 +1,33 @@
 import * as React from "react"
-import * as styles from "./techinsights.module.css"
 
 import Seo from "../components/seo"
 import Layout from "../components/layout"
-import { graphql, useStaticQuery } from "gatsby"
-import DownloadIcon from '../../static/icons/common/download-icon-light.svg';
+import DownloadIcon from "../../static/icons/common/download-icon-light.svg"
+import { apiAssetUrl, apiRequest, formatNoticeDate } from "../utils/api"
+import * as styles from "./techinsights.module.css"
 
-const PAGE_TITLE = "기술 인사이트";
-const PAGE_DESCRIPTION = "지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.";
+const PAGE_TITLE = "기술 인사이트"
+const PAGE_DESCRIPTION =
+  "지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다."
 
 const Techinsights = () => {
-  const data = useStaticQuery(graphql`
-    query InsightsListQuery {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/techinsights/.*.md$/" } }
-        sort: { frontmatter: { order: DESC } }
-      ) {
-        nodes {
-          id
-          frontmatter {
-            order
-            title
-            date
-            featureImage
-            author
-            slug
-            type
-            pdfUrl
-          }
-        }
-      }
-    }
-  `);
-  
-  const insights = data.allMarkdownRemark.nodes;
+  const [items, setItems] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState("")
 
-  // PDF 열기 함수 3Line 영역 링크 or 파일링크 추가
-  const handleOpenPdf = (url) => {
-    if (!url) return
-    window.open(url, "_blank", "noopener,noreferrer")
+  React.useEffect(() => {
+    let active = true
+    apiRequest("/api/content/techinsight")
+      .then(data => active && setItems(data.contents))
+      .catch(requestError => active && setError(requestError.message))
+      .finally(() => active && setLoading(false))
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const handleOpenPdf = url => {
+    if (url) window.open(apiAssetUrl(url), "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -48,66 +37,52 @@ const Techinsights = () => {
       subHeaderDescription={PAGE_DESCRIPTION}
       subHeaderBgImage="/images/banners/bg_techinsights.png"
     >
-      {/* 타이틀 영역 */}
       <div className={styles.container}>
         <div className={styles.titleWrap}>
           <div className={styles.titleBox}>
             <div className={styles.mainTitle}>
               <h1 className={styles.firstTitle}>
-                현장 적용 기술부터 미래 R&D 과제까지,&nbsp;
+                현장 적용 기술부터 미래 R&amp;D 과제까지,&nbsp;
                 <br className={styles.brForMobile} />
-                <span className={styles.secondTitle}>
-                  기술의 모든 것
-                </span>
+                <span className={styles.secondTitle}>기술의 모든 것</span>
               </h1>
             </div>
           </div>
           <div className={styles.titleBox}>
-            <h3 className={styles.subTitle}>
-              지속가능한 미래를 위한 JH SOLUTION의 핵심 기술과 깊이 있는 연구 분석 자료를 확인하실 수 있습니다.
-            </h3>
+            <h3 className={styles.subTitle}>{PAGE_DESCRIPTION}</h3>
           </div>
         </div>
-        {/* Insight List 영역 */}
         <div className={styles.listWrap}>
-          {insights.map(insight => (
-            <div 
-              key={insight.id} 
-              className={styles.list}
-            >
-              <img 
-                className={styles.insightImg} 
-                src={insight.frontmatter.featureImage}
-                alt="Insight Thumbnail"
+          {loading && <p className={styles.status}>기술 인사이트를 불러오는 중입니다.</p>}
+          {error && <p className={styles.error}>{error}</p>}
+          {!loading && !error && items.length === 0 && (
+            <p className={styles.status}>등록된 기술 인사이트가 없습니다.</p>
+          )}
+          {items.map(item => (
+            <div key={item.id} className={styles.list}>
+              <img
+                className={styles.insightImg}
+                src={apiAssetUrl(item.featureImageUrl) || "/images/none_feature.png"}
+                alt={item.title}
               />
               <div className={styles.contentBox}>
                 <div className={styles.titleWrap}>
-                  <h3 className={styles.title}>
-                    {insight.frontmatter.title}
-                  </h3>
+                  <h3 className={styles.title}>{item.title}</h3>
                 </div>
                 <div className={styles.postMeta}>
-                  <span>
-                    {insight.frontmatter.author}
-                  </span>
-                  <span className={styles.rectangle} />
-                  <span>
-                    {insight.frontmatter.date}
-                  </span>
+                  {item.author && <span>{item.author}</span>}
+                  {item.author && <span className={styles.rectangle} />}
+                  <span>{formatNoticeDate(item.publishedAt)}</span>
                 </div>
               </div>
-              <button 
+              <button
+                type="button"
                 className={styles.downloadWrap}
-                onClick={() => handleOpenPdf(insight.frontmatter.pdfUrl)}
+                onClick={() => handleOpenPdf(item.pdfUrl)}
               >
                 <span>PDF</span>
                 <span className={styles.pdfButtonIcon}>
-                  <img
-                    width={20}
-                    height={20}
-                    src={DownloadIcon}
-                    alt={"PDF Download"}
-                  />
+                  <img width={20} height={20} src={DownloadIcon} alt="" />
                 </span>
               </button>
             </div>
@@ -115,16 +90,11 @@ const Techinsights = () => {
         </div>
       </div>
     </Layout>
-  );
-}
-
-export const Head = () => {
-  return (
-    <Seo 
-      title={PAGE_TITLE}
-      description={PAGE_DESCRIPTION}
-    />
   )
 }
 
-export default Techinsights;
+export const Head = () => (
+  <Seo title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+)
+
+export default Techinsights
