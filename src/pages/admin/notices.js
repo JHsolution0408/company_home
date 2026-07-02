@@ -60,6 +60,13 @@ const toFormContent = content => ({
   publishedAt: localDate(content.publishedAt || content.createdAt),
 })
 
+const isUploadedAsset = value => String(value || "").startsWith("/api/uploads/")
+
+const removeImageMarkdownByUrl = (content, url) =>
+  String(content || "")
+    .replace(new RegExp(`\\n*!?\\[[^\\]]*\\]\\(${url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\)\\n*`, "g"), "\n\n")
+    .trim()
+
 const AdminContentPage = () => {
   const [admin, setAdmin] = React.useState(null)
   const [contents, setContents] = React.useState([])
@@ -187,6 +194,91 @@ const AdminContentPage = () => {
       setError(requestError.message)
     } finally {
       setUploading(false)
+    }
+  }
+
+  const deleteUploadedAsset = async url => {
+    if (!isUploadedAsset(url)) return
+    await apiRequest("/api/admin/uploads", {
+      method: "DELETE",
+      body: JSON.stringify({ url }),
+    })
+  }
+
+  const handleImageDelete = async image => {
+    if (!window.confirm(`"${image.name}" 파일을 삭제할까요?`)) return
+    setError("")
+    setMessage("")
+    try {
+      await deleteUploadedAsset(image.url)
+      setUploadedImages(current => current.filter(item => item.url !== image.url))
+      setForm(current => ({
+        ...current,
+        featureImageUrl:
+          current.featureImageUrl === image.url ? "" : current.featureImageUrl,
+        content: removeImageMarkdownByUrl(current.content, image.url),
+      }))
+      setMessage("이미지 파일을 삭제했습니다.")
+    } catch (requestError) {
+      setError(requestError.message)
+    }
+  }
+
+  const handleFeatureImageDelete = async () => {
+    if (!form.featureImageUrl) return
+    const shouldDeleteFile = isUploadedAsset(form.featureImageUrl)
+    const message = shouldDeleteFile
+      ? "대표 이미지 파일을 삭제하고 참조를 제거할까요?"
+      : "대표 이미지 참조를 제거할까요? 정적 이미지 파일은 삭제되지 않습니다."
+    if (!window.confirm(message)) return
+
+    setError("")
+    setMessage("")
+    try {
+      await deleteUploadedAsset(form.featureImageUrl)
+      setUploadedImages(current =>
+        current.filter(item => item.url !== form.featureImageUrl)
+      )
+      setForm(current => ({
+        ...current,
+        featureImageUrl: "",
+        content: removeImageMarkdownByUrl(current.content, current.featureImageUrl),
+      }))
+      setMessage(
+        shouldDeleteFile
+          ? "대표 이미지 파일을 삭제했습니다. 저장하면 콘텐츠에도 반영됩니다."
+          : "대표 이미지 참조를 제거했습니다. 저장하면 콘텐츠에도 반영됩니다."
+      )
+    } catch (requestError) {
+      setError(requestError.message)
+    }
+  }
+
+  const handlePdfDelete = async () => {
+    if (!form.pdfUrl) return
+    const shouldDeleteFile = isUploadedAsset(form.pdfUrl)
+    const message = shouldDeleteFile
+      ? "PDF 파일을 삭제하고 참조를 제거할까요?"
+      : "PDF 참조를 제거할까요? 정적 PDF 파일은 삭제되지 않습니다."
+    if (!window.confirm(message)) return
+
+    setError("")
+    setMessage("")
+    try {
+      await deleteUploadedAsset(form.pdfUrl)
+      setForm(current => ({
+        ...current,
+        pdfUrl: "",
+        pdfDownloadName: "",
+      }))
+      setUploadedPdfName("")
+      setMessage(
+        shouldDeleteFile
+          ? "PDF 파일을 삭제했습니다. 저장하면 콘텐츠에도 반영됩니다."
+          : "PDF 참조를 제거했습니다. 저장하면 콘텐츠에도 반영됩니다."
+      )
+    } catch (requestError) {
+      setError(requestError.message)
     }
   }
 
@@ -441,6 +533,13 @@ const AdminContentPage = () => {
                           본문 삽입
                         </button>
                       )}
+                      <button
+                        type="button"
+                        className={styles.imageDeleteAction}
+                        onClick={() => handleImageDelete(image)}
+                      >
+                        삭제
+                      </button>
                     </div>
                   </article>
                 ))}
@@ -454,6 +553,13 @@ const AdminContentPage = () => {
                   src={apiAssetUrl(form.featureImageUrl)}
                   alt="현재 대표 이미지"
                 />
+                <button
+                  type="button"
+                  className={styles.imageDeleteAction}
+                  onClick={handleFeatureImageDelete}
+                >
+                  대표 이미지 제거
+                </button>
               </div>
             )}
 
@@ -497,6 +603,13 @@ const AdminContentPage = () => {
                     <a href={apiAssetUrl(form.pdfUrl)} target="_blank" rel="noopener noreferrer">
                       파일 확인
                     </a>
+                    <button
+                      type="button"
+                      className={styles.fileDeleteButton}
+                      onClick={handlePdfDelete}
+                    >
+                      삭제
+                    </button>
                   </div>
                 )}
                 <label>
@@ -596,6 +709,13 @@ const AdminContentPage = () => {
                     <a href={apiAssetUrl(form.pdfUrl)} target="_blank" rel="noopener noreferrer">
                       파일 확인
                     </a>
+                    <button
+                      type="button"
+                      className={styles.fileDeleteButton}
+                      onClick={handlePdfDelete}
+                    >
+                      삭제
+                    </button>
                   </div>
                 )}
                 <label>

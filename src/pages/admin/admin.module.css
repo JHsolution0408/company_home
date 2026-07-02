@@ -150,6 +150,18 @@
   font-weight: 700;
 }
 
+.fileDeleteButton {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid #ffd1cc;
+  border-radius: 8px;
+  background: #fff0ee;
+  color: #b42318;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .imageUploader strong {
   display: block;
   font-size: 14px;
@@ -215,7 +227,8 @@
 }
 
 .imageAction,
-.imageActionActive {
+.imageActionActive,
+.imageDeleteAction {
   flex: 1;
   padding: 7px;
   border: 1px solid #cfd6d2;
@@ -231,6 +244,12 @@
   border-color: #1ba74e;
   background: #eaf8ef;
   color: #137333;
+}
+
+.imageDeleteAction {
+  border-color: #ffd1cc;
+  background: #fff0ee;
+  color: #b42318;
 }
 
 .currentFeatureImage {
