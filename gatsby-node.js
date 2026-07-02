@@ -49,6 +49,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   nodes.forEach(node => {
     const dir = node.parent?.relativeDirectory || ""
     const top = (dir.split("/")[0] || "").toLowerCase()
+    // 공지사항은 운영 DB/API에서 동적으로 제공한다.
+    if (["notice", "press", "techinsights", "projects"].includes(top)) return
     const basePath = top ? `/${top}` : ""
     const slug = node.frontmatter.slug || node.parent?.name
     const path = `${basePath}/${slug}`
@@ -65,4 +67,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     })
   })
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+  if (["/notice/", "/press/", "/projects/"].includes(page.path)) {
+    deletePage(page)
+    createPage({
+      ...page,
+      matchPath: `${page.path}*`,
+    })
+  }
 }
