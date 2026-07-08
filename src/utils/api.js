@@ -1,18 +1,18 @@
-const defaultApiBaseUrl = "https://dev.jh-solution.net"
+const defaultApiBaseUrl = "https://www.jh-solution.net"
 
 const getApiBaseUrl = () => {
   if (typeof window === "undefined") {
     return defaultApiBaseUrl
   }
 
-  const isLoopbackHost = /^(localhost|127\.0\.0\.1)$/i.test(
-    window.location.hostname
-  )
-  const defaultSameHostApiPort = isLoopbackHost ? "3000" : "13000"
-  const isLocalDevelopmentPort = window.location.port === "8060"
-  if (isLocalDevelopmentPort) {
-    return `${window.location.protocol}//${window.location.hostname}:${defaultSameHostApiPort}`
-  }
+  // const isLoopbackHost = /^(localhost|127\.0\.0\.1)$/i.test(
+  //   window.location.hostname
+  // )
+  // const defaultSameHostApiPort = isLoopbackHost ? "3000" : "13000"
+  // const isLocalDevelopmentPort = window.location.port === "8060"
+  // if (isLocalDevelopmentPort) {
+  //   return `${window.location.protocol}//${window.location.hostname}:${defaultSameHostApiPort}`
+  // }
 
   return defaultApiBaseUrl
 }
