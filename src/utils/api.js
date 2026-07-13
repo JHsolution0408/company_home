@@ -1,4 +1,4 @@
-const defaultApiBaseUrl = "https://www.jh-solution.net"
+const defaultApiBaseUrl = "https://dev.jh-solution.net"
 
 const getApiBaseUrl = () => {
   if (typeof window === "undefined") {
