@@ -17,7 +17,11 @@ module.exports = {
     siteUrl: require(`./site-env`).siteUrl,
   },
   plugins: [
-    `gatsby-plugin-sitemap`,
+    {
+      // 관리자 페이지는 noindex 이므로 사이트맵에서도 제외한다
+      resolve: `gatsby-plugin-sitemap`,
+      options: { excludes: [`/admin/*`] },
+    },
     `gatsby-plugin-svgr`,
     `gatsby-plugin-image`,
     {
