@@ -10,11 +10,13 @@
 module.exports = {
   siteMetadata: {
     title: `JHSOLUTION`,
-    description: `우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
+    description: `㈜제이에이치솔루션(JH솔루션, JHSOLUTION)은 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
     author: `JH`,
     image: `/images/og-image.png`,
     // canonical / og:url / sitemap 의 기준 주소. GATSBY_DEPLOY_ENV 에 따라 운영/개발 주소가 결정된다.
     siteUrl: require(`./site-env`).siteUrl,
+    // FIXME: '제이에이치솔루션', 'JHSOLUTION' 등으로 모두 검색되도록 검토 필요
+    keywords: ['제이에이치솔루션', 'JH솔루션', 'jhsolution', 'JH solution', '제이에이치 솔루션'],
   },
   plugins: [
     {
