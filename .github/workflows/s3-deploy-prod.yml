@@ -21,6 +21,9 @@ jobs:
           nvm use 24
 
       - name: Build Project
+        env:
+          # 운영 배포에서만 명시. canonical=www.jh-solution.net, 색인 허용, 운영 네이버 인증코드
+          DEPLOY_ENV: 'production'
         run: |
           # 러너가 코드를 가져온 폴더 내부에서 직접 수행
           npm install
