@@ -31,6 +31,9 @@ jobs:
 
       # 빌드 폴더 생성
       - name: Build Project
+        env:
+          # 개발 배포. DEPLOY_ENV 를 production 으로 주지 않는 한 noindex + dev 네이버 인증코드
+          DEPLOY_ENV: 'development'
         run: |
           # 러너가 코드를 가져온 폴더 내부에서 직접 수행
           npm install
