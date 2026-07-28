@@ -25,8 +25,8 @@ jobs:
 
       - name: Build Project
         env:
-          GATSBY_NOINDEX: 'true' # 개발 배포는 검색엔진 색인 제외 (noindex 메타 태그)
-          SITE_URL: 'https://dev.jh-solution.net'
+          # 개발 배포. DEPLOY_ENV 를 production 으로 주지 않는 한 noindex + dev 네이버 인증코드
+          DEPLOY_ENV: 'development'
         run: |
           # 러너가 코드를 가져온 폴더 내부에서 직접 수행
           npm install
