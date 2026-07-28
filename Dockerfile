@@ -19,7 +19,7 @@ RUN npm ci --no-audit --no-fund
 COPY . .
 # 기본값은 개발 배포(noindex). 운영 이미지는 --build-arg DEPLOY_ENV=production 으로 빌드한다
 ARG DEPLOY_ENV=development
-RUN DEPLOY_ENV=$DEPLOY_ENV npm run build
+RUN npm run build
 
 # Runtime stage (serve the prebuilt static site)
 FROM node:20-bookworm-slim AS runner
