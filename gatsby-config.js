@@ -13,7 +13,7 @@ module.exports = {
     description: `우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
     author: `JH`,
     image: `/images/og-image.png`,
-    // canonical / og:url / sitemap 의 기준 주소. DEPLOY_ENV 에 따라 운영/개발 주소가 결정된다.
+    // canonical / og:url / sitemap 의 기준 주소. GATSBY_DEPLOY_ENV 에 따라 운영/개발 주소가 결정된다.
     siteUrl: require(`./site-env`).siteUrl,
   },
   plugins: [

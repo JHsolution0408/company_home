@@ -1,33 +1,17 @@
-const defaultApiBaseUrl = "https://www.jh-solution.net"
-
-const getApiBaseUrl = () => {
-  if (typeof window === "undefined") {
-    return defaultApiBaseUrl
-  }
-
-  // const isLoopbackHost = /^(localhost|127\.0\.0\.1)$/i.test(
-  //   window.location.hostname
-  // )
-  // const defaultSameHostApiPort = isLoopbackHost ? "3000" : "13000"
-  // const isLocalDevelopmentPort = window.location.port === "8060"
-  // if (isLocalDevelopmentPort) {
-  //   return `${window.location.protocol}//${window.location.hostname}:${defaultSameHostApiPort}`
-  // }
-
-  return defaultApiBaseUrl
-}
+// API(/api/*)는 사이트와 같은 호스트에서 서빙된다 (site-env.js 참고)
+import { siteUrl as apiBaseUrl } from "../../site-env"
 
 export const apiAssetUrl = value => {
   if (!value || /^(https?:)?\/\//i.test(value) || !value.startsWith("/api/")) {
     return value
   }
-  return `${getApiBaseUrl()}${value}`
+  return `${apiBaseUrl}${value}`
 }
 
 export const apiRequest = async (path, options = {}) => {
   const isFormData =
     typeof FormData !== "undefined" && options.body instanceof FormData
-  const response = await fetch(`${getApiBaseUrl()}${path}`, {
+  const response = await fetch(`${apiBaseUrl}${path}`, {
     credentials: "include",
     ...options,
     headers: {

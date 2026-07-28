@@ -17,8 +17,8 @@ RUN npm ci --no-audit --no-fund
 
 # Copy the rest of the source and build
 COPY . .
-# 기본값은 개발 배포(noindex). 운영 이미지는 --build-arg DEPLOY_ENV=production 으로 빌드한다
-ARG DEPLOY_ENV=development
+# 기본값은 개발 배포(noindex). 운영 이미지는 --build-arg GATSBY_DEPLOY_ENV=production 으로 빌드한다
+ARG GATSBY_DEPLOY_ENV=development
 RUN npm run build
 
 # Runtime stage (serve the prebuilt static site)

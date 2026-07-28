@@ -19,25 +19,13 @@ exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
   // Set document language; page-level meta tags are handled in src/components/seo.js
   setHtmlAttributes({ lang: `ko` })
 
-  const head = [
-    React.createElement("meta", {
-      key: "naver-site-verification",
-      name: "naver-site-verification",
-      content: NAVER_SITE_VERIFICATION,
-    }),
-  ]
+  const meta = (name, content) =>
+    React.createElement("meta", { key: name, name, content })
 
   // 개발 배포(dev.jh-solution.net)는 검색엔진에 노출되지 않도록 noindex 처리
   // https://developers.google.com/search/docs/crawling-indexing/block-indexing
-  if (!isProd) {
-    head.push(
-      React.createElement("meta", {
-        key: "robots",
-        name: "robots",
-        content: "noindex, nofollow",
-      })
-    )
-  }
-
-  setHeadComponents(head)
+  setHeadComponents([
+    meta("naver-site-verification", NAVER_SITE_VERIFICATION),
+    ...(isProd ? [] : [meta("robots", "noindex, nofollow")]),
+  ])
 }
