@@ -21,6 +21,8 @@ jobs:
           nvm use 24
 
       - name: Build Project
+        env:
+          SITE_URL: 'https://www.jh-solution.net' # canonical 기준 주소
         run: |
           # 러너가 코드를 가져온 폴더 내부에서 직접 수행
           npm install

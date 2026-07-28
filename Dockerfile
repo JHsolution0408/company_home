@@ -17,7 +17,10 @@ RUN npm ci --no-audit --no-fund
 
 # Copy the rest of the source and build
 COPY . .
-RUN npm run build
+# 개발 배포 이미지는 GATSBY_NOINDEX=true 로 빌드하여 검색엔진 색인에서 제외한다
+ARG GATSBY_NOINDEX
+ARG SITE_URL
+RUN GATSBY_NOINDEX=$GATSBY_NOINDEX SITE_URL=$SITE_URL npm run build
 
 # Runtime stage (serve the prebuilt static site)
 FROM node:20-bookworm-slim AS runner

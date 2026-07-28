@@ -24,6 +24,9 @@ jobs:
           nvm use 24
 
       - name: Build Project
+        env:
+          GATSBY_NOINDEX: 'true' # 개발 배포는 검색엔진 색인 제외 (noindex 메타 태그)
+          SITE_URL: 'https://dev.jh-solution.net'
         run: |
           # 러너가 코드를 가져온 폴더 내부에서 직접 수행
           npm install

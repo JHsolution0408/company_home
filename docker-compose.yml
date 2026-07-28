@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        GATSBY_NOINDEX: "true" # dev.jh-solution.net 은 색인 제외
+        SITE_URL: "https://dev.jh-solution.net"
     image: company_home:latest
     ports:
       - "8060:8060"

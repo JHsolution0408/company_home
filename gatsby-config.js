@@ -13,7 +13,8 @@ module.exports = {
     description: `우리는 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
     author: `JH`,
     image: `/images/og-image.png`,
-    siteUrl: `https://dev.jh-solution.net/`,
+    // canonical / og:url / sitemap 의 기준 주소. 개발 배포는 SITE_URL 로 dev 주소를 주입한다.
+    siteUrl: process.env.SITE_URL || `https://www.jh-solution.net`,
   },
   plugins: [
     `gatsby-plugin-sitemap`,
