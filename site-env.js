@@ -1,17 +1,14 @@
 /**
  * 배포 환경 판별 (빌드 타임).
- * 빌드 시 DEPLOY_ENV=production 을 명시한 경우에만 운영 배포로 취급한다.
- * 값이 없거나 오타가 나면 개발 배포로 간주하므로, 실수로 색인이 열리지 않는다.
+ * GATSBY_ 접두사가 있어야 브라우저 번들(src)에도 값이 주입된다.
+ * 플래그가 없거나 오타면 개발 배포로 간주 → 색인/운영 API 가 실수로 열리지 않는다.
  */
 
-const SITES = {
-  production: `https://www.jh-solution.net`,
-  development: `https://dev.jh-solution.net`,
-}
+const isProd = process.env.GATSBY_DEPLOY_ENV === `production`
 
-const isProd = process.env.DEPLOY_ENV === `production`
+// 사이트와 API(/api/*)가 같은 CloudFront 배포에 물려 있어 호스트가 동일하다.
+const siteUrl = isProd
+  ? `https://www.jh-solution.net`
+  : `https://dev.jh-solution.net`
 
-module.exports = {
-  isProd,
-  siteUrl: isProd ? SITES.production : SITES.development,
-}
+module.exports = { isProd, siteUrl }
