@@ -1,32 +1,22 @@
 
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import SectionTitle from "../../components/template/SectionTitle"
 import ImageCard from "../../components/template/ImageCard"
 import * as styles from '../../pages/company/vision-mission.module.css';
 
-export const query = graphql`
-  query EnergyPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/energy.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "에너지 관리",
+  description: "에너지 소비를 실시간 모니터링하고 최적화합니다.",
+}
 
-const EnergyManagementPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+const EnergyManagementPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_project.png"
     >
       <div className={styles.container}>
@@ -129,16 +119,6 @@ const EnergyManagementPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 export default EnergyManagementPage;
-

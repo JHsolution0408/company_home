@@ -1,6 +1,5 @@
 
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
@@ -8,27 +7,17 @@ import SectionTitle from "../../components/template/SectionTitle"
 import ImageCard from "../../components/template/ImageCard"
 
 
-export const query = graphql`
-  query SimulationPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/simulation.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "시뮬레이션",
+  description: "보이지 않는 흐름을 시각화하고, 불확실한 미래를 데이터로 검증합니다.",
+}
 
-const SimulationPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
+const SimulationPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_simulation.png"
     >
       <div className={styles.container}>
@@ -122,16 +111,7 @@ const SimulationPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 
 export default SimulationPage;

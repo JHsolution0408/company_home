@@ -1,5 +1,4 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
@@ -8,27 +7,17 @@ import SectionMovieTitle from "../../components/template/SectionMovieTitle";
 import ImageCard from "../../components/template/ImageCard"
 
 
-export const query = graphql`
-  query MediaPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/media.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "미디어",
+  description: "정적인 데이터에 생명력을 불어넣는 AI 기술과 무한한 가능성을 확장하는 XR 플랫폼으로, 상상이 현실이 되는 초실감 미디어 경험을 선사합니다.",
+}
 
-const MediaPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
+const MediaPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_media.png"
     >
       <div className={styles.container}>
@@ -307,16 +296,6 @@ const MediaPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 export default MediaPage;
-
