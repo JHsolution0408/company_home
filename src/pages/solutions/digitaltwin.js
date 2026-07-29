@@ -1,5 +1,4 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
@@ -7,27 +6,17 @@ import SectionTitle from "../../components/template/SectionTitle"
 import ImageCard from "../../components/template/ImageCard"
 
 
-export const query = graphql`
-  query DigitalTwinPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/digital-twin.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "디지털 트윈",
+  description: "현실을 정밀하게 모사하는 디지털 트윈으로 운영 효율을 높입니다.",
+}
 
-const DigitalTwinPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
+const DigitalTwinPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_digitaltwin.png"
     >
       <div className={styles.container}>
@@ -97,15 +86,6 @@ const DigitalTwinPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 export default DigitalTwinPage;

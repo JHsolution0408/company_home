@@ -1,33 +1,22 @@
 
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
 import SectionTitle from "../../components/template/SectionTitle"
 import ImageCard from "../../components/template/ImageCard"
 
-export const query = graphql`
-  query JhaionEnginePageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/jhaion-engine.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "JHAION 엔진",
+  description: "초거대 AI와 공학적 시뮬레이션의 융합, 세상에 없던 에너지 최적화의 기준을 만듭니다.",
+}
 
-const JhaionEnginePage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
+const JhaionEnginePage = () => {
   return (
     <Layout
       type={'dark'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_jhaion.png"
     >
       <div className={styles.container}>
@@ -87,15 +76,6 @@ const JhaionEnginePage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 export default JhaionEnginePage;
