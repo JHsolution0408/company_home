@@ -6,9 +6,10 @@
 
 const isProd = process.env.GATSBY_DEPLOY_ENV === `production`
 
-// 사이트와 API(/api/*)가 같은 CloudFront 배포에 물려 있어 호스트가 동일하다.
-const siteUrl = isProd
-  ? `https://www.jh-solution.net`
-  : `https://dev.jh-solution.net`
+// SEO 기준 주소를 운영웹 대표 주소로 설정
+const prodUrl = `https://www.jh-solution.net`
 
-module.exports = { isProd, siteUrl }
+// 현재 배포된 실제 주소.
+const siteUrl = isProd ? prodUrl : `https://dev.jh-solution.net`
+
+module.exports = { isProd, siteUrl, prodUrl }

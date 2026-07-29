@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
-const { isProd, siteUrl } = require(`./site-env`)
+const { isProd, siteUrl, prodUrl } = require(`./site-env`)
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -15,8 +15,10 @@ module.exports = {
     description: `㈜제이에이치솔루션(JH솔루션, JHSOLUTION)은 데이터와 물리 법칙을 융합한 독자적인 기술로 산업의 난제를 해결합니다. 에너지 최적화를 넘어, 인류와 환경이 공존하는 탄소 중립 사회의 기술적 표준이 되겠습니다.`,
     author: `JH`,
     image: `/images/og-image.png`,
-    // canonical / og:url / sitemap 의 기준 주소. GATSBY_DEPLOY_ENV 에 따라 운영/개발 주소가 결정된다.
+    // sitemap / og:image 절대경로의 기준 주소. GATSBY_DEPLOY_ENV 에 따라 운영/개발 주소가 결정된다.
     siteUrl,
+    // canonical / og:url 기준 주소 (개발 배포에서도 운영 주소)
+    prodUrl,
     // 사명 표기 변형. Organization 구조화 데이터(gatsby-ssr.js)에서 읽어 쓴다.
     alternateName: [
       `제이에이치솔루션`,
@@ -35,7 +37,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: siteUrl,
+        host: siteUrl, // robots.txt 가 실제로 서빙되는 호스트
         sitemap: `${siteUrl}/sitemap-index.xml`, // gatsby-plugin-sitemap v5+ 기준
         policy: isProd
           ? [
