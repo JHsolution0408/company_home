@@ -1,5 +1,4 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../../components/layout"
 import Seo from "../../components/seo";
 import * as styles from "../company/vision-mission.module.css";
@@ -7,27 +6,17 @@ import SectionTitle from "../../components/template/SectionTitle"
 import ImageCard from "../../components/template/ImageCard"
 
 
-export const query = graphql`
-  query AiPageQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/ai.md$/" }) {
-      frontmatter {
-        title
-        description
-        slug
-      }
-      html
-    }
-  }
-`;
+const pageMeta = {
+  title: "인공지능",
+  description: "머신러닝 기반의 지능형 솔루션을 제공합니다.",
+}
 
-const AiPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
+const AiPage = () => {
   return (
     <Layout
       type={'light'}
-      subHeaderTitle={frontmatter.title}
-      subHeaderDescription={frontmatter.description}
+      subHeaderTitle={pageMeta.title}
+      subHeaderDescription={pageMeta.description}
       subHeaderBgImage="/images/banners/bg_ai.png"
     >
       <div className={styles.container}>
@@ -103,15 +92,6 @@ const AiPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Seo 
-      title={frontmatter.title}
-      description={frontmatter.description}
-    />
-  );
-}
+export const Head = () => <Seo title={pageMeta.title} description={pageMeta.description} />
 
 export default AiPage;
