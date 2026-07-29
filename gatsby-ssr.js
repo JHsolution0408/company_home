@@ -5,7 +5,7 @@
  */
 
 const React = require("react")
-const { isProd, siteUrl } = require("./site-env")
+const { isProd, prodUrl } = require("./site-env")
 const { siteMetadata } = require("./gatsby-config")
 
 // 한글 상호("제이에이치솔루션") 검색에 잡히도록 회사 정보를 구조화 데이터로 제공한다
@@ -15,8 +15,8 @@ const ORGANIZATION_JSON_LD = {
   "@type": "Organization",
   name: "㈜제이에이치솔루션",
   alternateName: siteMetadata.alternateName,
-  url: siteUrl,
-  logo: `${siteUrl}/images/og-image.png`,
+  url: prodUrl,
+  logo: `${prodUrl}/images/og-image.png`,
   telephone: "+82-2-6404-1607",
   address: {
     "@type": "PostalAddress",

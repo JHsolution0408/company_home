@@ -20,6 +20,7 @@ function Seo({ description, title, children, image }) {
             description
             author
             siteUrl
+            prodUrl
           }
         }
       }
@@ -28,10 +29,13 @@ function Seo({ description, title, children, image }) {
 
   const siteName = site.siteMetadata?.title
   const siteUrl = site.siteMetadata?.siteUrl?.replace(/\/$/, "") || ""
+  // 개발 배포도 canonical / og:url 은 운영 주소로 내보내 대표 URL 이 dev 로 잡히지 않게 한다
+  const canonicalHost =
+    site.siteMetadata?.prodUrl?.replace(/\/$/, "") || siteUrl
 
   const metaDescription = description || site.siteMetadata.description
   const fullTitle = title ? `${title} | ${siteName}` : siteName
-  const ogUrl = `${siteUrl}${pathname || ""}`
+  const ogUrl = `${canonicalHost}${pathname || ""}`
 
   // Absolute image URL (prefer explicit image, fallback to default)
   const ogImage = image
