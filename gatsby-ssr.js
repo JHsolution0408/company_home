@@ -6,6 +6,7 @@
 
 const React = require("react")
 const { isProd, siteUrl } = require("./site-env")
+const { siteMetadata } = require("./gatsby-config")
 
 // 한글 상호("제이에이치솔루션") 검색에 잡히도록 회사 정보를 구조화 데이터로 제공한다
 // https://developers.google.com/search/docs/appearance/structured-data/organization
@@ -13,7 +14,7 @@ const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "㈜제이에이치솔루션",
-  alternateName: ["제이에이치솔루션", "JHSOLUTION", "JH솔루션", "JH Solution"],
+  alternateName: siteMetadata.alternateName,
   url: siteUrl,
   logo: `${siteUrl}/images/og-image.png`,
   telephone: "+82-2-6404-1607",

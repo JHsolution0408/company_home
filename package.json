@@ -13,6 +13,7 @@
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5.15.0",
     "gatsby-plugin-sitemap": "^6.15.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-svgr": "latest",
     "gatsby-source-filesystem": "^5.15.0",
     "gatsby-transformer-remark": "^6.15.0",
@@ -22,7 +23,6 @@
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.8",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
     "@testing-library/jest-dom": "^6.5.0",
@@ -30,7 +30,8 @@
     "babel-jest": "^29.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^2.8.8"
   },
   "keywords": [
     "gatsby"
