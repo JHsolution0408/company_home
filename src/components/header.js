@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { useLocation } from "@reach/router"
 import * as styles from "./header.module.css"
 import Sidebar from "./sidebar";
+import { MENU, buildItemPath } from "../data/nav";
 
 import LogoDefault from '../images/logo/jhsolution-logo.svg';
 import LogoWhite from '../images/logo/jhsolution-logo-white.svg';
@@ -11,39 +12,6 @@ import HamburgerIcon from '/static/icons/common/hamburger-menu-icon.svg';
 import HamburgerIconWhite from '/static/icons/common/hamburger-menu-icon-white.svg';
 
 const MOBILE_BREAKPOINT = 1000
-
-const solutionItems = [
-  { name: "JHAION 엔진", slug: "jhaion-engine" },
-  { name: "에너지 관리", slug: "energy" },
-  { name: "시뮬레이션", slug: "simulation" },
-  { name: "인공지능", slug: "ai" },
-  { name: "디지털트윈", slug: "digitaltwin" },
-  { name: "미디어", slug: "media" },
-]
-
-const companyItems = [
-  { name: "비전 및 미션", slug: "vision-mission" },
-  { name: "JHAION 개발 배경", slug: "jhaion-background" },
-  { name: "협력 네트워크", slug: "partners" },
-]
-
-const pressItems = [
-  { name: "보도자료", slug: "press" },
-  { name: "기술 인사이트", slug: "techinsights" },
-  { name: "공지사항", slug: "notice" },
-]
-
-const MENU = [
-  { key: "company", label: "회사소개", basePath: "/company", items: companyItems },
-  { key: "solutions", label: "솔루션", basePath: "/solutions", items: solutionItems },
-  { key: "projects", label: "프로젝트", basePath: "/projects" },
-  { key: "press", label: "홍보센터", basePath: "", items: pressItems, matchPaths: ["/press", "/techinsights", "/notice"] },
-]
-
-const buildItemPath = (menu, item) => {
-  if (item.to) return item.to
-  return `${menu.basePath}/${item.slug}`.replace(/\/$/, "");
-}
 
 function Header({ type = "light", bgImage, subHeader }) {
   const { pathname } = useLocation();
