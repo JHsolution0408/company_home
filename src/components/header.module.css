@@ -81,6 +81,22 @@
   display: none;
 }
 
+/* 메뉴 목록 (nav > ul > li). 전역 ul/li 여백·불릿 초기화 */
+.menuList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menuList li {
+  margin: 0;
+}
+
 /* Menu group wrapper (each dropdown group) */
 .menuGroup {
   position: relative;
@@ -161,6 +177,8 @@
   z-index: var(--z-index-level-100);
   border-radius: 20px;
   padding: 20px;
+  margin: 0;
+  list-style: none;
   /* 기본적으로 드롭다운 숨김 */
   opacity: 0;
   visibility: hidden;

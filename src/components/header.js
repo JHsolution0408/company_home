@@ -151,7 +151,7 @@ function Header({ type = "light", bgImage, subHeader }) {
           >
             <div className={styles.logo}>
               <Link to="/" className={styles.logoLink}>
-                <img src={logoSrc} width={53} height={40} alt="JH SOLUTION Logo" />
+                <img src={logoSrc} width={53} height={40} alt="제이에이치솔루션" />
               </Link>
             </div>
 
@@ -161,61 +161,55 @@ function Header({ type = "light", bgImage, subHeader }) {
               role="navigation"
               aria-label="데스크탑 내비게이션"
             >
-              {MENU.map((menu) => {
-                const active = isActiveMenu(menu);
-                // dropdown menu
-                if (menu.items?.length) {
+              <ul className={styles.menuList}>
+                {MENU.map((menu) => {
+                  const active = isActiveMenu(menu);
+                  const menuButtonClass = [
+                    styles.menuButton,
+                    useDarkDesktop ? styles.menuButtonDarkTheme : "",
+                    active ? styles.menuButtonSelected : "",
+                  ].join(" ");
+
                   return (
-                    <div key={menu.key} className={styles.menuGroup}>
-                      <button
-                        type="button"
-                        className={[
-                          styles.menuButton,
-                          useDarkDesktop ? styles.menuButtonDarkTheme : "",
-                          active ? styles.menuButtonSelected : "",
-                        ].join(" ")}
-                      >
-                        {menu.label}
+                    <li key={menu.key} className={styles.menuGroup}>
+                      {menu.items?.length ? (
+                        <>
+                          <button type="button" className={menuButtonClass}>
+                            {menu.label}
+                          </button>
 
-                        <div className={styles.dropdownDesktop}>
-                          {menu.items.map((item) => (
-                            <Link
-                              key={item.slug || item.name}
-                              to={buildItemPath(menu, item)}
-                              className={[
-                                styles.dropdownLink,
-                                isActiveSubMenu(menu, item)
-                                  ? styles.subMenuButtonSelected
-                                  : "",
-                                ].join(" ")
-                              }
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </button>
-                    </div>
+                          <ul className={styles.dropdownDesktop}>
+                            {menu.items.map((item) => (
+                              <li key={item.slug || item.name}>
+                                <Link
+                                  to={buildItemPath(menu, item)}
+                                  className={[
+                                    styles.dropdownLink,
+                                    isActiveSubMenu(menu, item)
+                                      ? styles.subMenuButtonSelected
+                                      : "",
+                                  ].join(" ")}
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  {item.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      ) : (
+                        <Link
+                          to={menu.basePath}
+                          className={menuButtonClass}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {menu.label}
+                        </Link>
+                      )}
+                    </li>
                   )
-                }
-
-                return (
-                  <div key={menu.key} className={styles.menuGroup}>
-                    <Link
-                      to={menu.basePath}
-                      className={[
-                        styles.menuButton,
-                        useDarkDesktop ? styles.menuButtonDarkTheme : "",
-                        active ? styles.menuButtonSelected : "",
-                      ].join(" ")}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {menu.label}
-                    </Link>
-                  </div>
-                )
-              })}
+                })}
+              </ul>
             </nav>
 
             <div className={styles.rightControls}>

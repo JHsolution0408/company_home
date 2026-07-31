@@ -66,63 +66,61 @@ function Sidebar({
         aria-label="모바일 사이드바 내비게이션"
         aria-hidden={!isMenuOpen}
       >
-        {menu.map((menu) => {
-          const active = isActiveMenu(menu)
-          const opened = openKey === menu.key
+        <ul className={styles.menuList}>
+          {menu.map((menu) => {
+            const active = isActiveMenu(menu)
+            const opened = openKey === menu.key
 
-          if (menu.items?.length) {
             return (
-              <div key={menu.key} className={styles.menuGroup}>
-                <button
-                  type="button"
-                  className={`${styles.menuButton} ${active ? styles.menuButtonSelected : ""}`}
-                  onClick={() => toggleMenu(menu.key)}
-                  aria-expanded={opened}
-                  aria-controls={`sidebar-group-${menu.key}`}
-                >
-                  <span>{menu.label}</span>
-                  <ChevronIconComponent isShow={opened} />
-                </button>
-
-                <div
-                  id={`sidebar-group-${menu.key}`}
-                  className={`${styles.dropdownMobileContainer} ${
-                    opened ? styles.dropdownOpenMobile : ""
-                  }`}
-                >
-                  {menu.items.map((item) => (
-                    <Link
-                      key={item.slug || item.name}
-                      to={buildItemPath(menu, item)}
-                      className={[
-                        styles.dropdownLink,
-                        isActiveSubMenu(menu, item) ? styles.activeLink : "",
-                      ].join(" ")}
-                      onClick={handleNavClick}
+              <li key={menu.key} className={styles.menuGroup}>
+                {menu.items?.length ? (
+                  <>
+                    <button
+                      type="button"
+                      className={`${styles.menuButton} ${active ? styles.menuButtonSelected : ""}`}
+                      onClick={() => toggleMenu(menu.key)}
+                      aria-expanded={opened}
+                      aria-controls={`sidebar-group-${menu.key}`}
                     >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )
-          }
+                      <span>{menu.label}</span>
+                      <ChevronIconComponent isShow={opened} />
+                    </button>
 
-          return (
-            <Link
-              key={menu.key}
-              to={menu.basePath}
-              className={[
-                styles.navLink,
-              ].join(" ")}
-              onClick={handleNavClick}
-            >
-              <button type="button" className={styles.menuButton}>
-                <span>{menu.label}</span>
-              </button>
-            </Link> 
-          )
-        })}
+                    <ul
+                      id={`sidebar-group-${menu.key}`}
+                      className={`${styles.dropdownMobileContainer} ${
+                        opened ? styles.dropdownOpenMobile : ""
+                      }`}
+                    >
+                      {menu.items.map((item) => (
+                        <li key={item.slug || item.name} className={styles.dropdownItem}>
+                          <Link
+                            to={buildItemPath(menu, item)}
+                            className={[
+                              styles.dropdownLink,
+                              isActiveSubMenu(menu, item) ? styles.activeLink : "",
+                            ].join(" ")}
+                            onClick={handleNavClick}
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <Link
+                    to={menu.basePath}
+                    className={`${styles.navLink} ${styles.menuButton}`}
+                    onClick={handleNavClick}
+                  >
+                    <span>{menu.label}</span>
+                  </Link>
+                )}
+              </li>
+            )
+          })}
+        </ul>
       </nav>
     </>
   )
