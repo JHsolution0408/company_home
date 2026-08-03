@@ -7,6 +7,7 @@
 const React = require("react")
 const { isProd, prodUrl } = require("./site-env")
 const { siteMetadata } = require("./gatsby-config")
+const { NAV_LINKS } = require("./src/data/nav")
 
 // 한글 상호("제이에이치솔루션") 검색에 잡히도록 회사 정보를 구조화 데이터로 제공한다
 // https://developers.google.com/search/docs/appearance/structured-data/organization
@@ -26,6 +27,19 @@ const ORGANIZATION_JSON_LD = {
     streetAddress: "가산디지털2로 135, 1동 1701-1703호(가산동, 가산어반워크)",
     postalCode: "08504",
   },
+}
+
+// 사이트링크(검색결과 하위 링크) 후보를 검색엔진에 알린다. 노출 여부는 구글이 결정한다.
+// https://developers.google.com/search/docs/appearance/sitelinks
+const SITE_NAVIGATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: NAV_LINKS.map((link, index) => ({
+    "@type": "SiteNavigationElement",
+    position: index + 1,
+    name: link.name,
+    url: `${prodUrl}${link.path}`,
+  })),
 }
 
 // 네이버 서치어드바이저 사이트 소유확인 코드 (운영/개발 사이트가 별도 등록되어 있음)
@@ -53,6 +67,13 @@ exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
       type: "application/ld+json",
       dangerouslySetInnerHTML: {
         __html: JSON.stringify(ORGANIZATION_JSON_LD),
+      },
+    }),
+    React.createElement("script", {
+      key: "site-navigation-json-ld",
+      type: "application/ld+json",
+      dangerouslySetInnerHTML: {
+        __html: JSON.stringify(SITE_NAVIGATION_JSON_LD),
       },
     }),
   ])

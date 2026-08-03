@@ -8,6 +8,33 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { useLocation } from "@reach/router"
+import { breadcrumbsFor } from "../data/nav"
+
+// 검색결과에 계층 경로(홈 > 회사소개 > 협력 네트워크)를 노출시켜 사이트 구조를 알린다
+// https://developers.google.com/search/docs/appearance/structured-data/breadcrumb
+const buildBreadcrumbJsonLd = ({ pathname, title, host }) => {
+  const path = (pathname || "/").replace(/\/+$/, "") || "/"
+  const trail = breadcrumbsFor(path)
+  if (!trail.length) return null
+
+  const last = trail[trail.length - 1]
+  const crumbs = [
+    { name: "홈", path: "/" },
+    ...trail,
+    ...(last.path === path || !title ? [] : [{ name: title, path }]),
+  ]
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: `${host}${crumb.path === "/" ? "" : crumb.path}`,
+    })),
+  }
+}
 
 function Seo({ description, title, children, image }) {
   const { pathname } = useLocation()
@@ -44,6 +71,12 @@ function Seo({ description, title, children, image }) {
       : `${siteUrl}${image}`
     : `${siteUrl}/images/og-image.png`
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd({
+    pathname,
+    title,
+    host: canonicalHost,
+  })
+
   return (
     <>
       <title>{fullTitle}</title>
@@ -63,6 +96,11 @@ function Seo({ description, title, children, image }) {
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDescription} />
+      {breadcrumbJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbJsonLd)}
+        </script>
+      )}
       {children}
     </>
   )

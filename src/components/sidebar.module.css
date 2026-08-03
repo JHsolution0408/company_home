@@ -10,6 +10,23 @@
   display: none;
 }
 
+/* 메뉴 목록 (nav > ul > li). 전역 ul/li 여백·불릿 초기화 */
+.menuList,
+.dropdownMobileContainer {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menuList > li,
+.dropdownItem {
+  margin: 0;
+}
+
+.dropdownItem {
+  width: 100%;
+}
+
 .menuButton {
   height: 72px;
   color: #000;
